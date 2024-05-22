@@ -83,7 +83,7 @@ function HomeNavbar() {
             <div  className="header-right ml-0 ml-lg-auto">
               <a href="login.html"  className="header-icon d-md-block d-none mr-0">
                 <div  className="header-user">
-                  <i  className="icon-user-2"></i>
+                <i className="fas fa-user"></i>
                   <div  className="header-userinfo">
                     <span  className="d-inline-block line-height-1 ls-10">
                       Hello!
@@ -94,7 +94,7 @@ function HomeNavbar() {
               </a>
 
               <a href="wishlist.html"  className="header-icon">
-                <i  className="icon-wishlist-2"></i>
+              <i className="fas fa-heart"></i>
               </a>
 
               <div  className="dropdown cart-dropdown">

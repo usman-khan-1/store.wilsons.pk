@@ -59,6 +59,9 @@
 .mb-10 {
   margin-bottom: 10rem !important;
 }
+.ml-auto, .mx-auto {
+  margin-left: auto !important;
+}
 @media (min-width: 576px) {
   .mt-sm-0 {
     margin-top: 0rem !important;
@@ -471,6 +474,9 @@
 .font4 {
   font-family: Oswald, sans-serif !important;
 }
+.font-weight-bold {
+  font-weight: 700 !important;
+}
 @media (min-width: 992px) {
   .d-lg-none {
     display: none !important;
@@ -766,7 +772,7 @@
 .owl-theme .owl-dots .owl-dot {
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 .owl-theme .owl-dots .owl-dot span {
   position: relative;
@@ -4687,7 +4693,7 @@ label {
 .info-box {
   display: flex;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
   color: #222529;
 }
 .info-box i {
@@ -8573,7 +8579,7 @@ body {
   font-family: "Open Sans", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 /* body:not(.loaded) > :not(.loading-overlay) {
   visibility: hidden !important;
@@ -9010,6 +9016,9 @@ a:hover {
   }
 }
 @media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+}
   .col-xl-5col {
     -ms-flex: 0 0 20%;
     flex: 0 0 20%;
@@ -16024,8 +16033,8 @@ aside .widget-info i {
   }
 }
 @media (min-width: 992px) {
-  .intro-section .col-lg-9 {
-    padding-left: 250px;
+  .intro-section .col-lg-12 {
+    padding-left: 300px;
   }
   .banner3 h2,
   .banner3 h3 {
@@ -16241,4 +16250,31 @@ span.toggle {
   font-size: 1.4rem;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.home-caroseul .carousel-control-next-icon,
+.home-caroseul .carousel-control-prev-icon {
+  background-image: none;
+}
+
+.home-caroseul .carousel-control-next-icon::after,
+.home-caroseul .carousel-control-prev-icon::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: solid #6c727c;
+  border-width: 0 4px 4px 0;
+}
+
+.home-caroseul .carousel-control-next-icon::after {
+  transform: rotate(-45deg);
+}
+
+.home-caroseul .carousel-control-prev-icon::after {
+  transform: rotate(135deg);
+}
+.home-caroseul .carousel-caption {
+  bottom: 50%;
+  transform: translateY(50%);
 }
