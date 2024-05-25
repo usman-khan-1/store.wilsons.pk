@@ -1,8 +1,7 @@
 import React from "react";
-import Layout from "../Components/Layout";
 import HomeNavbar from "../Components/HomeNavbar";
-import { Carousel } from "react-bootstrap";
 import HomeCarosuel from "../Components/Home/HomeCarosuel";
+
 
 function Home() {
   return (
@@ -58,7 +57,10 @@ function Home() {
               </div>
             </div>
           </div>
+
         </div>
+
+
 
         {/* <div class="container">
                 <div class="info-boxes-container">

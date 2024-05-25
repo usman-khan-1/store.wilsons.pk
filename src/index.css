@@ -16278,3 +16278,14 @@ span.toggle {
   bottom: 50%;
   transform: translateY(50%);
 }
+
+.single-testimonial-item {
+  position: relative;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
+  padding: 30px;
+  z-index: 1;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}

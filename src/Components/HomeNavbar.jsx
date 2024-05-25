@@ -12,7 +12,7 @@ function HomeNavbar() {
             <div  className="header-left">
               <a href="demo22.html"  className="logo">
                 <img
-                  src="assets/images/logo-white.png"
+                  src="assets/Images/logo-white.png"
                   alt="Porto Logo"
                   width="111"
                   height="44"
