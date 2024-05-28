@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function HomeNavbar() {
   return (
     <div>
-      <header  className="header">
+      <header className="header">
         <div
-           className="header-middle sticky-header"
+          className="header-middle sticky-header"
           data-sticky-options="{'mobile': true}"
         >
-          <div  className="container">
-            <div  className="header-left">
-              <a href="demo22.html"  className="logo">
+          <div className="container">
+            <div className="header-left">
+              <a href="demo22.html" className="logo">
                 <img
                   src="assets/Images/logo-white.png"
                   alt="Porto Logo"
@@ -18,22 +19,22 @@ function HomeNavbar() {
                   height="44"
                 />
               </a>
-              <div  className="header-col">
-                <div  className="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
-                  <a href="#"  className="search-toggle" role="button">
-                    <i  className="icon-search-3"></i>
+              <div className="header-col">
+                <div className="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
+                  <a href="#" className="search-toggle" role="button">
+                    <i className="icon-search-3"></i>
                   </a>
                   <form action="#" method="get">
-                    <div  className="header-search-wrapper">
+                    <div className="header-search-wrapper">
                       <input
                         type="search"
-                         className="form-control"
+                        className="form-control"
                         name="q"
                         id="q"
                         placeholder="I'm searching for..."
                         required
                       />
-                      <div  className="select-custom">
+                      <div className="select-custom">
                         <select id="cat" name="cat">
                           <option value="">All Categories</option>
                           <option value="4">Fashion</option>
@@ -60,7 +61,7 @@ function HomeNavbar() {
                       </div>
 
                       <button
-                         className="btn icon-magnifier"
+                        className="btn icon-magnifier"
                         title="search"
                         type="submit"
                       ></button>
@@ -68,7 +69,7 @@ function HomeNavbar() {
                   </form>
                 </div>
 
-                <div  className="tagcloud d-none d-lg-flex">
+                <div className="tagcloud d-none d-lg-flex">
                   <a href="demo22-shop.html">clothes</a>
                   <a href="demo22-shop.html">fashion</a>
                   <a href="demo22-shop.html">hub</a>
@@ -80,64 +81,70 @@ function HomeNavbar() {
               </div>
             </div>
 
-            <div  className="header-right ml-0 ml-lg-auto">
-              <a href="login.html"  className="header-icon d-md-block d-none mr-0">
-                <div  className="header-user">
-                <i className="fas fa-user"></i>
-                  <div  className="header-userinfo">
-                    <span  className="d-inline-block line-height-1 ls-10">
+            <div className="header-right ml-0 ml-lg-auto">
+              <Link
+                to={"/login"}
+                className="header-icon d-md-block d-none mr-0"
+              >
+                <div className="header-user">
+                  <i className="fas fa-user"></i>
+                  <div className="header-userinfo">
+                    <span className="d-inline-block line-height-1 ls-10">
                       Hello!
                     </span>
-                    <h4  className="font1 mb-0">My Account</h4>
+                    <h4 className="font1 mb-0">My Account</h4>
                   </div>
                 </div>
+              </Link>
+
+              <a href="wishlist.html" className="header-icon">
+                <i className="fas fa-heart"></i>
               </a>
 
-              <a href="wishlist.html"  className="header-icon">
-              <i className="fas fa-heart"></i>
-              </a>
-
-              <div  className="dropdown cart-dropdown">
+              <div className="dropdown cart-dropdown">
                 <a
                   href="#"
                   title="Cart"
-                   className="dropdown-toggle cart-toggle"
+                  className="dropdown-toggle cart-toggle"
                   role="button"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                   data-display="static"
                 >
-                  <i  className="minicart-icon"></i>
-                  <span  className="cart-count badge-circle">3</span>
+                  <i className="minicart-icon"></i>
+                  <span className="cart-count badge-circle">3</span>
                 </a>
 
-                <div  className="cart-overlay"></div>
+                <div className="cart-overlay"></div>
 
-                <div  className="dropdown-menu mobile-cart">
-                  <a href="#" title="Close (Esc)"  className="btn-close">
+                <div className="dropdown-menu mobile-cart">
+                  <a href="#" title="Close (Esc)" className="btn-close">
                     ×
                   </a>
 
-                  <div  className="dropdownmenu-wrapper custom-scrollbar">
-                    <div  className="dropdown-cart-header">Shopping Cart</div>
+                  <div className="dropdownmenu-wrapper custom-scrollbar">
+                    <div className="dropdown-cart-header">Shopping Cart</div>
 
-                    <div  className="dropdown-cart-products">
-                      <div  className="product">
-                        <div  className="product-details">
-                          <h4  className="product-title">
+                    <div className="dropdown-cart-products">
+                      <div className="product">
+                        <div className="product-details">
+                          <h4 className="product-title">
                             <a href="demo22-product.html">
                               Ultimate 3D Bluetooth Speaker
                             </a>
                           </h4>
 
-                          <span  className="cart-product-info">
-                            <span  className="cart-product-qty">1</span> × $99.00
+                          <span className="cart-product-info">
+                            <span className="cart-product-qty">1</span> × $99.00
                           </span>
                         </div>
 
-                        <figure  className="product-image-container">
-                          <a href="demo22-product.html"  className="product-image">
+                        <figure className="product-image-container">
+                          <a
+                            href="demo22-product.html"
+                            className="product-image"
+                          >
                             <img
                               src="assets/images/products/product-1.jpg"
                               alt="product"
@@ -146,27 +153,34 @@ function HomeNavbar() {
                             />
                           </a>
 
-                          <a href="#"  className="btn-remove" title="Remove Product">
+                          <a
+                            href="#"
+                            className="btn-remove"
+                            title="Remove Product"
+                          >
                             <span>×</span>
                           </a>
                         </figure>
                       </div>
 
-                      <div  className="product">
-                        <div  className="product-details">
-                          <h4  className="product-title">
+                      <div className="product">
+                        <div className="product-details">
+                          <h4 className="product-title">
                             <a href="demo22-product.html">
                               Brown Women Casual HandBag
                             </a>
                           </h4>
 
-                          <span  className="cart-product-info">
-                            <span  className="cart-product-qty">1</span> × $35.00
+                          <span className="cart-product-info">
+                            <span className="cart-product-qty">1</span> × $35.00
                           </span>
                         </div>
 
-                        <figure  className="product-image-container">
-                          <a href="demo22-product.html"  className="product-image">
+                        <figure className="product-image-container">
+                          <a
+                            href="demo22-product.html"
+                            className="product-image"
+                          >
                             <img
                               src="assets/images/products/product-2.jpg"
                               alt="product"
@@ -175,27 +189,34 @@ function HomeNavbar() {
                             />
                           </a>
 
-                          <a href="#"  className="btn-remove" title="Remove Product">
+                          <a
+                            href="#"
+                            className="btn-remove"
+                            title="Remove Product"
+                          >
                             <span>×</span>
                           </a>
                         </figure>
                       </div>
 
-                      <div  className="product">
-                        <div  className="product-details">
-                          <h4  className="product-title">
+                      <div className="product">
+                        <div className="product-details">
+                          <h4 className="product-title">
                             <a href="demo22-product.html">
                               Circled Ultimate 3D Speaker
                             </a>
                           </h4>
 
-                          <span  className="cart-product-info">
-                            <span  className="cart-product-qty">1</span> × $35.00
+                          <span className="cart-product-info">
+                            <span className="cart-product-qty">1</span> × $35.00
                           </span>
                         </div>
 
-                        <figure  className="product-image-container">
-                          <a href="demo22-product.html"  className="product-image">
+                        <figure className="product-image-container">
+                          <a
+                            href="demo22-product.html"
+                            className="product-image"
+                          >
                             <img
                               src="assets/images/products/product-3.jpg"
                               alt="product"
@@ -203,27 +224,36 @@ function HomeNavbar() {
                               height="80"
                             />
                           </a>
-                          <a href="#"  className="btn-remove" title="Remove Product">
+                          <a
+                            href="#"
+                            className="btn-remove"
+                            title="Remove Product"
+                          >
                             <span>×</span>
                           </a>
                         </figure>
                       </div>
                     </div>
 
-                    <div  className="dropdown-cart-total">
+                    <div className="dropdown-cart-total">
                       <span>SUBTOTAL:</span>
 
-                      <span  className="cart-total-price float-right">$134.00</span>
+                      <span className="cart-total-price float-right">
+                        $134.00
+                      </span>
                     </div>
 
-                    <div  className="dropdown-cart-action">
+                    <div className="dropdown-cart-action">
                       <a
                         href="cart.html"
-                         className="btn btn-gray btn-block view-cart"
+                        className="btn btn-gray btn-block view-cart"
                       >
                         View Cart
                       </a>
-                      <a href="checkout.html"  className="btn btn-dark btn-block">
+                      <a
+                        href="checkout.html"
+                        className="btn btn-dark btn-block"
+                      >
                         Checkout
                       </a>
                     </div>
@@ -235,74 +265,74 @@ function HomeNavbar() {
         </div>
 
         <div
-           className="header-bottom sticky-header"
+          className="header-bottom sticky-header"
           data-sticky-options="{'mobile': false, 'offset': 684}"
         >
-          <div  className="container">
-            <div  className="header-center">
-              <button  className="mobile-menu-toggler" type="button">
-                <i  className="fas fa-bars"></i>
+          <div className="container">
+            <div className="header-center">
+              <button className="mobile-menu-toggler" type="button">
+                <i className="fas fa-bars"></i>
               </button>
 
-              <nav  className="main-nav d-none d-lg-flex flex-wrap">
-                <div  className="menu-depart show-always">
-                  <a href="#"  className="toggle">
-                    <i  className="fas fa-bars"></i>Shop by Category
+              <nav className="main-nav d-none d-lg-flex flex-wrap">
+                <div className="menu-depart show-always">
+                  <a href="#" className="toggle">
+                    <i className="fas fa-bars"></i>Shop by Category
                   </a>
-                  <div  className="submenu">
-                    <a href="demo22-shop.html"  className="active">
-                      <i  className="icon-category-home"></i>Home
+                  <div className="submenu">
+                    <a href="demo22-shop.html" className="active">
+                      <i className="icon-category-home"></i>Home
                     </a>
                     <a href="demo22-shop.html">
-                      <i  className="icon-category-fashion"></i>Fashion
+                      <i className="icon-category-fashion"></i>Fashion
                     </a>
                     <a href="demo22-shop.html">
-                      <i  className="icon-category-electronics"></i>Electronics
+                      <i className="icon-category-electronics"></i>Electronics
                     </a>
                     <a href="demo22-shop.html">
-                      <i  className="icon-category-gifts"></i>Gifts
+                      <i className="icon-category-gifts"></i>Gifts
                     </a>
                     <a href="demo22-shop.html">
-                      <i  className="icon-category-garden"></i>Garden
+                      <i className="icon-category-garden"></i>Garden
                     </a>
                     <a href="demo22-shop.html">
-                      <i  className="icon-category-music"></i>Music
+                      <i className="icon-category-music"></i>Music
                     </a>
                     <a href="demo22-shop.html">
-                      <i  className="icon-category-motors"></i>Motors
+                      <i className="icon-category-motors"></i>Motors
                     </a>
                     <a href="demo22-shop.html">
-                      <i  className="icon-category-furniture"></i>Furniture
+                      <i className="icon-category-furniture"></i>Furniture
                     </a>
                     <a href="demo22-shop.html">
-                      VIEW ALL <i  className="icon-angle-right"></i>
+                      VIEW ALL <i className="icon-angle-right"></i>
                     </a>
                   </div>
                 </div>
-                <ul  className="menu">
-                  <li  className="active">
+                <ul className="menu">
+                  <li className="active">
                     <a href="demo22.html">Home</a>
                   </li>
                   <li>
-                    <a href="demo22-vendors.html">Vendor</a>
+                    <a>Vendor</a>
                     <ul>
                       <li>
-                        <a href="demo22-vendors.html">Store List</a>
+                        <a>Store List</a>
                       </li>
                       <li>
-                        <a href="demo22-store.html">Vendor Store</a>
+                        <a>Vendor Store</a>
                       </li>
                     </ul>
                   </li>
                   <li>
                     <a href="demo22-shop.html">Categories</a>
-                    <div  className="megamenu megamenu-fixed-width megamenu-3cols">
-                      <div  className="row">
-                        <div  className="col-lg-4">
-                          <a href="#"  className="nolink">
+                    <div className="megamenu megamenu-fixed-width megamenu-3cols">
+                      <div className="row">
+                        <div className="col-lg-4">
+                          <a href="#" className="nolink">
                             VARIATION 1
                           </a>
-                          <ul  className="submenu">
+                          <ul className="submenu">
                             <li>
                               <a href="category.html">Fullwidth Banner</a>
                             </li>
@@ -341,11 +371,11 @@ function HomeNavbar() {
                             </li>
                           </ul>
                         </div>
-                        <div  className="col-lg-4">
-                          <a href="#"  className="nolink">
+                        <div className="col-lg-4">
+                          <a href="#" className="nolink">
                             VARIATION 2
                           </a>
-                          <ul  className="submenu">
+                          <ul className="submenu">
                             <li>
                               <a href="category-list.html">List Types</a>
                             </li>
@@ -384,8 +414,8 @@ function HomeNavbar() {
                             </li>
                           </ul>
                         </div>
-                        <div  className="col-lg-4 p-0">
-                          <div  className="menu-banner">
+                        <div className="col-lg-4 p-0">
+                          <div className="menu-banner">
                             <figure>
                               <img
                                 src="assets/images/menu-banner.jpg"
@@ -394,16 +424,16 @@ function HomeNavbar() {
                                 height="300"
                               />
                             </figure>
-                            <div  className="banner-content">
+                            <div className="banner-content">
                               <h4>
-                                <span  className="">UP TO</span>
+                                <span className="">UP TO</span>
                                 <br />
-                                <b  className="">50%</b>
+                                <b className="">50%</b>
                                 <i>OFF</i>
                               </h4>
                               <a
                                 href="category.html"
-                                 className="btn btn-sm btn-dark"
+                                className="btn btn-sm btn-dark"
                               >
                                 SHOP NOW
                               </a>
@@ -415,13 +445,13 @@ function HomeNavbar() {
                   </li>
                   <li>
                     <a href="demo22-product.html">Products</a>
-                    <div  className="megamenu megamenu-fixed-width">
-                      <div  className="row">
-                        <div  className="col-lg-4">
-                          <a href="#"  className="nolink">
+                    <div className="megamenu megamenu-fixed-width">
+                      <div className="row">
+                        <div className="col-lg-4">
+                          <a href="#" className="nolink">
                             PRODUCT PAGES
                           </a>
-                          <ul  className="submenu">
+                          <ul className="submenu">
                             <li>
                               <a href="demo22-product.html">SIMPLE PRODUCT</a>
                             </li>
@@ -461,11 +491,11 @@ function HomeNavbar() {
                           </ul>
                         </div>
 
-                        <div  className="col-lg-4">
-                          <a href="#"  className="nolink">
+                        <div className="col-lg-4">
+                          <a href="#" className="nolink">
                             PRODUCT LAYOUTS
                           </a>
-                          <ul  className="submenu">
+                          <ul className="submenu">
                             <li>
                               <a href="product-extended-layout.html">
                                 EXTENDED LAYOUT
@@ -503,26 +533,29 @@ function HomeNavbar() {
                           </ul>
                         </div>
 
-                        <div  className="col-lg-4 p-0">
-                          <div  className="menu-banner menu-banner-2">
+                        <div className="col-lg-4 p-0">
+                          <div className="menu-banner menu-banner-2">
                             <figure>
                               <img
                                 src="assets/images/menu-banner-1.jpg"
                                 alt="Menu banner"
-                                 className="product-promo"
+                                className="product-promo"
                                 width="380"
                                 height="790"
                               />
                             </figure>
                             <i>OFF</i>
-                            <div  className="banner-content">
+                            <div className="banner-content">
                               <h4>
-                                <span  className="">UP TO</span>
+                                <span className="">UP TO</span>
                                 <br />
-                                <b  className="">50%</b>
+                                <b className="">50%</b>
                               </h4>
                             </div>
-                            <a href="category.html"  className="btn btn-sm btn-dark">
+                            <a
+                              href="category.html"
+                              className="btn btn-sm btn-dark"
+                            >
                               SHOP NOW
                             </a>
                           </div>
@@ -533,7 +566,7 @@ function HomeNavbar() {
                   <li>
                     <a href="blog.html">Blog</a>
                   </li>
-                  <li  className="d-none d-xl-block">
+                  <li className="d-none d-xl-block">
                     <a href="#">Pages</a>
                     <ul>
                       <li>
@@ -575,17 +608,17 @@ function HomeNavbar() {
                   </li>
                 </ul>
               </nav>
-              <div  className="header-dropdowns ml-auto">
+              <div className="header-dropdowns ml-auto">
                 <a
                   href="#"
-                   className="link-seller font-weight-bold d-none d-sm-block"
+                  className="link-seller font-weight-bold d-none d-sm-block"
                 >
                   Become a Seller
                 </a>
 
-                <div  className="header-dropdown">
+                <div className="header-dropdown">
                   <a href="#">USD</a>
-                  <div  className="header-menu">
+                  <div className="header-menu">
                     <ul>
                       <li>
                         <a href="#">EUR</a>
@@ -597,20 +630,20 @@ function HomeNavbar() {
                   </div>
                 </div>
 
-                <div  className="header-dropdown">
+                <div className="header-dropdown">
                   <a href="#">
-                    <i  className="flag-us flag"></i>ENG
+                    <i className="flag-us flag"></i>ENG
                   </a>
-                  <div  className="header-menu">
+                  <div className="header-menu">
                     <ul>
                       <li>
                         <a href="#">
-                          <i  className="flag-us flag mr-2"></i>ENG
+                          <i className="flag-us flag mr-2"></i>ENG
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <i  className="flag-fr flag mr-2"></i>FRA
+                          <i className="flag-fr flag mr-2"></i>FRA
                         </a>
                       </li>
                     </ul>
