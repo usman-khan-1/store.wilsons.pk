@@ -36,7 +36,7 @@ function Cart() {
 										<td>
 											<figure class="product-image-container">
 												<a href="product.html" class="product-image">
-													<img src="assets/images/products/product-4.jpg" alt="product"/>
+													<img src="assets/Images/products/product-4.jpg" alt="product"/>
 												</a>
 
 												<a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
@@ -60,7 +60,7 @@ function Cart() {
 										<td>
 											<figure class="product-image-container">
 												<a href="product.html" class="product-image">
-													<img src="assets/images/products/product-3.jpg" alt="product"/>
+													<img src="assets/Images/products/product-3.jpg" alt="product"/>
 												</a>
 
 												<a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
@@ -84,7 +84,7 @@ function Cart() {
 										<td>
 											<figure class="product-image-container">
 												<a href="product.html" class="product-image">
-													<img src="assets/images/products/product-6.jpg" alt="product"/>
+													<img src="assets/Images/products/product-6.jpg" alt="product"/>
 												</a>
 
 												<a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>

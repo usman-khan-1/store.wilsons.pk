@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { BsPerson } from "react-icons/bs";
 import { GoHeart } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
@@ -7,7 +7,7 @@ import { IoSearchOutline } from "react-icons/io5";
 function Navbar() {
   return (
     <div>
-      <header class="header">
+      <header class="header ">
         <div class="header-top">
           <div class="container">
             <div class="header-left d-none d-sm-block">
@@ -44,7 +44,7 @@ function Navbar() {
               </div>
               <span class="separator"></span>
 
-              <div class="header-dropdown">
+              {/* <div class="header-dropdown">
                 <a href="#">
                   <i class="flag-us flag"></i>ENG
                 </a>
@@ -62,9 +62,9 @@ function Navbar() {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
 
-              <div class="header-dropdown mr-auto mr-sm-3 mr-md-0">
+              {/* <div class="header-dropdown mr-auto mr-sm-3 mr-md-0">
                 <a href="#">USD</a>
                 <div class="header-menu">
                   <ul>
@@ -76,7 +76,7 @@ function Navbar() {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
 
               <span class="separator"></span>
 
@@ -189,15 +189,18 @@ function Navbar() {
                 <i class="icon-user-2"></i>
               </a> */}
 
-              <BsPerson size={40} />
+             
 
-              <a href="wishlist.html" class="header-icon" title="wishlist">
+              <Link to={"/myAccount"} class="header-icon" title="wishlist">
+              <BsPerson size={40} />
+              </Link>
+              <Link to={"/wishlist"} class="header-icon" title="wishlist">
                 <GoHeart size={30} />
-              </a>
+              </Link>
 
               <div class="dropdown cart-dropdown">
-                <a
-                  href="#"
+                <Link
+                  to={"/cart"}
                   title="Cart"
                   class="dropdown-toggle dropdown-arrow cart-toggle"
                   role="button"
@@ -208,7 +211,7 @@ function Navbar() {
                 >
                   <i class="minicart-icon"></i>
                   <span class="cart-count badge-circle">3</span>
-                </a>
+                </Link>
 
                 <div class="cart-overlay"></div>
 
@@ -333,16 +336,16 @@ function Navbar() {
         </div>
 
         <div
-          class="header-bottom sticky-header d-none d-lg-block"
+          class="header-bottom sticky-header d-none d-lg-block "
           data-sticky-options="{'mobile': false}"
         >
           <div class="container">
             <nav class="main-nav w-100">
               <ul class="menu">
                 <li>
-                  <Link to={"/"}>Home</Link>
+                  <NavLink activeClassName="active" to={"/"}>Home</NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <a href="category.html">Categories</a>
                   <div class="megamenu megamenu-fixed-width megamenu-3cols">
                     <div class="row">
@@ -592,11 +595,11 @@ function Navbar() {
                       <a href="forgot-password.html">Forgot Password</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
                 <li>
                   <Link to={"/blog"}>Blog</Link>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#">Elements</a>
                   <ul class="custom-scrollbar">
                     <li>
@@ -650,7 +653,7 @@ function Navbar() {
                       <a href="element-testimonial.html">Testimonials</a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
                 <li>
                   <Link to={"/contact"}>Contact Us</Link>
                 </li>

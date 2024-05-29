@@ -9,6 +9,7 @@ import { PiTimerBold } from "react-icons/pi";
 import { MdPayment, MdPayments } from "react-icons/md";
 
 function Home() {
+  
   return (
     <Layout>
       <HomeCarosuel />
@@ -57,6 +58,8 @@ function Home() {
           </div>
         </div>
       </div>
+
+     
     </Layout>
   );
 }

@@ -15526,7 +15526,7 @@ tbody .product-col {
 .table.table-totals tr td:last-child,
 .table.table-totals tr th:last-child {
   color: #777;
-  text-align: right;
+  /* text-align: right; */
   font-weight: 400;
 }
 .table.table-totals tbody tr {
@@ -15554,6 +15554,7 @@ tbody .product-col {
   font-size: 2.2rem;
 }
 .checkout-methods .btn {
+  width: 100%;
   font-family: "Open Sans", sans-serif;
   font-size: 1.5rem;
   letter-spacing: -0.015em;
