@@ -5,7 +5,7 @@ function HomeCarosuel() {
   return (
     <div>
         <section class="intro-section">
-          <div class="">
+          <div class="container">
             <div class="row">
               <div class="col-lg-12 mb-2">
                 <div className="home-caroseul">
