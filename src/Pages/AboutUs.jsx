@@ -7,7 +7,7 @@ function AboutUs() {
       <main class="main about">
       <div className="page-header page-header-bg text-left"
          style={{
-           background: '50%/cover #D4E1EA url(assets/Images/page-header-bg.jpg)'
+           background: '50%/cover #D4E1EA url(/assets/Images/page-header-bg.jpg)'
          }}>
       <div className="container">
         <h1><span>ABOUT US</span> OUR COMPANY</h1>
@@ -104,7 +104,7 @@ function AboutUs() {
 						<div class="testimonial">
 							<div class="testimonial-owner">
 								<figure>
-									<img src="assets/images/clients/client1.png" alt="client"/>
+									<img src="/assets/Images/clients/client1.png" alt="client"/>
 								</figure>
 
 								<div>
@@ -122,7 +122,7 @@ function AboutUs() {
 						<div class="testimonial">
 							<div class="testimonial-owner">
 								<figure>
-									<img src="assets/images/clients/client2.png" alt="client"/>
+									<img src="/assets/Images/clients/client2.png" alt="client"/>
 								</figure>
 
 								<div>
@@ -140,7 +140,7 @@ function AboutUs() {
 						<div class="testimonial">
 							<div class="testimonial-owner">
 								<figure>
-									<img src="assets/images/clients/client1.png" alt="client"/>
+									<img src="/assets/Images/clients/client1.png" alt="client"/>
 								</figure>
 
 								<div>

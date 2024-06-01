@@ -22,7 +22,7 @@ function HomeNavbar() {
             <div className="header-left">
               <a href="demo22.html" className="logo">
                 <img
-                  src="assets/Images/logo-white.png"
+                  src="/assets/Images/logo-white.png"
                   alt="Porto Logo"
                   width="111"
                   height="44"
@@ -155,7 +155,7 @@ function HomeNavbar() {
                             className="product-image"
                           >
                             <img
-                              src="assets/images/products/product-1.jpg"
+                              src="/assets/Images/products/product-1.jpg"
                               alt="product"
                               width="80"
                               height="80"
@@ -191,7 +191,7 @@ function HomeNavbar() {
                             className="product-image"
                           >
                             <img
-                              src="assets/images/products/product-2.jpg"
+                              src="/assets/Images/products/product-2.jpg"
                               alt="product"
                               width="80"
                               height="80"
@@ -227,7 +227,7 @@ function HomeNavbar() {
                             className="product-image"
                           >
                             <img
-                              src="assets/images/products/product-3.jpg"
+                              src="/assets/Images/products/product-3.jpg"
                               alt="product"
                               width="80"
                               height="80"
