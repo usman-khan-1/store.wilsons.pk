@@ -16293,3 +16293,7 @@ span.toggle {
   margin-left: 8px;  /* Space between text and icon */
 }
 
+.brands-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}

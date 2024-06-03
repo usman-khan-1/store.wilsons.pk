@@ -14,6 +14,8 @@ import BestSellerElectronics from "../Components/Home/BestSellerElectronics";
 import TopCategoryCarosuel from "../Components/Home/TopCategoryCarosuel";
 import BestSellerElectronicsNew from "../Components/Home/BestSellerElectronicsNew";
 import ElectronicSection from "../Components/Home/ElectronicSection";
+import TopBrand from "../Components/Home/TopBrand";
+import RecentProductsCarosuel from "../Components/Home/RecentProductsCarosuel";
 
 function Home() {
   return (
@@ -65,40 +67,11 @@ function Home() {
         </div>
       </div>
 
+      <MostViewedCarosuel />
       <TopCategoryCarosuel />
 
-      {/* <MostViewedCarosuel /> */}
-
-      {/* <div className="row">
-        <div className="col-lg-4 col-md-6 col-sm-12">
-            <h1>Hello</h1>
-        </div>
-        <div className="col-lg-8 col-md-6 col-sm-12">
-            <div className="row">
-                <div className="col-lg-4 col-md-12 col-sm-12">
-                    <h1>hello</h1>
-                </div>
-                <div className="col-lg-4 col-md-12 col-sm-12">
-                    <h1>hello</h1>
-                </div>
-                <div className="col-lg-4 col-md-12 col-sm-12">
-                    <h1>hello</h1>
-                </div>
-                <div className="col-lg-4 col-md-12 col-sm-12">
-                    <h1>hello</h1>
-                </div>
-                <div className="col-lg-4 col-md-12 col-sm-12">
-                    <h1>hello</h1>
-                </div>
-                <div className="col-lg-4 col-md-12 col-sm-12">
-                    <h1>hello</h1>
-                </div>
-            </div>
-        </div>
-       </div> */}
-
       <BestSellerElectronics />
-
+      <RecentProductsCarosuel />
 
       <section class="recent-products">
         <div class="container">
@@ -475,7 +448,8 @@ function Home() {
         </div>
       </section>
 
-      <ElectronicSection/>
+      <ElectronicSection />
+      <TopBrand />
     </Layout>
   );
 }
