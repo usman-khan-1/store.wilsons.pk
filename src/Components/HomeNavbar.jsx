@@ -1,19 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 function HomeNavbar() {
   const location = useLocation();
+  const [isFixed, setIsFixed] = useState(false);
+  const [isSideBar, setIsSideBar] = useState(false);
+  const [openCategory, setOpenCategory] = useState(false);
 
-  const submenuStyle = location.pathname === '/' 
-    ? {
-        opacity: "1",
-        top: "100%",
-        visibility: "visible"
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
       }
-    : {};
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const submenuStyle =
+    location.pathname === "/"
+      ? {
+          opacity: "1",
+          top: "100%",
+          visibility: "visible",
+        }
+      : {};
+
+  const ToggleCategoryDropdown = () => {
+    setOpenCategory(!openCategory);
+  };
   return (
     <div>
-      <header className="header">
+      <header className={`header ${isFixed ? "fixed-top" : ""}`}>
         <div
           className="header-middle sticky-header"
           data-sticky-options="{'mobile': true}"
@@ -279,7 +302,11 @@ function HomeNavbar() {
         >
           <div className="container">
             <div className="header-center">
-              <button className="mobile-menu-toggler" type="button">
+              <button
+                onClick={() => setIsSideBar(true)}
+                className="mobile-menu-toggler"
+                type="button"
+              >
                 <i className="fas fa-bars"></i>
               </button>
 
@@ -288,7 +315,7 @@ function HomeNavbar() {
                   <a href="#" className="toggle">
                     <i className="fas fa-bars"></i>Shop by Category
                   </a>
-                  <div className="submenu" style={submenuStyle}>
+                  <div className="submenu" style={!isFixed ? submenuStyle : {}}>
                     <Link to={"/"} className="active">
                       <i className="icon-category-home"></i>Home
                     </Link>
@@ -337,9 +364,9 @@ function HomeNavbar() {
                   <li className="dropdown">
                     <a>Pages</a>
                     <ul className="dropdown-menu">
-                    <li>
-                    <Link to={"/myAccount"}>My Account</Link>
-                  </li>
+                      <li>
+                        <Link to={"/myAccount"}>My Account</Link>
+                      </li>
                       <li>
                         <a href="#">Blog</a>
                         <ul className="submenu">
@@ -401,6 +428,93 @@ function HomeNavbar() {
           </div>
         </div>
       </header>
+
+      <div className={`${isSideBar ? "mmenu-active" : ""}`}>
+        <div className="mobile-menu-overlay"></div>
+
+        <div className="mobile-menu-container">
+          <div className="mobile-menu-wrapper">
+            <span onClick={() => setIsSideBar(false)} className="mobile-menu-close">
+              <i className="fa fa-times"></i>
+            </span>
+            <nav className="mobile-nav">
+              <ul className="mobile-menu">
+                <li>
+                  <Link to={"/"}>Home</Link>
+                </li>
+                <li>
+                  <Link onClick={ToggleCategoryDropdown}>
+                    Categories <span className="mmenu-btn"></span>
+                  </Link>
+                  <ul className={`${openCategory && "d-block"}`}>
+                    <li>
+                      <Link>Fashion</Link>
+                    </li>
+                    <li>
+                      <Link>Electronic</Link>
+                    </li>
+                    <li>
+                      <Link>Gifts</Link>
+                    </li>
+                    <li>
+                      <Link>Garden</Link>
+                    </li>
+                    <li>
+                      <Link>Music</Link>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <Link to={"/about"}>About</Link>
+                </li>
+                <li>
+                  <Link to={"/blog"}>Blog</Link>
+                </li>
+                <li>
+                  <Link to={"/wishList"}>Wishlist</Link>
+                </li>
+                <li>
+                  <Link to={"/cart"}>Cart</Link>
+                </li>
+                <li>
+                  <Link to={"/cart"}>My Account</Link>
+                </li>
+              </ul>
+            </nav>
+
+            <form className="search-wrapper mb-2" action="#">
+              <input
+                type="text"
+                className="form-control mb-0"
+                placeholder="Search..."
+                required
+              />
+              <button
+                className="btn icon-search text-white bg-transparent p-0"
+                type="submit"
+              ></button>
+            </form>
+
+            <div className="social-icons">
+              <a
+                href="#"
+                className="social-icon social-facebook icon-facebook"
+                target="_blank"
+              ></a>
+              <a
+                href="#"
+                className="social-icon social-twitter icon-twitter"
+                target="_blank"
+              ></a>
+              <a
+                href="#"
+                className="social-icon social-instagram icon-instagram"
+                target="_blank"
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

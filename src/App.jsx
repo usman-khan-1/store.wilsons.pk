@@ -9,9 +9,14 @@ import Blogs from "./Pages/Blogs";
 import WishList from "./Pages/WishList";
 import Cart from "./Pages/Cart";
 import Contact from "./Pages/Contact";
+import BottomNavigationBar from "./Components/BottomNavigationBar";
+import ProductDetails from "./Pages/ProductDetails";
+import Checkout from "./Pages/Checkout";
+import BlogDetails from "./Pages/BlogDetails";
 function App() {
   return (
     <>
+      <BottomNavigationBar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -19,9 +24,12 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="blog" element={<Blogs />} />
+          <Route path="blog-details" element={<BlogDetails />} />
           <Route path="wishList" element={<WishList />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="contact" element={<Contact/>} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="product-details" element={<ProductDetails />} />
+          <Route path="checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
       {/* <HomeNavbar /> */}

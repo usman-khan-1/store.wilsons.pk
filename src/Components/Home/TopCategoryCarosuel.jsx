@@ -44,12 +44,12 @@ function TopCategoryCarosuel() {
 
   return (
     <div>
-      <section class="top-categories">
-        <div class="container">
-          <div class="row m-b-3">
-            <div class="col-lg-6">
+      <section className="top-categories">
+        <div className="container">
+          <div className="row m-b-3">
+            <div className="col-lg-6">
               <div
-                class="banner banner1 mb-2 "
+                className="banner banner1 mb-2 "
                 style={{ backgroundColor: "#f4f4f4" }}
               >
                 <figure>
@@ -60,28 +60,28 @@ function TopCategoryCarosuel() {
                     height="236"
                   />
                 </figure>
-                <div class="banner-layer banner-layer-middle banner-layer-left">
-                  <h3 class="font1 ls-10 text-uppercase mb-0">
+                <div className="banner-layer banner-layer-middle banner-layer-left">
+                  <h3 className="font1 ls-10 text-uppercase mb-0">
                     Action
                     <br />
                     Cameras
                   </h3>
                 </div>
-                <div class="banner-layer banner-layer-middle banner-layer-right">
-                  <div class="coupon-sale-text">
-                    <h4 class="font1 line-height-1 ls-10 text-white bg-primary skew-box m-b-2">
+                <div className="banner-layer banner-layer-middle banner-layer-right">
+                  <div className="coupon-sale-text">
+                    <h4 className="font1 line-height-1 ls-10 text-white bg-primary skew-box m-b-2">
                       Starting from
                     </h4>
-                    <h5 class="d-inline-block font1 text-white bg-primary skew-box mb-0">
-                      $399<sub class="text-dark">$499</sub>
+                    <h5 className="d-inline-block font1 text-white bg-primary skew-box mb-0">
+                      $399<sub className="text-dark">$499</sub>
                     </h5>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div className="col-lg-6">
               <div
-                class="banner banner2 mb-2 "
+                className="banner banner2 mb-2 "
                 data-animation-name="fadeInRightShorter"
                 data-animation-delay="200"
                 style={{ backgroundColor: "#f4f4f4" }}
@@ -94,27 +94,27 @@ function TopCategoryCarosuel() {
                     height="236"
                   />
                 </figure>
-                <div class="banner-layer banner-layer-middle banner-layer-left">
-                  <h3 class="font1 text-uppercase ls-10 mb-0">
+                <div className="banner-layer banner-layer-middle banner-layer-left">
+                  <h3 className="font1 text-uppercase ls-10 mb-0">
                     For all
                     <br />
                     styles
                   </h3>
                 </div>
-                <div class="banner-layer banner-layer-middle banner-layer-right">
-                  <div class="coupon-sale-text">
-                    <h4 class="font1 line-height-1 ls-10 text-white bg-secondary skew-box m-b-2">
+                <div className="banner-layer banner-layer-middle banner-layer-right">
+                  <div className="coupon-sale-text">
+                    <h4 className="font1 line-height-1 ls-10 text-white bg-secondary skew-box m-b-2">
                       Starting from
                     </h4>
-                    <h5 class="d-inline-block font1 text-white bg-secondary skew-box mb-0">
-                      $199<sub class="text-dark">$299</sub>
+                    <h5 className="d-inline-block font1 text-white bg-secondary skew-box mb-0">
+                      $199<sub className="text-dark">$299</sub>
                     </h5>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <h2 class="section-title line-height-1 ls-10 pb-4 mb-4">
+          <h2 className="section-title line-height-1 ls-10 pb-4 mb-4">
             Top Categories
           </h2>
 
@@ -129,8 +129,8 @@ function TopCategoryCarosuel() {
             keyBoardControl={true}
             customTransition="transform 0.5s ease"
             transitionDuration={500}
-            containerClass="carousel-container"
-            dotListClass="custom-dot-list-style"
+            containerclassName="carousel-container"
+            dotListclassName="custom-dot-list-style"
             arrows={false} // Hide arrows
           >
             {categories.map((category, index) => (

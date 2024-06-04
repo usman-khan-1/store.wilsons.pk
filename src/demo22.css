@@ -2,7 +2,7 @@
 @font-face {
   font-family: "porto";
   src: url("../public/assets/fonts/porto6e1d.woff") format("woff2"),
-       url("../public/assets/fonts/porto6e1d.woff2") format("woff");
+    url("../public/assets/fonts/porto6e1d.woff2") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -9804,6 +9804,7 @@ header .separator {
 }
 .header-icon i {
   font-size: 2.8rem;
+  color: #fff;
 }
 .header-icon:hover {
   color: #222529;
@@ -9813,7 +9814,7 @@ header .separator {
   vertical-align: middle;
   width: 25px;
   height: 20px;
-  border: 2px solid #222529;
+  border: 2px solid #fff;
   border-radius: 0 0 5px 5px;
   position: relative;
   opacity: 0.9;
@@ -11419,6 +11420,7 @@ footer .contact-info-label {
 }
 .header-bottom {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
 }
 .mobile-menu-toggler {
   margin: 0.8rem;
@@ -11502,6 +11504,7 @@ footer .contact-info-label {
   margin-bottom: 3px;
   font-size: 1.2rem;
   font-weight: 400;
+  color: #fff;
 }
 .header-userinfo h4 {
   line-height: 1;
@@ -11556,11 +11559,10 @@ footer .contact-info-label {
   transition: transform 0.25s, opacity 0.25s;
   visibility: hidden;
   background-color: #fff;
-  opacity: 0 ;
+  opacity: 0;
 }
 .menu-depart:hover .submenu
-/* .sticky-header:not(.fixed) .menu-depart.show-always .submenu */
- {
+/* .sticky-header:not(.fixed) .menu-depart.show-always .submenu */ {
   opacity: 1;
   visibility: visible;
   top: 100%;
@@ -11586,7 +11588,7 @@ footer .contact-info-label {
   border-right-width: 11px;
 }
 .sticky-header:not(.fixed) .menu-depart.show-always .submenu {
-  transform: translateY(18px);
+  transform: translateY(5px);
 }
 .menu-depart a {
   color: #222529;
@@ -16263,7 +16265,7 @@ span.toggle {
   z-index: 1000;
   float: left;
   min-width: 23rem;
-  padding: 1rem ;
+  padding: 1rem;
   border: none;
   margin: 0;
   list-style: none;
@@ -16287,13 +16289,34 @@ span.toggle {
   display: block;
 }
 .menu > li.dropdown > a::after {
-  content: "\f078";  /* Font Awesome icon code for down arrow */
-  font-family: "Font Awesome 5 Free";  /* Specify Font Awesome font family */
-  font-weight: 900;  /* Font Awesome solid style */
-  margin-left: 8px;  /* Space between text and icon */
+  content: "\f078"; /* Font Awesome icon code for down arrow */
+  font-family: "Font Awesome 5 Free"; /* Specify Font Awesome font family */
+  font-weight: 900; /* Font Awesome solid style */
+  margin-left: 8px; /* Space between text and icon */
 }
 
 .brands-section {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+.css-7k9rxi-MuiBottomNavigation-root {
+  background-color: #01abec !important;
+  border-radius: 30px 30px 0px 0px;
+  height: 60px !important;
+  bottom: -5px !important;
+}
+.css-7k9rxi-MuiBottomNavigation-root button svg,
+.css-7k9rxi-MuiBottomNavigation-root button span {
+  color: #fff;
+  font-size: 14px;
+}
+.css-imwso6-MuiBottomNavigationAction-label.Mui-selected {
+  font-size: 16px !important;
+}
+.header.fixed-top {
+  position: fixed;
+  -webkit-box-shadow: 0 0.125rem 0.625rem -0.1875rem rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0.125rem 0.625rem -0.1875rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125rem 0.625rem -0.1875rem rgba(0, 0, 0, 0.1);
+  z-index: 1023;
 }

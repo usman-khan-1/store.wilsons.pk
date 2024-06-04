@@ -1,15 +1,15 @@
-import React from 'react'
-import HomeNavbar from '../Components/HomeNavbar.jsx'
-import Footer from './Footer.jsx'
+import React from "react";
+import HomeNavbar from "../Components/HomeNavbar.jsx";
+import Footer from "./Footer.jsx";
 
-function Layout({children}) {
+function Layout({ children }) {
   return (
     <div>
-        <HomeNavbar/>
+      <HomeNavbar />
       {children}
-      <Footer/>
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

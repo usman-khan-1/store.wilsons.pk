@@ -1,66 +1,66 @@
-import React from "react";
-import HomeNavbar from "../Components/HomeNavbar";
+import React, { useEffect } from "react";
 import HomeCarosuel from "../Components/Home/HomeCarosuel";
-import Navbar from "../Components/Home/Navbar";
 import Layout from "../Components/Layout";
 import { FaShippingFast } from "react-icons/fa";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { PiTimerBold } from "react-icons/pi";
-import { MdPayment, MdPayments } from "react-icons/md";
+import { MdPayment } from "react-icons/md";
 
 import "react-multi-carousel/lib/styles.css";
 import MostViewedCarosuel from "../Components/Home/MostViewedCarosuel";
 import BestSellerElectronics from "../Components/Home/BestSellerElectronics";
 import TopCategoryCarosuel from "../Components/Home/TopCategoryCarosuel";
-import BestSellerElectronicsNew from "../Components/Home/BestSellerElectronicsNew";
 import ElectronicSection from "../Components/Home/ElectronicSection";
 import TopBrand from "../Components/Home/TopBrand";
 import RecentProductsCarosuel from "../Components/Home/RecentProductsCarosuel";
 
 function Home() {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  })
   return (
     <Layout>
       <HomeCarosuel />
-      <div class="container my-5">
-        <div class="info-boxes-container">
-          <div class="row m-0 divide-line">
-            <div class="col-sm-6 col-lg-3 info-box info-box-icon-left ">
+      <div className="container my-5">
+        <div className="info-boxes-container">
+          <div className="row m-0 divide-line">
+            <div className="col-sm-6 col-lg-3 info-box info-box-icon-left ">
               <FaShippingFast size={30} className="me-5" />
 
-              <div class="info-box-content">
-                <h4 class="font1 line-height-1 ls-10">
+              <div className="info-box-content">
+                <h4 className="font1 line-height-1 ls-10">
                   FREE SHIPPING &amp; RETURN
                 </h4>
-                <p class="font-weight-light">
+                <p className="font-weight-light">
                   Free shipping on orders over $99.
                 </p>
               </div>
             </div>
 
-            <div class="info-box info-box-icon-left col-sm-6 col-lg-3">
+            <div className="info-box info-box-icon-left col-sm-6 col-lg-3">
               <RiMoneyDollarCircleLine size={30} className="me-5" />
 
-              <div class="info-box-content">
-                <h4 class="font1 line-height-1 ls-10">MONEY BACK GUARANTEE</h4>
-                <p class="font-weight-light">100% money back guarantee</p>
+              <div className="info-box-content">
+                <h4 className="font1 line-height-1 ls-10">MONEY BACK GUARANTEE</h4>
+                <p className="font-weight-light">100% money back guarantee</p>
               </div>
             </div>
 
-            <div class="info-box info-box-icon-left col-sm-6 col-lg-3">
+            <div className="info-box info-box-icon-left col-sm-6 col-lg-3">
               <PiTimerBold size={30} className="me-5" />
 
-              <div class="info-box-content">
-                <h4 class="font1 line-height-1 ls-10">ONLINE SUPPORT 24/7</h4>
-                <p class="font-weight-light">Lorem ipsum dolor sit amet.</p>
+              <div className="info-box-content">
+                <h4 className="font1 line-height-1 ls-10">ONLINE SUPPORT 24/7</h4>
+                <p className="font-weight-light">Lorem ipsum dolor sit amet.</p>
               </div>
             </div>
 
-            <div class="info-box info-box-icon-left col-sm-6 col-lg-3">
+            <div className="info-box info-box-icon-left col-sm-6 col-lg-3">
               <MdPayment size={30} className="me-5" />
 
-              <div class="info-box-content">
-                <h4 class="font1 line-height-1 ls-10">SECURE PAYMENT</h4>
-                <p class="font-weight-light">Lorem Ipsum dolor sit amet.</p>
+              <div className="info-box-content">
+                <h4 className="font1 line-height-1 ls-10">SECURE PAYMENT</h4>
+                <p className="font-weight-light">Lorem Ipsum dolor sit amet.</p>
               </div>
             </div>
           </div>
@@ -73,23 +73,23 @@ function Home() {
       <BestSellerElectronics />
       <RecentProductsCarosuel />
 
-      <section class="recent-products">
-        <div class="container">
+      <section className="recent-products">
+        <div className="container">
           <div
-            class=" "
+            className=" "
             data-animation-name="fadeIn"
             data-animation-delay="200"
           >
-            <h2 class="section-title ls-n-10 pb-3 m-b-4">Recent Products</h2>
+            <h2 className="section-title ls-n-10 pb-3 m-b-4">Recent Products</h2>
 
-            <div class="row">
+            <div className="row">
               <div
-                class="products-slider 5col owl-carousel owl-theme owl-nav-outisde show-nav-hover"
+                className="products-slider 5col owl-carousel owl-theme owl-nav-outisde show-nav-hover"
                 data-owl-options="{
                             'margin': 0
                         }"
               >
-                <div class="product-default inner-quickview inner-icon">
+                <div className="product-default inner-quickview inner-icon">
                   <figure>
                     <a href="demo22-product.html">
                       <img
@@ -99,58 +99,58 @@ function Home() {
                         alt="product"
                       />
                     </a>
-                    <div class="label-group">
-                      <div class="product-label label-sale">-35%</div>
+                    <div className="label-group">
+                      <div className="product-label label-sale">-35%</div>
                     </div>
-                    <div class="btn-icon-group">
+                    <div className="btn-icon-group">
                       <a
                         href="#"
-                        class="btn-icon btn-add-cart product-type-simple"
+                        className="btn-icon btn-add-cart product-type-simple"
                       >
-                        <i class="icon-shopping-cart"></i>
+                        <i className="icon-shopping-cart"></i>
                       </a>
                     </div>
                     <a
                       href="ajax/product-quick-view.html"
-                      class="btn-quickview"
+                      className="btn-quickview"
                       title="Quick View"
                     >
                       Quick View
                     </a>
                   </figure>
-                  <div class="product-details">
-                    <div class="category-wrap">
-                      <div class="category-list">
-                        <a href="demo22-shop.html" class="product-category">
+                  <div className="product-details">
+                    <div className="category-wrap">
+                      <div className="category-list">
+                        <a href="demo22-shop.html" className="product-category">
                           category
                         </a>
                       </div>
                       <a
                         href="wishlist.html"
                         title="Wishlist"
-                        class="btn-icon-wish"
+                        className="btn-icon-wish"
                       >
-                        <i class="icon-heart"></i>
+                        <i className="icon-heart"></i>
                       </a>
                     </div>
-                    <h3 class="product-title">
+                    <h3 className="product-title">
                       <a href="demo22-product.html">HD Camera</a>
                     </h3>
-                    <div class="ratings-container">
-                      <div class="product-ratings">
-                        <span class="ratings" style={{ width: "80%" }}></span>
+                    <div className="ratings-container">
+                      <div className="product-ratings">
+                        <span className="ratings" style={{ width: "80%" }}></span>
 
-                        <span class="tooltiptext tooltip-top"></span>
+                        <span className="tooltiptext tooltip-top"></span>
                       </div>
                     </div>
 
-                    <div class="price-box">
-                      <span class="old-price">$199.00</span>
-                      <span class="product-price">$129.00</span>
+                    <div className="price-box">
+                      <span className="old-price">$199.00</span>
+                      <span className="product-price">$129.00</span>
                     </div>
                   </div>
                 </div>
-                <div class="product-default inner-quickview inner-icon">
+                <div className="product-default inner-quickview inner-icon">
                   <figure>
                     <a href="demo22-product.html">
                       <img
@@ -160,58 +160,58 @@ function Home() {
                         alt="product"
                       />
                     </a>
-                    <div class="label-group">
-                      <div class="product-label label-sale">-35%</div>
+                    <div className="label-group">
+                      <div className="product-label label-sale">-35%</div>
                     </div>
-                    <div class="btn-icon-group">
+                    <div className="btn-icon-group">
                       <a
                         href="#"
-                        class="btn-icon btn-add-cart product-type-simple"
+                        className="btn-icon btn-add-cart product-type-simple"
                       >
-                        <i class="icon-shopping-cart"></i>
+                        <i className="icon-shopping-cart"></i>
                       </a>
                     </div>
                     <a
                       href="ajax/product-quick-view.html"
-                      class="btn-quickview"
+                      className="btn-quickview"
                       title="Quick View"
                     >
                       Quick View
                     </a>
                   </figure>
-                  <div class="product-details">
-                    <div class="category-wrap">
-                      <div class="category-list">
-                        <a href="demo22-shop.html" class="product-category">
+                  <div className="product-details">
+                    <div className="category-wrap">
+                      <div className="category-list">
+                        <a href="demo22-shop.html" className="product-category">
                           category
                         </a>
                       </div>
                       <a
                         href="wishlist.html"
                         title="Wishlist"
-                        class="btn-icon-wish"
+                        className="btn-icon-wish"
                       >
-                        <i class="icon-heart"></i>
+                        <i className="icon-heart"></i>
                       </a>
                     </div>
-                    <h3 class="product-title">
+                    <h3 className="product-title">
                       <a href="demo22-product.html">Black Watches</a>
                     </h3>
-                    <div class="ratings-container">
-                      <div class="product-ratings">
-                        <span class="ratings" style={{ width: "80%" }}></span>
+                    <div className="ratings-container">
+                      <div className="product-ratings">
+                        <span className="ratings" style={{ width: "80%" }}></span>
 
-                        <span class="tooltiptext tooltip-top"></span>
+                        <span className="tooltiptext tooltip-top"></span>
                       </div>
                     </div>
 
-                    <div class="price-box">
-                      <span class="old-price">$199.00</span>
-                      <span class="product-price">$129.00</span>
+                    <div className="price-box">
+                      <span className="old-price">$199.00</span>
+                      <span className="product-price">$129.00</span>
                     </div>
                   </div>
                 </div>
-                <div class="product-default inner-quickview inner-icon">
+                <div className="product-default inner-quickview inner-icon">
                   <figure>
                     <a href="demo22-product.html">
                       <img
@@ -221,58 +221,58 @@ function Home() {
                         alt="product"
                       />
                     </a>
-                    <div class="label-group">
-                      <div class="product-label label-sale">-89%</div>
+                    <div className="label-group">
+                      <div className="product-label label-sale">-89%</div>
                     </div>
-                    <div class="btn-icon-group">
+                    <div className="btn-icon-group">
                       <a
                         href="#"
-                        class="btn-icon btn-add-cart product-type-simple"
+                        className="btn-icon btn-add-cart product-type-simple"
                       >
-                        <i class="icon-shopping-cart"></i>
+                        <i className="icon-shopping-cart"></i>
                       </a>
                     </div>
                     <a
                       href="ajax/product-quick-view.html"
-                      class="btn-quickview"
+                      className="btn-quickview"
                       title="Quick View"
                     >
                       Quick View
                     </a>
                   </figure>
-                  <div class="product-details">
-                    <div class="category-wrap">
-                      <div class="category-list">
-                        <a href="demo22-shop.html" class="product-category">
+                  <div className="product-details">
+                    <div className="category-wrap">
+                      <div className="category-list">
+                        <a href="demo22-shop.html" className="product-category">
                           category
                         </a>
                       </div>
                       <a
                         href="wishlist.html"
                         title="Wishlist"
-                        class="btn-icon-wish"
+                        className="btn-icon-wish"
                       >
-                        <i class="icon-heart"></i>
+                        <i className="icon-heart"></i>
                       </a>
                     </div>
-                    <h3 class="product-title">
+                    <h3 className="product-title">
                       <a href="demo22-product.html">USB Speaker</a>
                     </h3>
-                    <div class="ratings-container">
-                      <div class="product-ratings">
-                        <span class="ratings" style={{ width: "0%" }}></span>
+                    <div className="ratings-container">
+                      <div className="product-ratings">
+                        <span className="ratings" style={{ width: "0%" }}></span>
 
-                        <span class="tooltiptext tooltip-top"></span>
+                        <span className="tooltiptext tooltip-top"></span>
                       </div>
                     </div>
 
-                    <div class="price-box">
-                      <span class="old-price">$596.00</span>
-                      <span class="product-price">$68.00</span>
+                    <div className="price-box">
+                      <span className="old-price">$596.00</span>
+                      <span className="product-price">$68.00</span>
                     </div>
                   </div>
                 </div>
-                <div class="product-default inner-quickview inner-icon">
+                <div className="product-default inner-quickview inner-icon">
                   <figure>
                     <a href="demo22-product.html">
                       <img
@@ -282,58 +282,58 @@ function Home() {
                         alt="product"
                       />
                     </a>
-                    <div class="label-group">
-                      <div class="product-label label-sale">-89%</div>
+                    <div className="label-group">
+                      <div className="product-label label-sale">-89%</div>
                     </div>
-                    <div class="btn-icon-group">
+                    <div className="btn-icon-group">
                       <a
                         href="#"
-                        class="btn-icon btn-add-cart product-type-simple"
+                        className="btn-icon btn-add-cart product-type-simple"
                       >
-                        <i class="icon-shopping-cart"></i>
+                        <i className="icon-shopping-cart"></i>
                       </a>
                     </div>
                     <a
                       href="ajax/product-quick-view.html"
-                      class="btn-quickview"
+                      className="btn-quickview"
                       title="Quick View"
                     >
                       Quick View
                     </a>
                   </figure>
-                  <div class="product-details">
-                    <div class="category-wrap">
-                      <div class="category-list">
-                        <a href="demo22-shop.html" class="product-category">
+                  <div className="product-details">
+                    <div className="category-wrap">
+                      <div className="category-list">
+                        <a href="demo22-shop.html" className="product-category">
                           category
                         </a>
                       </div>
                       <a
                         href="wishlist.html"
                         title="Wishlist"
-                        class="btn-icon-wish"
+                        className="btn-icon-wish"
                       >
-                        <i class="icon-heart"></i>
+                        <i className="icon-heart"></i>
                       </a>
                     </div>
-                    <h3 class="product-title">
+                    <h3 className="product-title">
                       <a href="demo22-product.html">Classic Earphone</a>
                     </h3>
-                    <div class="ratings-container">
-                      <div class="product-ratings">
-                        <span class="ratings" style={{ width: "80%" }}></span>
+                    <div className="ratings-container">
+                      <div className="product-ratings">
+                        <span className="ratings" style={{ width: "80%" }}></span>
 
-                        <span class="tooltiptext tooltip-top"></span>
+                        <span className="tooltiptext tooltip-top"></span>
                       </div>
                     </div>
 
-                    <div class="price-box">
-                      <span class="old-price">$596.00</span>
-                      <span class="product-price">$68.00</span>
+                    <div className="price-box">
+                      <span className="old-price">$596.00</span>
+                      <span className="product-price">$68.00</span>
                     </div>
                   </div>
                 </div>
-                <div class="product-default inner-quickview inner-icon">
+                <div className="product-default inner-quickview inner-icon">
                   <figure>
                     <a href="demo22-product.html">
                       <img
@@ -343,54 +343,54 @@ function Home() {
                         alt="product"
                       />
                     </a>
-                    <div class="label-group">
-                      <div class="product-label label-sale">-17%</div>
+                    <div className="label-group">
+                      <div className="product-label label-sale">-17%</div>
                     </div>
-                    <div class="btn-icon-group">
+                    <div className="btn-icon-group">
                       <a
                         href="#"
-                        class="btn-icon btn-add-cart product-type-simple"
+                        className="btn-icon btn-add-cart product-type-simple"
                       >
-                        <i class="icon-shopping-cart"></i>
+                        <i className="icon-shopping-cart"></i>
                       </a>
                     </div>
                     <a
                       href="ajax/product-quick-view.html"
-                      class="btn-quickview"
+                      className="btn-quickview"
                       title="Quick View"
                     >
                       Quick View
                     </a>
                   </figure>
-                  <div class="product-details">
-                    <div class="category-wrap">
-                      <div class="category-list">
-                        <a href="demo22-shop.html" class="product-category">
+                  <div className="product-details">
+                    <div className="category-wrap">
+                      <div className="category-list">
+                        <a href="demo22-shop.html" className="product-category">
                           category
                         </a>
                       </div>
                       <a
                         href="wishlist.html"
                         title="Wishlist"
-                        class="btn-icon-wish"
+                        className="btn-icon-wish"
                       >
-                        <i class="icon-heart"></i>
+                        <i className="icon-heart"></i>
                       </a>
                     </div>
-                    <h3 class="product-title">
+                    <h3 className="product-title">
                       <a href="demo22-product.html">Bluetooth Speaker</a>
                     </h3>
-                    <div class="ratings-container">
-                      <div class="product-ratings">
-                        <span class="ratings" style={{ width: "0%" }}></span>
+                    <div className="ratings-container">
+                      <div className="product-ratings">
+                        <span className="ratings" style={{ width: "0%" }}></span>
 
-                        <span class="tooltiptext tooltip-top"></span>
+                        <span className="tooltiptext tooltip-top"></span>
                       </div>
                     </div>
 
-                    <div class="price-box">
-                      <span class="old-price">$59.00</span>
-                      <span class="product-price">$49.00</span>
+                    <div className="price-box">
+                      <span className="old-price">$59.00</span>
+                      <span className="product-price">$49.00</span>
                     </div>
                   </div>
                 </div>
@@ -399,12 +399,12 @@ function Home() {
           </div>
 
           <div
-            class="banner banner3 bg-dark  "
+            className="banner banner3 bg-dark  "
             data-animation-name="fadeIn"
             data-animation-delay="200"
           >
-            <div class="row m-0 no-gutters align-items-center">
-              <div class="col-md-6 col-lg-3 align-self-baseline">
+            <div className="row m-0 no-gutters align-items-center">
+              <div className="col-md-6 col-lg-3 align-self-baseline">
                 <figure>
                   <img
                     src="assets/Images/demoes/demo22/banners/banner-3.jpg"
@@ -414,31 +414,31 @@ function Home() {
                   />
                 </figure>
               </div>
-              <div class="col-md-6 col-lg-4 py-4 py-lg-5">
-                <div class="px-5 px-md-0">
-                  <h3 class="font1 text-uppercase m-b-2">Check new arrivals</h3>
-                  <h2 class="font1 ls-10 text-uppercase text-white mb-0">
+              <div className="col-md-6 col-lg-4 py-4 py-lg-5">
+                <div className="px-5 px-md-0">
+                  <h3 className="font1 text-uppercase m-b-2">Check new arrivals</h3>
+                  <h2 className="font1 ls-10 text-uppercase text-white mb-0">
                     Explore Smartphones
                   </h2>
                 </div>
               </div>
-              <div class="col-md-6 col-lg-3 py-4 py-lg-5 d-flex justify-content-md-center">
-                <div class="px-5 px-md-0">
-                  <div class="coupon-sale-text d-flex flex-column align-items-start">
-                    <h4 class="m-b-2 font1 d-block text-dark bg-white skew-box">
+              <div className="col-md-6 col-lg-3 py-4 py-lg-5 d-flex justify-content-md-center">
+                <div className="px-5 px-md-0">
+                  <div className="coupon-sale-text d-flex flex-column align-items-start">
+                    <h4 className="m-b-2 font1 d-block text-dark bg-white skew-box">
                       Exclusive COUPON
                     </h4>
-                    <h5 class="mb-0 font1 d-inline-block bg-primary skew-box">
-                      <i class="text-white ls-0">UP TO</i>
-                      <b class="text-white">$200</b>
-                      <sub class="text-white">OFF</sub>
+                    <h5 className="mb-0 font1 d-inline-block bg-primary skew-box">
+                      <i className="text-white ls-0">UP TO</i>
+                      <b className="text-white">$200</b>
+                      <sub className="text-white">OFF</sub>
                     </h5>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 col-lg-2 py-4 py-lg-5">
-                <div class="px-5 px-md-0">
-                  <a href="demo22-shop.html" class="btn btn-dark font1 ls-10">
+              <div className="col-md-6 col-lg-2 py-4 py-lg-5">
+                <div className="px-5 px-md-0">
+                  <a href="demo22-shop.html" className="btn btn-dark font1 ls-10">
                     View All Now
                   </a>
                 </div>

@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../Components/Layout";
 
 function MyAccount() {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  })
   return (
     <Layout>
-      <main class="main">
-        <div class="page-header">
-          <div class="container d-flex flex-column align-items-center">
-            <nav aria-label="breadcrumb" class="breadcrumb-nav">
-              <div class="container">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
+      <main className="main">
+        <div className="page-header">
+          <div className="container d-flex flex-column align-items-center">
+            <nav aria-label="breadcrumb" className="breadcrumb-nav">
+              <div className="container">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
                     <a href="demo4.html">Home</a>
                   </li>
-                  <li class="breadcrumb-item">
+                  <li className="breadcrumb-item">
                     <a href="category.html">Shop</a>
                   </li>
-                  <li class="breadcrumb-item active" aria-current="page">
+                  <li className="breadcrumb-item active" aria-current="page">
                     My Account
                   </li>
                 </ol>
@@ -27,14 +30,14 @@ function MyAccount() {
           </div>
         </div>
 
-        <div class="container account-container custom-account-container">
-          <div class="row">
-            <div class="sidebar widget widget-dashboard mb-lg-0 mb-3 col-lg-3 order-0">
-              <h2 class="text-uppercase">My Account</h2>
-              <ul class="nav nav-tabs list flex-column mb-0" role="tablist">
-                <li class="nav-item">
+        <div className="container account-container custom-account-container">
+          <div className="row">
+            <div className="sidebar widget widget-dashboard mb-lg-0 mb-3 col-lg-3 order-0">
+              <h2 className="text-uppercase">My Account</h2>
+              <ul className="nav nav-tabs list flex-column mb-0" role="tablist">
+                <li className="nav-item">
                   <a
-                    class="nav-link active"
+                    className="nav-link active"
                     id="dashboard-tab"
                     data-toggle="tab"
                     href="#dashboard"
@@ -46,9 +49,9 @@ function MyAccount() {
                   </a>
                 </li>
 
-                <li class="nav-item">
+                <li className="nav-item">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     id="order-tab"
                     data-toggle="tab"
                     href="#order"
@@ -60,9 +63,9 @@ function MyAccount() {
                   </a>
                 </li>
 
-                <li class="nav-item">
+                <li className="nav-item">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     id="download-tab"
                     data-toggle="tab"
                     href="#download"
@@ -74,9 +77,9 @@ function MyAccount() {
                   </a>
                 </li>
 
-                <li class="nav-item">
+                <li className="nav-item">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     id="address-tab"
                     data-toggle="tab"
                     href="#address"
@@ -88,9 +91,9 @@ function MyAccount() {
                   </a>
                 </li>
 
-                <li class="nav-item">
+                <li className="nav-item">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     id="edit-tab"
                     data-toggle="tab"
                     href="#edit"
@@ -101,9 +104,9 @@ function MyAccount() {
                     Account details
                   </a>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     id="shop-address-tab"
                     data-toggle="tab"
                     href="#shipping"
@@ -114,29 +117,29 @@ function MyAccount() {
                     Shopping Addres
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="wishlist.html">
+                <li className="nav-item">
+                  <a className="nav-link" href="wishlist.html">
                     Wishlist
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="login.html">
+                <li className="nav-item">
+                  <a className="nav-link" href="login.html">
                     Logout
                   </a>
                 </li>
               </ul>
             </div>
-            <div class="col-lg-9 order-lg-last order-1 tab-content">
+            <div className="col-lg-9 order-lg-last order-1 tab-content">
               <div
-                class="tab-pane fade show active"
+                className="tab-pane fade show active"
                 id="dashboard"
                 role="tabpanel"
               >
-                <div class="dashboard-content">
+                <div className="dashboard-content">
                   <p>
-                    Hello <strong class="text-dark">Editor</strong> (not
-                    <strong class="text-dark">Editor</strong>?
-                    <a href="login.html" class="btn btn-link ">
+                    Hello <strong className="text-dark">Editor</strong> (not
+                    <strong className="text-dark">Editor</strong>?
+                    <a href="login.html" className="btn btn-link ">
                       Log out
                     </a>
                     )
@@ -144,83 +147,83 @@ function MyAccount() {
 
                   <p>
                     From your account dashboard you can view your
-                    <a class="btn btn-link link-to-tab" href="#order">
+                    <a className="btn btn-link link-to-tab" href="#order">
                       recent orders
                     </a>
                     , manage your
-                    <a class="btn btn-link link-to-tab" href="#address">
+                    <a className="btn btn-link link-to-tab" href="#address">
                       shipping and billing addresses
                     </a>
                     , and
-                    <a class="btn btn-link link-to-tab" href="#edit">
+                    <a className="btn btn-link link-to-tab" href="#edit">
                       edit your password and account details.
                     </a>
                   </p>
 
-                  <div class="mb-4"></div>
+                  <div className="mb-4"></div>
 
-                  <div class="row row-lg">
-                    <div class="col-6 col-md-4">
-                      <div class="feature-box text-center pb-4">
-                        <a href="#order" class="link-to-tab">
-                          <i class="sicon-social-dropbox"></i>
+                  <div className="row row-lg">
+                    <div className="col-6 col-md-4">
+                      <div className="feature-box text-center pb-4">
+                        <a href="#order" className="link-to-tab">
+                          <i className="sicon-social-dropbox"></i>
                         </a>
-                        <div class="feature-box-content">
+                        <div className="feature-box-content">
                           <h3>ORDERS</h3>
                         </div>
                       </div>
                     </div>
 
-                    <div class="col-6 col-md-4">
-                      <div class="feature-box text-center pb-4">
-                        <a href="#download" class="link-to-tab">
-                          <i class="sicon-cloud-download"></i>
+                    <div className="col-6 col-md-4">
+                      <div className="feature-box text-center pb-4">
+                        <a href="#download" className="link-to-tab">
+                          <i className="sicon-cloud-download"></i>
                         </a>
-                        <div class=" feature-box-content">
+                        <div className=" feature-box-content">
                           <h3>DOWNLOADS</h3>
                         </div>
                       </div>
                     </div>
 
-                    <div class="col-6 col-md-4">
-                      <div class="feature-box text-center pb-4">
-                        <a href="#address" class="link-to-tab">
-                          <i class="sicon-location-pin"></i>
+                    <div className="col-6 col-md-4">
+                      <div className="feature-box text-center pb-4">
+                        <a href="#address" className="link-to-tab">
+                          <i className="sicon-location-pin"></i>
                         </a>
-                        <div class="feature-box-content">
+                        <div className="feature-box-content">
                           <h3>ADDRESSES</h3>
                         </div>
                       </div>
                     </div>
 
-                    <div class="col-6 col-md-4">
-                      <div class="feature-box text-center pb-4">
-                        <a href="#edit" class="link-to-tab">
-                          <i class="icon-user-2"></i>
+                    <div className="col-6 col-md-4">
+                      <div className="feature-box text-center pb-4">
+                        <a href="#edit" className="link-to-tab">
+                          <i className="icon-user-2"></i>
                         </a>
-                        <div class="feature-box-content p-0">
+                        <div className="feature-box-content p-0">
                           <h3>ACCOUNT DETAILS</h3>
                         </div>
                       </div>
                     </div>
 
-                    <div class="col-6 col-md-4">
-                      <div class="feature-box text-center pb-4">
+                    <div className="col-6 col-md-4">
+                      <div className="feature-box text-center pb-4">
                         <a href="wishlist.html">
-                          <i class="sicon-heart"></i>
+                          <i className="sicon-heart"></i>
                         </a>
-                        <div class="feature-box-content">
+                        <div className="feature-box-content">
                           <h3>WISHLIST</h3>
                         </div>
                       </div>
                     </div>
 
-                    <div class="col-6 col-md-4">
-                      <div class="feature-box text-center pb-4">
+                    <div className="col-6 col-md-4">
+                      <div className="feature-box text-center pb-4">
                         <a href="login.html">
-                          <i class="sicon-logout"></i>
+                          <i className="sicon-logout"></i>
                         </a>
-                        <div class="feature-box-content">
+                        <div className="feature-box-content">
                           <h3>LOGOUT</h3>
                         </div>
                       </div>
@@ -229,50 +232,50 @@ function MyAccount() {
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="order" role="tabpanel">
-                <div class="order-content">
-                  <h3 class="account-sub-title d-none d-md-block">
-                    <i class="sicon-social-dropbox align-middle mr-3"></i>Orders
+              <div className="tab-pane fade" id="order" role="tabpanel">
+                <div className="order-content">
+                  <h3 className="account-sub-title d-none d-md-block">
+                    <i className="sicon-social-dropbox align-middle mr-3"></i>Orders
                   </h3>
-                  <div class="order-table-container text-center">
-                    <table class="table table-order text-left">
+                  <div className="order-table-container text-center">
+                    <table className="table table-order text-left">
                       <thead>
                         <tr>
-                          <th class="order-id">ORDER</th>
-                          <th class="order-date">DATE</th>
-                          <th class="order-status">STATUS</th>
-                          <th class="order-price">TOTAL</th>
-                          <th class="order-action">ACTIONS</th>
+                          <th className="order-id">ORDER</th>
+                          <th className="order-date">DATE</th>
+                          <th className="order-status">STATUS</th>
+                          <th className="order-price">TOTAL</th>
+                          <th className="order-action">ACTIONS</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td class="text-center p-0" colspan="5">
-                            <p class="mb-5 mt-5">No Order has been made yet.</p>
+                          <td className="text-center p-0" colspan="5">
+                            <p className="mb-5 mt-5">No Order has been made yet.</p>
                           </td>
                         </tr>
                       </tbody>
                     </table>
-                    <hr class="mt-0 mb-3 pb-2" />
+                    <hr className="mt-0 mb-3 pb-2" />
 
-                    <a href="category.html" class="btn btn-dark">
+                    <a href="category.html" className="btn btn-dark">
                       Go Shop
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="download" role="tabpanel">
-                <div class="download-content">
-                  <h3 class="account-sub-title d-none d-md-block">
-                    <i class="sicon-cloud-download align-middle mr-3"></i>
+              <div className="tab-pane fade" id="download" role="tabpanel">
+                <div className="download-content">
+                  <h3 className="account-sub-title d-none d-md-block">
+                    <i className="sicon-cloud-download align-middle mr-3"></i>
                     Downloads
                   </h3>
-                  <div class="download-table-container">
+                  <div className="download-table-container">
                     <p>No downloads available yet.</p>{" "}
                     <a
                       href="category.html"
-                      class="btn btn-primary text-transform-none mb-2"
+                      className="btn btn-primary text-transform-none mb-2"
                     >
                       GO SHOP
                     </a>
@@ -280,46 +283,46 @@ function MyAccount() {
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="address" role="tabpanel">
-                <h3 class="account-sub-title d-none d-md-block mb-1">
-                  <i class="sicon-location-pin align-middle mr-3"></i>Addresses
+              <div className="tab-pane fade" id="address" role="tabpanel">
+                <h3 className="account-sub-title d-none d-md-block mb-1">
+                  <i className="sicon-location-pin align-middle mr-3"></i>Addresses
                 </h3>
-                <div class="addresses-content">
-                  <p class="mb-4">
+                <div className="addresses-content">
+                  <p className="mb-4">
                     The following addresses will be used on the checkout page by
                     default.
                   </p>
 
-                  <div class="row">
-                    <div class="address col-md-6">
-                      <div class="heading d-flex">
-                        <h4 class="text-dark mb-0">Billing address</h4>
+                  <div className="row">
+                    <div className="address col-md-6">
+                      <div className="heading d-flex">
+                        <h4 className="text-dark mb-0">Billing address</h4>
                       </div>
 
-                      <div class="address-box">
+                      <div className="address-box">
                         You have not set up this type of address yet.
                       </div>
 
                       <a
                         href="#billing"
-                        class="btn btn-default address-action link-to-tab"
+                        className="btn btn-default address-action link-to-tab"
                       >
                         Add Address
                       </a>
                     </div>
 
-                    <div class="address col-md-6 mt-5 mt-md-0">
-                      <div class="heading d-flex">
-                        <h4 class="text-dark mb-0">Shipping address</h4>
+                    <div className="address col-md-6 mt-5 mt-md-0">
+                      <div className="heading d-flex">
+                        <h4 className="text-dark mb-0">Shipping address</h4>
                       </div>
 
-                      <div class="address-box">
+                      <div className="address-box">
                         You have not set up this type of address yet.
                       </div>
 
                       <a
                         href="#shipping"
-                        class="btn btn-default address-action link-to-tab"
+                        className="btn btn-default address-action link-to-tab"
                       >
                         Add Address
                       </a>
@@ -328,22 +331,22 @@ function MyAccount() {
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="edit" role="tabpanel">
-                <h3 class="account-sub-title d-none d-md-block mt-0 pt-1 ml-1">
-                  <i class="icon-user-2 align-middle mr-3 pr-1"></i>Account
+              <div className="tab-pane fade" id="edit" role="tabpanel">
+                <h3 className="account-sub-title d-none d-md-block mt-0 pt-1 ml-1">
+                  <i className="icon-user-2 align-middle mr-3 pr-1"></i>Account
                   Details
                 </h3>
-                <div class="account-content">
+                <div className="account-content">
                   <form action="#">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
                           <label for="acc-name">
-                            First name <span class="required">*</span>
+                            First name <span className="required">*</span>
                           </label>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Editor"
                             id="acc-name"
                             name="acc-name"
@@ -352,14 +355,14 @@ function MyAccount() {
                         </div>
                       </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
+                      <div className="col-md-6">
+                        <div className="form-group">
                           <label for="acc-lastname">
-                            Last name <span class="required">*</span>
+                            Last name <span className="required">*</span>
                           </label>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             id="acc-lastname"
                             name="acc-lastname"
                             required
@@ -368,13 +371,13 @@ function MyAccount() {
                       </div>
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div className="form-group mb-2">
                       <label for="acc-text">
-                        Display name <span class="required">*</span>
+                        Display name <span className="required">*</span>
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="acc-text"
                         name="acc-text"
                         placeholder="Editor"
@@ -386,13 +389,13 @@ function MyAccount() {
                       </p>
                     </div>
 
-                    <div class="form-group mb-4">
+                    <div className="form-group mb-4">
                       <label for="acc-email">
-                        Email address <span class="required">*</span>
+                        Email address <span className="required">*</span>
                       </label>
                       <input
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         id="acc-email"
                         name="acc-email"
                         placeholder="editor@gmail.com"
@@ -400,46 +403,46 @@ function MyAccount() {
                       />
                     </div>
 
-                    <div class="change-password">
-                      <h3 class="text-uppercase mb-2">Password Change</h3>
+                    <div className="change-password">
+                      <h3 className="text-uppercase mb-2">Password Change</h3>
 
-                      <div class="form-group">
+                      <div className="form-group">
                         <label for="acc-password">
                           Current Password (leave blank to leave unchanged)
                         </label>
                         <input
                           type="password"
-                          class="form-control"
+                          className="form-control"
                           id="acc-password"
                           name="acc-password"
                         />
                       </div>
 
-                      <div class="form-group">
+                      <div className="form-group">
                         <label for="acc-password">
                           New Password (leave blank to leave unchanged)
                         </label>
                         <input
                           type="password"
-                          class="form-control"
+                          className="form-control"
                           id="acc-new-password"
                           name="acc-new-password"
                         />
                       </div>
 
-                      <div class="form-group">
+                      <div className="form-group">
                         <label for="acc-password">Confirm New Password</label>
                         <input
                           type="password"
-                          class="form-control"
+                          className="form-control"
                           id="acc-confirm-password"
                           name="acc-confirm-password"
                         />
                       </div>
                     </div>
 
-                    <div class="form-footer mt-3 mb-0">
-                      <button type="submit" class="btn btn-dark mr-0">
+                    <div className="form-footer mt-3 mb-0">
+                      <button type="submit" className="btn btn-dark mr-0">
                         Save changes
                       </button>
                     </div>
@@ -447,41 +450,41 @@ function MyAccount() {
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="billing" role="tabpanel">
-                <div class="address account-content mt-0 pt-2">
-                  <h4 class="title">Billing address</h4>
+              <div className="tab-pane fade" id="billing" role="tabpanel">
+                <div className="address account-content mt-0 pt-2">
+                  <h4 className="title">Billing address</h4>
 
-                  <form class="mb-2" action="#">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
+                  <form className="mb-2" action="#">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
                           <label>
-                            First name <span class="required">*</span>
+                            First name <span className="required">*</span>
                           </label>
-                          <input type="text" class="form-control" required />
+                          <input type="text" className="form-control" required />
                         </div>
                       </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
+                      <div className="col-md-6">
+                        <div className="form-group">
                           <label>
-                            Last name <span class="required">*</span>
+                            Last name <span className="required">*</span>
                           </label>
-                          <input type="text" class="form-control" required />
+                          <input type="text" className="form-control" required />
                         </div>
                       </div>
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>Company </label>
-                      <input type="text" class="form-control" />
+                      <input type="text" className="form-control" />
                     </div>
 
-                    <div class="select-custom">
+                    <div className="select-custom">
                       <label>
-                        Country / Region <span class="required">*</span>
+                        Country / Region <span className="required">*</span>
                       </label>
-                      <select name="orderby" class="form-control">
+                      <select name="orderby" className="form-control">
                         <option value="" selected="selected">
                           British Indian Ocean Territory
                         </option>
@@ -493,67 +496,67 @@ function MyAccount() {
                       </select>
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>
-                        Street address <span class="required">*</span>
+                        Street address <span className="required">*</span>
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="House number and street name"
                         required
                       />
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Apartment, suite, unit, etc. (optional)"
                         required
                       />
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>
-                        Town / City <span class="required">*</span>
+                        Town / City <span className="required">*</span>
                       </label>
-                      <input type="text" class="form-control" required />
+                      <input type="text" className="form-control" required />
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>
-                        State / Country <span class="required">*</span>
+                        State / Country <span className="required">*</span>
                       </label>
-                      <input type="text" class="form-control" required />
+                      <input type="text" className="form-control" required />
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>
-                        Postcode / ZIP <span class="required">*</span>
+                        Postcode / ZIP <span className="required">*</span>
                       </label>
-                      <input type="text" class="form-control" required />
+                      <input type="text" className="form-control" required />
                     </div>
 
-                    <div class="form-group mb-3">
+                    <div className="form-group mb-3">
                       <label>
-                        Phone <span class="required">*</span>
+                        Phone <span className="required">*</span>
                       </label>
-                      <input type="number" class="form-control" required />
+                      <input type="number" className="form-control" required />
                     </div>
 
-                    <div class="form-group mb-3">
+                    <div className="form-group mb-3">
                       <label>
-                        Email address <span class="required">*</span>
+                        Email address <span className="required">*</span>
                       </label>
                       <input
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         placeholder="editor@gmail.com"
                         required
                       />
                     </div>
 
-                    <div class="form-footer mb-0">
-                      <div class="form-footer-right">
-                        <button type="submit" class="btn btn-dark py-4">
+                    <div className="form-footer mb-0">
+                      <div className="form-footer-right">
+                        <button type="submit" className="btn btn-dark py-4">
                           Save Address
                         </button>
                       </div>
@@ -562,41 +565,41 @@ function MyAccount() {
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="shipping" role="tabpanel">
-                <div class="address account-content mt-0 pt-2">
-                  <h4 class="title mb-3">Shipping Address</h4>
+              <div className="tab-pane fade" id="shipping" role="tabpanel">
+                <div className="address account-content mt-0 pt-2">
+                  <h4 className="title mb-3">Shipping Address</h4>
 
-                  <form class="mb-2" action="#">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
+                  <form className="mb-2" action="#">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
                           <label>
-                            First name <span class="required">*</span>
+                            First name <span className="required">*</span>
                           </label>
-                          <input type="text" class="form-control" required />
+                          <input type="text" className="form-control" required />
                         </div>
                       </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
+                      <div className="col-md-6">
+                        <div className="form-group">
                           <label>
-                            Last name <span class="required">*</span>
+                            Last name <span className="required">*</span>
                           </label>
-                          <input type="text" class="form-control" required />
+                          <input type="text" className="form-control" required />
                         </div>
                       </div>
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>Company </label>
-                      <input type="text" class="form-control" />
+                      <input type="text" className="form-control" />
                     </div>
 
-                    <div class="select-custom">
+                    <div className="select-custom">
                       <label>
-                        Country / Region <span class="required">*</span>
+                        Country / Region <span className="required">*</span>
                       </label>
-                      <select name="orderby" class="form-control">
+                      <select name="orderby" className="form-control">
                         <option value="" selected="selected">
                           British Indian Ocean Territory
                         </option>
@@ -608,48 +611,48 @@ function MyAccount() {
                       </select>
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>
-                        Street address <span class="required">*</span>
+                        Street address <span className="required">*</span>
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="House number and street name"
                         required
                       />
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Apartment, suite, unit, etc. (optional)"
                         required
                       />
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>
-                        Town / City <span class="required">*</span>
+                        Town / City <span className="required">*</span>
                       </label>
-                      <input type="text" class="form-control" required />
+                      <input type="text" className="form-control" required />
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>
-                        State / Country <span class="required">*</span>
+                        State / Country <span className="required">*</span>
                       </label>
-                      <input type="text" class="form-control" required />
+                      <input type="text" className="form-control" required />
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>
-                        Postcode / ZIP <span class="required">*</span>
+                        Postcode / ZIP <span className="required">*</span>
                       </label>
-                      <input type="text" class="form-control" required />
+                      <input type="text" className="form-control" required />
                     </div>
 
-                    <div class="form-footer mb-0">
-                      <div class="form-footer-right">
-                        <button type="submit" class="btn btn-dark py-4">
+                    <div className="form-footer mb-0">
+                      <div className="form-footer-right">
+                        <button type="submit" className="btn btn-dark py-4">
                           Save Address
                         </button>
                       </div>
@@ -661,7 +664,7 @@ function MyAccount() {
           </div>
         </div>
 
-        <div class="mb-5"></div>
+        <div className="mb-5"></div>
       </main>
     </Layout>
   );

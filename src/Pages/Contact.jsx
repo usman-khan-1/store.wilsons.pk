@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../Components/Layout'
 
 function Contact() {
+	useEffect(()=>{
+        window.scrollTo(0, 0);
+      })
   return (
     <Layout>
-      <main class="main">
-			<nav aria-label="breadcrumb" class="breadcrumb-nav">
-				<div class="container">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item">
-							<a href="demo4.html"><i class="icon-home"></i></a>
+      <main className="main">
+			<nav aria-label="breadcrumb" className="breadcrumb-nav">
+				<div className="container">
+					<ol className="breadcrumb">
+						<li className="breadcrumb-item">
+							<a href="demo4.html"><i className="icon-home"></i></a>
 						</li>
-						<li class="breadcrumb-item active" aria-current="page">
+						<li className="breadcrumb-item active" aria-current="page">
 							Contact Us
 						</li>
 					</ol>
@@ -20,11 +23,11 @@ function Contact() {
 
 			<div id="map"></div>
 
-			<div class="container contact-us-container">
-				<div class="contact-info">
-					<div class="row">
-						<div class="col-12">
-							<h2 class="ls-n-25 m-b-1">
+			<div className="container contact-us-container">
+				<div className="contact-info">
+					<div className="row">
+						<div className="col-12">
+							<h2 className="ls-n-25 m-b-1">
 								Contact Info
 							</h2>
 
@@ -39,37 +42,37 @@ function Contact() {
 							</p>
 						</div>
 
-						<div class="col-sm-6 col-lg-3">
-							<div class="feature-box text-center">
-								<i class="sicon-location-pin"></i>
-								<div class="feature-box-content">
+						<div className="col-sm-6 col-lg-3">
+							<div className="feature-box text-center">
+								<i className="sicon-location-pin"></i>
+								<div className="feature-box-content">
 									<h3>Address</h3>
 									<h5>123 Wall Street, New York / NY</h5>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-lg-3">
-							<div class="feature-box text-center">
-								<i class="fa fa-mobile-alt"></i>
-								<div class="feature-box-content">
+						<div className="col-sm-6 col-lg-3">
+							<div className="feature-box text-center">
+								<i className="fa fa-mobile-alt"></i>
+								<div className="feature-box-content">
 									<h3>Phone Number</h3>
 									<h5>(800) 123-4567</h5>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-lg-3">
-							<div class="feature-box text-center">
-								<i class="far fa-envelope"></i>
-								<div class="feature-box-content">
+						<div className="col-sm-6 col-lg-3">
+							<div className="feature-box text-center">
+								<i className="far fa-envelope"></i>
+								<div className="feature-box-content">
 									<h3>E-mail Address</h3>
-									<h5><a href="https://portotheme.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b4b54494f547b4b54494f544f535e565e15585456">[email&#160;protected]</a></h5>
+									<h5><a href="https://portotheme.com/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="3b4b54494f547b4b54494f544f535e565e15585456">[email&#160;protected]</a></h5>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-lg-3">
-							<div class="feature-box text-center">
-								<i class="far fa-calendar-alt"></i>
-								<div class="feature-box-content">
+						<div className="col-sm-6 col-lg-3">
+							<div className="feature-box text-center">
+								<i className="far fa-calendar-alt"></i>
+								<div className="feature-box-content">
 									<h3>Working Days/Hours</h3>
 									<h5>Mon - Sun / 9:00AM - 8:00PM</h5>
 								</div>
@@ -78,51 +81,51 @@ function Contact() {
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-lg-6">
-						<h2 class="mt-6 mb-2">Send Us a Message</h2>
+				<div className="row">
+					<div className="col-lg-6">
+						<h2 className="mt-6 mb-2">Send Us a Message</h2>
 
-						<form class="mb-0" action="#">
-							<div class="form-group">
-								<label class="mb-1" for="contact-name">Your Name
-									<span class="required">*</span></label>
-								<input type="text" class="form-control" id="contact-name" name="contact-name"
+						<form className="mb-0" action="#">
+							<div className="form-group">
+								<label className="mb-1" for="contact-name">Your Name
+									<span className="required">*</span></label>
+								<input type="text" className="form-control" id="contact-name" name="contact-name"
 									required />
 							</div>
 
-							<div class="form-group">
-								<label class="mb-1" for="contact-email">Your E-mail
-									<span class="required">*</span></label>
-								<input type="email" class="form-control" id="contact-email" name="contact-email"
+							<div className="form-group">
+								<label className="mb-1" for="contact-email">Your E-mail
+									<span className="required">*</span></label>
+								<input type="email" className="form-control" id="contact-email" name="contact-email"
 									required />
 							</div>
 
-							<div class="form-group">
-								<label class="mb-1" for="contact-message">Your Message
-									<span class="required">*</span></label>
-								<textarea cols="30" rows="1" id="contact-message" class="form-control"
+							<div className="form-group">
+								<label className="mb-1" for="contact-message">Your Message
+									<span className="required">*</span></label>
+								<textarea cols="30" rows="1" id="contact-message" className="form-control"
 									name="contact-message" required></textarea>
 							</div>
 
-							<div class="form-footer mb-0">
-								<button type="submit" class="btn btn-dark font-weight-normal">
+							<div className="form-footer mb-0">
+								<button type="submit" className="btn btn-dark font-weight-normal">
 									Send Message
 								</button>
 							</div>
 						</form>
 					</div>
 
-					<div class="col-lg-6">
-						<h2 class="mt-6 mb-1">Frequently Asked Questions</h2>
+					<div className="col-lg-6">
+						<h2 className="mt-6 mb-1">Frequently Asked Questions</h2>
 						<div id="accordion">
-							<div class="card card-accordion">
-								<a class="card-header" href="#" data-toggle="collapse" data-target="#collapseOne"
+							<div className="card card-accordion">
+								<a className="card-header" href="#" data-toggle="collapse" data-target="#collapseOne"
 									aria-expanded="true" aria-controls="collapseOne">
 									Curabitur eget leo at velit imperdiet viaculis
 									vitaes?
 								</a>
 
-								<div id="collapseOne" class="collapse show" data-parent="#accordion">
+								<div id="collapseOne" className="collapse show" data-parent="#accordion">
 									<p>Lorem ipsum dolor sit amet, consectetur
 										adipiscing elit. Curabitur eget leo at velit
 										imperdiet varius. In eu ipsum vitae velit
@@ -132,14 +135,14 @@ function Contact() {
 								</div>
 							</div>
 
-							<div class="card card-accordion">
-								<a class="card-header collapsed" href="#" data-toggle="collapse"
+							<div className="card card-accordion">
+								<a className="card-header collapsed" href="#" data-toggle="collapse"
 									data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
 									Curabitur eget leo at velit imperdiet vague
 									iaculis vitaes?
 								</a>
 
-								<div id="collapseTwo" class="collapse" data-parent="#accordion">
+								<div id="collapseTwo" className="collapse" data-parent="#accordion">
 									<p>Lorem ipsum dolor sit amet, consectetur
 										adipiscing elit. Curabitur eget leo at velit
 										imperdiet varius. In eu ipsum vitae velit
@@ -166,14 +169,14 @@ function Contact() {
 								</div>
 							</div>
 
-							<div class="card card-accordion">
-								<a class="card-header collapsed" href="#" data-toggle="collapse"
+							<div className="card card-accordion">
+								<a className="card-header collapsed" href="#" data-toggle="collapse"
 									data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
 									Curabitur eget leo at velit imperdiet viaculis
 									vitaes?
 								</a>
 
-								<div id="collapseThree" class="collapse" data-parent="#accordion">
+								<div id="collapseThree" className="collapse" data-parent="#accordion">
 									<p>Lorem ipsum dolor sit amet, consectetur
 										adipiscing elit. Curabitur eget leo at velit
 										imperdiet varius. In eu ipsum vitae velit
@@ -183,14 +186,14 @@ function Contact() {
 								</div>
 							</div>
 
-							<div class="card card-accordion">
-								<a class="card-header collapsed" href="#" data-toggle="collapse"
+							<div className="card card-accordion">
+								<a className="card-header collapsed" href="#" data-toggle="collapse"
 									data-target="#collapseFour" aria-expanded="true" aria-controls="collapseThree">
 									Curabitur eget leo at velit imperdiet vague
 									iaculis vitaes?
 								</a>
 
-								<div id="collapseFour" class="collapse" data-parent="#accordion">
+								<div id="collapseFour" className="collapse" data-parent="#accordion">
 									<p>Lorem ipsum dolor sit amet, consectetur
 										adipiscing elit. Curabitur eget leo at velit
 										imperdiet varius. In eu ipsum vitae velit
@@ -217,14 +220,14 @@ function Contact() {
 								</div>
 							</div>
 
-							<div class="card card-accordion">
-								<a class="card-header collapsed" href="#" data-toggle="collapse"
+							<div className="card card-accordion">
+								<a className="card-header collapsed" href="#" data-toggle="collapse"
 									data-target="#collapseFive" aria-expanded="true" aria-controls="collapseThree">
 									Curabitur eget leo at velit imperdiet varius
 									iaculis vitaes?
 								</a>
 
-								<div id="collapseFive" class="collapse" data-parent="#accordion">
+								<div id="collapseFive" className="collapse" data-parent="#accordion">
 									<p>Lorem ipsum dolor sit amet, consectetur
 										adipiscing elit. Curabitur eget leo at velit
 										imperdiet varius. In eu ipsum vitae velit
@@ -255,7 +258,7 @@ function Contact() {
 				</div>
 			</div>
 
-			<div class="mb-8"></div>
+			<div className="mb-8"></div>
 		</main>
     </Layout>
   )

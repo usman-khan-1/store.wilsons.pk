@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Link } from "react-router-dom";
 
 function RecentProductsCarosuel() {
   const responsive = {
@@ -63,14 +64,14 @@ function RecentProductsCarosuel() {
             <div className="single-testimonial-item">
               <div className="product-default inner-quickview inner-icon">
                 <figure>
-                  <a href="demo22-product.html">
+                  <Link to={"/product-details"}>
                     <img
                       src={product.imageUrl}
                       width="217"
                       height="217"
                       alt="product"
                     />
-                  </a>
+                  </Link>
                   <div className="label-group">
                     <div className="product-label label-hot">HOT</div>
                   </div>

@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../Components/Layout'
 
 function AboutUs() {
+	useEffect(()=>{
+        window.scrollTo(0, 0);
+      })
   return (
     <Layout>
-      <main class="main about">
+      <main className="main about">
       <div className="page-header page-header-bg text-left"
          style={{
            background: '50%/cover #D4E1EA url(/assets/Images/page-header-bg.jpg)'
@@ -15,18 +18,18 @@ function AboutUs() {
       </div>
     </div>
 
-			<nav aria-label="breadcrumb" class="breadcrumb-nav">
-				<div class="container">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="demo4.html"><i class="icon-home"></i></a></li>
-						<li class="breadcrumb-item active" aria-current="page">About Us</li>
+			<nav aria-label="breadcrumb" className="breadcrumb-nav">
+				<div className="container">
+					<ol className="breadcrumb">
+						<li className="breadcrumb-item"><a href="demo4.html"><i className="icon-home"></i></a></li>
+						<li className="breadcrumb-item active" aria-current="page">About Us</li>
 					</ol>
 				</div> 
 			</nav>
 
-			<div class="about-section">
-				<div class="container">
-					<h2 class="subtitle">OUR STORY</h2>
+			<div className="about-section">
+				<div className="container">
+					<h2 className="subtitle">OUR STORY</h2>
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
 						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
 						of type and scrambled it to make a type specimen book. It has survived not only five centuries,
@@ -35,20 +38,20 @@ function AboutUs() {
 						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
 						of type and scrambled it to make a type specimen book.</p>
 
-					<p class="lead">“ Many desktop publishing packages and web page editors now use Lorem Ipsum as their
+					<p className="lead">“ Many desktop publishing packages and web page editors now use Lorem Ipsum as their
 						default model search for evolved over sometimes by accident, sometimes on purpose ”</p>
 				</div> 
 			</div>
 
-			<div class="features-section bg-gray">
-				<div class="container">
-					<h2 class="subtitle">WHY CHOOSE US</h2>
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="feature-box bg-white">
-								<i class="icon-shipped"></i>
+			<div className="features-section bg-gray">
+				<div className="container">
+					<h2 className="subtitle">WHY CHOOSE US</h2>
+					<div className="row">
+						<div className="col-lg-4">
+							<div className="feature-box bg-white">
+								<i className="icon-shipped"></i>
 
-								<div class="feature-box-content p-0">
+								<div className="feature-box-content p-0">
 									<h3>Free Shipping</h3>
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 										Ipsum has been the industr.</p>
@@ -56,11 +59,11 @@ function AboutUs() {
 							</div>
 						</div>
 
-						<div class="col-lg-4">
-							<div class="feature-box bg-white">
-								<i class="icon-us-dollar"></i>
+						<div className="col-lg-4">
+							<div className="feature-box bg-white">
+								<i className="icon-us-dollar"></i>
 
-								<div class="feature-box-content p-0">
+								<div className="feature-box-content p-0">
 									<h3>100% Money Back Guarantee</h3>
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 										Ipsum has been the industr.</p>
@@ -68,11 +71,11 @@ function AboutUs() {
 							</div>
 						</div>
 
-						<div class="col-lg-4">
-							<div class="feature-box bg-white">
-								<i class="icon-online-support"></i>
+						<div className="col-lg-4">
+							<div className="feature-box bg-white">
+								<i className="icon-online-support"></i>
 
-								<div class="feature-box-content p-0">
+								<div className="feature-box-content p-0">
 									<h3>Online Support 24/7</h3>
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 										Ipsum has been the industr.</p>
@@ -83,11 +86,11 @@ function AboutUs() {
 				</div> 
 			</div>
 
-			<div class="testimonials-section">
-				<div class="container">
-					<h2 class="subtitle text-center">HAPPY CLIENTS</h2>
+			<div className="testimonials-section">
+				<div className="container">
+					<h2 className="subtitle text-center">HAPPY CLIENTS</h2>
 
-					<div class="testimonials-carousel owl-carousel owl-theme images-left" data-owl-options="{
+					<div className="testimonials-carousel owl-carousel owl-theme images-left" data-owl-options="{
 						'margin': 20,
                         'lazyLoad': true,
                         'autoHeight': true,
@@ -101,14 +104,14 @@ function AboutUs() {
                             }
                         }
                     }">
-						<div class="testimonial">
-							<div class="testimonial-owner">
+						<div className="testimonial">
+							<div className="testimonial-owner">
 								<figure>
 									<img src="/assets/Images/clients/client1.png" alt="client"/>
 								</figure>
 
 								<div>
-									<strong class="testimonial-title">John Smith</strong>
+									<strong className="testimonial-title">John Smith</strong>
 									<span>SMARTWAVE CEO</span>
 								</div>
 							</div>
@@ -119,14 +122,14 @@ function AboutUs() {
 							</blockquote>
 						</div>
 
-						<div class="testimonial">
-							<div class="testimonial-owner">
+						<div className="testimonial">
+							<div className="testimonial-owner">
 								<figure>
 									<img src="/assets/Images/clients/client2.png" alt="client"/>
 								</figure>
 
 								<div>
-									<strong class="testimonial-title">Bob Smith</strong>
+									<strong className="testimonial-title">Bob Smith</strong>
 									<span>SMARTWAVE CEO</span>
 								</div>
 							</div>
@@ -137,14 +140,14 @@ function AboutUs() {
 							</blockquote>
 						</div>
 
-						<div class="testimonial">
-							<div class="testimonial-owner">
+						<div className="testimonial">
+							<div className="testimonial-owner">
 								<figure>
 									<img src="/assets/Images/clients/client1.png" alt="client"/>
 								</figure>
 
 								<div>
-									<strong class="testimonial-title">John Smith</strong>
+									<strong className="testimonial-title">John Smith</strong>
 									<span>SMARTWAVE CEO</span>
 								</div>
 							</div>
@@ -158,47 +161,47 @@ function AboutUs() {
 				</div> 
 			</div> 
 
-			<div class="counters-section bg-gray">
-				<div class="container">
-					<div class="row">
-						<div class="col-6 col-md-4 count-container">
-							<div class="count-wrapper">
-								<span class="count-to" data-from="0" data-to="200" data-speed="2000"
+			<div className="counters-section bg-gray">
+				<div className="container">
+					<div className="row">
+						<div className="col-6 col-md-4 count-container">
+							<div className="count-wrapper">
+								<span className="count-to" data-from="0" data-to="200" data-speed="2000"
 									data-refresh-interval="50">200</span>+
 							</div> 
-							<h4 class="count-title">MILLION CUSTOMERS</h4>
+							<h4 className="count-title">MILLION CUSTOMERS</h4>
 						</div> 
 
-						<div class="col-6 col-md-4 count-container">
-							<div class="count-wrapper">
-								<span class="count-to" data-from="0" data-to="1800" data-speed="2000"
+						<div className="col-6 col-md-4 count-container">
+							<div className="count-wrapper">
+								<span className="count-to" data-from="0" data-to="1800" data-speed="2000"
 									data-refresh-interval="50">1800</span>+
 							</div> 
-							<h4 class="count-title">TEAM MEMBERS</h4>
+							<h4 className="count-title">TEAM MEMBERS</h4>
 						</div> 
 
-						<div class="col-6 col-md-4 count-container">
-							<div class="count-wrapper line-height-1">
-								<span class="count-to" data-from="0" data-to="24" data-speed="2000"
+						<div className="col-6 col-md-4 count-container">
+							<div className="count-wrapper line-height-1">
+								<span className="count-to" data-from="0" data-to="24" data-speed="2000"
 									data-refresh-interval="50">24</span><span>HR</span>
 							</div> 
-							<h4 class="count-title">SUPPORT AVAILABLE</h4>
+							<h4 className="count-title">SUPPORT AVAILABLE</h4>
 						</div> 
 
-						<div class="col-6 col-md-4 count-container">
-							<div class="count-wrapper">
-								<span class="count-to" data-from="0" data-to="265" data-speed="2000"
+						<div className="col-6 col-md-4 count-container">
+							<div className="count-wrapper">
+								<span className="count-to" data-from="0" data-to="265" data-speed="2000"
 									data-refresh-interval="50">265</span>+
 							</div> 
-							<h4 class="count-title">SUPPORT AVAILABLE</h4>
+							<h4 className="count-title">SUPPORT AVAILABLE</h4>
 						</div> 
 
-						<div class="col-6 col-md-4 count-container">
-							<div class="count-wrapper line-height-1">
-								<span class="count-to" data-from="0" data-to="99" data-speed="2000"
+						<div className="col-6 col-md-4 count-container">
+							<div className="count-wrapper line-height-1">
+								<span className="count-to" data-from="0" data-to="99" data-speed="2000"
 									data-refresh-interval="50">99</span><span>%</span>
 							</div> 
-							<h4 class="count-title">SUPPORT AVAILABLE</h4>
+							<h4 className="count-title">SUPPORT AVAILABLE</h4>
 						</div> 
 					</div> 
 				</div> 

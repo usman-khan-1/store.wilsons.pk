@@ -4,10 +4,10 @@ import { Carousel } from 'react-bootstrap'
 function HomeCarosuel() {
   return (
     <div>
-        <section class="intro-section">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12 mb-2">
+        <section className="intro-section">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12 mb-2">
                 <div className="home-caroseul">
                   <Carousel fade>
                     <Carousel.Item>

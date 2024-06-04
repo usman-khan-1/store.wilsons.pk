@@ -1,185 +1,185 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../Components/Layout";
+import { Link } from "react-router-dom";
 
 function Blogs() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <Layout>
-      <main class="main">
-        <nav aria-label="breadcrumb" class="breadcrumb-nav">
-          <div class="container">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="demo4.html">
-                  <i class="icon-home"></i>
-                </a>
+      <main className="main">
+        <nav aria-label="breadcrumb" className="breadcrumb-nav">
+          <div className="container">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <Link to={"/"}>
+                  <i className="icon-home"></i>
+                </Link>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
+              <li className="breadcrumb-item active" aria-current="page">
                 Blog
               </li>
             </ol>
           </div>
         </nav>
 
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-9">
-              <div class="blog-section row">
-                <div class="col-md-6 col-lg-4">
-                  <article class="post">
-                    <div class="post-media">
-                      <a href="single.html">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-9">
+              <div className="blog-section row">
+                <div className="col-md-6 col-lg-4">
+                  <article className="post">
+                    <div className="post-media">
+                      <Link to={"/blog-details"}>
                         <img
                           src=" assets/Images/blog/home/post-1.jpg"
                           alt="Post"
                           width="225"
                           height="280"
                         />
-                      </a>
-                      <div class="post-date">
-                        <span class="day">26</span>
-                        <span class="month">Feb</span>
+                      </Link>
+                      <div className="post-date">
+                        <span className="day">26</span>
+                        <span className="month">Feb</span>
                       </div>
                     </div>
 
-                    <div class="post-body">
-                      <h2 class="post-title">
-                        <a href="single.html">Top New Collection</a>
+                    <div className="post-body">
+                      <h2 className="post-title">
+                        <Link to={"/blog-details"}>Top New Collection</Link>
                       </h2>
-                      <div class="post-content">
+                      <div className="post-content">
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipiscing
                           elit. Cras non placerat mi. Etiam non tellus sem.
                           Aenean...
                         </p>
                       </div>
-                      <a href="single.html" class="post-comment">
+                      <Link to={"/blog-details"} className="post-comment">
                         0 Comments
-                      </a>
+                      </Link>
                     </div>
                   </article>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                  <article class="post">
-                    <div class="post-media">
-                      <a href="single.html">
+                <div className="col-md-6 col-lg-4">
+                  <article className="post">
+                    <div className="post-media">
+                      <Link to={"/blog-details"}>
                         <img
                           src="  assets/Images/blog/home/post-2.jpg"
                           alt="Post"
                           width="225"
                           height="280"
                         />
-                      </a>
-                      <div class="post-date">
-                        <span class="day">26</span>
-                        <span class="month">Feb</span>
+                      </Link>
+                      <div className="post-date">
+                        <span className="day">26</span>
+                        <span className="month">Feb</span>
                       </div>
                     </div>
 
-                    <div class="post-body">
-                      <h2 class="post-title">
-                        <a href="single.html">Fashion Trends</a>
+                    <div className="post-body">
+                      <h2 className="post-title">
+                        <Link to={"/blog-details"}>Fashion Trends</Link>
                       </h2>
-                      <div class="post-content">
+                      <div className="post-content">
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipiscing
                           elit. Cras non placerat mi. Etiam non tellus sem.
                           Aenean...
                         </p>
                       </div>
-                      <a href="single.html" class="post-comment">
+                      <Link to={"/blog-details"} className="post-comment">
                         0 Comments
-                      </a>
+                      </Link>
                     </div>
                   </article>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                  <article class="post">
-                    <div class="post-media">
-                      <a href="single.html">
+                <div className="col-md-6 col-lg-4">
+                  <article className="post">
+                    <div className="post-media">
+                      <Link to={"/blog-details"}>
                         <img
                           src=" assets/Images/blog/home/post-3.jpg"
                           alt="Post"
                           width="225"
                           height="280"
                         />
-                      </a>
-                      <div class="post-date">
-                        <span class="day">26</span>
-                        <span class="month">Feb</span>
+                      </Link>
+                      <div className="post-date">
+                        <span className="day">26</span>
+                        <span className="month">Feb</span>
                       </div>
                     </div>
 
-                    <div class="post-body">
-                      <h2 class="post-title">
-                        <a href="single.html">Etiam laoreet sem</a>
+                    <div className="post-body">
+                      <h2 className="post-title">
+                        <Link to={"/blog-details"}>Etiam laoreet sem</Link>
                       </h2>
-                      <div class="post-content">
+                      <div className="post-content">
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipiscing
                           elit. Cras non placerat mi. Etiam non tellus sem.
                           Aenean...
                         </p>
                       </div>
-                      <a href="single.html" class="post-comment">
+                      <Link to={"/blog-details"} className="post-comment">
                         0 Comments
-                      </a>
+                      </Link>
                     </div>
                   </article>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                  <article class="post">
-                    <div class="post-media">
-                      <a href="single.html">
+                <div className="col-md-6 col-lg-4">
+                  <article className="post">
+                    <div className="post-media">
+                      <Link to={"/blog-details"}>
                         <img
                           src=" assets/Images/blog/home/post-4.jpg"
                           alt="Post"
                           width="225"
                           height="280"
                         />
-                      </a>
-                      <div class="post-date">
-                        <span class="day">26</span>
-                        <span class="month">Feb</span>
+                      </Link>
+                      <div className="post-date">
+                        <span className="day">26</span>
+                        <span className="month">Feb</span>
                       </div>
                     </div>
 
-                    <div class="post-body">
-                      <h2 class="post-title">
-                        <a href="single.html">Perfect Accessories</a>
+                    <div className="post-body">
+                      <h2 className="post-title">
+                        <Link to={"/blog-details"}>Perfect Accessories</Link>
                       </h2>
-                      <div class="post-content">
+                      <div className="post-content">
                         <p>
                           Leap into electronic typesetting, remaining
                           essentially unchanged. It was popularised in the 1960s
                           with the release of Letraset sheets...
                         </p>
                       </div>
-                      <a href="single.html" class="post-comment">
+                      <Link to={"/blog-details"} className="post-comment">
                         0 Comments
-                      </a>
+                      </Link>
                     </div>
                   </article>
                 </div>
               </div>
             </div>
 
-            {/* <div class="sidebar-toggle custom-sidebar-toggle">
-              <i class="fas fa-sliders-h"></i>
-            </div>
-            <div class="sidebar-overlay"></div> */}
-            <div class="col-lg-3 sidebar mobile-sidebar ">
+            <div className="col-lg-3 sidebar mobile-sidebar ">
               <div
-                class="sidebar-wrapper"
+                className="sidebar-wrapper"
                 data-sticky-sidebar-options='{"offsetTop": 72}'
               >
-                <div class="widget widget-categories">
-                  <h4 class="widget-title">Blog Categories</h4>
+                <div className="widget widget-categories">
+                  <h4 className="widget-title">Blog Categories</h4>
 
-                  <ul class="list">
+                  <ul className="list">
                     <li>
                       <a href="#">All about clothing</a>
 
-                      <ul class="list">
+                      <ul className="list">
                         <li>
                           <a href="#">Dresses</a>
                         </li>
@@ -200,46 +200,46 @@ function Blogs() {
                   </ul>
                 </div>
 
-                <div class="widget widget-post">
-                  <h4 class="widget-title">Recent Posts</h4>
+                <div className="widget widget-post">
+                  <h4 className="widget-title">Recent Posts</h4>
 
-                  <ul class="simple-post-list">
+                  <ul className="simple-post-list">
                     <li>
-                      <div class="post-media">
-                        <a href="single.html">
+                      <div className="post-media">
+                        <Link to={"/blog-details"}>
                           <img
                             src=" assets/Images/blog/widget/post-1.jpg"
                             alt="Post"
                           />
-                        </a>
+                        </Link>
                       </div>
-                      <div class="post-info">
-                        <a href="single.html">Top New Collection</a>
-                        <div class="post-meta">February 26, 2018</div>
+                      <div className="post-info">
+                        <Link to={"/blog-details"}>Top New Collection</Link>
+                        <div className="post-meta">February 26, 2018</div>
                       </div>
                     </li>
 
                     <li>
-                      <div class="post-media">
-                        <a href="single.html">
+                      <div className="post-media">
+                        <Link to={"/blog-details"}>
                           <img
                             src=" assets/Images/blog/widget/post-2.jpg"
                             alt="Post"
                           />
-                        </a>
+                        </Link>
                       </div>
-                      <div class="post-info">
-                        <a href="single.html">Fashion Trends</a>
-                        <div class="post-meta">February 26, 2018</div>
+                      <div className="post-info">
+                        <Link to={"/blog-details"}>Fashion Trends</Link>
+                        <div className="post-meta">February 26, 2018</div>
                       </div>
                     </li>
                   </ul>
                 </div>
 
-                <div class="widget">
-                  <h4 class="widget-title">Tags</h4>
+                <div className="widget">
+                  <h4 className="widget-title">Tags</h4>
 
-                  <div class="tagcloud">
+                  <div className="tagcloud">
                     <a href="#">ARTICLES</a>
                     <a href="#">CHAT</a>
                   </div>

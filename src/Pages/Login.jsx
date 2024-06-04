@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../Components/Layout'
 
 function Login() {
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+      })
   return (
     <Layout>
-    <main class="main">
-           <div class="page-header">
-               <div class="container d-flex flex-column align-items-center">
-                   <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                       <div class="container">
-                           <ol class="breadcrumb">
-                               <li class="breadcrumb-item"><a href="demo4.html">Home</a></li>
-                               <li class="breadcrumb-item"><a href="category.html">Shop</a></li>
-                               <li class="breadcrumb-item active" aria-current="page">
+    <main className="main">
+           <div className="page-header">
+               <div className="container d-flex flex-column align-items-center">
+                   <nav aria-label="breadcrumb" className="breadcrumb-nav">
+                       <div className="container">
+                           <ol className="breadcrumb">
+                               <li className="breadcrumb-item"><a href="demo4.html">Home</a></li>
+                               <li className="breadcrumb-item"><a href="category.html">Shop</a></li>
+                               <li className="breadcrumb-item active" aria-current="page">
                                    My Account
                                </li>
                            </ol>
@@ -23,65 +26,65 @@ function Login() {
                </div>
            </div>
 
-           <div class="container login-container">
-               <div class="row">
-                   <div class="col-lg-10 mx-auto">
-                       <div class="row">
-                           <div class="col-md-6">
-                               <div class="heading mb-1">
-                                   <h2 class="title">Login</h2>
+           <div className="container login-container">
+               <div className="row">
+                   <div className="col-lg-10 mx-auto">
+                       <div className="row">
+                           <div className="col-md-6">
+                               <div className="heading mb-1">
+                                   <h2 className="title">Login</h2>
                                </div>
 
                                <form action="#">
                                    <label for="login-email">
                                        Username or email address
-                                       <span class="required">*</span>
+                                       <span className="required">*</span>
                                    </label>
-                                   <input type="email" class="form-input form-wide" id="login-email" required />
+                                   <input type="email" className="form-input form-wide" id="login-email" required />
 
                                    <label for="login-password">
                                        Password
-                                       <span class="required">*</span>
+                                       <span className="required">*</span>
                                    </label>
-                                   <input type="password" class="form-input form-wide" id="login-password" required />
+                                   <input type="password" className="form-input form-wide" id="login-password" required />
 
-                                   <div class="form-footer">
-                                       <div class="custom-control custom-checkbox mb-0">
-                                           <input type="checkbox" class="custom-control-input" id="lost-password" />
-                                           <label class="custom-control-label mb-0" for="lost-password">Remember
+                                   <div className="form-footer">
+                                       <div className="custom-control custom-checkbox mb-0">
+                                           <input type="checkbox" className="custom-control-input" id="lost-password" />
+                                           <label className="custom-control-label mb-0" for="lost-password">Remember
                                                me</label>
                                        </div>
 
                                        <a href="forgot-password.html"
-                                           class="forget-password text-dark form-footer-right">Forgot
+                                           className="forget-password text-dark form-footer-right">Forgot
                                            Password?</a>
                                    </div>
-                                   <button type="submit" class="btn btn-dark btn-md w-100">
+                                   <button type="submit" className="btn btn-dark btn-md w-100">
                                        LOGIN
                                    </button>
                                </form>
                            </div>
-                           <div class="col-md-6">
-                               <div class="heading mb-1">
-                                   <h2 class="title">Register</h2>
+                           <div className="col-md-6">
+                               <div className="heading mb-1">
+                                   <h2 className="title">Register</h2>
                                </div>
 
                                <form action="#">
                                    <label for="register-email">
                                        Email address
-                                       <span class="required">*</span>
+                                       <span className="required">*</span>
                                    </label>
-                                   <input type="email" class="form-input form-wide" id="register-email" required />
+                                   <input type="email" className="form-input form-wide" id="register-email" required />
 
                                    <label for="register-password">
                                        Password
-                                       <span class="required">*</span>
+                                       <span className="required">*</span>
                                    </label>
-                                   <input type="password" class="form-input form-wide" id="register-password"
+                                   <input type="password" className="form-input form-wide" id="register-password"
                                        required />
 
-                                   <div class="form-footer mb-2">
-                                       <button type="submit" class="btn btn-dark btn-md w-100 mr-0">
+                                   <div className="form-footer mb-2">
+                                       <button type="submit" className="btn btn-dark btn-md w-100 mr-0">
                                            Register
                                        </button>
                                    </div>
