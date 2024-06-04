@@ -297,7 +297,7 @@ function HomeNavbar() {
         </div>
 
         <div
-          className="header-bottom sticky-header fixed"
+          className="header-bottom sticky-header "
           data-sticky-options="{'mobile': false, 'offset': 684}"
         >
           <div className="container">
