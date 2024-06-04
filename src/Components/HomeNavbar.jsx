@@ -102,13 +102,13 @@ function HomeNavbar() {
                 </div>
 
                 <div className="tagcloud d-none d-lg-flex">
-                  <a href="demo22-shop.html">clothes</a>
-                  <a href="demo22-shop.html">fashion</a>
-                  <a href="demo22-shop.html">hub</a>
-                  <a href="demo22-shop.html">shirt</a>
-                  <a href="demo22-shop.html">skirt</a>
-                  <a href="demo22-shop.html">sports</a>
-                  <a href="demo22-shop.html">sweater</a>
+                  <Link to={"/shop"}>clothes</Link>
+                  <Link to={"/shop"}>fashion</Link>
+                  <Link to={"/shop"}>hub</Link>
+                  <Link to={"/shop"}>shirt</Link>
+                  <Link to={"/shop"}>skirt</Link>
+                  <Link to={"/shop"}>sports</Link>
+                  <Link to={"/shop"}>sweater</Link>
                 </div>
               </div>
             </div>
@@ -297,7 +297,7 @@ function HomeNavbar() {
         </div>
 
         <div
-          className="header-bottom sticky-header"
+          className="header-bottom sticky-header fixed"
           data-sticky-options="{'mobile': false, 'offset': 684}"
         >
           <div className="container">
@@ -319,30 +319,30 @@ function HomeNavbar() {
                     <Link to={"/"} className="active">
                       <i className="icon-category-home"></i>Home
                     </Link>
-                    <a href="demo22-shop.html">
+                    <Link to={"/shop"}>
                       <i className="icon-category-fashion"></i>Fashion
-                    </a>
-                    <a href="demo22-shop.html">
+                    </Link>
+                    <Link to={"/shop"}>
                       <i className="icon-category-electronics"></i>Electronics
-                    </a>
-                    <a href="demo22-shop.html">
+                    </Link>
+                    <Link to={"/shop"}>
                       <i className="icon-category-gifts"></i>Gifts
-                    </a>
-                    <a href="demo22-shop.html">
+                    </Link>
+                    <Link to={"/shop"}>
                       <i className="icon-category-garden"></i>Garden
-                    </a>
-                    <a href="demo22-shop.html">
+                    </Link>
+                    <Link to={"/shop"}>
                       <i className="icon-category-music"></i>Music
-                    </a>
-                    <a href="demo22-shop.html">
+                    </Link>
+                    <Link to={"/shop"}>
                       <i className="icon-category-motors"></i>Motors
-                    </a>
-                    <a href="demo22-shop.html">
+                    </Link>
+                    <Link to={"/shop"}>
                       <i className="icon-category-furniture"></i>Furniture
-                    </a>
-                    <a href="demo22-shop.html">
+                    </Link>
+                    <Link to={"/shop"}>
                       VIEW ALL <i className="icon-angle-right"></i>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <ul className="menu">
@@ -360,6 +360,9 @@ function HomeNavbar() {
                   </li>
                   <li>
                     <Link to={"/cart"}>Cart</Link>
+                  </li>
+                  <li>
+                    <Link to={"/shop"}>Shop</Link>
                   </li>
                   <li className="dropdown">
                     <a>Pages</a>
@@ -475,6 +478,9 @@ function HomeNavbar() {
                 </li>
                 <li>
                   <Link to={"/cart"}>Cart</Link>
+                </li>
+                <li>
+                  <Link to={"/shop"}>Shop</Link>
                 </li>
                 <li>
                   <Link to={"/cart"}>My Account</Link>

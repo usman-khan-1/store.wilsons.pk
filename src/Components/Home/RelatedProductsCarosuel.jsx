@@ -20,7 +20,7 @@ function RelatedProductsCarosuel() {
         responsive={responsive}
       >
         <div className="single-testimonial-item">
-          <div class="product-default">
+          <div className="product-default">
             <figure>
               <a href="product.html">
                 <img
@@ -36,54 +36,54 @@ function RelatedProductsCarosuel() {
                   alt="product"
                 />
               </a>
-              <div class="label-group">
-                <div class="product-label label-hot">HOT</div>
-                <div class="product-label label-sale">-20%</div>
+              <div className="label-group">
+                <div className="product-label label-hot">HOT</div>
+                <div className="product-label label-sale">-20%</div>
               </div>
             </figure>
-            <div class="product-details">
-              <div class="category-list">
-                <a href="category.html" class="product-category">
+            <div className="product-details">
+              <div className="category-list">
+                <a href="category.html" className="product-category">
                   Category
                 </a>
               </div>
-              <h3 class="product-title">
+              <h3 className="product-title">
                 <a href="product.html">Ultimate 3D Bluetooth Speaker</a>
               </h3>
-              <div class="ratings-container">
-                <div class="product-ratings">
-                  <span class="ratings" style={{ width: "80%" }}></span>
+              <div className="ratings-container">
+                <div className="product-ratings">
+                  <span className="ratings" style={{ width: "80%" }}></span>
 
-                  <span class="tooltiptext tooltip-top"></span>
+                  <span className="tooltiptext tooltip-top"></span>
                 </div>
               </div>
 
-              <div class="price-box">
-                <del class="old-price">$59.00</del>
-                <span class="product-price">$49.00</span>
+              <div className="price-box">
+                <del className="old-price">$59.00</del>
+                <span className="product-price">$49.00</span>
               </div>
 
-              <div class="product-action">
-                <a href="wishlist.html" title="Wishlist" class="btn-icon-wish">
-                  <i class="icon-heart"></i>
+              <div className="product-action">
+                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
+                  <i className="icon-heart"></i>
                 </a>
-                <a href="product.html" class="btn-icon btn-add-cart">
-                  <i class="fa fa-arrow-right"></i>
+                <a href="product.html" className="btn-icon btn-add-cart">
+                  <i className="fa fa-arrow-right"></i>
                   <span>SELECT OPTIONS</span>
                 </a>
                 <a
                   href="ajax/product-quick-view.html"
-                  class="btn-quickview"
+                  className="btn-quickview"
                   title="Quick View"
                 >
-                  <i class="fas fa-external-link-alt"></i>
+                  <i className="fas fa-external-link-alt"></i>
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="single-testimonial-item">
-          <div class="product-default">
+          <div className="product-default">
             <figure>
               <a href="product.html">
                 <img
@@ -99,54 +99,54 @@ function RelatedProductsCarosuel() {
                   alt="product"
                 />
               </a>
-              <div class="label-group">
-                <div class="product-label label-hot">HOT</div>
-                <div class="product-label label-sale">-20%</div>
+              <div className="label-group">
+                <div className="product-label label-hot">HOT</div>
+                <div className="product-label label-sale">-20%</div>
               </div>
             </figure>
-            <div class="product-details">
-              <div class="category-list">
-                <a href="category.html" class="product-category">
+            <div className="product-details">
+              <div className="category-list">
+                <a href="category.html" className="product-category">
                   Category
                 </a>
               </div>
-              <h3 class="product-title">
+              <h3 className="product-title">
                 <a href="product.html">Circled Ultimate 3D Speaker</a>
               </h3>
-              <div class="ratings-container">
-                <div class="product-ratings">
-                  <span class="ratings" style={{width:"80%"}}></span>
+              <div className="ratings-container">
+                <div className="product-ratings">
+                  <span className="ratings" style={{width:"80%"}}></span>
 
-                  <span class="tooltiptext tooltip-top"></span>
+                  <span className="tooltiptext tooltip-top"></span>
                 </div>
               </div>
 
-              <div class="price-box">
-                <del class="old-price">$59.00</del>
-                <span class="product-price">$49.00</span>
+              <div className="price-box">
+                <del className="old-price">$59.00</del>
+                <span className="product-price">$49.00</span>
               </div>
 
-              <div class="product-action">
-                <a href="wishlist.html" title="Wishlist" class="btn-icon-wish">
-                  <i class="icon-heart"></i>
+              <div className="product-action">
+                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
+                  <i className="icon-heart"></i>
                 </a>
-                <a href="product.html" class="btn-icon btn-add-cart">
-                  <i class="fa fa-arrow-right"></i>
+                <a href="product.html" className="btn-icon btn-add-cart">
+                  <i className="fa fa-arrow-right"></i>
                   <span>SELECT OPTIONS</span>
                 </a>
                 <a
                   href="ajax/product-quick-view.html"
-                  class="btn-quickview"
+                  className="btn-quickview"
                   title="Quick View"
                 >
-                  <i class="fas fa-external-link-alt"></i>
+                  <i className="fas fa-external-link-alt"></i>
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="single-testimonial-item">
-          <div class="product-default">
+          <div className="product-default">
             <figure>
               <a href="product.html">
                 <img
@@ -162,54 +162,54 @@ function RelatedProductsCarosuel() {
                   alt="product"
                 />
               </a>
-              <div class="label-group">
-                <div class="product-label label-hot">HOT</div>
-                <div class="product-label label-sale">-20%</div>
+              <div className="label-group">
+                <div className="product-label label-hot">HOT</div>
+                <div className="product-label label-sale">-20%</div>
               </div>
             </figure>
-            <div class="product-details">
-              <div class="category-list">
-                <a href="category.html" class="product-category">
+            <div className="product-details">
+              <div className="category-list">
+                <a href="category.html" className="product-category">
                   Category
                 </a>
               </div>
-              <h3 class="product-title">
+              <h3 className="product-title">
                 <a href="product.html">Brown-Black Men Casual Glasses</a>
               </h3>
-              <div class="ratings-container">
-                <div class="product-ratings">
-                  <span class="ratings" style={{width:"80%"}}></span>
+              <div className="ratings-container">
+                <div className="product-ratings">
+                  <span className="ratings" style={{width:"80%"}}></span>
 
-                  <span class="tooltiptext tooltip-top"></span>
+                  <span className="tooltiptext tooltip-top"></span>
                 </div>
               </div>
 
-              <div class="price-box">
-                <del class="old-price">$59.00</del>
-                <span class="product-price">$49.00</span>
+              <div className="price-box">
+                <del className="old-price">$59.00</del>
+                <span className="product-price">$49.00</span>
               </div>
 
-              <div class="product-action">
-                <a href="wishlist.html" title="Wishlist" class="btn-icon-wish">
-                  <i class="icon-heart"></i>
+              <div className="product-action">
+                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
+                  <i className="icon-heart"></i>
                 </a>
-                <a href="product.html" class="btn-icon btn-add-cart">
-                  <i class="fa fa-arrow-right"></i>
+                <a href="product.html" className="btn-icon btn-add-cart">
+                  <i className="fa fa-arrow-right"></i>
                   <span>SELECT OPTIONS</span>
                 </a>
                 <a
                   href="ajax/product-quick-view.html"
-                  class="btn-quickview"
+                  className="btn-quickview"
                   title="Quick View"
                 >
-                  <i class="fas fa-external-link-alt"></i>
+                  <i className="fas fa-external-link-alt"></i>
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="single-testimonial-item">
-          <div class="product-default">
+          <div className="product-default">
             <figure>
               <a href="product.html">
                 <img
@@ -225,54 +225,54 @@ function RelatedProductsCarosuel() {
                   alt="product"
                 />
               </a>
-              <div class="label-group">
-                <div class="product-label label-hot">HOT</div>
-                <div class="product-label label-sale">-20%</div>
+              <div className="label-group">
+                <div className="product-label label-hot">HOT</div>
+                <div className="product-label label-sale">-20%</div>
               </div>
             </figure>
-            <div class="product-details">
-              <div class="category-list">
-                <a href="category.html" class="product-category">
+            <div className="product-details">
+              <div className="category-list">
+                <a href="category.html" className="product-category">
                   Category
                 </a>
               </div>
-              <h3 class="product-title">
+              <h3 className="product-title">
                 <a href="product.html">Men Black Gentle Belt</a>
               </h3>
-              <div class="ratings-container">
-                <div class="product-ratings">
-                  <span class="ratings" style={{width:"80%"}}></span>
+              <div className="ratings-container">
+                <div className="product-ratings">
+                  <span className="ratings" style={{width:"80%"}}></span>
 
-                  <span class="tooltiptext tooltip-top"></span>
+                  <span className="tooltiptext tooltip-top"></span>
                 </div>
               </div>
 
-              <div class="price-box">
-                <del class="old-price">$59.00</del>
-                <span class="product-price">$49.00</span>
+              <div className="price-box">
+                <del className="old-price">$59.00</del>
+                <span className="product-price">$49.00</span>
               </div>
 
-              <div class="product-action">
-                <a href="wishlist.html" title="Wishlist" class="btn-icon-wish">
-                  <i class="icon-heart"></i>
+              <div className="product-action">
+                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
+                  <i className="icon-heart"></i>
                 </a>
-                <a href="product.html" class="btn-icon btn-add-cart">
-                  <i class="fa fa-arrow-right"></i>
+                <a href="product.html" className="btn-icon btn-add-cart">
+                  <i className="fa fa-arrow-right"></i>
                   <span>SELECT OPTIONS</span>
                 </a>
                 <a
                   href="ajax/product-quick-view.html"
-                  class="btn-quickview"
+                  className="btn-quickview"
                   title="Quick View"
                 >
-                  <i class="fas fa-external-link-alt"></i>
+                  <i className="fas fa-external-link-alt"></i>
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="single-testimonial-item">
-          <div class="product-default">
+          <div className="product-default">
             <figure>
               <a href="product.html">
                 <img
@@ -288,47 +288,47 @@ function RelatedProductsCarosuel() {
                   alt="product"
                 />
               </a>
-              <div class="label-group">
-                <div class="product-label label-hot">HOT</div>
-                <div class="product-label label-sale">-20%</div>
+              <div className="label-group">
+                <div className="product-label label-hot">HOT</div>
+                <div className="product-label label-sale">-20%</div>
               </div>
             </figure>
-            <div class="product-details">
-              <div class="category-list">
-                <a href="category.html" class="product-category">
+            <div className="product-details">
+              <div className="category-list">
+                <a href="category.html" className="product-category">
                   Category
                 </a>
               </div>
-              <h3 class="product-title">
+              <h3 className="product-title">
                 <a href="product.html">Blue Backpack for the Young - S</a>
               </h3>
-              <div class="ratings-container">
-                <div class="product-ratings">
-                  <span class="ratings" style={{width:"80%"}}></span>
+              <div className="ratings-container">
+                <div className="product-ratings">
+                  <span className="ratings" style={{width:"80%"}}></span>
 
-                  <span class="tooltiptext tooltip-top"></span>
+                  <span className="tooltiptext tooltip-top"></span>
                 </div>
               </div>
 
-              <div class="price-box">
-                <del class="old-price">$59.00</del>
-                <span class="product-price">$49.00</span>
+              <div className="price-box">
+                <del className="old-price">$59.00</del>
+                <span className="product-price">$49.00</span>
               </div>
 
-              <div class="product-action">
-                <a href="wishlist.html" title="Wishlist" class="btn-icon-wish">
-                  <i class="icon-heart"></i>
+              <div className="product-action">
+                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
+                  <i className="icon-heart"></i>
                 </a>
-                <a href="product.html" class="btn-icon btn-add-cart">
-                  <i class="fa fa-arrow-right"></i>
+                <a href="product.html" className="btn-icon btn-add-cart">
+                  <i className="fa fa-arrow-right"></i>
                   <span>SELECT OPTIONS</span>
                 </a>
                 <a
                   href="ajax/product-quick-view.html"
-                  class="btn-quickview"
+                  className="btn-quickview"
                   title="Quick View"
                 >
-                  <i class="fas fa-external-link-alt"></i>
+                  <i className="fas fa-external-link-alt"></i>
                 </a>
               </div>
             </div>

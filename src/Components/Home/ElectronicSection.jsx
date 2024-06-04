@@ -52,7 +52,7 @@ function ElectronicSection() {
                   </h4>
                   <h5 className="mb-0 font1 d-inline-block bg-dark skew-box">
                     <i className="text-dark ls-0">UP TO</i>
-                    <b className="text-white">$100</b>
+                    <span className="text-white">$100</span>
                     <sub className="text-dark">OFF</sub>
                   </h5>
                 </div>

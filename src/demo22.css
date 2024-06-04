@@ -16122,7 +16122,7 @@ aside .widget-info i {
   padding: 10px 0 0;
 }
 .sidebar-shop .config-swatch-list {
-  display: block;
+  display: block !important;
 }
 .sidebar-shop .config-swatch-list li a {
   margin-bottom: 7px;

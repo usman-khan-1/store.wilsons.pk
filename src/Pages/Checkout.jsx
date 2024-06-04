@@ -55,7 +55,7 @@ function Checkout() {
                                     <div className="form-footer mb-1">
                                         <div className="custom-control custom-checkbox mb-0 mt-0">
                                             <input type="checkbox" className="custom-control-input" id="lost-password" />
-                                            <label className="custom-control-label mb-0" for="lost-password">Remember
+                                            <label className="custom-control-label mb-0"  htmlFor="lost-password">Remember
                                                 me</label>
                                         </div>
 
@@ -127,7 +127,7 @@ function Checkout() {
                                         <label>Country / Region
                                             <abbr className="required" title="required">*</abbr></label>
                                         <select name="orderby" className="form-control">
-                                            <option value="" selected="selected">Vanuatu
+                                            <option value="" >Vanuatu
                                             </option>
                                             <option value="1">Brunei</option>
                                             <option value="2">Bulgaria</option>
@@ -156,7 +156,7 @@ function Checkout() {
                                     <div className="select-custom">
                                         <label>State / County <abbr className="required" title="required">*</abbr></label>
                                         <select name="orderby" className="form-control">
-                                            <option value="" selected="selected">NY</option>
+                                            <option value=""  >NY</option>
                                             <option value="1">Brunei</option>
                                             <option value="2">Bulgaria</option>
                                             <option value="3">Burkina Faso</option>
@@ -185,7 +185,7 @@ function Checkout() {
                                     <div className="form-group mb-1">
                                         <div className="custom-control custom-checkbox">
                                             <input type="checkbox" className="custom-control-input" id="create-account" />
-                                            <label className="custom-control-label" data-toggle="collapse" data-target="#collapseThree" aria-controls="collapseThree" for="create-account">Create an
+                                            <label className="custom-control-label" data-toggle="collapse" data-target="#collapseThree" aria-controls="collapseThree"  htmlFor="create-account">Create an
                                                 account?</label>
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@ function Checkout() {
                                     <div className="form-group">
                                         <div className="custom-control custom-checkbox mt-0">
                                             <input type="checkbox" className="custom-control-input" id="different-shipping" />
-                                            <label className="custom-control-label" data-toggle="collapse" data-target="#collapseFour" aria-controls="collapseFour" for="different-shipping">Ship to a
+                                            <label className="custom-control-label" data-toggle="collapse" data-target="#collapseFour" aria-controls="collapseFour"  htmlFor="different-shipping">Ship to a
                                                 different
                                                 address?</label>
 
@@ -237,7 +237,7 @@ function Checkout() {
                                             <div className="select-custom">
                                                 <label>Country / Region <span className="required">*</span></label>
                                                 <select name="orderby" className="form-control">
-                                                    <option value="" selected="selected">Vanuatu</option>
+                                                    <option value=""  >Vanuatu</option>
                                                     <option value="1">Brunei</option>
                                                     <option value="2">Bulgaria</option>
                                                     <option value="3">Burkina Faso</option>
@@ -266,7 +266,7 @@ function Checkout() {
                                                 <label>State / County <abbr className="required"
                                                         title="required">*</abbr></label>
                                                 <select name="orderby" className="form-control">
-                                                    <option value="" selected="selected">NY</option>
+                                                    <option value=""  >NY</option>
                                                     <option value="1">Brunei</option>
                                                     <option value="2">Bulgaria</option>
                                                     <option value="3">Burkina Faso</option>
@@ -300,7 +300,7 @@ function Checkout() {
                             <table className="table table-mini-cart">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Product</th>
+                                        <th colSpan="2">Product</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -341,12 +341,12 @@ function Checkout() {
                                         </td>
                                     </tr>
                                     <tr className="order-shipping">
-                                        <td className="text-left" colspan="2">
+                                        <td className="text-left" colSpan="2">
                                             <h4 className="m-b-sm">Shipping</h4>
 
                                             <div className="form-group form-group-custom-control">
                                                 <div className="custom-control custom-radio d-flex">
-                                                    <input type="radio" className="custom-control-input" name="radio" checked />
+                                                    <input type="radio" className="custom-control-input" name="radio"  />
                                                     <label className="custom-control-label">Local Pickup</label>
                                                 </div>
                                               

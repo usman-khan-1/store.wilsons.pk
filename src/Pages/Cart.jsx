@@ -147,7 +147,7 @@ function Cart() {
 
                   <tfoot>
                     <tr>
-                      <td colspan="5" className="clearfix">
+                      <td colSpan="5" className="clearfix">
                         <div className="float-left">
                           <div className="cart-discount">
                             <form action="#">
@@ -195,7 +195,7 @@ function Cart() {
                     </tr>
 
                     <tr>
-                      <td colspan="2" className="text-left">
+                      <td colSpan="2" className="text-left">
                         <h4>Shipping</h4>
 
                         <div className="form-group form-group-custom-control">

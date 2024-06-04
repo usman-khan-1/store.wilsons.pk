@@ -157,7 +157,7 @@ function ProductDetails() {
                             width="150"
                             height="150"
                             src="assets/Images/products/product-3.jpg"
-                            style={{ paddingTop: "0px;" }}
+                            style={{ paddingTop: "0px" }}
                           />
 
                           <span>Circled Ultimate 3D Speaker</span>
@@ -177,7 +177,7 @@ function ProductDetails() {
                             width="150"
                             height="150"
                             src="assets/Images/products/product-4.jpg"
-                            style={{ paddingTop: "0px;" }}
+                            style={{ paddingTop: "0px" }}
                           />
 
                           <span>Blue Backpack for the Young</span>
@@ -255,7 +255,7 @@ function ProductDetails() {
                   </div>
 
                   <a
-                    href="javascript:;"
+                   
                     className="btn btn-dark add-cart mr-2"
                     title="Add to Cart"
                   >
@@ -567,7 +567,7 @@ function ProductDetails() {
 
                     <form action="#" className="comment-form m-0">
                       <div className="rating-form">
-                        <label for="rating">
+                        <label htmlFor="rating">
                           Your rating <span className="required">*</span>
                         </label>
                         <span className="rating-stars">
@@ -592,7 +592,7 @@ function ProductDetails() {
                           name="rating"
                           id="rating"
                           required=""
-                          style={{ display: "none;" }}
+                          style={{ display: "none " }}
                         >
                           <option value="">Rate…</option>
                           <option value="5">Perfect</option>
@@ -650,7 +650,7 @@ function ProductDetails() {
                             />
                             <label
                               className="custom-control-label mb-0"
-                              for="save-name"
+                              htmlFor="save-name"
                             >
                               Save my name, email, and website in this browser
                               for the next time I comment.

@@ -13,6 +13,7 @@ import BottomNavigationBar from "./Components/BottomNavigationBar";
 import ProductDetails from "./Pages/ProductDetails";
 import Checkout from "./Pages/Checkout";
 import BlogDetails from "./Pages/BlogDetails";
+import Shop from "./Pages/Shop";
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="product-details" element={<ProductDetails />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="shop" element={<Shop />} />
         </Routes>
       </BrowserRouter>
       {/* <HomeNavbar /> */}

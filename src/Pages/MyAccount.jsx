@@ -250,7 +250,7 @@ function MyAccount() {
                       </thead>
                       <tbody>
                         <tr>
-                          <td className="text-center p-0" colspan="5">
+                          <td className="text-center p-0" colSpan="5">
                             <p className="mb-5 mt-5">No Order has been made yet.</p>
                           </td>
                         </tr>
@@ -341,7 +341,7 @@ function MyAccount() {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label for="acc-name">
+                          <label htmlFor="acc-name">
                             First name <span className="required">*</span>
                           </label>
                           <input
@@ -357,7 +357,7 @@ function MyAccount() {
 
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label for="acc-lastname">
+                          <label htmlFor="acc-lastname">
                             Last name <span className="required">*</span>
                           </label>
                           <input
@@ -372,7 +372,7 @@ function MyAccount() {
                     </div>
 
                     <div className="form-group mb-2">
-                      <label for="acc-text">
+                      <label htmlFor="acc-text">
                         Display name <span className="required">*</span>
                       </label>
                       <input
@@ -390,7 +390,7 @@ function MyAccount() {
                     </div>
 
                     <div className="form-group mb-4">
-                      <label for="acc-email">
+                      <label htmlFor="acc-email">
                         Email address <span className="required">*</span>
                       </label>
                       <input
@@ -407,7 +407,7 @@ function MyAccount() {
                       <h3 className="text-uppercase mb-2">Password Change</h3>
 
                       <div className="form-group">
-                        <label for="acc-password">
+                        <label htmlFor="acc-password">
                           Current Password (leave blank to leave unchanged)
                         </label>
                         <input
@@ -419,7 +419,7 @@ function MyAccount() {
                       </div>
 
                       <div className="form-group">
-                        <label for="acc-password">
+                        <label htmlFor="acc-password">
                           New Password (leave blank to leave unchanged)
                         </label>
                         <input
@@ -431,7 +431,7 @@ function MyAccount() {
                       </div>
 
                       <div className="form-group">
-                        <label for="acc-password">Confirm New Password</label>
+                        <label htmlFor="acc-password">Confirm New Password</label>
                         <input
                           type="password"
                           className="form-control"
@@ -485,7 +485,7 @@ function MyAccount() {
                         Country / Region <span className="required">*</span>
                       </label>
                       <select name="orderby" className="form-control">
-                        <option value="" selected="selected">
+                        <option value=""  >
                           British Indian Ocean Territory
                         </option>
                         <option value="1">Brunei</option>
@@ -600,7 +600,7 @@ function MyAccount() {
                         Country / Region <span className="required">*</span>
                       </label>
                       <select name="orderby" className="form-control">
-                        <option value="" selected="selected">
+                        <option value=""  >
                           British Indian Ocean Territory
                         </option>
                         <option value="1">Brunei</option>
