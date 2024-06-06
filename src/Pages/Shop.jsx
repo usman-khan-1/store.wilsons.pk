@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
 import { Slider } from "@mui/material";
 
 function Shop() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   const [value, setValue] = useState([0, 100]);
   return (
     <Layout>

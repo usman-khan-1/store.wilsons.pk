@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../Components/Layout'
 
 function BlogDetails() {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  });
   return (
     <Layout>
       <main className="main">

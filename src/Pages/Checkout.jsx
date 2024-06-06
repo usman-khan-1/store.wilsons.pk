@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../Components/Layout'
 import { Link } from 'react-router-dom'
 
 function Checkout() {
+    useEffect (() => {
+        window.scrollTo(0, 0);
+      });
   return (
     <Layout>
           <main className="main main-test">
