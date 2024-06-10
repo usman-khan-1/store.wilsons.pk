@@ -16313,10 +16313,29 @@ span.toggle {
 .css-imwso6-MuiBottomNavigationAction-label.Mui-selected {
   font-size: 16px !important;
 }
+
 .header.fixed-top {
   position: fixed;
   -webkit-box-shadow: 0 0.125rem 0.625rem -0.1875rem rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0.125rem 0.625rem -0.1875rem rgba(0, 0, 0, 0.1);
   box-shadow: 0 0.125rem 0.625rem -0.1875rem rgba(0, 0, 0, 0.1);
   z-index: 1023;
+}
+
+.product-single-gallery .carousel-control-prev-icon,
+.intro-section  .carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M4.5 0.5l-3 3 3 3 0.5-0.5-2.5-2.5 2.5-2.5-0.5-0.5z'/%3e%3c/svg%3e");
+}
+
+.product-single-gallery .carousel-control-next-icon,
+.intro-section .carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M3.5 0.5l3 3-3 3-0.5-0.5 2.5-2.5-2.5-2.5 0.5-0.5z'/%3e%3c/svg%3e");
+}
+
+.product-single-gallery .carousel-control-prev,
+.product-single-gallery .carousel-control-next {
+  height: 46px;
+  width: 32px;
+  margin: auto 20px;
+  border-radius: 50%;
 }

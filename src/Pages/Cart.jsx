@@ -12,13 +12,13 @@ function Cart() {
         <div className="container">
           <ul className="checkout-progress-bar d-flex justify-content-center flex-wrap">
             <li className="active">
-              <Link >Shopping Cart</Link>
+              <Link>Shopping Cart</Link>
             </li>
             <li>
               <Link to={"/checkout"}>Checkout</Link>
             </li>
             <li className="disabled">
-              <Link >Order Complete</Link>
+              <Link>Order Complete</Link>
             </li>
           </ul>
 
@@ -60,11 +60,26 @@ function Cart() {
                       </td>
                       <td>$17.90</td>
                       <td>
-                        <div className="product-single-qty">
-                          <input
-                            className="horizontal-quantity form-control"
-                            type="text"
-                          />
+                        <div class="product-single-qty">
+                          <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                            <span class="input-group-btn input-group-prepend">
+                              <button
+                                class="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                type="button"
+                              ></button>
+                            </span>
+                            <input
+                              class="horizontal-quantity form-control"
+                              type="text"
+                              value={1}
+                            />
+                            <span class="input-group-btn input-group-append">
+                              <button
+                                class="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                type="button"
+                              ></button>
+                            </span>
+                          </div>
                         </div>
                       </td>
                       <td className="text-right">
@@ -96,11 +111,26 @@ function Cart() {
                       </td>
                       <td>$17.90</td>
                       <td>
-                        <div className="product-single-qty">
-                          <input
-                            className="horizontal-quantity form-control"
-                            type="text"
-                          />
+                        <div class="product-single-qty">
+                          <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                            <span class="input-group-btn input-group-prepend">
+                              <button
+                                class="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                type="button"
+                              ></button>
+                            </span>
+                            <input
+                              class="horizontal-quantity form-control"
+                              type="text"
+                              value={1}
+                            />
+                            <span class="input-group-btn input-group-append">
+                              <button
+                                class="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                type="button"
+                              ></button>
+                            </span>
+                          </div>
                         </div>
                       </td>
                       <td className="text-right">
@@ -132,11 +162,26 @@ function Cart() {
                       </td>
                       <td>$17.90</td>
                       <td>
-                        <div className="product-single-qty">
-                          <input
-                            className="horizontal-quantity form-control"
-                            type="text"
-                          />
+                        <div class="product-single-qty">
+                          <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                            <span class="input-group-btn input-group-prepend">
+                              <button
+                                class="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                type="button"
+                              ></button>
+                            </span>
+                            <input
+                              class="horizontal-quantity form-control"
+                              type="text"
+                              value={1}
+                            />
+                            <span class="input-group-btn input-group-append">
+                              <button
+                                class="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                type="button"
+                              ></button>
+                            </span>
+                          </div>
                         </div>
                       </td>
                       <td className="text-right">
@@ -204,7 +249,7 @@ function Cart() {
                               type="radio"
                               className="custom-control-input"
                               name="radio"
-                            //   checked
+                              //   checked
                             />
                             <label className="custom-control-label">
                               Local pickup

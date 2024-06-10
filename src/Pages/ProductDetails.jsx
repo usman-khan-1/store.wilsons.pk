@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import RelatedProductsCarosuel from "../Components/Home/RelatedProductsCarosuel";
 
@@ -6,6 +6,23 @@ function ProductDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
+
+  const [borderIndex, setBorderIndex] = useState(0);
+
+  const productImages = [
+    {
+      image: "assets/Images/products/zoom/product-1-big.jpg",
+    },
+    {
+      image: "assets/Images/products/zoom/product-2-big.jpg",
+    },
+    {
+      image: "assets/Images/products/zoom/product-3-big.jpg",
+    },
+    {
+      image: "assets/Images/products/zoom/product-4-big.jpg",
+    },
+  ];
   return (
     <Layout>
       <main className="main">
@@ -34,111 +51,78 @@ function ProductDetails() {
             <div className="row">
               <div className="col-lg-5 col-md-6 product-single-gallery">
                 <div className="product-slider-container">
-                  <div className="label-group">
-                    <div className="product-label label-hot">HOT</div>
-
-                    <div className="product-label label-sale">-16%</div>
+                  <div
+                    id="custCarousel"
+                    className="carousel slide p-3"
+                    data-ride="carousel"
+                    align="center"
+                  >
+                    <div className="carousel-inner cus-carousel-inner">
+                      {productImages?.map((image, index) => (
+                        <div
+                          key={index}
+                          className={`carousel-item ${
+                            index === 0 ? "active" : ""
+                          }`}
+                        >
+                          <div
+                            style={{
+                              backgroundImage: `url(${image.image})`,
+                              backgroundPosition: "center center",
+                              backgroundSize: "cover",
+                              backgroundRepeat: "no-repeat",
+                              height: "400px",
+                              width: "100%",
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    <a
+                      className=" carousel-control-prev"
+                      href="#custCarousel"
+                      data-slide="prev"
+                      onClick={() =>
+                        setBorderIndex((prv) => (prv === 0 ? 3 : prv - 1))
+                      }
+                    >
+                      <span className="carousel-control-prev-icon" />
+                    </a>
+                    <a
+                      className=" carousel-control-next"
+                      href="#custCarousel"
+                      data-slide="next"
+                      onClick={() =>
+                        setBorderIndex((prv) => (prv === 3 ? 0 : prv + 1))
+                      }
+                    >
+                      <span className="carousel-control-next-icon" />
+                    </a>
                   </div>
-
-                  <div className="product-single-carousel owl-carousels owl-theme show-nav-hover">
-                    <div className="product-item">
-                      <img
-                        className="product-single-image"
-                        src="assets/Images/products/zoom/product-1-big.jpg"
-                        data-zoom-image="assets/Images/products/zoom/product-1-big.jpg"
-                        width="468"
-                        height="468"
-                        alt="product"
-                      />
-                    </div>
-                    {/* <div className="product-item">
-                      <img
-                        className="product-single-image"
-                        src="assets/Images/products/zoom/product-2-big.jpg"
-                        data-zoom-image="assets/Images/products/zoom/product-2-big.jpg"
-                        width="468"
-                        height="468"
-                        alt="product"
-                      />
-                    </div>
-                    <div className="product-item">
-                      <img
-                        className="product-single-image"
-                        src="assets/Images/products/zoom/product-3-big.jpg"
-                        data-zoom-image="assets/Images/products/zoom/product-3-big.jpg"
-                        width="468"
-                        height="468"
-                        alt="product"
-                      />
-                    </div>
-                    <div className="product-item">
-                      <img
-                        className="product-single-image"
-                        src="assets/Images/products/zoom/product-4-big.jpg"
-                        data-zoom-image="assets/Images/products/zoom/product-4-big.jpg"
-                        width="468"
-                        height="468"
-                        alt="product"
-                      />
-                    </div>
-                    <div className="product-item">
-                      <img
-                        className="product-single-image"
-                        src="assets/Images/products/zoom/product-5-big.jpg"
-                        data-zoom-image="assets/Images/products/zoom/product-5-big.jpg"
-                        width="468"
-                        height="468"
-                        alt="product"
-                      />
-                    </div> */}
-                  </div>
-
-                  <span className="prod-full-screen">
-                    <i className="icon-plus"></i>
-                  </span>
                 </div>
 
                 <div className="prod-thumbnail owl-dots">
-                  <div className="owl-dot">
-                    <img
-                      src="assets/Images/products/zoom/product-1.jpg"
-                      width="110"
-                      height="110"
-                      alt="product-thumbnail"
-                    />
-                  </div>
-                  <div className="owl-dot">
-                    <img
-                      src="assets/Images/products/zoom/product-2.jpg"
-                      width="110"
-                      height="110"
-                      alt="product-thumbnail"
-                    />
-                  </div>
-                  <div className="owl-dot">
-                    <img
-                      src="assets/Images/products/zoom/product-3.jpg"
-                      width="110"
-                      height="110"
-                      alt="product-thumbnail"
-                    />
-                  </div>
-                  <div className="owl-dot">
-                    <img
-                      src="assets/Images/products/zoom/product-4.jpg"
-                      width="110"
-                      height="110"
-                      alt="product-thumbnail"
-                    />
-                  </div>
-                  {/* <div className="owl-dot">
-                    <img
-                      src="assets/Images/products/zoom/product-5.jpg"
-                      width="110"
-                      height="110"
-                      alt="product-thumbnail"
-                    />
-                  </div> */}
+                  {productImages?.map((data, index) => (
+                    <div className="owl-dot">
+                      <a
+                        data-slide-to={`${index}`}
+                        data-target={`#custCarousel`}
+                        onClick={() => setBorderIndex(index)}
+                        href=""
+                      >
+                        <img
+                          style={{
+                            border:
+                              borderIndex === index && "2px solid #01abec",
+                          }}
+                          src={data.image}
+                          width="110"
+                          height="110"
+                          alt="product-thumbnail"
+                        />
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -247,18 +231,29 @@ function ProductDetails() {
                 </ul>
 
                 <div className="product-action">
-                  <div className="product-single-qty">
-                    <input
-                      className="horizontal-quantity form-control"
-                      type="text"
-                    />
+                  <div class="product-single-qty">
+                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                      <span class="input-group-btn input-group-prepend">
+                        <button
+                          class="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                          type="button"
+                        ></button>
+                      </span>
+                      <input
+                        class="horizontal-quantity form-control"
+                        type="text"
+                        value={1}
+                      />
+                      <span class="input-group-btn input-group-append">
+                        <button
+                          class="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                          type="button"
+                        ></button>
+                      </span>
+                    </div>
                   </div>
 
-                  <a
-                   
-                    className="btn btn-dark add-cart mr-2"
-                    title="Add to Cart"
-                  >
+                  <a className="btn btn-dark add-cart mr-2" title="Add to Cart">
                     Add to Cart
                   </a>
 
@@ -672,7 +667,7 @@ function ProductDetails() {
           </div>
 
           <div className="products-section pt-0">
-            <RelatedProductsCarosuel/>
+            <RelatedProductsCarosuel />
           </div>
 
           <hr className="mt-0 m-b-5" />

@@ -11502,7 +11502,7 @@ footer .contact-info-label {
   padding: 17px 0;
   letter-spacing: -0.01em;
 }
-.main-nav .menu > li.active > a,
+.main-nav .menu > li > a.active,
 .main-nav .menu > li > a:hover {
   border-top-color: #08c;
 }

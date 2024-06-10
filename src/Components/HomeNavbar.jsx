@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 function HomeNavbar() {
   const location = useLocation();
@@ -129,13 +129,13 @@ function HomeNavbar() {
                 </div>
               </Link>
 
-              <a href="wishlist.html" className="header-icon">
+              <Link to={"/wishlist"} className="header-icon">
                 <i className="fas fa-heart"></i>
-              </a>
+              </Link>
 
               <div className="dropdown cart-dropdown">
-                <a
-                  href="#"
+                <Link
+                 to={"/cart"}
                   title="Cart"
                   className="dropdown-toggle cart-toggle"
                   role="button"
@@ -146,7 +146,7 @@ function HomeNavbar() {
                 >
                   <i className="minicart-icon"></i>
                   <span className="cart-count badge-circle">3</span>
-                </a>
+                </Link>
 
                 <div className="cart-overlay"></div>
 
@@ -346,38 +346,52 @@ function HomeNavbar() {
                   </div>
                 </div>
                 <ul className="menu">
-                  <li className="active">
-                    <Link to={"/"}>Home</Link>
-                  </li>
-                  <li className="">
-                    <Link to={"/about"}>About</Link>
+                  <li>
+                    <NavLink exact to="/" activeClassName="active">
+                      Home
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to={"/blog"}>Blog</Link>
+                    <NavLink to="/about" activeClassName="active">
+                      About
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to={"/wishlist"}>My Wishlist</Link>
+                    <NavLink to="/blog" activeClassName="active">
+                      Blog
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to={"/cart"}>Cart</Link>
+                    <NavLink to="/wishlist" activeClassName="active">
+                      My Wishlist
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to={"/shop"}>Shop</Link>
+                    <NavLink to="/cart" activeClassName="active">
+                      Cart
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/shop" activeClassName="active">
+                      Shop
+                    </NavLink>
                   </li>
                   <li className="dropdown">
                     <a>Pages</a>
                     <ul className="dropdown-menu">
                       <li>
-                        <Link to={"/myAccount"}>My Account</Link>
+                        <NavLink to="/myAccount" activeClassName="active">
+                          My Account
+                        </NavLink>
                       </li>
                       <li>
                         <a href="#">Blog</a>
                         <ul className="submenu">
                           <li>
-                            <a href="blog.html">Blog</a>
+                            <Link to={"/blog"}>Blog</Link>
                           </li>
                           <li>
-                            <a href="single.html">Blog Post</a>
+                            <Link>Blog Post</Link>
                           </li>
                         </ul>
                       </li>
@@ -437,7 +451,10 @@ function HomeNavbar() {
 
         <div className="mobile-menu-container">
           <div className="mobile-menu-wrapper">
-            <span onClick={() => setIsSideBar(false)} className="mobile-menu-close">
+            <span
+              onClick={() => setIsSideBar(false)}
+              className="mobile-menu-close"
+            >
               <i className="fa fa-times"></i>
             </span>
             <nav className="mobile-nav">
