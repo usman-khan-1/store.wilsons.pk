@@ -2,26 +2,20 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 
 function TopCategoryCarosuel() {
-  const categories = [
-    {
-      icon: "icon-category-fashion",
-      label: "Fashion",
-      link: "demo22-shop.html",
-    },
-    {
-      icon: "icon-category-electronics",
-      label: "Electronics",
-      link: "demo22-shop.html",
-    },
-    { icon: "icon-category-gifts", label: "Gifts" },
-    { icon: "icon-category-garden", label: "Garden" },
-    { icon: "icon-category-music", label: "Music" },
-    { icon: "icon-category-motors", label: "Motors" },
-    {
-      icon: "icon-category-furniture",
-      label: "Furniture",
-      link: "demo22-shop.html",
-    },
+  const categoryList = [
+    "Bones & Joint Health",
+    "Brain Health",
+    "Child Health",
+    "Cold & Flu",
+    "Digestive & Liver Health",
+    "Heart Health ",
+    "Hemoglobin Health ",
+    "General Well Being ",
+    "Immune Health ",
+    "Reproductive Health ",
+    "Organic Calcium ",
+    "Urinary tract Health ",
+    "Zinc Deficiency ",
   ];
 
   const responsive = {
@@ -133,10 +127,10 @@ function TopCategoryCarosuel() {
             dotListclassName="custom-dot-list-style"
             arrows={false} // Hide arrows
           >
-            {categories.map((category, index) => (
+            {categoryList.map((category, index) => (
               <a key={index} className="category-item">
-                <i className={category.icon}></i>
-                <span>{category.label}</span>
+                <i className="icon-category-medicine"></i>
+                <span>{category}</span>
               </a>
             ))}
           </Carousel>

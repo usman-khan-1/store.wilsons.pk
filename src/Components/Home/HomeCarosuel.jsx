@@ -3,6 +3,10 @@ import { Carousel } from "react-bootstrap";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 function HomeCarosuel() {
+  const homeSliderBannerImg = [
+    "/assets/Images/slider/home_slide1.jpg",
+    "/assets/Images/slider/home_slide2.jpg",
+  ];
   return (
     <div>
       <section className="intro-section">
@@ -14,20 +18,12 @@ function HomeCarosuel() {
                   fade
                   indicators={false} // Disable bottom buttons
                 >
-                  <Carousel.Item>
-                    <img
-                      className="d-block w-100"
-                      src="/assets/Images/slider/home_slide1.jpg"
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img
-                      className="d-block w-100"
-                      src="/assets/Images/slider/home_slide2.jpg"
-                    />
-                    <Carousel.Caption></Carousel.Caption>
-                  </Carousel.Item>
+                  {homeSliderBannerImg.map((data, index) => (
+                    <Carousel.Item key={index}>
+                      <img className="d-block w-100" src={data} />
+                      <Carousel.Caption></Carousel.Caption>
+                    </Carousel.Item>
+                  ))}
                 </Carousel>
               </div>
             </div>

@@ -4199,6 +4199,9 @@ a:focus {
 .icon-category-fashion:before {
   content: "";
 }
+.icon-category-medicine:before {
+   content: "\1F48A"; /* Medical Cross */
+}
 .icon-category-hot-deals:before {
   content: "";
 }

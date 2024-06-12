@@ -8,6 +8,49 @@ function Shop() {
     window.scrollTo(0, 0);
   });
   const [value, setValue] = useState([0, 100]);
+
+  const productDetail = [
+    {
+      title: "1080p Wifi IP Camera",
+      price: "596.00",
+      image: "/assets/Images/demoes/demo22/products/product-4.jpg",
+    },
+    {
+      title: "Battery Charger",
+      price: "299.00",
+      image: "/assets/Images/demoes/demo22/products/product-5.jpg",
+    },
+    {
+      title: "Black Grey Headset",
+      price: "39.00",
+      image: "/assets/Images/demoes/demo22/products/product-4.jpg",
+    },
+    {
+      title: "Black Shoes",
+      price: "101.00",
+      image: "/assets/Images/demoes/demo22/products/product-8.jpg",
+    },
+    {
+      title: "Black Watch",
+      price: "555.00",
+      image: "/assets/Images/demoes/demo22/products/product-7.jpg",
+    },
+    {
+      title: "Black Watches",
+      price: "129.00",
+      image: "/assets/Images/demoes/demo22/products/product-21.jpg",
+    },
+    {
+      title: "Blue Gentle Shoes",
+      price: "111.00",
+      image: "/assets/Images/demoes/demo22/products/product-11.jpg",
+    },
+    {
+      title: "Bluetooth Speaker",
+      price: "49.00",
+      image: "/assets/Images/demoes/demo22/products/product-10.jpg",
+    },
+  ];
   return (
     <Layout>
       <main className="main">
@@ -193,7 +236,7 @@ function Shop() {
               </nav>
 
               <div className="row divide-line no-gutters m-0">
-                <div className="col-6 col-sm-4 col-xl-3">
+                {/* <div className="col-6 col-sm-4 col-xl-3">
                   <div className="product-default inner-icon inner-quickview">
                     <figure>
                       <Link to={"/product-details"}>
@@ -400,81 +443,75 @@ function Shop() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="col-6 col-sm-4 col-xl-3">
-                  <div className="product-default inner-quickview inner-icon">
-                    <figure>
-                      <Link to={"/product-details"}>
-                        <img
-                          src="assets/Images/demoes/demo22/products/product-8.jpg"
-                          width="217"
-                          height="217"
-                          alt="product"
-                        />
-                        <img
-                          src="assets/Images/demoes/demo22/products/product-8-2.jpg"
-                          width="217"
-                          height="217"
-                          alt="product"
-                        />
-                      </Link>
-                      <div className="btn-icon-group">
-                        <a
-                          href="#"
-                          className="btn-icon btn-add-cart product-type-simple"
-                        >
-                          <i className="icon-shopping-cart"></i>
-                        </a>
-                      </div>
-                      <a
-                        href="ajax/product-quick-view.html"
-                        className="btn-quickview"
-                        title="Quick View"
-                      >
-                        Quick View
-                      </a>
-                    </figure>
-                    <div className="product-details">
-                      <div className="category-wrap">
-                        <div className="category-list">
+                {productDetail.map((data, index) => (
+                  <div className="col-6 col-sm-4 col-xl-3">
+                    <div className="product-default inner-quickview inner-icon">
+                      <figure>
+                        <Link to={"/product-details"}>
+                          <img
+                            src={data.image}
+                            width="217"
+                            height="217"
+                            alt="product"
+                          />
+                        </Link>
+                        <div className="btn-icon-group">
                           <a
-                            href="demo22-shop.html"
-                            className="product-category"
+                            href="#"
+                            className="btn-icon btn-add-cart product-type-simple"
                           >
-                            category
+                            <i className="icon-shopping-cart"></i>
                           </a>
                         </div>
                         <a
-                          href="wishlist.html"
-                          title="Wishlist"
-                          className="btn-icon-wish"
+                          href="ajax/product-quick-view.html"
+                          className="btn-quickview"
+                          title="Quick View"
                         >
-                          <i className="icon-heart"></i>
+                          Quick View
                         </a>
-                      </div>
-                      <h3 className="product-title">
-                        <Link to={"/product-details"}>Black Shoes</Link>
-                      </h3>
-                      <div className="ratings-container">
-                        <div className="product-ratings">
-                          <span
-                            className="ratings"
-                            style={{ width: "80%" }}
-                          ></span>
-                          <span className="tooltiptext tooltip-top"></span>
+                      </figure>
+                      <div className="product-details">
+                        <div className="category-wrap">
+                          <div className="category-list">
+                            <a
+                              href="demo22-shop.html"
+                              className="product-category"
+                            >
+                              category
+                            </a>
+                          </div>
+                          <a
+                            href="wishlist.html"
+                            title="Wishlist"
+                            className="btn-icon-wish"
+                          >
+                            <i className="icon-heart"></i>
+                          </a>
                         </div>
-                      </div>
-                      <div className="price-box">
-                        <span className="product-price">
-                          $101.00 &ndash; $111.00
-                        </span>
+                        <h3 className="product-title">
+                          <Link to={"/product-details"}>{data.title}</Link>
+                        </h3>
+                        <div className="ratings-container">
+                          <div className="product-ratings">
+                            <span
+                              className="ratings"
+                              style={{ width: "80%" }}
+                            ></span>
+                            <span className="tooltiptext tooltip-top"></span>
+                          </div>
+                        </div>
+                        <div className="price-box">
+                          <span className="product-price">${data.price}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
 
-                <div className="col-6 col-sm-4 col-xl-3">
+                {/* <div className="col-6 col-sm-4 col-xl-3">
                   <div className="product-default inner-quickview inner-icon">
                     <figure>
                       <Link to={"/product-details"}>
@@ -1005,7 +1042,7 @@ function Shop() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <nav className="toolbox toolbox-pagination">
@@ -1175,7 +1212,7 @@ function Shop() {
                       />
                       <div className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
                         <div className="filter-price-text">
-                          Price: 
+                          Price:
                           <span id="filter-price-range">{`$${value}`}</span>
                         </div>
                       </div>

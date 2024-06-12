@@ -6,7 +6,9 @@ function HomeNavbar() {
   const [isFixed, setIsFixed] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
 
+  console.log("openCart", openCart);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -34,8 +36,24 @@ function HomeNavbar() {
   const ToggleCategoryDropdown = () => {
     setOpenCategory(!openCategory);
   };
+
+  const categoryList = [
+    "Bones & Joint Health",
+    "Brain Health",
+    "Child Health",
+    "Cold & Flu",
+    "Digestive & Liver Health",
+    "Heart Health ",
+    "Hemoglobin Health ",
+    "General Well Being ",
+    "Immune Health ",
+    "Reproductive Health ",
+    "Organic Calcium ",
+    "Urinary tract Health ",
+    "Zinc Deficiency ",
+  ];
   return (
-    <div>
+    <div className={`${openCart && "cart-opened"}`}>
       <header className={`header ${isFixed ? "fixed-top" : ""}`}>
         <div
           className="header-middle sticky-header"
@@ -69,26 +87,9 @@ function HomeNavbar() {
                       <div className="select-custom">
                         <select id="cat" name="cat">
                           <option value="">All Categories</option>
-                          <option value="4">Fashion</option>
-                          <option value="12">- Women</option>
-                          <option value="13">- Men</option>
-                          <option value="66">- Jewellery</option>
-                          <option value="67">- Kids Fashion</option>
-                          <option value="5">Electronics</option>
-                          <option value="21">- Smart TVs</option>
-                          <option value="22">- Cameras</option>
-                          <option value="63">- Games</option>
-                          <option value="7">Home &amp; Garden</option>
-                          <option value="11">Motors</option>
-                          <option value="31">- Cars and Trucks</option>
-                          <option value="32">
-                            - Motorcycles &amp; Powersports
-                          </option>
-                          <option value="33">- Parts &amp; Accessories</option>
-                          <option value="34">- Boats</option>
-                          <option value="57">
-                            - Auto Tools &amp; Supplies
-                          </option>
+                          {categoryList.map((data, index) => (
+                            <option key={index} value="">{data}</option>
+                          ))}
                         </select>
                       </div>
 
@@ -135,14 +136,9 @@ function HomeNavbar() {
 
               <div className="dropdown cart-dropdown">
                 <Link
-                 to={"/cart"}
+                  onClick={() => setOpenCart(true)}
                   title="Cart"
                   className="dropdown-toggle cart-toggle"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  data-display="static"
                 >
                   <i className="minicart-icon"></i>
                   <span className="cart-count badge-circle">3</span>
@@ -150,8 +146,13 @@ function HomeNavbar() {
 
                 <div className="cart-overlay"></div>
 
-                <div className="dropdown-menu mobile-cart">
-                  <a href="#" title="Close (Esc)" className="btn-close">
+                <div className="dropdown-menu mobile-cart show">
+                  <a
+                    onClick={() => setOpenCart(false)}
+                    title="Close (Esc)"
+                    className="btn-close"
+                    style={{ cursor: "pointer" }}
+                  >
                     ×
                   </a>
 
@@ -316,30 +317,13 @@ function HomeNavbar() {
                     <i className="fas fa-bars"></i>Shop by Category
                   </a>
                   <div className="submenu" style={!isFixed ? submenuStyle : {}}>
-                    <Link to={"/"} className="active">
-                      <i className="icon-category-home"></i>Home
-                    </Link>
-                    <Link to={"/shop"}>
-                      <i className="icon-category-fashion"></i>Fashion
-                    </Link>
-                    <Link to={"/shop"}>
-                      <i className="icon-category-electronics"></i>Electronics
-                    </Link>
-                    <Link to={"/shop"}>
-                      <i className="icon-category-gifts"></i>Gifts
-                    </Link>
-                    <Link to={"/shop"}>
-                      <i className="icon-category-garden"></i>Garden
-                    </Link>
-                    <Link to={"/shop"}>
-                      <i className="icon-category-music"></i>Music
-                    </Link>
-                    <Link to={"/shop"}>
-                      <i className="icon-category-motors"></i>Motors
-                    </Link>
-                    <Link to={"/shop"}>
-                      <i className="icon-category-furniture"></i>Furniture
-                    </Link>
+                    {categoryList.map((data, index) => (
+                      <Link key={index} to={"/shop"}>
+                        <i className="icon-category-medicine"></i>
+                        {data}
+                      </Link>
+                    ))}
+
                     <Link to={"/shop"}>
                       VIEW ALL <i className="icon-angle-right"></i>
                     </Link>
@@ -347,32 +331,32 @@ function HomeNavbar() {
                 </div>
                 <ul className="menu">
                   <li>
-                    <NavLink exact to="/" activeClassName="active">
+                    <NavLink  to="/" >
                       Home
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/about" activeClassName="active">
+                    <NavLink to="/about" >
                       About
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/blog" activeClassName="active">
+                    <NavLink to="/blog" >
                       Blog
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/wishlist" activeClassName="active">
+                    <NavLink to="/wishlist" >
                       My Wishlist
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/cart" activeClassName="active">
+                    <NavLink to="/cart" >
                       Cart
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/shop" activeClassName="active">
+                    <NavLink to="/shop" >
                       Shop
                     </NavLink>
                   </li>
@@ -380,7 +364,7 @@ function HomeNavbar() {
                     <a>Pages</a>
                     <ul className="dropdown-menu">
                       <li>
-                        <NavLink to="/myAccount" activeClassName="active">
+                        <NavLink to="/myAccount" >
                           My Account
                         </NavLink>
                       </li>
@@ -467,21 +451,11 @@ function HomeNavbar() {
                     Categories <span className="mmenu-btn"></span>
                   </Link>
                   <ul className={`${openCategory && "d-block"}`}>
-                    <li>
-                      <Link>Fashion</Link>
-                    </li>
-                    <li>
-                      <Link>Electronic</Link>
-                    </li>
-                    <li>
-                      <Link>Gifts</Link>
-                    </li>
-                    <li>
-                      <Link>Garden</Link>
-                    </li>
-                    <li>
-                      <Link>Music</Link>
-                    </li>
+                    {categoryList.map((data, index) => (
+                      <li key={index}>
+                        <Link>{data}</Link>
+                      </li>
+                    ))}
                   </ul>
                 </li>
                 <li>

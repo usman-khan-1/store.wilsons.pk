@@ -60,22 +60,22 @@ function Cart() {
                       </td>
                       <td>$17.90</td>
                       <td>
-                        <div class="product-single-qty">
-                          <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                            <span class="input-group-btn input-group-prepend">
+                        <div className="product-single-qty">
+                          <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                            <span className="input-group-btn input-group-prepend">
                               <button
-                                class="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
                                 type="button"
                               ></button>
                             </span>
                             <input
-                              class="horizontal-quantity form-control"
+                              className="horizontal-quantity form-control"
                               type="text"
                               value={1}
                             />
-                            <span class="input-group-btn input-group-append">
+                            <span className="input-group-btn input-group-append">
                               <button
-                                class="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
                                 type="button"
                               ></button>
                             </span>
@@ -111,22 +111,22 @@ function Cart() {
                       </td>
                       <td>$17.90</td>
                       <td>
-                        <div class="product-single-qty">
-                          <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                            <span class="input-group-btn input-group-prepend">
+                        <div className="product-single-qty">
+                          <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                            <span className="input-group-btn input-group-prepend">
                               <button
-                                class="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
                                 type="button"
                               ></button>
                             </span>
                             <input
-                              class="horizontal-quantity form-control"
+                              className="horizontal-quantity form-control"
                               type="text"
                               value={1}
                             />
-                            <span class="input-group-btn input-group-append">
+                            <span className="input-group-btn input-group-append">
                               <button
-                                class="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
                                 type="button"
                               ></button>
                             </span>
@@ -162,22 +162,22 @@ function Cart() {
                       </td>
                       <td>$17.90</td>
                       <td>
-                        <div class="product-single-qty">
-                          <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                            <span class="input-group-btn input-group-prepend">
+                        <div className="product-single-qty">
+                          <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                            <span className="input-group-btn input-group-prepend">
                               <button
-                                class="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
                                 type="button"
                               ></button>
                             </span>
                             <input
-                              class="horizontal-quantity form-control"
+                              className="horizontal-quantity form-control"
                               type="text"
                               value={1}
                             />
-                            <span class="input-group-btn input-group-append">
+                            <span className="input-group-btn input-group-append">
                               <button
-                                class="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
                                 type="button"
                               ></button>
                             </span>
