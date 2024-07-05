@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HomeNavbar from "./Components/HomeNavbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -14,7 +14,26 @@ import ProductDetails from "./Pages/ProductDetails";
 import Checkout from "./Pages/Checkout";
 import BlogDetails from "./Pages/BlogDetails";
 import Shop from "./Pages/Shop";
+import { useDispatch, useSelector } from "react-redux";
+import { makePostRequest } from "./Apis";
+import { setBranding } from "./Store/BrandingSlice";
 function App() {
+  const dispatch = useDispatch();
+  const fetchBranding = async () => {
+    try {
+      const response = await makePostRequest("branding/info");
+      dispatch(setBranding(response.data));
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBranding();
+  }, []);
+
+  // const branding = useSelector((state) => state.branding.value);
+  // console.log("bravdv", branding);
   return (
     <>
       <BottomNavigationBar />
@@ -34,7 +53,6 @@ function App() {
           <Route path="shop" element={<Shop />} />
         </Routes>
       </BrowserRouter>
-      {/* <HomeNavbar /> */}
     </>
   );
 }

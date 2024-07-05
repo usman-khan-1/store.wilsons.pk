@@ -8,7 +8,6 @@ function HomeNavbar() {
   const [openCategory, setOpenCategory] = useState(false);
   const [openCart, setOpenCart] = useState(false);
 
-  console.log("openCart", openCart);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -88,7 +87,9 @@ function HomeNavbar() {
                         <select id="cat" name="cat">
                           <option value="">All Categories</option>
                           {categoryList.map((data, index) => (
-                            <option key={index} value="">{data}</option>
+                            <option key={index} value="">
+                              {data}
+                            </option>
                           ))}
                         </select>
                       </div>
@@ -331,42 +332,28 @@ function HomeNavbar() {
                 </div>
                 <ul className="menu">
                   <li>
-                    <NavLink  to="/" >
-                      Home
-                    </NavLink>
+                    <NavLink to="/">Home</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/about" >
-                      About
-                    </NavLink>
+                    <NavLink to="/about">About</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/blog" >
-                      Blog
-                    </NavLink>
+                    <NavLink to="/blog">Blog</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/wishlist" >
-                      My Wishlist
-                    </NavLink>
+                    <NavLink to="/wishlist">My Wishlist</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/cart" >
-                      Cart
-                    </NavLink>
+                    <NavLink to="/cart">Cart</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/shop" >
-                      Shop
-                    </NavLink>
+                    <NavLink to="/shop">Shop</NavLink>
                   </li>
                   <li className="dropdown">
                     <a>Pages</a>
                     <ul className="dropdown-menu">
                       <li>
-                        <NavLink to="/myAccount" >
-                          My Account
-                        </NavLink>
+                        <NavLink to="/myAccount">My Account</NavLink>
                       </li>
                       <li>
                         <a href="#">Blog</a>
