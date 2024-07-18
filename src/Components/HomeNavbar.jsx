@@ -1,66 +1,101 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 function HomeNavbar() {
+  const location = useLocation();
+  const [isFixed, setIsFixed] = useState(false);
+  const [isSideBar, setIsSideBar] = useState(false);
+  const [openCategory, setOpenCategory] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const submenuStyle =
+    location.pathname === "/"
+      ? {
+          opacity: "1",
+          top: "100%",
+          visibility: "visible",
+        }
+      : {};
+
+  const ToggleCategoryDropdown = () => {
+    setOpenCategory(!openCategory);
+  };
+
+  const categoryList = [
+    "Bones & Joint Health",
+    "Brain Health",
+    "Child Health",
+    "Cold & Flu",
+    "Digestive & Liver Health",
+    "Heart Health ",
+    "Hemoglobin Health ",
+    "General Well Being ",
+    "Immune Health ",
+    "Reproductive Health ",
+    "Organic Calcium ",
+    "Urinary tract Health ",
+    "Zinc Deficiency ",
+  ];
   return (
-    <div>
-      <header  className="header">
+    <div className={`${openCart && "cart-opened"}`}>
+      <header className={`header ${isFixed ? "fixed-top" : ""}`}>
         <div
-           className="header-middle sticky-header"
+          className="header-middle sticky-header"
           data-sticky-options="{'mobile': true}"
         >
-          <div  className="container">
-            <div  className="header-left">
-              <a href="demo22.html"  className="logo">
+          <div className="container">
+            <div className="header-left">
+              <a href="demo22.html" className="logo">
                 <img
-                  src="assets/images/logo-white.png"
+                  src="/assets/Images/logo-white.png"
                   alt="Porto Logo"
                   width="111"
                   height="44"
                 />
               </a>
-              <div  className="header-col">
-                <div  className="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
-                  <a href="#"  className="search-toggle" role="button">
-                    <i  className="icon-search-3"></i>
+              <div className="header-col">
+                <div className="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
+                  <a href="#" className="search-toggle" role="button">
+                    <i className="icon-search-3"></i>
                   </a>
                   <form action="#" method="get">
-                    <div  className="header-search-wrapper">
+                    <div className="header-search-wrapper">
                       <input
                         type="search"
-                         className="form-control"
+                        className="form-control"
                         name="q"
                         id="q"
                         placeholder="I'm searching for..."
                         required
                       />
-                      <div  className="select-custom">
+                      <div className="select-custom">
                         <select id="cat" name="cat">
                           <option value="">All Categories</option>
-                          <option value="4">Fashion</option>
-                          <option value="12">- Women</option>
-                          <option value="13">- Men</option>
-                          <option value="66">- Jewellery</option>
-                          <option value="67">- Kids Fashion</option>
-                          <option value="5">Electronics</option>
-                          <option value="21">- Smart TVs</option>
-                          <option value="22">- Cameras</option>
-                          <option value="63">- Games</option>
-                          <option value="7">Home &amp; Garden</option>
-                          <option value="11">Motors</option>
-                          <option value="31">- Cars and Trucks</option>
-                          <option value="32">
-                            - Motorcycles &amp; Powersports
-                          </option>
-                          <option value="33">- Parts &amp; Accessories</option>
-                          <option value="34">- Boats</option>
-                          <option value="57">
-                            - Auto Tools &amp; Supplies
-                          </option>
+                          {categoryList.map((data, index) => (
+                            <option key={index} value="">
+                              {data}
+                            </option>
+                          ))}
                         </select>
                       </div>
 
                       <button
-                         className="btn icon-magnifier"
+                        className="btn icon-magnifier"
                         title="search"
                         type="submit"
                       ></button>
@@ -68,162 +103,191 @@ function HomeNavbar() {
                   </form>
                 </div>
 
-                <div  className="tagcloud d-none d-lg-flex">
-                  <a href="demo22-shop.html">clothes</a>
-                  <a href="demo22-shop.html">fashion</a>
-                  <a href="demo22-shop.html">hub</a>
-                  <a href="demo22-shop.html">shirt</a>
-                  <a href="demo22-shop.html">skirt</a>
-                  <a href="demo22-shop.html">sports</a>
-                  <a href="demo22-shop.html">sweater</a>
+                <div className="tagcloud d-none d-lg-flex">
+                  <Link to={"/shop"}>clothes</Link>
+                  <Link to={"/shop"}>fashion</Link>
+                  <Link to={"/shop"}>hub</Link>
+                  <Link to={"/shop"}>shirt</Link>
+                  <Link to={"/shop"}>skirt</Link>
+                  <Link to={"/shop"}>sports</Link>
+                  <Link to={"/shop"}>sweater</Link>
                 </div>
               </div>
             </div>
 
-            <div  className="header-right ml-0 ml-lg-auto">
-              <a href="login.html"  className="header-icon d-md-block d-none mr-0">
-                <div  className="header-user">
-                <i className="fas fa-user"></i>
-                  <div  className="header-userinfo">
-                    <span  className="d-inline-block line-height-1 ls-10">
+            <div className="header-right ml-0 ml-lg-auto">
+              <Link
+                to={"/login"}
+                className="header-icon d-md-block d-none mr-0"
+              >
+                <div className="header-user">
+                  <i className="fas fa-user"></i>
+                  <div className="header-userinfo">
+                    <span className="d-inline-block line-height-1 ls-10">
                       Hello!
                     </span>
-                    <h4  className="font1 mb-0">My Account</h4>
+                    <h4 className="font1 mb-0">My Account</h4>
                   </div>
                 </div>
-              </a>
+              </Link>
 
-              <a href="wishlist.html"  className="header-icon">
-              <i className="fas fa-heart"></i>
-              </a>
+              <Link to={"/wishlist"} className="header-icon">
+                <i className="fas fa-heart"></i>
+              </Link>
 
-              <div  className="dropdown cart-dropdown">
-                <a
-                  href="#"
+              <div className="dropdown cart-dropdown">
+                <Link
+                  onClick={() => setOpenCart(true)}
                   title="Cart"
-                   className="dropdown-toggle cart-toggle"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  data-display="static"
+                  className="dropdown-toggle cart-toggle"
                 >
-                  <i  className="minicart-icon"></i>
-                  <span  className="cart-count badge-circle">3</span>
-                </a>
+                  <i className="minicart-icon"></i>
+                  <span className="cart-count badge-circle">3</span>
+                </Link>
 
-                <div  className="cart-overlay"></div>
+                <div className="cart-overlay"></div>
 
-                <div  className="dropdown-menu mobile-cart">
-                  <a href="#" title="Close (Esc)"  className="btn-close">
+                <div className="dropdown-menu mobile-cart show">
+                  <a
+                    onClick={() => setOpenCart(false)}
+                    title="Close (Esc)"
+                    className="btn-close"
+                    style={{ cursor: "pointer" }}
+                  >
                     ×
                   </a>
 
-                  <div  className="dropdownmenu-wrapper custom-scrollbar">
-                    <div  className="dropdown-cart-header">Shopping Cart</div>
+                  <div className="dropdownmenu-wrapper custom-scrollbar">
+                    <div className="dropdown-cart-header">Shopping Cart</div>
 
-                    <div  className="dropdown-cart-products">
-                      <div  className="product">
-                        <div  className="product-details">
-                          <h4  className="product-title">
+                    <div className="dropdown-cart-products">
+                      <div className="product">
+                        <div className="product-details">
+                          <h4 className="product-title">
                             <a href="demo22-product.html">
                               Ultimate 3D Bluetooth Speaker
                             </a>
                           </h4>
 
-                          <span  className="cart-product-info">
-                            <span  className="cart-product-qty">1</span> × $99.00
+                          <span className="cart-product-info">
+                            <span className="cart-product-qty">1</span> × $99.00
                           </span>
                         </div>
 
-                        <figure  className="product-image-container">
-                          <a href="demo22-product.html"  className="product-image">
+                        <figure className="product-image-container">
+                          <a
+                            href="demo22-product.html"
+                            className="product-image"
+                          >
                             <img
-                              src="assets/images/products/product-1.jpg"
+                              src="/assets/Images/products/product-1.jpg"
                               alt="product"
                               width="80"
                               height="80"
                             />
                           </a>
 
-                          <a href="#"  className="btn-remove" title="Remove Product">
+                          <a
+                            href="#"
+                            className="btn-remove"
+                            title="Remove Product"
+                          >
                             <span>×</span>
                           </a>
                         </figure>
                       </div>
 
-                      <div  className="product">
-                        <div  className="product-details">
-                          <h4  className="product-title">
+                      <div className="product">
+                        <div className="product-details">
+                          <h4 className="product-title">
                             <a href="demo22-product.html">
                               Brown Women Casual HandBag
                             </a>
                           </h4>
 
-                          <span  className="cart-product-info">
-                            <span  className="cart-product-qty">1</span> × $35.00
+                          <span className="cart-product-info">
+                            <span className="cart-product-qty">1</span> × $35.00
                           </span>
                         </div>
 
-                        <figure  className="product-image-container">
-                          <a href="demo22-product.html"  className="product-image">
+                        <figure className="product-image-container">
+                          <a
+                            href="demo22-product.html"
+                            className="product-image"
+                          >
                             <img
-                              src="assets/images/products/product-2.jpg"
+                              src="/assets/Images/products/product-2.jpg"
                               alt="product"
                               width="80"
                               height="80"
                             />
                           </a>
 
-                          <a href="#"  className="btn-remove" title="Remove Product">
+                          <a
+                            href="#"
+                            className="btn-remove"
+                            title="Remove Product"
+                          >
                             <span>×</span>
                           </a>
                         </figure>
                       </div>
 
-                      <div  className="product">
-                        <div  className="product-details">
-                          <h4  className="product-title">
+                      <div className="product">
+                        <div className="product-details">
+                          <h4 className="product-title">
                             <a href="demo22-product.html">
                               Circled Ultimate 3D Speaker
                             </a>
                           </h4>
 
-                          <span  className="cart-product-info">
-                            <span  className="cart-product-qty">1</span> × $35.00
+                          <span className="cart-product-info">
+                            <span className="cart-product-qty">1</span> × $35.00
                           </span>
                         </div>
 
-                        <figure  className="product-image-container">
-                          <a href="demo22-product.html"  className="product-image">
+                        <figure className="product-image-container">
+                          <a
+                            href="demo22-product.html"
+                            className="product-image"
+                          >
                             <img
-                              src="assets/images/products/product-3.jpg"
+                              src="/assets/Images/products/product-3.jpg"
                               alt="product"
                               width="80"
                               height="80"
                             />
                           </a>
-                          <a href="#"  className="btn-remove" title="Remove Product">
+                          <a
+                            href="#"
+                            className="btn-remove"
+                            title="Remove Product"
+                          >
                             <span>×</span>
                           </a>
                         </figure>
                       </div>
                     </div>
 
-                    <div  className="dropdown-cart-total">
+                    <div className="dropdown-cart-total">
                       <span>SUBTOTAL:</span>
 
-                      <span  className="cart-total-price float-right">$134.00</span>
+                      <span className="cart-total-price float-right">
+                        $134.00
+                      </span>
                     </div>
 
-                    <div  className="dropdown-cart-action">
+                    <div className="dropdown-cart-action">
                       <a
                         href="cart.html"
-                         className="btn btn-gray btn-block view-cart"
+                        className="btn btn-gray btn-block view-cart"
                       >
                         View Cart
                       </a>
-                      <a href="checkout.html"  className="btn btn-dark btn-block">
+                      <a
+                        href="checkout.html"
+                        className="btn btn-dark btn-block"
+                      >
                         Checkout
                       </a>
                     </div>
@@ -235,357 +299,88 @@ function HomeNavbar() {
         </div>
 
         <div
-           className="header-bottom sticky-header"
+          className="header-bottom sticky-header "
           data-sticky-options="{'mobile': false, 'offset': 684}"
         >
-          <div  className="container">
-            <div  className="header-center">
-              <button  className="mobile-menu-toggler" type="button">
-                <i  className="fas fa-bars"></i>
+          <div className="container">
+            <div className="header-center">
+              <button
+                onClick={() => setIsSideBar(true)}
+                className="mobile-menu-toggler"
+                type="button"
+              >
+                <i className="fas fa-bars"></i>
               </button>
 
-              <nav  className="main-nav d-none d-lg-flex flex-wrap">
-                <div  className="menu-depart show-always">
-                  <a href="#"  className="toggle">
-                    <i  className="fas fa-bars"></i>Shop by Category
+              <nav className="main-nav d-none d-lg-flex flex-wrap">
+                <div className="menu-depart show-always">
+                  <a href="#" className="toggle">
+                    <i className="fas fa-bars"></i>Shop by Category
                   </a>
-                  <div  className="submenu">
-                    <a href="demo22-shop.html"  className="active">
-                      <i  className="icon-category-home"></i>Home
-                    </a>
-                    <a href="demo22-shop.html">
-                      <i  className="icon-category-fashion"></i>Fashion
-                    </a>
-                    <a href="demo22-shop.html">
-                      <i  className="icon-category-electronics"></i>Electronics
-                    </a>
-                    <a href="demo22-shop.html">
-                      <i  className="icon-category-gifts"></i>Gifts
-                    </a>
-                    <a href="demo22-shop.html">
-                      <i  className="icon-category-garden"></i>Garden
-                    </a>
-                    <a href="demo22-shop.html">
-                      <i  className="icon-category-music"></i>Music
-                    </a>
-                    <a href="demo22-shop.html">
-                      <i  className="icon-category-motors"></i>Motors
-                    </a>
-                    <a href="demo22-shop.html">
-                      <i  className="icon-category-furniture"></i>Furniture
-                    </a>
-                    <a href="demo22-shop.html">
-                      VIEW ALL <i  className="icon-angle-right"></i>
-                    </a>
+                  <div className="submenu" style={!isFixed ? submenuStyle : {}}>
+                    {categoryList.map((data, index) => (
+                      <Link key={index} to={"/shop"}>
+                        <i className="icon-category-medicine"></i>
+                        {data}
+                      </Link>
+                    ))}
+
+                    <Link to={"/shop"}>
+                      VIEW ALL <i className="icon-angle-right"></i>
+                    </Link>
                   </div>
                 </div>
-                <ul  className="menu">
-                  <li  className="active">
-                    <a href="demo22.html">Home</a>
+                <ul className="menu">
+                  <li>
+                    <NavLink to="/">Home</NavLink>
                   </li>
                   <li>
-                    <a href="demo22-vendors.html">Vendor</a>
-                    <ul>
-                      <li>
-                        <a href="demo22-vendors.html">Store List</a>
-                      </li>
-                      <li>
-                        <a href="demo22-store.html">Vendor Store</a>
-                      </li>
-                    </ul>
+                    <NavLink to="/about">About</NavLink>
                   </li>
                   <li>
-                    <a href="demo22-shop.html">Categories</a>
-                    <div  className="megamenu megamenu-fixed-width megamenu-3cols">
-                      <div  className="row">
-                        <div  className="col-lg-4">
-                          <a href="#"  className="nolink">
-                            VARIATION 1
-                          </a>
-                          <ul  className="submenu">
-                            <li>
-                              <a href="category.html">Fullwidth Banner</a>
-                            </li>
-                            <li>
-                              <a href="category-banner-boxed-slider.html">
-                                Boxed Slider Banner
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category-banner-boxed-image.html">
-                                Boxed Image Banner
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category.html">Left Sidebar</a>
-                            </li>
-                            <li>
-                              <a href="category-sidebar-right.html">
-                                Right Sidebar
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category-off-canvas.html">
-                                Off Canvas Filter
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category-horizontal-filter1.html">
-                                Horizontal Filter1
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category-horizontal-filter2.html">
-                                Horizontal Filter2
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div  className="col-lg-4">
-                          <a href="#"  className="nolink">
-                            VARIATION 2
-                          </a>
-                          <ul  className="submenu">
-                            <li>
-                              <a href="category-list.html">List Types</a>
-                            </li>
-                            <li>
-                              <a href="category-infinite-scroll.html">
-                                Ajax Infinite Scroll
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category.html">3 Columns Products</a>
-                            </li>
-                            <li>
-                              <a href="category-4col.html">
-                                4 Columns Products
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category-5col.html">
-                                5 Columns Products
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category-6col.html">
-                                6 Columns Products
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category-7col.html">
-                                7 Columns Products
-                              </a>
-                            </li>
-                            <li>
-                              <a href="category-8col.html">
-                                8 Columns Products
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div  className="col-lg-4 p-0">
-                          <div  className="menu-banner">
-                            <figure>
-                              <img
-                                src="assets/images/menu-banner.jpg"
-                                alt="Menu banner"
-                                width="300"
-                                height="300"
-                              />
-                            </figure>
-                            <div  className="banner-content">
-                              <h4>
-                                <span  className="">UP TO</span>
-                                <br />
-                                <b  className="">50%</b>
-                                <i>OFF</i>
-                              </h4>
-                              <a
-                                href="category.html"
-                                 className="btn btn-sm btn-dark"
-                              >
-                                SHOP NOW
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <NavLink to="/blog">Blog</NavLink>
                   </li>
                   <li>
-                    <a href="demo22-product.html">Products</a>
-                    <div  className="megamenu megamenu-fixed-width">
-                      <div  className="row">
-                        <div  className="col-lg-4">
-                          <a href="#"  className="nolink">
-                            PRODUCT PAGES
-                          </a>
-                          <ul  className="submenu">
-                            <li>
-                              <a href="demo22-product.html">SIMPLE PRODUCT</a>
-                            </li>
-                            <li>
-                              <a href="product-variable.html">
-                                VARIABLE PRODUCT
-                              </a>
-                            </li>
-                            <li>
-                              <a href="demo22-product.html">SALE PRODUCT</a>
-                            </li>
-                            <li>
-                              <a href="demo22-product.html">
-                                FEATURED & ON SALE
-                              </a>
-                            </li>
-                            <li>
-                              <a href="product-custom-tab.html">
-                                WITH CUSTOM TAB
-                              </a>
-                            </li>
-                            <li>
-                              <a href="product-sidebar-left.html">
-                                WITH LEFT SIDEBAR
-                              </a>
-                            </li>
-                            <li>
-                              <a href="product-sidebar-right.html">
-                                WITH RIGHT SIDEBAR
-                              </a>
-                            </li>
-                            <li>
-                              <a href="product-addcart-sticky.html">
-                                ADD CART STICKY
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-
-                        <div  className="col-lg-4">
-                          <a href="#"  className="nolink">
-                            PRODUCT LAYOUTS
-                          </a>
-                          <ul  className="submenu">
-                            <li>
-                              <a href="product-extended-layout.html">
-                                EXTENDED LAYOUT
-                              </a>
-                            </li>
-                            <li>
-                              <a href="product-grid-layout.html">GRID IMAGE</a>
-                            </li>
-                            <li>
-                              <a href="product-full-width.html">
-                                FULL WIDTH LAYOUT
-                              </a>
-                            </li>
-                            <li>
-                              <a href="product-sticky-info.html">STICKY INFO</a>
-                            </li>
-                            <li>
-                              <a href="product-sticky-both.html">
-                                LEFT & RIGHT STICKY
-                              </a>
-                            </li>
-                            <li>
-                              <a href="product-transparent-image.html">
-                                TRANSPARENT IMAGE
-                              </a>
-                            </li>
-                            <li>
-                              <a href="product-center-vertical.html">
-                                CENTER VERTICAL
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#">BUILD YOUR OWN</a>
-                            </li>
-                          </ul>
-                        </div>
-
-                        <div  className="col-lg-4 p-0">
-                          <div  className="menu-banner menu-banner-2">
-                            <figure>
-                              <img
-                                src="assets/images/menu-banner-1.jpg"
-                                alt="Menu banner"
-                                 className="product-promo"
-                                width="380"
-                                height="790"
-                              />
-                            </figure>
-                            <i>OFF</i>
-                            <div  className="banner-content">
-                              <h4>
-                                <span  className="">UP TO</span>
-                                <br />
-                                <b  className="">50%</b>
-                              </h4>
-                            </div>
-                            <a href="category.html"  className="btn btn-sm btn-dark">
-                              SHOP NOW
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <NavLink to="/wishlist">My Wishlist</NavLink>
                   </li>
                   <li>
-                    <a href="blog.html">Blog</a>
+                    <NavLink to="/cart">Cart</NavLink>
                   </li>
-                  <li  className="d-none d-xl-block">
-                    <a href="#">Pages</a>
-                    <ul>
+                  <li>
+                    <NavLink to="/shop">Shop</NavLink>
+                  </li>
+                  <li className="dropdown">
+                    <a>Pages</a>
+                    <ul className="dropdown-menu">
                       <li>
-                        <a href="wishlist.html">Wishlist</a>
-                      </li>
-                      <li>
-                        <a href="cart.html">Shopping Cart</a>
-                      </li>
-                      <li>
-                        <a href="checkout.html">Checkout</a>
-                      </li>
-                      <li>
-                        <a href="dashboard.html">Dashboard</a>
-                      </li>
-                      <li>
-                        <a href="about.html">About Us</a>
+                        <NavLink to="/myAccount">My Account</NavLink>
                       </li>
                       <li>
                         <a href="#">Blog</a>
-                        <ul>
+                        <ul className="submenu">
                           <li>
-                            <a href="blog.html">Blog</a>
+                            <Link to={"/blog"}>Blog</Link>
                           </li>
                           <li>
-                            <a href="single.html">Blog Post</a>
+                            <Link>Blog Post</Link>
                           </li>
                         </ul>
-                      </li>
-                      <li>
-                        <a href="contact.html">Contact Us</a>
-                      </li>
-                      <li>
-                        <a href="login.html">Login</a>
-                      </li>
-                      <li>
-                        <a href="forgot-password.html">Forgot Password</a>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </nav>
-              <div  className="header-dropdowns ml-auto">
+              <div className="header-dropdowns ml-auto">
                 <a
                   href="#"
-                   className="link-seller font-weight-bold d-none d-sm-block"
+                  className="link-seller font-weight-bold d-none d-sm-block"
                 >
                   Become a Seller
                 </a>
 
-                <div  className="header-dropdown">
+                <div className="header-dropdown">
                   <a href="#">USD</a>
-                  <div  className="header-menu">
+                  <div className="header-menu">
                     <ul>
                       <li>
                         <a href="#">EUR</a>
@@ -597,20 +392,20 @@ function HomeNavbar() {
                   </div>
                 </div>
 
-                <div  className="header-dropdown">
+                <div className="header-dropdown">
                   <a href="#">
-                    <i  className="flag-us flag"></i>ENG
+                    <i className="flag-us flag"></i>ENG
                   </a>
-                  <div  className="header-menu">
+                  <div className="header-menu">
                     <ul>
                       <li>
                         <a href="#">
-                          <i  className="flag-us flag mr-2"></i>ENG
+                          <i className="flag-us flag mr-2"></i>ENG
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <i  className="flag-fr flag mr-2"></i>FRA
+                          <i className="flag-fr flag mr-2"></i>FRA
                         </a>
                       </li>
                     </ul>
@@ -621,6 +416,89 @@ function HomeNavbar() {
           </div>
         </div>
       </header>
+
+      <div className={`${isSideBar ? "mmenu-active" : ""}`}>
+        <div className="mobile-menu-overlay"></div>
+
+        <div className="mobile-menu-container">
+          <div className="mobile-menu-wrapper">
+            <span
+              onClick={() => setIsSideBar(false)}
+              className="mobile-menu-close"
+            >
+              <i className="fa fa-times"></i>
+            </span>
+            <nav className="mobile-nav">
+              <ul className="mobile-menu">
+                <li>
+                  <Link to={"/"}>Home</Link>
+                </li>
+                <li>
+                  <Link onClick={ToggleCategoryDropdown}>
+                    Categories <span className="mmenu-btn"></span>
+                  </Link>
+                  <ul className={`${openCategory && "d-block"}`}>
+                    {categoryList.map((data, index) => (
+                      <li key={index}>
+                        <Link>{data}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li>
+                  <Link to={"/about"}>About</Link>
+                </li>
+                <li>
+                  <Link to={"/blog"}>Blog</Link>
+                </li>
+                <li>
+                  <Link to={"/wishList"}>Wishlist</Link>
+                </li>
+                <li>
+                  <Link to={"/cart"}>Cart</Link>
+                </li>
+                <li>
+                  <Link to={"/shop"}>Shop</Link>
+                </li>
+                <li>
+                  <Link to={"/cart"}>My Account</Link>
+                </li>
+              </ul>
+            </nav>
+
+            <form className="search-wrapper mb-2" action="#">
+              <input
+                type="text"
+                className="form-control mb-0"
+                placeholder="Search..."
+                required
+              />
+              <button
+                className="btn icon-search text-white bg-transparent p-0"
+                type="submit"
+              ></button>
+            </form>
+
+            <div className="social-icons">
+              <a
+                href="#"
+                className="social-icon social-facebook icon-facebook"
+                target="_blank"
+              ></a>
+              <a
+                href="#"
+                className="social-icon social-twitter icon-twitter"
+                target="_blank"
+              ></a>
+              <a
+                href="#"
+                className="social-icon social-instagram icon-instagram"
+                target="_blank"
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
