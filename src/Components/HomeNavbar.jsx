@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { makePostRequest } from "../Apis";
 
 function HomeNavbar() {
   const location = useLocation();
@@ -36,21 +37,19 @@ function HomeNavbar() {
     setOpenCategory(!openCategory);
   };
 
-  const categoryList = [
-    "Bones & Joint Health",
-    "Brain Health",
-    "Child Health",
-    "Cold & Flu",
-    "Digestive & Liver Health",
-    "Heart Health ",
-    "Hemoglobin Health ",
-    "General Well Being ",
-    "Immune Health ",
-    "Reproductive Health ",
-    "Organic Calcium ",
-    "Urinary tract Health ",
-    "Zinc Deficiency ",
-  ];
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("category/list");
+        setCategory(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className={`${openCart && "cart-opened"}`}>
       <header className={`header ${isFixed ? "fixed-top" : ""}`}>
@@ -60,14 +59,14 @@ function HomeNavbar() {
         >
           <div className="container">
             <div className="header-left">
-              <a href="demo22.html" className="logo">
+              <Link to={"/"} className="logo">
                 <img
                   src="/assets/Images/logo-white.png"
                   alt="Porto Logo"
                   width="111"
                   height="44"
                 />
-              </a>
+              </Link>
               <div className="header-col">
                 <div className="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
                   <a href="#" className="search-toggle" role="button">
@@ -86,9 +85,9 @@ function HomeNavbar() {
                       <div className="select-custom">
                         <select id="cat" name="cat">
                           <option value="">All Categories</option>
-                          {categoryList.map((data, index) => (
+                          {category.map((data, index) => (
                             <option key={index} value="">
-                              {data}
+                              {data?.name}
                             </option>
                           ))}
                         </select>
@@ -103,7 +102,7 @@ function HomeNavbar() {
                   </form>
                 </div>
 
-                <div className="tagcloud d-none d-lg-flex">
+                {/* <div className="tagcloud d-none d-lg-flex">
                   <Link to={"/shop"}>clothes</Link>
                   <Link to={"/shop"}>fashion</Link>
                   <Link to={"/shop"}>hub</Link>
@@ -111,7 +110,7 @@ function HomeNavbar() {
                   <Link to={"/shop"}>skirt</Link>
                   <Link to={"/shop"}>sports</Link>
                   <Link to={"/shop"}>sweater</Link>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -164,9 +163,9 @@ function HomeNavbar() {
                       <div className="product">
                         <div className="product-details">
                           <h4 className="product-title">
-                            <a href="demo22-product.html">
+                            <Link to={"/product-details"}>
                               Ultimate 3D Bluetooth Speaker
-                            </a>
+                            </Link>
                           </h4>
 
                           <span className="cart-product-info">
@@ -175,8 +174,8 @@ function HomeNavbar() {
                         </div>
 
                         <figure className="product-image-container">
-                          <a
-                            href="demo22-product.html"
+                          <Link
+                            to={"/product-details"}
                             className="product-image"
                           >
                             <img
@@ -185,7 +184,7 @@ function HomeNavbar() {
                               width="80"
                               height="80"
                             />
-                          </a>
+                          </Link>
 
                           <a
                             href="#"
@@ -200,9 +199,9 @@ function HomeNavbar() {
                       <div className="product">
                         <div className="product-details">
                           <h4 className="product-title">
-                            <a href="demo22-product.html">
+                            <Link to={"/product-details"}>
                               Brown Women Casual HandBag
-                            </a>
+                            </Link>
                           </h4>
 
                           <span className="cart-product-info">
@@ -211,8 +210,8 @@ function HomeNavbar() {
                         </div>
 
                         <figure className="product-image-container">
-                          <a
-                            href="demo22-product.html"
+                          <Link
+                            to={"/product-details"}
                             className="product-image"
                           >
                             <img
@@ -221,7 +220,7 @@ function HomeNavbar() {
                               width="80"
                               height="80"
                             />
-                          </a>
+                          </Link>
 
                           <a
                             href="#"
@@ -236,9 +235,9 @@ function HomeNavbar() {
                       <div className="product">
                         <div className="product-details">
                           <h4 className="product-title">
-                            <a href="demo22-product.html">
+                            <Link to={"/product-details"}>
                               Circled Ultimate 3D Speaker
-                            </a>
+                            </Link>
                           </h4>
 
                           <span className="cart-product-info">
@@ -247,8 +246,8 @@ function HomeNavbar() {
                         </div>
 
                         <figure className="product-image-container">
-                          <a
-                            href="demo22-product.html"
+                          <Link
+                            to={"/product-details"}
                             className="product-image"
                           >
                             <img
@@ -257,7 +256,7 @@ function HomeNavbar() {
                               width="80"
                               height="80"
                             />
-                          </a>
+                          </Link>
                           <a
                             href="#"
                             className="btn-remove"
@@ -278,18 +277,15 @@ function HomeNavbar() {
                     </div>
 
                     <div className="dropdown-cart-action">
-                      <a
-                        href="cart.html"
+                      <Link
+                        to={"/cart"}
                         className="btn btn-gray btn-block view-cart"
                       >
                         View Cart
-                      </a>
-                      <a
-                        href="checkout.html"
-                        className="btn btn-dark btn-block"
-                      >
+                      </Link>
+                      <Link to={"/checkout"} className="btn btn-dark btn-block">
                         Checkout
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -318,10 +314,10 @@ function HomeNavbar() {
                     <i className="fas fa-bars"></i>Shop by Category
                   </a>
                   <div className="submenu" style={!isFixed ? submenuStyle : {}}>
-                    {categoryList.map((data, index) => (
+                    {category.map((data, index) => (
                       <Link key={index} to={"/shop"}>
                         <i className="icon-category-medicine"></i>
-                        {data}
+                        {data?.name}
                       </Link>
                     ))}
 
@@ -438,9 +434,9 @@ function HomeNavbar() {
                     Categories <span className="mmenu-btn"></span>
                   </Link>
                   <ul className={`${openCategory && "d-block"}`}>
-                    {categoryList.map((data, index) => (
+                    {category.map((data, index) => (
                       <li key={index}>
-                        <Link>{data}</Link>
+                        <Link>{data?.name}</Link>
                       </li>
                     ))}
                   </ul>

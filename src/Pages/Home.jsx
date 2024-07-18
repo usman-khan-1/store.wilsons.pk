@@ -13,11 +13,12 @@ import TopCategoryCarosuel from "../Components/Home/TopCategoryCarosuel";
 import ElectronicSection from "../Components/Home/ElectronicSection";
 import TopBrand from "../Components/Home/TopBrand";
 import RecentProductsCarosuel from "../Components/Home/RecentProductsCarosuel";
+import { Link } from "react-router-dom";
 
 function Home() {
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  })
+  });
   return (
     <Layout>
       <HomeCarosuel />
@@ -41,7 +42,9 @@ function Home() {
               <RiMoneyDollarCircleLine size={30} className="me-5" />
 
               <div className="info-box-content">
-                <h4 className="font1 line-height-1 ls-10">MONEY BACK GUARANTEE</h4>
+                <h4 className="font1 line-height-1 ls-10">
+                  MONEY BACK GUARANTEE
+                </h4>
                 <p className="font-weight-light">100% money back guarantee</p>
               </div>
             </div>
@@ -50,7 +53,9 @@ function Home() {
               <PiTimerBold size={30} className="me-5" />
 
               <div className="info-box-content">
-                <h4 className="font1 line-height-1 ls-10">ONLINE SUPPORT 24/7</h4>
+                <h4 className="font1 line-height-1 ls-10">
+                  ONLINE SUPPORT 24/7
+                </h4>
                 <p className="font-weight-light">Lorem ipsum dolor sit amet.</p>
               </div>
             </div>
@@ -80,7 +85,9 @@ function Home() {
             data-animation-name="fadeIn"
             data-animation-delay="200"
           >
-            <h2 className="section-title ls-n-10 pb-3 m-b-4">Recent Products</h2>
+            <h2 className="section-title ls-n-10 pb-3 m-b-4">
+              Recent Products
+            </h2>
 
             <div className="row">
               <div
@@ -91,14 +98,14 @@ function Home() {
               >
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
-                    <a href="demo22-product.html">
+                    <Link to={"/product-details"}>
                       <img
                         src="assets/Images/demoes/demo22/products/product-20.jpg"
                         width="217"
                         height="217"
                         alt="product"
                       />
-                    </a>
+                    </Link>
                     <div className="label-group">
                       <div className="product-label label-sale">-35%</div>
                     </div>
@@ -111,7 +118,7 @@ function Home() {
                       </a>
                     </div>
                     <a
-                      href="ajax/product-quick-view.html"
+                      // href="ajax/product-quick-view.html"
                       className="btn-quickview"
                       title="Quick View"
                     >
@@ -121,24 +128,27 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <a href="demo22-shop.html" className="product-category">
+                        <Link to={"/shop"} className="product-category">
                           category
-                        </a>
+                        </Link>
                       </div>
-                      <a
-                        href="wishlist.html"
+                      <Link
+                        to={"/wishlist"}
                         title="Wishlist"
                         className="btn-icon-wish"
                       >
                         <i className="icon-heart"></i>
-                      </a>
+                      </Link>
                     </div>
                     <h3 className="product-title">
-                      <a href="demo22-product.html">HD Camera</a>
+                      <Link to={"/shop"}>HD Camera</Link>
                     </h3>
                     <div className="ratings-container">
                       <div className="product-ratings">
-                        <span className="ratings" style={{ width: "80%" }}></span>
+                        <span
+                          className="ratings"
+                          style={{ width: "80%" }}
+                        ></span>
 
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
@@ -152,14 +162,14 @@ function Home() {
                 </div>
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
-                    <a href="demo22-product.html">
+                    <Link to={"/product-details"}>
                       <img
                         src="assets/Images/demoes/demo22/products/product-21.jpg"
                         width="217"
                         height="217"
                         alt="product"
                       />
-                    </a>
+                    </Link>
                     <div className="label-group">
                       <div className="product-label label-sale">-35%</div>
                     </div>
@@ -172,7 +182,7 @@ function Home() {
                       </a>
                     </div>
                     <a
-                      href="ajax/product-quick-view.html"
+                      // href="ajax/product-quick-view.html"
                       className="btn-quickview"
                       title="Quick View"
                     >
@@ -182,24 +192,27 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <a href="demo22-shop.html" className="product-category">
+                        <Link to={"/shop"} className="product-category">
                           category
-                        </a>
+                        </Link>
                       </div>
-                      <a
-                        href="wishlist.html"
+                      <Link
+                        to={"/wishlist"}
                         title="Wishlist"
                         className="btn-icon-wish"
                       >
                         <i className="icon-heart"></i>
-                      </a>
+                      </Link>
                     </div>
                     <h3 className="product-title">
-                      <a href="demo22-product.html">Black Watches</a>
+                      <Link to={"/product-details"}>Black Watches</Link>
                     </h3>
                     <div className="ratings-container">
                       <div className="product-ratings">
-                        <span className="ratings" style={{ width: "80%" }}></span>
+                        <span
+                          className="ratings"
+                          style={{ width: "80%" }}
+                        ></span>
 
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
@@ -213,14 +226,14 @@ function Home() {
                 </div>
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
-                    <a href="demo22-product.html">
+                    <Link to={"/product-details"}>
                       <img
                         src="assets/Images/demoes/demo22/products/product-12.jpg"
                         width="217"
                         height="217"
                         alt="product"
                       />
-                    </a>
+                    </Link>
                     <div className="label-group">
                       <div className="product-label label-sale">-89%</div>
                     </div>
@@ -233,7 +246,7 @@ function Home() {
                       </a>
                     </div>
                     <a
-                      href="ajax/product-quick-view.html"
+                      // href="ajax/product-quick-view.html"
                       className="btn-quickview"
                       title="Quick View"
                     >
@@ -243,24 +256,27 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <a href="demo22-shop.html" className="product-category">
+                        <Link to={"/shop"} className="product-category">
                           category
-                        </a>
+                        </Link>
                       </div>
-                      <a
-                        href="wishlist.html"
+                      <Link
+                        to={"/wishlist"}
                         title="Wishlist"
                         className="btn-icon-wish"
                       >
                         <i className="icon-heart"></i>
-                      </a>
+                      </Link>
                     </div>
                     <h3 className="product-title">
-                      <a href="demo22-product.html">USB Speaker</a>
+                      <Link to={"/product-details"}>USB Speaker</Link>
                     </h3>
                     <div className="ratings-container">
                       <div className="product-ratings">
-                        <span className="ratings" style={{ width: "0%" }}></span>
+                        <span
+                          className="ratings"
+                          style={{ width: "0%" }}
+                        ></span>
 
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
@@ -274,14 +290,14 @@ function Home() {
                 </div>
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
-                    <a href="demo22-product.html">
+                    <Link to={"/product-details"}>
                       <img
                         src="assets/Images/demoes/demo22/products/product-17.jpg"
                         width="217"
                         height="217"
                         alt="product"
                       />
-                    </a>
+                    </Link>
                     <div className="label-group">
                       <div className="product-label label-sale">-89%</div>
                     </div>
@@ -294,7 +310,7 @@ function Home() {
                       </a>
                     </div>
                     <a
-                      href="ajax/product-quick-view.html"
+                      // href="ajax/product-quick-view.html"
                       className="btn-quickview"
                       title="Quick View"
                     >
@@ -304,24 +320,27 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <a href="demo22-shop.html" className="product-category">
+                        <Link to={"/shop"} className="product-category">
                           category
-                        </a>
+                        </Link>
                       </div>
-                      <a
-                        href="wishlist.html"
+                      <Link
+                        to={"/wishlist"}
                         title="Wishlist"
                         className="btn-icon-wish"
                       >
                         <i className="icon-heart"></i>
-                      </a>
+                      </Link>
                     </div>
                     <h3 className="product-title">
-                      <a href="demo22-product.html">Classic Earphone</a>
+                      <Link to={"/product-details"}>Classic Earphone</Link>
                     </h3>
                     <div className="ratings-container">
                       <div className="product-ratings">
-                        <span className="ratings" style={{ width: "80%" }}></span>
+                        <span
+                          className="ratings"
+                          style={{ width: "80%" }}
+                        ></span>
 
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
@@ -335,14 +354,14 @@ function Home() {
                 </div>
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
-                    <a href="demo22-product.html">
+                    <Link to={"/product-details"}>
                       <img
                         src="assets/Images/demoes/demo22/products/product-10.jpg"
                         width="217"
                         height="217"
                         alt="product"
                       />
-                    </a>
+                    </Link>
                     <div className="label-group">
                       <div className="product-label label-sale">-17%</div>
                     </div>
@@ -355,7 +374,7 @@ function Home() {
                       </a>
                     </div>
                     <a
-                      href="ajax/product-quick-view.html"
+                      // href="ajax/product-quick-view.html"
                       className="btn-quickview"
                       title="Quick View"
                     >
@@ -365,24 +384,27 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <a href="demo22-shop.html" className="product-category">
+                        <Link to={"/shop"} className="product-category">
                           category
-                        </a>
+                        </Link>
                       </div>
-                      <a
-                        href="wishlist.html"
+                      <Link
+                        to={"/wishlist"}
                         title="Wishlist"
                         className="btn-icon-wish"
                       >
                         <i className="icon-heart"></i>
-                      </a>
+                      </Link>
                     </div>
                     <h3 className="product-title">
-                      <a href="demo22-product.html">Bluetooth Speaker</a>
+                      <Link to={"/product-details"}>Bluetooth Speaker</Link>
                     </h3>
                     <div className="ratings-container">
                       <div className="product-ratings">
-                        <span className="ratings" style={{ width: "0%" }}></span>
+                        <span
+                          className="ratings"
+                          style={{ width: "0%" }}
+                        ></span>
 
                         <span className="tooltiptext tooltip-top"></span>
                       </div>
@@ -416,7 +438,9 @@ function Home() {
               </div>
               <div className="col-md-6 col-lg-4 py-4 py-lg-5">
                 <div className="px-5 px-md-0">
-                  <h3 className="font1 text-uppercase m-b-2">Check new arrivals</h3>
+                  <h3 className="font1 text-uppercase m-b-2">
+                    Check new arrivals
+                  </h3>
                   <h2 className="font1 ls-10 text-uppercase text-white mb-0">
                     Explore Smartphones
                   </h2>
@@ -438,9 +462,12 @@ function Home() {
               </div>
               <div className="col-md-6 col-lg-2 py-4 py-lg-5">
                 <div className="px-5 px-md-0">
-                  <a href="demo22-shop.html" className="btn btn-dark font1 ls-10">
+                  <Link
+                    to={"/product-details"}
+                    className="btn btn-dark font1 ls-10"
+                  >
                     View All Now
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -448,8 +475,8 @@ function Home() {
         </div>
       </section>
 
-      <ElectronicSection />
-      <TopBrand />
+      {/* <ElectronicSection /> */}
+      {/* <TopBrand /> */}
     </Layout>
   );
 }

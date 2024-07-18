@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Layout from "../Components/Layout";
+import { Link } from "react-router-dom";
 
 function MyAccount() {
   useEffect(()=>{
@@ -14,10 +15,10 @@ function MyAccount() {
               <div className="container">
                 <ol className="breadcrumb">
                   <li className="breadcrumb-item">
-                    <a href="demo4.html">Home</a>
+                    <Link to={"/"}>Home</Link>
                   </li>
                   <li className="breadcrumb-item">
-                    <a href="category.html">Shop</a>
+                    <Link to={"/shop"}>Shop</Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                     My Account
@@ -118,14 +119,14 @@ function MyAccount() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="wishlist.html">
+                  <Link className="nav-link" to={"/wishlist"}>
                     Wishlist
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="login.html">
+                  <Link className="nav-link" to={"/login"}>
                     Logout
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -139,9 +140,9 @@ function MyAccount() {
                   <p>
                     Hello <strong className="text-dark">Editor</strong> (not
                     <strong className="text-dark">Editor</strong>?
-                    <a href="login.html" className="btn btn-link ">
+                    <Link to={"/login"} className="btn btn-link ">
                       Log out
-                    </a>
+                    </Link>
                     )
                   </p>
 
@@ -209,9 +210,9 @@ function MyAccount() {
 
                     <div className="col-6 col-md-4">
                       <div className="feature-box text-center pb-4">
-                        <a href="wishlist.html">
+                        <Link to={"/wishlist"}>
                           <i className="sicon-heart"></i>
-                        </a>
+                        </Link>
                         <div className="feature-box-content">
                           <h3>WISHLIST</h3>
                         </div>
@@ -220,9 +221,9 @@ function MyAccount() {
 
                     <div className="col-6 col-md-4">
                       <div className="feature-box text-center pb-4">
-                        <a href="login.html">
+                        <Link to={"/login"}>
                           <i className="sicon-logout"></i>
-                        </a>
+                        </Link>
                         <div className="feature-box-content">
                           <h3>LOGOUT</h3>
                         </div>
@@ -258,9 +259,9 @@ function MyAccount() {
                     </table>
                     <hr className="mt-0 mb-3 pb-2" />
 
-                    <a href="category.html" className="btn btn-dark">
+                    <Link to={"/shop"} className="btn btn-dark">
                       Go Shop
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -273,12 +274,12 @@ function MyAccount() {
                   </h3>
                   <div className="download-table-container">
                     <p>No downloads available yet.</p>{" "}
-                    <a
-                      href="category.html"
+                    <Link
+                      to={"/shop"}
                       className="btn btn-primary text-transform-none mb-2"
                     >
                       GO SHOP
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

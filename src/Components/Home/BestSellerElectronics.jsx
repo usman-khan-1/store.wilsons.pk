@@ -1,448 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { makePostRequest } from "../../Apis";
 
 function BestSellerElectronics() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("product/list");
+        setProducts(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log("products", products);
   return (
     <div className="container ">
-         <h2 className="section-title ls-n-10 pb-3 m-b-4">Best Sellers on Electronics</h2>
-      <div className="row grid1">
-        <div className="grid-item col-12 col-md-4 height-x2">
-          <div className="product-default inner-quickview inner-icon">
-            <figure>
-              <Link to={"/product-details"}>
-                <img
-                  src="/assets/Images/demoes/demo22/products/product-big-1.jpg"
-                  width="217"
-                  height="217"
-                  alt="product"
-                />
-              </Link>
-              <div className="label-group">
+      <h2 className="section-title ls-n-10 pb-3 m-b-4">Best Sellers</h2>
+      <div className="row">
+        {products?.map((data, index) => (
+          <div key={index} className="col-lg-3 col-md-4 col-sm-6">
+            <div className="product-default inner-quickview inner-icon">
+              <figure>
+                <Link to={"/product-details"}>
+                  <img
+                    src={data?.image}
+                    width="217"
+                    height="217"
+                    alt="product"
+                  />
+                </Link>
+                {/* <div className="label-group">
                 <div className="product-label label-hot">HOT</div>
-              </div>
-              <div className="btn-icon-group">
-                <a
-                  href="#"
-                  title="Add To Cart"
-                  className="btn-icon btn-add-cart product-type-simple"
-                >
-                  <i className="icon-shopping-cart"></i>
-                </a>
-              </div>
-              <a
-                href="ajax/product-quick-view.html"
-                className="btn-quickview"
-                title="Quick View"
-              >
-                Quick View
-              </a>
-            </figure>
-            <div className="product-details">
-              <div className="category-wrap">
-                <div className="category-list">
-                  <a href="demo22-shop.html" className="product-category">
-                    category
+              </div> */}
+                <div className="btn-icon-group">
+                  <a
+                    href="#"
+                    title="Add To Cart"
+                    className="btn-icon btn-add-cart product-type-simple"
+                  >
+                    <i className="icon-shopping-cart"></i>
                   </a>
                 </div>
                 <a
-                  href="wishlist.html"
-                  title="Add to Wishlist"
-                  className="btn-icon-wish"
+                  // href="ajax/product-quick-view.html"
+                  className="btn-quickview"
+                  title="Quick View"
                 >
-                  <i className="icon-heart"></i>
+                  Quick View
                 </a>
-              </div>
-              <h3 className="product-title">
-                <Link to={"/product-details"}>Smart Watches</Link>
-              </h3>
-              <div className="ratings-container">
-                <div className="product-ratings">
-                  <span className="ratings" style={{ width: "80%" }}></span>
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-              <div className="price-box">
-                <span className="product-price">$299.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-12 col-md-8">
-          <div className="row">
-            <div className="grid-item col-6 col-sm-6 col-md-4 height-x1">
-              <div className="product-default inner-quickview inner-icon">
-                <figure>
-                  <Link to={"/product-details"}>
-                    <img
-                      src="/assets/Images/demoes/demo22/products/product-22.jpg"
-                      width="217"
-                      height="217"
-                      alt="product"
-                    />
-                  </Link>
-                  <div className="label-group">
-                    <div className="product-label label-sale">-33%</div>
+              </figure>
+              <div className="product-details">
+                <div className="category-wrap">
+                  <div className="category-list">
+                    <Link to={"/shop"} className="product-category">
+                      {data?.category}
+                    </Link>
                   </div>
-                  <div className="btn-icon-group">
-                    <a
-                      href="#"
-                      title="Add To Cart"
-                      className="btn-icon btn-add-cart product-type-simple"
-                    >
-                      <i className="icon-shopping-cart"></i>
-                    </a>
-                  </div>
-                  <a
-                    href="ajax/product-quick-view.html"
-                    className="btn-quickview"
-                    title="Quick View"
+                  <Link
+                    to={"/wishlist"}
+                    title="Add to Wishlist"
+                    className="btn-icon-wish"
                   >
-                    Quick View
-                  </a>
-                  <div className="product-countdown-container">
-                    <span className="product-countdown-title">
-                      offer ends in:{" "}
-                    </span>
-                    <div
-                      className="product-countdown countdown-compact"
-                      data-until="2021, 10, 5"
-                      data-compact="true"
-                    ></div>
-                  </div>
-                </figure>
-                <div className="product-details">
-                  <div className="category-wrap">
-                    <div className="category-list">
-                      <a href="demo22-shop.html" className="product-category">
-                        category
-                      </a>
-                    </div>
-                    <a
-                      href="wishlist.html"
-                      title="Add to Wishlist"
-                      className="btn-icon-wish"
-                    >
-                      <i className="icon-heart"></i>
-                    </a>
-                  </div>
-                  <h3 className="product-title">
-                    <Link to={"/product-details"}>HD Camera</Link>
-                  </h3>
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span className="ratings" style={{ width: "80%" }}></span>
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-                  <div className="price-box">
-                    <span className="old-price">$299.00</span>
-                    <span className="product-price">$199.00</span>
+                    <i className="icon-heart"></i>
+                  </Link>
+                </div>
+                <h3 className="product-title">
+                  <Link to={"/product-details"}>{data?.heading}</Link>
+                </h3>
+                <div className="ratings-container">
+                  <div className="product-ratings">
+                    <span className="ratings" style={{ width: "80%" }}></span>
+                    <span className="tooltiptext tooltip-top"></span>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="grid-item col-6 col-sm-6 col-md-4 height-x1">
-              <div className="product-default inner-quickview inner-icon">
-                <figure>
-                  <Link to={"/product-details"}>
-                    <img
-                      src="/assets/Images/demoes/demo22/products/product-21.jpg"
-                      width="217"
-                      height="217"
-                      alt="product"
-                    />
-                  </Link>
-                  <div className="btn-icon-group">
-                    <a
-                      href="#"
-                      title="Add To Cart"
-                      className="btn-icon btn-add-cart product-type-simple"
-                    >
-                      <i className="icon-shopping-cart"></i>
-                    </a>
-                  </div>
-                  <a
-                    href="ajax/product-quick-view.html"
-                    className="btn-quickview"
-                    title="Quick View"
-                  >
-                    Quick View
-                  </a>
-                </figure>
-                <div className="product-details">
-                  <div className="category-wrap">
-                    <div className="category-list">
-                      <a href="demo22-shop.html" className="product-category">
-                        category
-                      </a>
-                    </div>
-                    <a
-                      href="wishlist.html"
-                      title="Add to Wishlist"
-                      className="btn-icon-wish"
-                    >
-                      <i className="icon-heart"></i>
-                    </a>
-                  </div>
-                  <h3 className="product-title">
-                    <Link to={"/product-details"}>Black Watches</Link>
-                  </h3>
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span className="ratings" style={{ width: "80%" }}></span>
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-                  <div className="price-box">
-                    <span className="old-price">$199.00</span>
-                    <span className="product-price">$129.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="grid-item col-6 col-sm-6 col-md-4 height-x1">
-              <div className="product-default inner-quickview inner-icon">
-                <figure>
-                  <Link to={"/product-details"}>
-                    <img
-                      src="/assets/Images/demoes/demo22/products/product-20.jpg"
-                      width="217"
-                      height="217"
-                      alt="product"
-                    />
-                  </Link>
-                  <div className="btn-icon-group">
-                    <a
-                      href="#"
-                      title="Add To Cart"
-                      className="btn-icon btn-add-cart product-type-simple"
-                    >
-                      <i className="icon-shopping-cart"></i>
-                    </a>
-                  </div>
-                  <a
-                    href="ajax/product-quick-view.html"
-                    className="btn-quickview"
-                    title="Quick View"
-                  >
-                    Quick View
-                  </a>
-                </figure>
-                <div className="product-details">
-                  <div className="category-wrap">
-                    <div className="category-list">
-                      <a href="demo22-shop.html" className="product-category">
-                        category
-                      </a>
-                    </div>
-                    <a
-                      href="wishlist.html"
-                      title="Add to Wishlist"
-                      className="btn-icon-wish"
-                    >
-                      <i className="icon-heart"></i>
-                    </a>
-                  </div>
-                  <h3 className="product-title">
-                    <Link to={"/product-details"}>HD Camera</Link>
-                  </h3>
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span className="ratings" style={{ width: "80%" }}></span>
-
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="old-price">$199.00</span>
-                    <span className="product-price">$129.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="grid-item col-6 col-sm-6 col-md-4 height-x1">
-              <div className="product-default inner-quickview inner-icon">
-                <figure>
-                  <Link to={"/product-details"}>
-                    <img
-                      src="/assets/Images/demoes/demo22/products/product-23.jpg"
-                      width="217"
-                      height="217"
-                      alt="product"
-                    />
-                  </Link>
-                  <div className="btn-icon-group">
-                    <a
-                      href="#"
-                      title="Add To Cart"
-                      className="btn-icon btn-add-cart product-type-simple"
-                    >
-                      <i className="icon-shopping-cart"></i>
-                    </a>
-                  </div>
-                  <a
-                    href="ajax/product-quick-view.html"
-                    className="btn-quickview"
-                    title="Quick View"
-                  >
-                    Quick View
-                  </a>
-                </figure>
-                <div className="product-details">
-                  <div className="category-wrap">
-                    <div className="category-list">
-                      <a href="demo22-shop.html" className="product-category">
-                        category
-                      </a>
-                    </div>
-                    <a
-                      href="wishlist.html"
-                      title="Add to Wishlist"
-                      className="btn-icon-wish"
-                    >
-                      <i className="icon-heart"></i>
-                    </a>
-                  </div>
-                  <h3 className="product-title">
-                    <Link to={"/product-details"}>Computer Mouse</Link>
-                  </h3>
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span className="ratings" style={{ width: "80%" }}></span>
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-                  <div className="price-box">
-                    <span className="product-price">$55.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="grid-item col-6 col-sm-6 col-md-4 height-x1">
-              <div className="product-default inner-quickview inner-icon">
-                <figure>
-                  <Link to={"/product-details"}>
-                    <img
-                      src="/assets/Images/demoes/demo22/products/product-5.jpg"
-                      width="217"
-                      height="217"
-                      alt="product"
-                    />
-                  </Link>
-                  <div className="label-group">
-                    <div className="product-label label-hot">HOT</div>
-                  </div>
-                  <div className="btn-icon-group">
-                    <a
-                      href="#"
-                      title="Add To Cart"
-                      className="btn-icon btn-add-cart product-type-simple"
-                    >
-                      <i className="icon-shopping-cart"></i>
-                    </a>
-                  </div>
-                  <a
-                    href="ajax/product-quick-view.html"
-                    className="btn-quickview"
-                    title="Quick View"
-                  >
-                    Quick View
-                  </a>
-                </figure>
-                <div className="product-details">
-                  <div className="category-wrap">
-                    <div className="category-list">
-                      <a href="demo22-shop.html" className="product-category">
-                        category
-                      </a>
-                    </div>
-                    <a
-                      href="wishlist.html"
-                      title="Add to Wishlist"
-                      className="btn-icon-wish"
-                    >
-                      <i className="icon-heart"></i>
-                    </a>
-                  </div>
-                  <h3 className="product-title">
-                    <Link to={"/product-details"}>Battery Charger</Link>
-                  </h3>
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span className="ratings" style={{ width: "0%" }}></span>
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-                  <div className="price-box">
-                    <span className="product-price">$299.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="grid-item col-6 col-sm-6 col-md-4 height-x1">
-              <div className="product-default inner-quickview inner-icon">
-                <figure>
-                  <Link to={"/product-details"}>
-                    <img
-                      src="/assets/Images/demoes/demo22/products/product-11.jpg"
-                      width="217"
-                      height="217"
-                      alt="product"
-                    />
-                  </Link>
-                  <div className="btn-icon-group">
-                    <a
-                      href="#"
-                      title="Add To Cart"
-                      className="btn-icon btn-add-cart product-type-simple"
-                    >
-                      <i className="icon-shopping-cart"></i>
-                    </a>
-                  </div>
-                  <a
-                    href="ajax/product-quick-view.html"
-                    className="btn-quickview"
-                    title="Quick View"
-                  >
-                    Quick View
-                  </a>
-                </figure>
-                <div className="product-details">
-                  <div className="category-wrap">
-                    <div className="category-list">
-                      <a href="demo22-shop.html" className="product-category">
-                        category
-                      </a>
-                    </div>
-                    <a
-                      href="wishlist.html"
-                      title="Add to Wishlist"
-                      className="btn-icon-wish"
-                    >
-                      <i className="icon-heart"></i>
-                    </a>
-                  </div>
-                  <h3 className="product-title">
-                    <Link to={"/product-details"}>Blue Gentle Shoes</Link>
-                  </h3>
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span className="ratings" style={{ width: "0%" }}></span>
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-                  <div className="price-box">
-                    <span className="product-price">
-                      $101.00 &ndash; $111.00
-                    </span>
-                  </div>
+                <div className="price-box">
+                  <span className="product-price">Rs {data?.price}</span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row"></div>
-        </div>
+        ))}
       </div>
     </div>
   );

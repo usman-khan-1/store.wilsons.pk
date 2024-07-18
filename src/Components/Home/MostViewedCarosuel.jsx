@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
+import { makePostRequest } from "../../Apis";
 
 function TestimonialCarousel() {
   const responsive = {
@@ -50,6 +51,26 @@ function TestimonialCarousel() {
     },
   ];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("product/list");
+        setProducts(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log("products", products);
+
   return (
     <div className="container">
       <h2 className="section-title ls-n-10 pb-3 m-b-4">Most Viewed Products</h2>
@@ -60,22 +81,22 @@ function TestimonialCarousel() {
         responsive={responsive}
         className="TestimonialCarousel"
       >
-        {productData.map((product, index) => (
+        {products?.map((product, index) => (
           <div key={index}>
             <div className="single-testimonial-item">
               <div className="product-default inner-quickview inner-icon">
                 <figure>
                   <Link to={"/product-details"}>
                     <img
-                      src={product.imageUrl}
+                      src={product.image}
                       width="217"
                       height="217"
                       alt="product"
                     />
                   </Link>
-                  <div className="label-group">
+                  {/* <div className="label-group">
                     <div className="product-label label-hot">HOT</div>
-                  </div>
+                  </div> */}
                   <div className="btn-icon-group">
                     <a
                       href="#"
@@ -86,7 +107,7 @@ function TestimonialCarousel() {
                     </a>
                   </div>
                   <a
-                    href="ajax/product-quick-view.html"
+                    // href="ajax/product-quick-view.html"
                     className="btn-quickview"
                     title="Quick View"
                   >
@@ -96,20 +117,20 @@ function TestimonialCarousel() {
                 <div className="product-details">
                   <div className="category-wrap">
                     <div className="category-list">
-                      <a href="demo22-shop.html" className="product-category">
-                        {product.productCategory}
-                      </a>
+                      <Link to={"/shop"} className="product-category">
+                        {product.category}
+                      </Link>
                     </div>
-                    <a
-                      href="wishlist.html"
+                    <Link
+                      to={"/wishlist"}
                       title="Add to Wishlist"
                       className="btn-icon-wish"
                     >
                       <i className="icon-heart"></i>
-                    </a>
+                    </Link>
                   </div>
                   <h3 className="product-title">
-                    <a href="demo22-product.html">{product.productName}</a>
+                    <Link to={"/product-details"}>{product.heading}</Link>
                   </h3>
                   <div className="ratings-container">
                     <div className="product-ratings">
@@ -118,7 +139,7 @@ function TestimonialCarousel() {
                     </div>
                   </div>
                   <div className="price-box">
-                    <span className="product-price">{product.productPrice}</span>
+                    <span className="product-price">Rs. {product.price}</span>
                   </div>
                 </div>
               </div>

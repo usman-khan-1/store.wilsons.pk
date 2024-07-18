@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
+import { makePostRequest } from "../../Apis";
 
 function TopCategoryCarosuel() {
   const categoryList = [
@@ -35,6 +36,22 @@ function TopCategoryCarosuel() {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("category/list");
+        setCategory(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log("category", category);
 
   return (
     <div>
@@ -127,10 +144,10 @@ function TopCategoryCarosuel() {
             dotListclassName="custom-dot-list-style"
             arrows={false} // Hide arrows
           >
-            {categoryList.map((category, index) => (
+            {category.map((category, index) => (
               <a key={index} className="category-item">
                 <i className="icon-category-medicine"></i>
-                <span>{category}</span>
+                <span>{category?.name}</span>
               </a>
             ))}
           </Carousel>

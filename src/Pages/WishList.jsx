@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Layout from "../Components/Layout";
+import { Link } from "react-router-dom";
 
 function WishList() {
   useEffect(() => {
@@ -14,7 +15,7 @@ function WishList() {
               <div className="container">
                 <ol className="breadcrumb">
                   <li className="breadcrumb-item">
-                    <a href="demo4.html">Home</a>
+                    <Link to={"/"}>Home</Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                     Wishlist
@@ -46,12 +47,12 @@ function WishList() {
                 <tr className="product-row">
                   <td>
                     <figure className="product-image-container">
-                      <a href="product.html" className="product-image">
+                      <Link to={"/product-details"} className="product-image">
                         <img
                           src=" assets/Images/products/product-4.jpg"
                           alt="product"
                         />
-                      </a>
+                      </Link>
 
                       <a
                         href="#"
@@ -62,7 +63,7 @@ function WishList() {
                   </td>
                   <td>
                     <h5 className="product-title">
-                      <a href="product.html">Men Watch</a>
+                      <Link to={"/product-details"}>Men Watch</Link>
                     </h5>
                   </td>
                   <td className="price-box">$17.90</td>
@@ -71,7 +72,7 @@ function WishList() {
                   </td>
                   <td className="action">
                     <a
-                      href="ajax/product-quick-view.html"
+                      // href="ajax/product-quick-view.html"
                       className="btn btn-quickview mt-1 mt-md-0"
                       title="Quick View"
                     >
@@ -86,12 +87,12 @@ function WishList() {
                 <tr className="product-row">
                   <td>
                     <figure className="product-image-container">
-                      <a href="product.html" className="product-image">
+                      <Link to={"/product-details"} className="product-image">
                         <img
                           src=" assets/Images/products/product-5.jpg"
                           alt="product"
                         />
-                      </a>
+                      </Link>
 
                       <a
                         href="#"
@@ -102,7 +103,7 @@ function WishList() {
                   </td>
                   <td>
                     <h5 className="product-title">
-                      <a href="product.html">Men Cap</a>
+                      <Link to={"/product-details"}>Men Cap</Link>
                     </h5>
                   </td>
                   <td className="price-box">$17.90</td>
@@ -111,25 +112,25 @@ function WishList() {
                   </td>
                   <td className="action">
                     <a
-                      href="ajax/product-quick-view.html"
+                      // href="ajax/product-quick-view.html"
                       className="btn btn-quickview mt-1 mt-md-0"
                       title="Quick View"
                     >
                       Quick View
                     </a>
-                    <a
-                      href="product.html"
+                    <Link
+                      to={"/product-details"}
                       className="btn btn-dark btn-add-cart btn-shop"
                     >
                       SELECT OPTION
-                    </a>
+                    </Link>
                   </td>
                 </tr>
 
                 <tr className="product-row">
                   <td>
                     <figure className="product-image-container">
-                      <a href="product.html" className="product-image">
+                      <a to={"/product-details"} className="product-image">
                         <img
                           src=" assets/Images/products/product-6.jpg"
                           alt="product"
@@ -145,7 +146,7 @@ function WishList() {
                   </td>
                   <td>
                     <h5 className="product-title">
-                      <a href="product.html">Men Black Gentle Belt</a>
+                      <Link to={"/product-details"}>Men Black Gentle Belt</Link>
                     </h5>
                   </td>
                   <td className="price-box">$17.90</td>
@@ -154,18 +155,18 @@ function WishList() {
                   </td>
                   <td className="action">
                     <a
-                      href="ajax/product-quick-view.html"
+                      // href="ajax/product-quick-view.html"
                       className="btn btn-quickview mt-1 mt-md-0"
                       title="Quick View"
                     >
                       Quick View
                     </a>
-                    <a
-                      href="product.html"
+                    <Link
+                      to={"/product-details"}
                       className="btn btn-dark btn-add-cart btn-shop"
                     >
                       SELECT OPTION
-                    </a>
+                    </Link>
                   </td>
                 </tr>
               </tbody>
