@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { makePostRequest } from "../../Apis";
+import { Link } from "react-router-dom";
 
 function RelatedProductsCarosuel() {
   const responsive = {
@@ -9,6 +11,22 @@ function RelatedProductsCarosuel() {
     tablet: { breakpoint: { max: 1024, min: 464 }, items: 2 },
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("product/list");
+        setProducts(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log("products", products);
 
   return (
     <div className="container">
@@ -19,321 +37,71 @@ function RelatedProductsCarosuel() {
         infinite={true}
         responsive={responsive}
       >
-        <div className="single-testimonial-item">
-          <div className="product-default">
-            <figure>
-              <a href="product.html">
-                <img
-                  src="assets/Images/products/product-1.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-                <img
-                  src="assets/Images/products/product-1-2.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-              </a>
-              <div className="label-group">
-                <div className="product-label label-hot">HOT</div>
-                <div className="product-label label-sale">-20%</div>
-              </div>
-            </figure>
-            <div className="product-details">
-              <div className="category-list">
-                <a href="category.html" className="product-category">
-                  Category
-                </a>
-              </div>
-              <h3 className="product-title">
-                <a href="product.html">Ultimate 3D Bluetooth Speaker</a>
-              </h3>
-              <div className="ratings-container">
-                <div className="product-ratings">
-                  <span className="ratings" style={{ width: "80%" }}></span>
-
-                  <span className="tooltiptext tooltip-top"></span>
+        {products?.map((product, index) => (
+          <div key={index}>
+            <div className="single-testimonial-item">
+              <div className="product-default inner-quickview inner-icon">
+                <figure>
+                  <Link to={"/product-details"}>
+                    <img
+                      src={product.image}
+                      width="217"
+                      height="217"
+                      alt="product"
+                    />
+                  </Link>
+                  {/* <div className="label-group">
+                    <div className="product-label label-hot">HOT</div>
+                  </div> */}
+                  <div className="btn-icon-group">
+                    <a
+                      href="#"
+                      title="Add To Cart"
+                      className="btn-icon btn-add-cart product-type-simple"
+                    >
+                      <i className="icon-shopping-cart"></i>
+                    </a>
+                  </div>
+                  <a
+                    // href="ajax/product-quick-view.html"
+                    className="btn-quickview"
+                    title="Quick View"
+                  >
+                    Quick View
+                  </a>
+                </figure>
+                <div className="product-details">
+                  <div className="category-wrap">
+                    <div className="category-list">
+                      <Link to={"/shop"} className="product-category">
+                        {product.category}
+                      </Link>
+                    </div>
+                    <Link
+                      to={"/wishist"}
+                      title="Add to Wishlist"
+                      className="btn-icon-wish"
+                    >
+                      <i className="icon-heart"></i>
+                    </Link>
+                  </div>
+                  <h3 className="product-title">
+                    <Link to={"/product-details"}>{product.heading}</Link>
+                  </h3>
+                  <div className="ratings-container">
+                    <div className="product-ratings">
+                      <span className="ratings" style={{ width: "80%" }}></span>
+                      <span className="tooltiptext tooltip-top"></span>
+                    </div>
+                  </div>
+                  <div className="price-box">
+                    <span className="product-price">Rs. {product.price}</span>
+                  </div>
                 </div>
-              </div>
-
-              <div className="price-box">
-                <del className="old-price">$59.00</del>
-                <span className="product-price">$49.00</span>
-              </div>
-
-              <div className="product-action">
-                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
-                  <i className="icon-heart"></i>
-                </a>
-                <a href="product.html" className="btn-icon btn-add-cart">
-                  <i className="fa fa-arrow-right"></i>
-                  <span>SELECT OPTIONS</span>
-                </a>
-                <a
-                  href="ajax/product-quick-view.html"
-                  className="btn-quickview"
-                  title="Quick View"
-                >
-                  <i className="fas fa-external-link-alt"></i>
-                </a>
               </div>
             </div>
           </div>
-        </div>
-        <div className="single-testimonial-item">
-          <div className="product-default">
-            <figure>
-              <a href="product.html">
-                <img
-                  src="assets/Images/products/product-3.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-                <img
-                  src="assets/Images/products/product-3-2.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-              </a>
-              <div className="label-group">
-                <div className="product-label label-hot">HOT</div>
-                <div className="product-label label-sale">-20%</div>
-              </div>
-            </figure>
-            <div className="product-details">
-              <div className="category-list">
-                <a href="category.html" className="product-category">
-                  Category
-                </a>
-              </div>
-              <h3 className="product-title">
-                <a href="product.html">Circled Ultimate 3D Speaker</a>
-              </h3>
-              <div className="ratings-container">
-                <div className="product-ratings">
-                  <span className="ratings" style={{width:"80%"}}></span>
-
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-
-              <div className="price-box">
-                <del className="old-price">$59.00</del>
-                <span className="product-price">$49.00</span>
-              </div>
-
-              <div className="product-action">
-                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
-                  <i className="icon-heart"></i>
-                </a>
-                <a href="product.html" className="btn-icon btn-add-cart">
-                  <i className="fa fa-arrow-right"></i>
-                  <span>SELECT OPTIONS</span>
-                </a>
-                <a
-                  href="ajax/product-quick-view.html"
-                  className="btn-quickview"
-                  title="Quick View"
-                >
-                  <i className="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="single-testimonial-item">
-          <div className="product-default">
-            <figure>
-              <a href="product.html">
-                <img
-                  src="assets/Images/products/product-7.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-                <img
-                  src="assets/Images/products/product-7-2.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-              </a>
-              <div className="label-group">
-                <div className="product-label label-hot">HOT</div>
-                <div className="product-label label-sale">-20%</div>
-              </div>
-            </figure>
-            <div className="product-details">
-              <div className="category-list">
-                <a href="category.html" className="product-category">
-                  Category
-                </a>
-              </div>
-              <h3 className="product-title">
-                <a href="product.html">Brown-Black Men Casual Glasses</a>
-              </h3>
-              <div className="ratings-container">
-                <div className="product-ratings">
-                  <span className="ratings" style={{width:"80%"}}></span>
-
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-
-              <div className="price-box">
-                <del className="old-price">$59.00</del>
-                <span className="product-price">$49.00</span>
-              </div>
-
-              <div className="product-action">
-                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
-                  <i className="icon-heart"></i>
-                </a>
-                <a href="product.html" className="btn-icon btn-add-cart">
-                  <i className="fa fa-arrow-right"></i>
-                  <span>SELECT OPTIONS</span>
-                </a>
-                <a
-                  href="ajax/product-quick-view.html"
-                  className="btn-quickview"
-                  title="Quick View"
-                >
-                  <i className="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="single-testimonial-item">
-          <div className="product-default">
-            <figure>
-              <a href="product.html">
-                <img
-                  src="assets/Images/products/product-6.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-                <img
-                  src="assets/Images/products/product-6-2.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-              </a>
-              <div className="label-group">
-                <div className="product-label label-hot">HOT</div>
-                <div className="product-label label-sale">-20%</div>
-              </div>
-            </figure>
-            <div className="product-details">
-              <div className="category-list">
-                <a href="category.html" className="product-category">
-                  Category
-                </a>
-              </div>
-              <h3 className="product-title">
-                <a href="product.html">Men Black Gentle Belt</a>
-              </h3>
-              <div className="ratings-container">
-                <div className="product-ratings">
-                  <span className="ratings" style={{width:"80%"}}></span>
-
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-
-              <div className="price-box">
-                <del className="old-price">$59.00</del>
-                <span className="product-price">$49.00</span>
-              </div>
-
-              <div className="product-action">
-                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
-                  <i className="icon-heart"></i>
-                </a>
-                <a href="product.html" className="btn-icon btn-add-cart">
-                  <i className="fa fa-arrow-right"></i>
-                  <span>SELECT OPTIONS</span>
-                </a>
-                <a
-                  href="ajax/product-quick-view.html"
-                  className="btn-quickview"
-                  title="Quick View"
-                >
-                  <i className="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="single-testimonial-item">
-          <div className="product-default">
-            <figure>
-              <a href="product.html">
-                <img
-                  src="assets/Images/products/product-4.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-                <img
-                  src="assets/Images/products/product-4-2.jpg"
-                  width="280"
-                  height="280"
-                  alt="product"
-                />
-              </a>
-              <div className="label-group">
-                <div className="product-label label-hot">HOT</div>
-                <div className="product-label label-sale">-20%</div>
-              </div>
-            </figure>
-            <div className="product-details">
-              <div className="category-list">
-                <a href="category.html" className="product-category">
-                  Category
-                </a>
-              </div>
-              <h3 className="product-title">
-                <a href="product.html">Blue Backpack for the Young - S</a>
-              </h3>
-              <div className="ratings-container">
-                <div className="product-ratings">
-                  <span className="ratings" style={{width:"80%"}}></span>
-
-                  <span className="tooltiptext tooltip-top"></span>
-                </div>
-              </div>
-
-              <div className="price-box">
-                <del className="old-price">$59.00</del>
-                <span className="product-price">$49.00</span>
-              </div>
-
-              <div className="product-action">
-                <a href="wishlist.html" title="Wishlist" className="btn-icon-wish">
-                  <i className="icon-heart"></i>
-                </a>
-                <a href="product.html" className="btn-icon btn-add-cart">
-                  <i className="fa fa-arrow-right"></i>
-                  <span>SELECT OPTIONS</span>
-                </a>
-                <a
-                  href="ajax/product-quick-view.html"
-                  className="btn-quickview"
-                  title="Quick View"
-                >
-                  <i className="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </Carousel>
     </div>
   );

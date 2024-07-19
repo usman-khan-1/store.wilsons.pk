@@ -39,12 +39,15 @@ function Cart() {
                     <tr className="product-row">
                       <td>
                         <figure className="product-image-container">
-                          <a href="product.html" className="product-image">
+                          <Link
+                            to={"/product-details"}
+                            className="product-image"
+                          >
                             <img
                               src="assets/Images/products/product-4.jpg"
                               alt="product"
                             />
-                          </a>
+                          </Link>
 
                           <a
                             href="#"
@@ -55,7 +58,7 @@ function Cart() {
                       </td>
                       <td className="product-col">
                         <h5 className="product-title">
-                          <a href="product.html">Men Watch</a>
+                          <Link to={"/product-details"}>Men Watch</Link>
                         </h5>
                       </td>
                       <td>$17.90</td>
@@ -90,12 +93,15 @@ function Cart() {
                     <tr className="product-row">
                       <td>
                         <figure className="product-image-container">
-                          <a href="product.html" className="product-image">
+                          <Link
+                            to={"/product-details"}
+                            className="product-image"
+                          >
                             <img
                               src="assets/Images/products/product-3.jpg"
                               alt="product"
                             />
-                          </a>
+                          </Link>
 
                           <a
                             href="#"
@@ -106,7 +112,7 @@ function Cart() {
                       </td>
                       <td className="product-col">
                         <h5 className="product-title">
-                          <a href="product.html">Men Watch</a>
+                          <Link to={"/product-details"}>Men Watch</Link>
                         </h5>
                       </td>
                       <td>$17.90</td>
@@ -141,12 +147,15 @@ function Cart() {
                     <tr className="product-row">
                       <td>
                         <figure className="product-image-container">
-                          <a href="product.html" className="product-image">
+                          <Link
+                            to={"/product-details"}
+                            className="product-image"
+                          >
                             <img
                               src="assets/Images/products/product-6.jpg"
                               alt="product"
                             />
-                          </a>
+                          </Link>
 
                           <a
                             href="#"
@@ -157,7 +166,7 @@ function Cart() {
                       </td>
                       <td className="product-col">
                         <h5 className="product-title">
-                          <a href="product.html">Men Black Gentle Belt</a>
+                          <a to={"/product-details"}>Men Black Gentle Belt</a>
                         </h5>
                       </td>
                       <td>$17.90</td>

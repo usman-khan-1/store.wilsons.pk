@@ -62,7 +62,7 @@ function Checkout() {
                                                 me</label>
                                         </div>
 
-                                        <a href="forgot-password.html" className="forget-password">Lost your password?</a>
+                                        <a  className="forget-password">Lost your password?</a>
                                     </div>
                                 </form>
                             </div>

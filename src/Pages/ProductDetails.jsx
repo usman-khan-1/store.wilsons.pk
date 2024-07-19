@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import RelatedProductsCarosuel from "../Components/Home/RelatedProductsCarosuel";
+import { Link } from "react-router-dom";
 
 function ProductDetails() {
   useEffect(() => {
@@ -11,16 +12,16 @@ function ProductDetails() {
 
   const productImages = [
     {
-      image: "assets/Images/products/zoom/product-1-big.jpg",
+      image: "assets/Images/products/zoom/joshanda.png  ",
     },
     {
-      image: "assets/Images/products/zoom/product-2-big.jpg",
+      image: "assets/Images/products/zoom/plantcal.png",
     },
     {
-      image: "assets/Images/products/zoom/product-3-big.jpg",
+      image: "assets/Images/products/zoom/capZyme.png",
     },
     {
-      image: "assets/Images/products/zoom/product-4-big.jpg",
+      image: "assets/Images/products/zoom/cranpure.png",
     },
   ];
   return (
@@ -30,9 +31,9 @@ function ProductDetails() {
           <nav aria-label="breadcrumb" className="breadcrumb-nav">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="demo4.html">
+                <Link to={"/"}>
                   <i className="icon-home"></i>
-                </a>
+                </Link>
               </li>
               <li className="breadcrumb-item">
                 <a href="#">Products</a>
@@ -257,9 +258,9 @@ function ProductDetails() {
                     Add to Cart
                   </a>
 
-                  <a href="cart.html" className="btn btn-gray view-cart d-none">
+                  <Link to={"/cart"} className="btn btn-gray view-cart d-none">
                     View cart
-                  </a>
+                  </Link>
                 </div>
 
                 <hr className="divider mb-0 mt-0" />
@@ -300,14 +301,14 @@ function ProductDetails() {
                     ></a>
                   </div>
 
-                  <a
-                    href="wishlist.html"
+                  <Link
+                    to={"/wishlist"}
                     className="btn-icon-wish add-wishlist"
                     title="Add to Wishlist"
                   >
                     <i className="icon-wishlist-2"></i>
                     <span>Add to Wishlist</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -326,20 +327,6 @@ function ProductDetails() {
                   aria-selected="true"
                 >
                   Description
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  id="product-tab-size"
-                  data-toggle="tab"
-                  href="#product-size-content"
-                  role="tab"
-                  aria-controls="product-size-content"
-                  aria-selected="true"
-                >
-                  Size Guide
                 </a>
               </li>
 
@@ -401,77 +388,6 @@ function ProductDetails() {
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                     ullamco laboris nisi ut aliquip ex ea commodo consequat.{" "}
                   </p>
-                </div>
-              </div>
-
-              <div
-                className="tab-pane fade"
-                id="product-size-content"
-                role="tabpanel"
-                aria-labelledby="product-tab-size"
-              >
-                <div className="product-size-content">
-                  <div className="row">
-                    <div className="col-md-4">
-                      <img
-                        src="assets/Images/products/single/body-shape.png"
-                        alt="body shape"
-                        width="217"
-                        height="398"
-                      />
-                    </div>
-
-                    <div className="col-md-8">
-                      <table className="table table-size">
-                        <thead>
-                          <tr>
-                            <th>SIZE</th>
-                            <th>CHEST(in.)</th>
-                            <th>WAIST(in.)</th>
-                            <th>HIPS(in.)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>XS</td>
-                            <td>34-36</td>
-                            <td>27-29</td>
-                            <td>34.5-36.5</td>
-                          </tr>
-                          <tr>
-                            <td>S</td>
-                            <td>36-38</td>
-                            <td>29-31</td>
-                            <td>36.5-38.5</td>
-                          </tr>
-                          <tr>
-                            <td>M</td>
-                            <td>38-40</td>
-                            <td>31-33</td>
-                            <td>38.5-40.5</td>
-                          </tr>
-                          <tr>
-                            <td>L</td>
-                            <td>40-42</td>
-                            <td>33-36</td>
-                            <td>40.5-43.5</td>
-                          </tr>
-                          <tr>
-                            <td>XL</td>
-                            <td>42-45</td>
-                            <td>36-40</td>
-                            <td>43.5-47.5</td>
-                          </tr>
-                          <tr>
-                            <td>XXL</td>
-                            <td>45-48</td>
-                            <td>40-44</td>
-                            <td>47.5-51.5</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -672,7 +588,7 @@ function ProductDetails() {
 
           <hr className="mt-0 m-b-5" />
 
-          <div className="product-widgets-container row pb-2">
+          {/* <div className="product-widgets-container row pb-2">
             <div className="col-lg-3 col-sm-6 pb-5 pb-md-0">
               <h4 className="section-sub-title">Featured Products</h4>
               <div className="product-default left-details product-widget">
@@ -1176,7 +1092,7 @@ function ProductDetails() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </main>
     </Layout>

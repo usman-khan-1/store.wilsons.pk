@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
 import { Slider } from "@mui/material";
+import { makePostRequest } from "../Apis";
 
 function Shop() {
   useEffect(() => {
@@ -51,6 +52,23 @@ function Shop() {
       image: "/assets/Images/demoes/demo22/products/product-10.jpg",
     },
   ];
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("product/list");
+        setProducts(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log("products", products);
+
   return (
     <Layout>
       <main className="main">
@@ -223,7 +241,7 @@ function Shop() {
               <div className="row divide-line no-gutters m-0">
                
 
-                {productDetail.map((data, index) => (
+                {products?.map((data, index) => (
                   <div className="col-6 col-sm-4 col-xl-3">
                     <div className="product-default inner-quickview inner-icon">
                       <figure>
@@ -258,7 +276,7 @@ function Shop() {
                               to={"/shop"}
                               className="product-category"
                             >
-                              category
+                              {data?.category}
                             </Link>
                           </div>
                           <Link
@@ -270,7 +288,7 @@ function Shop() {
                           </Link>
                         </div>
                         <h3 className="product-title">
-                          <Link to={"/product-details"}>{data.title}</Link>
+                          <Link to={"/product-details"}>{data.heading}</Link>
                         </h3>
                         <div className="ratings-container">
                           <div className="product-ratings">
@@ -282,7 +300,7 @@ function Shop() {
                           </div>
                         </div>
                         <div className="price-box">
-                          <span className="product-price">${data.price}</span>
+                          <span className="product-price">Rs {data?.price}</span>
                         </div>
                       </div>
                     </div>
