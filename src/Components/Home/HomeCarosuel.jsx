@@ -16,12 +16,12 @@ function HomeCarosuel() {
               <div className="home-caroseul">
                 <Carousel
                   fade
-                  indicators={false} // Disable bottom buttons
+                  indicators={false}
+                 
                 >
                   {homeSliderBannerImg.map((data, index) => (
                     <Carousel.Item key={index}>
                       <img className="d-block w-100" src={data} />
-                      <Carousel.Caption></Carousel.Caption>
                     </Carousel.Item>
                   ))}
                 </Carousel>

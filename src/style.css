@@ -18346,3 +18346,7 @@ p {
   text-align: center;
   width: 32px;
 }
+
+.home-caroseul  .visually-hidden{
+  display: none;
+}

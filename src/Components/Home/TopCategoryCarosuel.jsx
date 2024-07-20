@@ -65,65 +65,30 @@ function TopCategoryCarosuel() {
               >
                 <figure>
                   <img
-                    src="/assets/Images/demoes/demo22/banners/banner-1.jpg"
+                    src="/assets/imagess/category-2.jpg"
                     alt="banner"
                     width="700"
                     height="236"
                   />
                 </figure>
-                <div className="banner-layer banner-layer-middle banner-layer-left">
-                  <h3 className="font1 ls-10 text-uppercase mb-0">
-                    Action
-                    <br />
-                    Cameras
-                  </h3>
-                </div>
-                <div className="banner-layer banner-layer-middle banner-layer-right">
-                  <div className="coupon-sale-text">
-                    <h4 className="font1 line-height-1 ls-10 text-white bg-primary skew-box m-b-2">
-                      Starting from
-                    </h4>
-                    <h5 className="d-inline-block font1 text-white bg-primary skew-box mb-0">
-                      $399<sub className="text-dark">$499</sub>
-                    </h5>
-                  </div>
-                </div>
               </div>
             </div>
             <div className="col-lg-6">
               <div
-                className="banner banner2 mb-2 "
-                data-animation-name="fadeInRightShorter"
-                data-animation-delay="200"
+                className="banner banner1 mb-2 "
                 style={{ backgroundColor: "#f4f4f4" }}
               >
                 <figure>
                   <img
-                    src="/assets/Images/demoes/demo22/banners/banner-2.jpg"
+                    src="/assets/imagess/category-1.jpg"
                     alt="banner"
                     width="700"
                     height="236"
                   />
                 </figure>
-                <div className="banner-layer banner-layer-middle banner-layer-left">
-                  <h3 className="font1 text-uppercase ls-10 mb-0">
-                    For all
-                    <br />
-                    styles
-                  </h3>
-                </div>
-                <div className="banner-layer banner-layer-middle banner-layer-right">
-                  <div className="coupon-sale-text">
-                    <h4 className="font1 line-height-1 ls-10 text-white bg-secondary skew-box m-b-2">
-                      Starting from
-                    </h4>
-                    <h5 className="d-inline-block font1 text-white bg-secondary skew-box mb-0">
-                      $199<sub className="text-dark">$299</sub>
-                    </h5>
-                  </div>
-                </div>
               </div>
             </div>
+           
           </div>
           <h2 className="section-title line-height-1 ls-10 pb-4 mb-4">
             Top Categories
