@@ -18,7 +18,7 @@ function MyAccount() {
                     <Link to={"/"}>Home</Link>
                   </li>
                   <li className="breadcrumb-item">
-                    <Link to={"/shop"}>Shop</Link>
+                    <Link to={"/category"}>Shop</Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                     My Account
@@ -259,7 +259,7 @@ function MyAccount() {
                     </table>
                     <hr className="mt-0 mb-3 pb-2" />
 
-                    <Link to={"/shop"} className="btn btn-dark">
+                    <Link to={"/category"} className="btn btn-dark">
                       Go Shop
                     </Link>
                   </div>
@@ -275,7 +275,7 @@ function MyAccount() {
                   <div className="download-table-container">
                     <p>No downloads available yet.</p>{" "}
                     <Link
-                      to={"/shop"}
+                      to={"/category"}
                       className="btn btn-primary text-transform-none mb-2"
                     >
                       GO SHOP

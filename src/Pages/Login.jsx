@@ -18,7 +18,7 @@ function Login() {
                     <Link to={"/"}>Home</Link>
                   </li>
                   <li className="breadcrumb-item">
-                    <Link to={"/shop"}>Shop</Link>
+                    <Link to={"/category"}>Shop</Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                     My Account

@@ -18350,3 +18350,48 @@ p {
 .home-caroseul  .visually-hidden{
   display: none;
 }
+
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 100%;
+  background-color: #e8f9ff;
+
+}
+
+.shimmer {
+  width: 100%;
+  height: 20px;
+  background-color: #c7c7c7;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+p.shimmer {
+  height: 20px;
+}
+span.shimmer {
+  height: 20px;
+  width: 50%;
+}
+
+h1.shimmer {
+  height: 50px;
+}
+
+div.shimmer {
+  height: 220px;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+}

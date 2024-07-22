@@ -103,13 +103,13 @@ function HomeNavbar() {
                 </div>
 
                 {/* <div className="tagcloud d-none d-lg-flex">
-                  <Link to={"/shop"}>clothes</Link>
-                  <Link to={"/shop"}>fashion</Link>
-                  <Link to={"/shop"}>hub</Link>
-                  <Link to={"/shop"}>shirt</Link>
-                  <Link to={"/shop"}>skirt</Link>
-                  <Link to={"/shop"}>sports</Link>
-                  <Link to={"/shop"}>sweater</Link>
+                  <Link to={"/category"}>clothes</Link>
+                  <Link to={"/category"}>fashion</Link>
+                  <Link to={"/category"}>hub</Link>
+                  <Link to={"/category"}>shirt</Link>
+                  <Link to={"/category"}>skirt</Link>
+                  <Link to={"/category"}>sports</Link>
+                  <Link to={"/category"}>sweater</Link>
                 </div> */}
               </div>
             </div>
@@ -315,13 +315,13 @@ function HomeNavbar() {
                   </a>
                   <div className="submenu" style={!isFixed ? submenuStyle : {}}>
                     {category.map((data, index) => (
-                      <Link key={index} to={"/shop"}>
+                      <Link key={index} to={"/category"}>
                         <i className="icon-category-medicine"></i>
                         {data?.name}
                       </Link>
                     ))}
 
-                    <Link to={"/shop"}>
+                    <Link to={"/category"}>
                       VIEW ALL <i className="icon-angle-right"></i>
                     </Link>
                   </div>
@@ -343,7 +343,7 @@ function HomeNavbar() {
                     <NavLink to="/cart">Cart</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/shop">Shop</NavLink>
+                    <NavLink to="/category">Shop</NavLink>
                   </li>
                   <li className="dropdown">
                     <a>Pages</a>
@@ -454,7 +454,7 @@ function HomeNavbar() {
                   <Link to={"/cart"}>Cart</Link>
                 </li>
                 <li>
-                  <Link to={"/shop"}>Shop</Link>
+                  <Link to={"/category"}>Shop</Link>
                 </li>
                 <li>
                   <Link to={"/cart"}>My Account</Link>

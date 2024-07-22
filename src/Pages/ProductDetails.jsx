@@ -12,16 +12,16 @@ function ProductDetails() {
 
   const productImages = [
     {
-      image: "assets/Images/products/zoom/joshanda.png  ",
+      image: "/assets/Images/products/zoom/joshanda.png  ",
     },
     {
-      image: "assets/Images/products/zoom/plantcal.png",
+      image: "/assets/Images/products/zoom/plantcal.png",
     },
     {
-      image: "assets/Images/products/zoom/capZyme.png",
+      image: "/assets/Images/products/zoom/capZyme.png",
     },
     {
-      image: "assets/Images/products/zoom/cranpure.png",
+      image: "/assets/Images/products/zoom/cranpure.png",
     },
   ];
   return (
@@ -141,7 +141,7 @@ function ProductDetails() {
                             alt="product"
                             width="150"
                             height="150"
-                            src="assets/Images/products/product-3.jpg"
+                            src="/assets/Images/products/product-3.jpg"
                             style={{ paddingTop: "0px" }}
                           />
 
@@ -161,7 +161,7 @@ function ProductDetails() {
                             alt="product"
                             width="150"
                             height="150"
-                            src="assets/Images/products/product-4.jpg"
+                            src="/assets/Images/products/product-4.jpg"
                             style={{ paddingTop: "0px" }}
                           />
 
@@ -437,7 +437,7 @@ function ProductDetails() {
                     <div className="comments">
                       <figure className="img-thumbnail">
                         <img
-                          src="assets/Images/blog/author.jpg"
+                          src="/assets/Images/blog/author.jpg"
                           alt="author"
                           width="80"
                           height="80"
@@ -595,13 +595,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-1.jpg"
+                      src="/assets/Images/products/small/product-1.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-1-2.jpg"
+                      src="/assets/Images/products/small/product-1-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -636,13 +636,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-2.jpg"
+                      src="/assets/Images/products/small/product-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-2-2.jpg"
+                      src="/assets/Images/products/small/product-2-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -677,13 +677,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-3.jpg"
+                      src="/assets/Images/products/small/product-3.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-3-2.jpg"
+                      src="/assets/Images/products/small/product-3-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -721,13 +721,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-4.jpg"
+                      src="/assets/Images/products/small/product-4.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-4-2.jpg"
+                      src="/assets/Images/products/small/product-4-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -762,13 +762,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-5.jpg"
+                      src="/assets/Images/products/small/product-5.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-5-2.jpg"
+                      src="/assets/Images/products/small/product-5-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -803,13 +803,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-6.jpg"
+                      src="/assets/Images/products/small/product-6.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-6-2.jpg"
+                      src="/assets/Images/products/small/product-6-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -847,13 +847,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-7.jpg"
+                      src="/assets/Images/products/small/product-7.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-7-2.jpg"
+                      src="/assets/Images/products/small/product-7-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -888,13 +888,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-8.jpg"
+                      src="/assets/Images/products/small/product-8.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-8-2.jpg"
+                      src="/assets/Images/products/small/product-8-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -929,13 +929,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-9.jpg"
+                      src="/assets/Images/products/small/product-9.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-9-2.jpg"
+                      src="/assets/Images/products/small/product-9-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -973,13 +973,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-10.jpg"
+                      src="/assets/Images/products/small/product-10.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-10-2.jpg"
+                      src="/assets/Images/products/small/product-10-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -1014,13 +1014,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-11.jpg"
+                      src="/assets/Images/products/small/product-11.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-11-2.jpg"
+                      src="/assets/Images/products/small/product-11-2.jpg"
                       width="74"
                       height="74"
                       alt="product"
@@ -1055,13 +1055,13 @@ function ProductDetails() {
                 <figure>
                   <a href="product.html">
                     <img
-                      src="assets/Images/products/small/product-12.jpg"
+                      src="/assets/Images/products/small/product-12.jpg"
                       width="74"
                       height="74"
                       alt="product"
                     />
                     <img
-                      src="assets/Images/products/small/product-12-2.jpg"
+                      src="/assets/Images/products/small/product-12-2.jpg"
                       width="74"
                       height="74"
                       alt="product"

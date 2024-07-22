@@ -44,7 +44,7 @@ function Cart() {
                             className="product-image"
                           >
                             <img
-                              src="assets/Images/products/product-4.jpg"
+                              src="/assets/Images/products/product-4.jpg"
                               alt="product"
                             />
                           </Link>
@@ -98,7 +98,7 @@ function Cart() {
                             className="product-image"
                           >
                             <img
-                              src="assets/Images/products/product-3.jpg"
+                              src="/assets/Images/products/product-3.jpg"
                               alt="product"
                             />
                           </Link>
@@ -152,7 +152,7 @@ function Cart() {
                             className="product-image"
                           >
                             <img
-                              src="assets/Images/products/product-6.jpg"
+                              src="/assets/Images/products/product-6.jpg"
                               alt="product"
                             />
                           </Link>

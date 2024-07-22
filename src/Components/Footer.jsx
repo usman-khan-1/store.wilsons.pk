@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function Footer() {
     const branding = useSelector((state) => state.branding.value);
-    console.log("bravdv", branding);
   return (
     <div>
       <footer>

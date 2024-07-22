@@ -10,7 +10,6 @@ import "react-multi-carousel/lib/styles.css";
 import MostViewedCarosuel from "../Components/Home/MostViewedCarosuel";
 import BestSellerElectronics from "../Components/Home/BestSellerElectronics";
 import TopCategoryCarosuel from "../Components/Home/TopCategoryCarosuel";
-import ElectronicSection from "../Components/Home/ElectronicSection";
 import TopBrand from "../Components/Home/TopBrand";
 import RecentProductsCarosuel from "../Components/Home/RecentProductsCarosuel";
 import { Link } from "react-router-dom";
@@ -85,10 +84,6 @@ function Home() {
             data-animation-name="fadeIn"
             data-animation-delay="200"
           >
-            <h2 className="section-title ls-n-10 pb-3 m-b-4">
-              Recent Products
-            </h2>
-
             <div className="row">
               <div
                 className="products-slider 5col owl-carousel owl-theme owl-nav-outisde show-nav-hover"
@@ -100,7 +95,7 @@ function Home() {
                   <figure>
                     <Link to={"/product-details"}>
                       <img
-                        src="assets/Images/demoes/demo22/products/product-20.jpg"
+                        src="/assets/Images/demoes/demo22/products/product-20.jpg"
                         width="217"
                         height="217"
                         alt="product"
@@ -128,7 +123,7 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <Link to={"/shop"} className="product-category">
+                        <Link to={"/category"} className="product-category">
                           category
                         </Link>
                       </div>
@@ -141,7 +136,7 @@ function Home() {
                       </Link>
                     </div>
                     <h3 className="product-title">
-                      <Link to={"/shop"}>HD Camera</Link>
+                      <Link to={"/category"}>HD Camera</Link>
                     </h3>
                     <div className="ratings-container">
                       <div className="product-ratings">
@@ -164,7 +159,7 @@ function Home() {
                   <figure>
                     <Link to={"/product-details"}>
                       <img
-                        src="assets/Images/demoes/demo22/products/product-21.jpg"
+                        src="/assets/Images/demoes/demo22/products/product-21.jpg"
                         width="217"
                         height="217"
                         alt="product"
@@ -192,7 +187,7 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <Link to={"/shop"} className="product-category">
+                        <Link to={"/category"} className="product-category">
                           category
                         </Link>
                       </div>
@@ -228,7 +223,7 @@ function Home() {
                   <figure>
                     <Link to={"/product-details"}>
                       <img
-                        src="assets/Images/demoes/demo22/products/product-12.jpg"
+                        src="/assets/Images/demoes/demo22/products/product-12.jpg"
                         width="217"
                         height="217"
                         alt="product"
@@ -256,7 +251,7 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <Link to={"/shop"} className="product-category">
+                        <Link to={"/category"} className="product-category">
                           category
                         </Link>
                       </div>
@@ -292,7 +287,7 @@ function Home() {
                   <figure>
                     <Link to={"/product-details"}>
                       <img
-                        src="assets/Images/demoes/demo22/products/product-17.jpg"
+                        src="/assets/Images/demoes/demo22/products/product-17.jpg"
                         width="217"
                         height="217"
                         alt="product"
@@ -320,7 +315,7 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <Link to={"/shop"} className="product-category">
+                        <Link to={"/category"} className="product-category">
                           category
                         </Link>
                       </div>
@@ -356,7 +351,7 @@ function Home() {
                   <figure>
                     <Link to={"/product-details"}>
                       <img
-                        src="assets/Images/demoes/demo22/products/product-10.jpg"
+                        src="/assets/Images/demoes/demo22/products/product-10.jpg"
                         width="217"
                         height="217"
                         alt="product"
@@ -384,7 +379,7 @@ function Home() {
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
-                        <Link to={"/shop"} className="product-category">
+                        <Link to={"/category"} className="product-category">
                           category
                         </Link>
                       </div>
@@ -429,7 +424,7 @@ function Home() {
               <div className="col-md-6 col-lg-3 align-self-baseline">
                 <figure>
                   <img
-                    src="assets/Images/demoes/demo22/banners/banner-3.jpg"
+                    src="/assets/Images/demoes/demo22/banners/banner-3.jpg"
                     alt="image"
                     width="380"
                     height="136"

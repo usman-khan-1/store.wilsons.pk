@@ -3,6 +3,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { makePostRequest } from "../../Apis";
 import { Link } from "react-router-dom";
+import ProductShimmer from "../ProductShimmer";
+import ImageWithLoader from "../ImageWithLoader";
 
 function RelatedProductsCarosuel() {
   const responsive = {
@@ -13,20 +15,22 @@ function RelatedProductsCarosuel() {
   };
 
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await makePostRequest("product/list");
         setProducts(response?.data);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error("Error fetching videos data:", error);
       }
     };
     fetchData();
   }, []);
-
-  console.log("products", products);
 
   return (
     <div className="container">
@@ -37,13 +41,15 @@ function RelatedProductsCarosuel() {
         infinite={true}
         responsive={responsive}
       >
-        {products?.map((product, index) => (
+        {loading
+          ? [1, 2, 3, 4, 5].map((_, index) => <ProductShimmer key={index} />)
+          : products?.map((product, index) => (
           <div key={index}>
             <div className="single-testimonial-item">
               <div className="product-default inner-quickview inner-icon">
                 <figure>
-                  <Link to={"/product-details"}>
-                    <img
+                  <Link to={`/category/${product.seo_slug}`}>
+                    <ImageWithLoader
                       src={product.image}
                       width="217"
                       height="217"
@@ -73,7 +79,7 @@ function RelatedProductsCarosuel() {
                 <div className="product-details">
                   <div className="category-wrap">
                     <div className="category-list">
-                      <Link to={"/shop"} className="product-category">
+                      <Link to={"/category"} className="product-category">
                         {product.category}
                       </Link>
                     </div>

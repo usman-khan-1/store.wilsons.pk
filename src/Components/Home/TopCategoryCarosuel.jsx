@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import { makePostRequest } from "../../Apis";
+import { Link } from "react-router-dom";
 
 function TopCategoryCarosuel() {
   const categoryList = [
@@ -51,8 +52,6 @@ function TopCategoryCarosuel() {
     fetchData();
   }, []);
 
-  console.log("category", category);
-
   return (
     <div>
       <section className="top-categories">
@@ -88,7 +87,6 @@ function TopCategoryCarosuel() {
                 </figure>
               </div>
             </div>
-           
           </div>
           <h2 className="section-title line-height-1 ls-10 pb-4 mb-4">
             Top Categories
@@ -110,10 +108,10 @@ function TopCategoryCarosuel() {
             arrows={false} // Hide arrows
           >
             {category.map((category, index) => (
-              <a key={index} className="category-item">
+              <Link to={"/category"} key={index} className="category-item">
                 <i className="icon-category-medicine"></i>
                 <span>{category?.name}</span>
-              </a>
+              </Link>
             ))}
           </Carousel>
         </div>

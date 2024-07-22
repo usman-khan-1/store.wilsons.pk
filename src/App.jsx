@@ -49,8 +49,10 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="contact" element={<Contact />} />
           <Route path="product-details" element={<ProductDetails />} />
+          <Route path="category/:slug" element={<ProductDetails />} />
           <Route path="checkout" element={<Checkout />} />
-          <Route path="shop" element={<Shop />} />
+          <Route path="category" element={<Shop />} />
+          <Route path="category/:slug" element={<Shop />} />
         </Routes>
       </BrowserRouter>
     </>

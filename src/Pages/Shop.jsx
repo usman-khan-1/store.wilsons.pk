@@ -67,8 +67,6 @@ function Shop() {
     fetchData();
   }, []);
 
-  console.log("products", products);
-
   return (
     <Layout>
       <main className="main">
@@ -101,7 +99,7 @@ function Shop() {
                   <div className="col-sm-4">
                     <figure>
                       <img
-                        src="assets/Images/demoes/demo22/banners/category-banner.jpg"
+                        src="/assets/Images/demoes/demo22/banners/category-banner.jpg"
                         alt="banner"
                         width="372"
                         height="247"
@@ -233,14 +231,10 @@ function Shop() {
                       </select>
                     </div>
                   </div>
-
-              
                 </div>
               </nav>
 
               <div className="row divide-line no-gutters m-0">
-               
-
                 {products?.map((data, index) => (
                   <div className="col-6 col-sm-4 col-xl-3">
                     <div className="product-default inner-quickview inner-icon">
@@ -272,10 +266,7 @@ function Shop() {
                       <div className="product-details">
                         <div className="category-wrap">
                           <div className="category-list">
-                            <Link
-                              to={"/shop"}
-                              className="product-category"
-                            >
+                            <Link to={"/category"} className="product-category">
                               {data?.category}
                             </Link>
                           </div>
@@ -300,13 +291,14 @@ function Shop() {
                           </div>
                         </div>
                         <div className="price-box">
-                          <span className="product-price">Rs {data?.price}</span>
+                          <span className="product-price">
+                            Rs {data?.price}
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 ))}
-
               </div>
 
               <nav className="toolbox toolbox-pagination">
@@ -592,7 +584,7 @@ function Shop() {
                         <figure>
                           <Link to={"/product-details"}>
                             <img
-                              src="assets/Images/demoes/demo22/products/small/product-1.jpg"
+                              src="/assets/Images/demoes/demo22/products/small/product-1.jpg"
                               width="75"
                               height="75"
                               alt="product"
@@ -626,7 +618,7 @@ function Shop() {
                         <figure>
                           <Link to={"/product-details"}>
                             <img
-                              src="assets/Images/demoes/demo22/products/small/product-2.jpg"
+                              src="/assets/Images/demoes/demo22/products/small/product-2.jpg"
                               width="75"
                               height="75"
                               alt="product"
