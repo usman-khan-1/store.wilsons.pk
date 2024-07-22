@@ -18395,3 +18395,12 @@ div.shimmer {
     opacity: 0.4;
   }
 }
+
+.category-dropdown{
+  height: 78vh;
+  overflow-y: scroll;
+
+}
+.category-dropdown::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}

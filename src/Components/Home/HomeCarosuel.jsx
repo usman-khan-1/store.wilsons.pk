@@ -1,6 +1,5 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 function HomeCarosuel() {
   const homeSliderBannerImg = [

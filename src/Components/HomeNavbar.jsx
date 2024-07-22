@@ -313,7 +313,7 @@ function HomeNavbar() {
                   <a href="#" className="toggle">
                     <i className="fas fa-bars"></i>Shop by Category
                   </a>
-                  <div className="submenu" style={!isFixed ? submenuStyle : {}}>
+                  <div className="submenu " style={!isFixed ? submenuStyle : {}}>
                     {category.map((data, index) => (
                       <Link key={index} to={"/category"}>
                         <i className="icon-category-medicine"></i>
