@@ -239,7 +239,7 @@ function Shop() {
                   <div className="col-6 col-sm-4 col-xl-3">
                     <div className="product-default inner-quickview inner-icon">
                       <figure>
-                        <Link to={"/product-details"}>
+                        <Link to={`/product/${data?.seo_slug}`}>
                           <img
                             src={data.image}
                             width="217"
@@ -249,7 +249,7 @@ function Shop() {
                         </Link>
                         <div className="btn-icon-group">
                           <a
-                            href="#"
+                           
                             className="btn-icon btn-add-cart product-type-simple"
                           >
                             <i className="icon-shopping-cart"></i>

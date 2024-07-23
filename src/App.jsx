@@ -48,8 +48,8 @@ function App() {
           <Route path="wishList" element={<WishList />} />
           <Route path="cart" element={<Cart />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="product-details" element={<ProductDetails />} />
-          <Route path="category/:slug" element={<ProductDetails />} />
+          <Route path="product/:slug" element={<ProductDetails />} />
+        
           <Route path="checkout" element={<Checkout />} />
           <Route path="category" element={<Shop />} />
           <Route path="category/:slug" element={<Shop />} />

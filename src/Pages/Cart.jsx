@@ -50,7 +50,7 @@ function Cart() {
                           </Link>
 
                           <a
-                            href="#"
+                           
                             className="btn-remove icon-cancel"
                             title="Remove Product"
                           ></a>
@@ -104,7 +104,7 @@ function Cart() {
                           </Link>
 
                           <a
-                            href="#"
+                           
                             className="btn-remove icon-cancel"
                             title="Remove Product"
                           ></a>
@@ -158,7 +158,7 @@ function Cart() {
                           </Link>
 
                           <a
-                            href="#"
+                           
                             className="btn-remove icon-cancel"
                             title="Remove Product"
                           ></a>

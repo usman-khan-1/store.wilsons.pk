@@ -55,7 +55,7 @@ function WishList() {
                       </Link>
 
                       <a
-                        href="#"
+                       
                         className="btn-remove icon-cancel"
                         title="Remove Product"
                       ></a>
@@ -95,7 +95,7 @@ function WishList() {
                       </Link>
 
                       <a
-                        href="#"
+                       
                         className="btn-remove icon-cancel"
                         title="Remove Product"
                       ></a>
@@ -138,7 +138,7 @@ function WishList() {
                       </a>
 
                       <a
-                        href="#"
+                     
                         className="btn-remove icon-cancel"
                         title="Remove Product"
                       ></a>

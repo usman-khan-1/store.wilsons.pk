@@ -52,7 +52,7 @@ function RecentProductsCarosuel() {
                 <div className="single-testimonial-item">
                   <div className="product-default inner-quickview inner-icon">
                     <figure>
-                      <Link to={`/category/${product.seo_slug}`}>
+                      <Link to={`/product/${product.seo_slug}`}>
                         <ImageWithLoader
                           src={product.image}
                           width="217"
@@ -65,7 +65,7 @@ function RecentProductsCarosuel() {
                   </div> */}
                       <div className="btn-icon-group">
                         <a
-                          href="#"
+                         
                           title="Add To Cart"
                           className="btn-icon btn-add-cart product-type-simple"
                         >

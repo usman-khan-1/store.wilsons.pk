@@ -18404,3 +18404,15 @@ div.shimmer {
 .category-dropdown::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Opera */
 }
+.category-icon{
+  width: 20px;
+  display: inline;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.top-categories .category-icon{
+  width: 100px;
+  margin-bottom: 20px;
+
+}

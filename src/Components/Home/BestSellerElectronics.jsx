@@ -37,7 +37,7 @@ function BestSellerElectronics() {
               <div key={index} className="col-lg-3 col-md-4 col-sm-6">
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
-                    <Link to={`/category/${data.seo_slug}`}>
+                    <Link to={`/product/${data.seo_slug}`}>
                       <ImageWithLoader
                         src={data.image}
                         width="217"
@@ -50,7 +50,7 @@ function BestSellerElectronics() {
               </div> */}
                     <div className="btn-icon-group">
                       <a
-                        href="#"
+                       
                         title="Add To Cart"
                         className="btn-icon btn-add-cart product-type-simple"
                       >

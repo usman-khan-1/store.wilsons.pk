@@ -187,7 +187,7 @@ function HomeNavbar() {
                           </Link>
 
                           <a
-                            href="#"
+                           
                             className="btn-remove"
                             title="Remove Product"
                           >
@@ -223,7 +223,7 @@ function HomeNavbar() {
                           </Link>
 
                           <a
-                            href="#"
+                           
                             className="btn-remove"
                             title="Remove Product"
                           >
@@ -258,7 +258,7 @@ function HomeNavbar() {
                             />
                           </Link>
                           <a
-                            href="#"
+                           
                             className="btn-remove"
                             title="Remove Product"
                           >
@@ -313,10 +313,18 @@ function HomeNavbar() {
                   <a href="#" className="toggle">
                     <i className="fas fa-bars"></i>Shop by Category
                   </a>
-                  <div className="submenu " style={!isFixed ? submenuStyle : {}}>
+                  <div
+                    className="submenu "
+                    style={!isFixed ? submenuStyle : {}}
+                  >
                     {category.map((data, index) => (
-                      <Link key={index} to={"/category"}>
-                        <i className="icon-category-medicine"></i>
+                      <Link key={index} to={`/category/${data?.slug}`}>
+                        {/* <i className="icon-category-medicine"></i> */}
+                        <img
+                          className="category-icon"
+                          src={data?.icon}
+                          alt=""
+                        />
                         {data?.name}
                       </Link>
                     ))}
@@ -368,7 +376,7 @@ function HomeNavbar() {
               </nav>
               <div className="header-dropdowns ml-auto">
                 <a
-                  href="#"
+                 
                   className="link-seller font-weight-bold d-none d-sm-block"
                 >
                   Become a Seller
@@ -477,17 +485,17 @@ function HomeNavbar() {
 
             <div className="social-icons">
               <a
-                href="#"
+               
                 className="social-icon social-facebook icon-facebook"
                 target="_blank"
               ></a>
               <a
-                href="#"
+               
                 className="social-icon social-twitter icon-twitter"
                 target="_blank"
               ></a>
               <a
-                href="#"
+               
                 className="social-icon social-instagram icon-instagram"
                 target="_blank"
               ></a>

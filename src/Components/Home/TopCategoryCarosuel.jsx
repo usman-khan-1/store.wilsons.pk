@@ -108,8 +108,8 @@ function TopCategoryCarosuel() {
             arrows={false} // Hide arrows
           >
             {category.map((category, index) => (
-              <Link to={"/category"} key={index} className="category-item">
-                <i className="icon-category-medicine"></i>
+              <Link to={`/category/${category?.slug}`} key={index} className="category-item">
+               <img className="category-icon" src={category?.icon} alt="" />
                 <span>{category?.name}</span>
               </Link>
             ))}

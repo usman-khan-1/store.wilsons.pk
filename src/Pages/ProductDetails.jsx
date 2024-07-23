@@ -104,7 +104,7 @@ function ProductDetails() {
 
                 <div className="prod-thumbnail owl-dots">
                   {productImages?.map((data, index) => (
-                    <div className="owl-dot">
+                    <div className="owl-dot" key={index}>
                       <a
                         data-slide-to={`${index}`}
                         data-target={`#custCarousel`}
@@ -232,22 +232,22 @@ function ProductDetails() {
                 </ul>
 
                 <div className="product-action">
-                  <div class="product-single-qty">
-                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                      <span class="input-group-btn input-group-prepend">
+                  <div className="product-single-qty">
+                    <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                      <span className="input-group-btn input-group-prepend">
                         <button
-                          class="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                          className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
                           type="button"
                         ></button>
                       </span>
                       <input
-                        class="horizontal-quantity form-control"
+                        className="horizontal-quantity form-control"
                         type="text"
-                        value={1}
+                        defaultValue={1}
                       />
-                      <span class="input-group-btn input-group-append">
+                      <span className="input-group-btn input-group-append">
                         <button
-                          class="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                          className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
                           type="button"
                         ></button>
                       </span>
@@ -270,31 +270,31 @@ function ProductDetails() {
 
                   <div className="social-icons mr-2">
                     <a
-                      href="#"
+                     
                       className="social-icon social-facebook icon-facebook"
                       target="_blank"
                       title="Facebook"
                     ></a>
                     <a
-                      href="#"
+                     
                       className="social-icon social-twitter icon-twitter"
                       target="_blank"
                       title="Twitter"
                     ></a>
                     <a
-                      href="#"
+                     
                       className="social-icon social-linkedin fab fa-linkedin-in"
                       target="_blank"
                       title="Linkedin"
                     ></a>
                     <a
-                      href="#"
+                     
                       className="social-icon social-gplus fab fa-google-plus-g"
                       target="_blank"
                       title="Google +"
                     ></a>
                     <a
-                      href="#"
+                     
                       className="social-icon social-mail icon-mail-alt"
                       target="_blank"
                       title="Mail"

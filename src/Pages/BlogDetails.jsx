@@ -84,7 +84,7 @@ function BlogDetails() {
 
                     <div className="social-icons">
                       <a
-                        href="#"
+                       
                         className="social-icon social-facebook"
                         target="_blank"
                         title="Facebook"
@@ -92,7 +92,7 @@ function BlogDetails() {
                         <i className="icon-facebook"></i>
                       </a>
                       <a
-                        href="#"
+                       
                         className="social-icon social-twitter"
                         target="_blank"
                         title="Twitter"
@@ -100,7 +100,7 @@ function BlogDetails() {
                         <i className="icon-twitter"></i>
                       </a>
                       <a
-                        href="#"
+                       
                         className="social-icon social-linkedin"
                         target="_blank"
                         title="Linkedin"
@@ -108,7 +108,7 @@ function BlogDetails() {
                         <i className="fab fa-linkedin-in"></i>
                       </a>
                       <a
-                        href="#"
+                       
                         className="social-icon social-gplus"
                         target="_blank"
                         title="Google +"
@@ -116,7 +116,7 @@ function BlogDetails() {
                         <i className="fab fa-google-plus-g"></i>
                       </a>
                       <a
-                        href="#"
+                       
                         className="social-icon social-mail"
                         target="_blank"
                         title="Email"
