@@ -46,7 +46,7 @@ function Footer() {
           <div className="container">
             <div className="footer-middle">
               <div className="row">
-                <div className="col-lg-4">
+                <div className="col-lg-6">
                   <Link to={"/"}>
                     <img
                       className="logo"
@@ -77,7 +77,7 @@ function Footer() {
                             className="__cf_email__"
                             data-cfemail="4825292124082d30292538242d662b2725"
                           >
-                            [email&#160;protected]
+                            info@wilsons.com
                           </span>
                         </a>
                       </div>
@@ -115,51 +115,7 @@ function Footer() {
                     </a>
                   </div>
                 </div>
-                <div className="col-lg-3">
-                  <div className="widget">
-                    <h4 className="widget-title">Account</h4>
-                    <div className="row links link-lg link-parts">
-                      <div className="col-sm-6 link-part">
-                        <ul className="mb-0">
-                          <li>
-                            <Link to={"/myAccount"}>My Account</Link>
-                          </li>
-                          <li>
-                            <a href="#">Track Your Order</a>
-                          </li>
-                          <li>
-                            <a href="#">Payment Methods</a>
-                          </li>
-                          <li>
-                            <a href="#">Shipping Guide</a>
-                          </li>
-                          <li>
-                            <a href="#">FAQs</a>
-                          </li>
-                          <li>
-                            <a href="#">Product Support</a>
-                          </li>
-                          <li>
-                            <a href="#">Privacy</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="col-sm-6 link-part">
-                        <ul className="mb-0">
-                          <li>
-                            <a href="#">Orders History</a>
-                          </li>
-                          <li>
-                            <a href="#">Advanced Search</a>
-                          </li>
-                          <li>
-                            <a href="#">Affiliate Program</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <div className="col-lg-3">
                   <div className="widget widget-sm">
                     <h4 className="widget-title">About</h4>
@@ -188,7 +144,7 @@ function Footer() {
                     </ul>
                   </div>
                 </div>
-                <div className="col-lg-2">
+                <div className="col-lg-3">
                   <div className="widget widget-sm">
                     <h4 className="widget-title">Features</h4>
                     <ul className="links">
@@ -213,7 +169,7 @@ function Footer() {
               </div>
             </div>
 
-            <div className="footer-bottom d-sm-flex align-items-center">
+            {/* <div className="footer-bottom d-sm-flex align-items-center">
               <div className="footer-left">
                 <span className="footer-copyright">
                   © Porto eCommerce. 2021. All Rights Reserved
@@ -228,7 +184,7 @@ function Footer() {
                   height="27"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>
