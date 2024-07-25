@@ -12485,8 +12485,13 @@ span.toggle:before {
 }
 .category-banner {
   padding: 6.8rem 0;
+  background-image: url(../public/assets/imagess/our-products.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 280px;
 }
-.category-banner .coupon-sale-text {
+/* .category-banner .coupon-sale-text {
   font-family: "Open Sans", sans-serif;
 }
 .category-banner h3 {
@@ -12506,7 +12511,7 @@ span.toggle:before {
   letter-spacing: 0.01em;
   padding: 1em 1.6em;
   margin-left: 1.8rem;
-}
+} */
 @media (min-width: 992px) {
   .filter-sorts .toolbox-left {
     position: relative;

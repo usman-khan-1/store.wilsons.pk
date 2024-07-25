@@ -105,13 +105,17 @@ function TopCategoryCarosuel() {
             transitionDuration={500}
             containerclassName="carousel-container"
             dotListclassName="custom-dot-list-style"
-            arrows={false} // Hide arrows
+            arrows={true} // Hide arrows
           >
             {category.map((category, index) => (
-              <Link to={`/category/${category?.slug}`} key={index} className="category-item">
-               <img className="category-icon" src={category?.icon} alt="" />
-                <span>{category?.name}</span>
-              </Link>
+              <div className="category-item">
+                <Link>
+                  <img className="category-icon" src={category?.icon} alt="" />
+                  <Link to={`/category/${category?.slug}`} key={index}>
+                    <span>{category?.name}</span>
+                  </Link>
+                </Link>
+              </div>
             ))}
           </Carousel>
         </div>

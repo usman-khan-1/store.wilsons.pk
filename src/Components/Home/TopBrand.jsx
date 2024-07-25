@@ -17,7 +17,7 @@ function TopBrand() {
           <div className="row">
             <div className="col-6 col-sm-4 col-md-3 col-lg-3 mb-3">
               <img
-                src="/assets/Images/demoes/demo22/brands/brand1.png"
+              src="/assets/Images/demoes/demo22/brands/brand1.png"
                 className="img-fluid"
                 alt="brand1"
               />

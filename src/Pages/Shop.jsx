@@ -87,7 +87,7 @@ function Shop() {
           <div className="row main-content">
             <div className="col-lg-9">
               <div className="category-banner banner bg-gray py-3 mb-3">
-                <div className="row m-0 no-gutters align-items-center">
+                {/* <div className="row m-0 no-gutters align-items-center">
                   <div className="col-sm-4">
                     <h2 className="font1 ls-10 text-left text-sm-right text-uppercase mb-0">
                       Smart
@@ -122,7 +122,7 @@ function Shop() {
                       View All Now
                     </a>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <nav
