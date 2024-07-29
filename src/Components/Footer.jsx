@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Footer() {
-    const branding = useSelector((state) => state.branding.value);
+  const branding = useSelector((state) => state.branding.value);
   return (
     <div>
       <footer>
@@ -94,19 +94,17 @@ function Footer() {
                       href={branding?.site_facebook}
                       className="social-icon social-facebook"
                       target="_blank"
-                      >
+                    >
                       <i className="fab fa-facebook-f"></i>
                     </a>
                     <a
-                        href={branding?.site_twitter}
-                        
-                        className="social-icon social-twitter"
-                        target="_blank"
-                        >
+                      href={branding?.site_twitter}
+                      className="social-icon social-twitter"
+                      target="_blank"
+                    >
                       <i className="fab fa-twitter"></i>
                     </a>
                     <a
-                   
                       href={branding?.site_linkedin}
                       className="social-icon social-linkedin"
                       target="_blank"
@@ -118,28 +116,16 @@ function Footer() {
 
                 <div className="col-lg-3">
                   <div className="widget widget-sm">
-                    <h4 className="widget-title">About</h4>
+                    <h4 className="widget-title">Policies</h4>
                     <ul className="links">
                       <li>
-                        <Link to={"/about"}>About Porto</Link>
+                        <Link to={"/"}>Privacy Policy</Link>
                       </li>
                       <li>
-                        <a href="#">Our Guarantees</a>
+                        <Link to={"/"}>Shipping Policy</Link>
                       </li>
                       <li>
-                        <a href="#">Terms And Conditions</a>
-                      </li>
-                      <li>
-                        <a href="#">Privacy policy</a>
-                      </li>
-                      <li>
-                        <a href="#">Return Policy</a>
-                      </li>
-                      <li>
-                        <a href="#">Intellectual Property Claims</a>
-                      </li>
-                      <li>
-                        <a href="#">Site Map</a>
+                        <Link to={"/"}>Return Policy</Link>
                       </li>
                     </ul>
                   </div>
