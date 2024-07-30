@@ -119,13 +119,13 @@ function Footer() {
                     <h4 className="widget-title">Policies</h4>
                     <ul className="links">
                       <li>
-                        <Link to={"/"}>Privacy Policy</Link>
+                        <Link to={"/privacy-policy"}>Privacy Policy</Link>
                       </li>
                       <li>
-                        <Link to={"/"}>Shipping Policy</Link>
+                        <Link to={"/shipping-policy"}>Shipping Policy</Link>
                       </li>
                       <li>
-                        <Link to={"/"}>Return Policy</Link>
+                        <Link to={"/return-policy"}>Return Policy</Link>
                       </li>
                     </ul>
                   </div>

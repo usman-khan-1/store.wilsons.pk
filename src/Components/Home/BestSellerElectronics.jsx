@@ -50,7 +50,6 @@ function BestSellerElectronics() {
               </div> */}
                     <div className="btn-icon-group">
                       <a
-                       
                         title="Add To Cart"
                         className="btn-icon btn-add-cart product-type-simple"
                       >
@@ -81,7 +80,9 @@ function BestSellerElectronics() {
                       </Link>
                     </div>
                     <h3 className="product-title">
-                      <Link to={"/product-details"}>{data?.heading}</Link>
+                      <Link to={`/product/${data.seo_slug}`}>
+                        {data?.heading}
+                      </Link>
                     </h3>
                     <div className="ratings-container">
                       <div className="product-ratings">

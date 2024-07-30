@@ -374,48 +374,7 @@ function HomeNavbar() {
                   </li>
                 </ul>
               </nav>
-              <div className="header-dropdowns ml-auto">
-                <a
-                 
-                  className="link-seller font-weight-bold d-none d-sm-block"
-                >
-                  Become a Seller
-                </a>
-
-                <div className="header-dropdown">
-                  <a href="#">USD</a>
-                  <div className="header-menu">
-                    <ul>
-                      <li>
-                        <a href="#">EUR</a>
-                      </li>
-                      <li>
-                        <a href="#">USD</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="header-dropdown">
-                  <a href="#">
-                    <i className="flag-us flag"></i>ENG
-                  </a>
-                  <div className="header-menu">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i className="flag-us flag mr-2"></i>ENG
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="flag-fr flag mr-2"></i>FRA
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+          
             </div>
           </div>
         </div>

@@ -17,6 +17,9 @@ import Shop from "./Pages/Shop";
 import { useDispatch, useSelector } from "react-redux";
 import { makePostRequest } from "./Apis";
 import { setBranding } from "./Store/BrandingSlice";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
+import ShippingPolicy from "./Pages/ShippingPolicy";
+import ReturnPolicy from "./Pages/ReturnPolicy";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -43,12 +46,16 @@ function App() {
           <Route path="myAccount" element={<MyAccount />} />
           <Route path="login" element={<Login />} />
           <Route path="about" element={<AboutUs />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="shipping-policy" element={<ShippingPolicy />} />
+          <Route path="return-policy" element={<ReturnPolicy />} />
           <Route path="blog" element={<Blogs />} />
           <Route path="blog-details" element={<BlogDetails />} />
           <Route path="wishList" element={<WishList />} />
           <Route path="cart" element={<Cart />} />
           <Route path="contact" element={<Contact />} />
           <Route path="product/:slug" element={<ProductDetails />} />
+          <Route path="product-details" element={<ProductDetails />} />
         
           <Route path="checkout" element={<Checkout />} />
           <Route path="category" element={<Shop />} />

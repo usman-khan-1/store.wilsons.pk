@@ -96,7 +96,7 @@ function RecentProductsCarosuel() {
                         </Link>
                       </div>
                       <h3 className="product-title">
-                        <Link to={"/product-details"}>{product.heading}</Link>
+                      <Link to={`/product/${product.seo_slug}`}>{product.heading}</Link>
                       </h3>
                       <div className="ratings-container">
                         <div className="product-ratings">

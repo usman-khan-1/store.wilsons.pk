@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, {useEffect } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
+import LoginForm from "../Components/Auth/LoginForm";
+import RegisterForm from "../Components/Auth/RegisterForm";
 
 function Login() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
+
   return (
     <Layout>
       <main className="main">
@@ -26,7 +29,6 @@ function Login() {
                 </ol>
               </div>
             </nav>
-
             <h1>My Account</h1>
           </div>
         </div>
@@ -40,99 +42,14 @@ function Login() {
                     <h2 className="title">Login</h2>
                   </div>
 
-                  <form action="#">
-                    <label for="login-email">
-                      Username or email address
-                      <span className="required">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      className="form-input form-wide"
-                      id="login-email"
-                      //   required
-                    />
-
-                    <label for="login-password">
-                      Password
-                      <span className="required">*</span>
-                    </label>
-                    <input
-                      type="password"
-                      className="form-input form-wide"
-                      id="login-password"
-                      //   required
-                    />
-
-                    <div className="form-footer">
-                      <div className="custom-control custom-checkbox mb-0">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id="lost-password"
-                        />
-                        <label
-                          className="custom-control-label mb-0"
-                          for="lost-password"
-                        >
-                          Remember me
-                        </label>
-                      </div>
-
-                      <a
-                        // href="forgot-password.html"
-                        className="forget-password text-dark form-footer-right"
-                      >
-                        Forgot Password?
-                      </a>
-                    </div>
-                    <Link to={"/myAccount"}>
-                      <button
-                        type="submit"
-                        className="btn btn-dark btn-md w-100"
-                      >
-                        LOGIN
-                      </button>
-                    </Link>
-                  </form>
+                  <LoginForm />
                 </div>
                 <div className="col-md-6">
                   <div className="heading mb-1">
                     <h2 className="title">Register</h2>
                   </div>
 
-                  <form action="#">
-                    <label for="register-email">
-                      Email address
-                      <span className="required">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      className="form-input form-wide"
-                      id="register-email"
-                      //   required
-                    />
-
-                    <label for="register-password">
-                      Password
-                      <span className="required">*</span>
-                    </label>
-                    <input
-                      type="password"
-                      className="form-input form-wide"
-                      id="register-password"
-                      //   required
-                    />
-
-                    <div className="form-footer mb-2">
-                    {/* <Link to={"/myAccount"}></Link> */}
-                      <button
-                        type="submit"
-                        className="btn btn-dark btn-md w-100 mr-0"
-                      >
-                        Register
-                      </button>
-                    </div>
-                  </form>
+                  <RegisterForm />
                 </div>
               </div>
             </div>

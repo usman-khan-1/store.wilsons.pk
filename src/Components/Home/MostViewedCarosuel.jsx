@@ -63,7 +63,6 @@ function TestimonialCarousel() {
 
                       <div className="btn-icon-group">
                         <a
-                         
                           title="Add To Cart"
                           className="btn-icon btn-add-cart product-type-simple"
                         >
@@ -94,7 +93,9 @@ function TestimonialCarousel() {
                         </Link>
                       </div>
                       <h3 className="product-title">
-                        <Link to={"/product-details"}>{product.heading}</Link>
+                        <Link to={`/product/${product.seo_slug}`}>
+                          {product.heading}
+                        </Link>
                       </h3>
                       <div className="ratings-container">
                         <div className="product-ratings">
