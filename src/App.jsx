@@ -20,6 +20,7 @@ import { setBranding } from "./Store/BrandingSlice";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import ShippingPolicy from "./Pages/ShippingPolicy";
 import ReturnPolicy from "./Pages/ReturnPolicy";
+import VerifyAccount from "./Pages/VerifyAccount";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -58,6 +59,7 @@ function App() {
           <Route path="product-details" element={<ProductDetails />} />
         
           <Route path="checkout" element={<Checkout />} />
+          <Route path="verify-account" element={<VerifyAccount />} />
           <Route path="category" element={<Shop />} />
           <Route path="category/:slug" element={<Shop />} />
         </Routes>
