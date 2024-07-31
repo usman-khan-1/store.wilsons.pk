@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
 import Layout from "../Components/Layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearUserData } from "../Store/UserSlice";
 
 function MyAccount() {
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  })
+  });
+
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => (dispatch(clearUserData()), navigate("/login"));
+
   return (
     <Layout>
       <main className="main">
@@ -123,10 +132,8 @@ function MyAccount() {
                     Wishlist
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/login"}>
-                    Logout
-                  </Link>
+                <li className="nav-item" onClick={handleLogout}>
+                  Logout
                 </li>
               </ul>
             </div>
@@ -140,9 +147,9 @@ function MyAccount() {
                   <p>
                     Hello <strong className="text-dark">Editor</strong> (not
                     <strong className="text-dark">Editor</strong>?
-                    <Link to={"/login"} className="btn btn-link ">
+                    <div onClick={handleLogout} className="btn btn-link ">
                       Log out
-                    </Link>
+                    </div>
                     )
                   </p>
 
@@ -236,7 +243,8 @@ function MyAccount() {
               <div className="tab-pane fade" id="order" role="tabpanel">
                 <div className="order-content">
                   <h3 className="account-sub-title d-none d-md-block">
-                    <i className="sicon-social-dropbox align-middle mr-3"></i>Orders
+                    <i className="sicon-social-dropbox align-middle mr-3"></i>
+                    Orders
                   </h3>
                   <div className="order-table-container text-center">
                     <table className="table table-order text-left">
@@ -252,7 +260,9 @@ function MyAccount() {
                       <tbody>
                         <tr>
                           <td className="text-center p-0" colSpan="5">
-                            <p className="mb-5 mt-5">No Order has been made yet.</p>
+                            <p className="mb-5 mt-5">
+                              No Order has been made yet.
+                            </p>
                           </td>
                         </tr>
                       </tbody>
@@ -286,7 +296,8 @@ function MyAccount() {
 
               <div className="tab-pane fade" id="address" role="tabpanel">
                 <h3 className="account-sub-title d-none d-md-block mb-1">
-                  <i className="sicon-location-pin align-middle mr-3"></i>Addresses
+                  <i className="sicon-location-pin align-middle mr-3"></i>
+                  Addresses
                 </h3>
                 <div className="addresses-content">
                   <p className="mb-4">
@@ -432,7 +443,9 @@ function MyAccount() {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="acc-password">Confirm New Password</label>
+                        <label htmlFor="acc-password">
+                          Confirm New Password
+                        </label>
                         <input
                           type="password"
                           className="form-control"
@@ -462,7 +475,11 @@ function MyAccount() {
                           <label>
                             First name <span className="required">*</span>
                           </label>
-                          <input type="text" className="form-control" required />
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                          />
                         </div>
                       </div>
 
@@ -471,7 +488,11 @@ function MyAccount() {
                           <label>
                             Last name <span className="required">*</span>
                           </label>
-                          <input type="text" className="form-control" required />
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                          />
                         </div>
                       </div>
                     </div>
@@ -486,9 +507,7 @@ function MyAccount() {
                         Country / Region <span className="required">*</span>
                       </label>
                       <select name="orderby" className="form-control">
-                        <option value=""  >
-                          British Indian Ocean Territory
-                        </option>
+                        <option value="">British Indian Ocean Territory</option>
                         <option value="1">Brunei</option>
                         <option value="2">Bulgaria</option>
                         <option value="3">Burkina Faso</option>
@@ -577,7 +596,11 @@ function MyAccount() {
                           <label>
                             First name <span className="required">*</span>
                           </label>
-                          <input type="text" className="form-control" required />
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                          />
                         </div>
                       </div>
 
@@ -586,7 +609,11 @@ function MyAccount() {
                           <label>
                             Last name <span className="required">*</span>
                           </label>
-                          <input type="text" className="form-control" required />
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                          />
                         </div>
                       </div>
                     </div>
@@ -601,9 +628,7 @@ function MyAccount() {
                         Country / Region <span className="required">*</span>
                       </label>
                       <select name="orderby" className="form-control">
-                        <option value=""  >
-                          British Indian Ocean Territory
-                        </option>
+                        <option value="">British Indian Ocean Territory</option>
                         <option value="1">Brunei</option>
                         <option value="2">Bulgaria</option>
                         <option value="3">Burkina Faso</option>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { makePostRequest } from "../Apis";
+import { useSelector } from "react-redux";
 
 function HomeNavbar() {
   const location = useLocation();
@@ -8,6 +9,10 @@ function HomeNavbar() {
   const [isSideBar, setIsSideBar] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+
+  const user = useSelector((state) => state.user.value);
+
+  console.log("user",user)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,20 +120,27 @@ function HomeNavbar() {
             </div>
 
             <div className="header-right ml-0 ml-lg-auto">
-              <Link
-                to={"/login"}
-                className="header-icon d-md-block d-none mr-0"
-              >
+              <div className="header-icon d-md-block d-none mr-0">
                 <div className="header-user">
                   <i className="fas fa-user"></i>
-                  <div className="header-userinfo">
-                    <span className="d-inline-block line-height-1 ls-10">
-                      Hello!
-                    </span>
-                    <h4 className="font1 mb-0">My Account</h4>
-                  </div>
+                  {user ? (
+                    <Link to={"/myAccount"}>
+                      <div className="header-userinfo">
+                        <span className="d-inline-block line-height-1 ls-10">
+                          Hello!
+                        </span>
+                        <h4 className="font1 mb-0">{user?.fullname}</h4>
+                      </div>
+                    </Link>
+                  ) : (
+                    <Link to={"/login"}>
+                      <div className="header-userinfo">
+                        <h4 className="font1 mb-0">Login</h4>
+                      </div>
+                    </Link>
+                  )}
                 </div>
-              </Link>
+              </div>
 
               <Link to={"/wishlist"} className="header-icon">
                 <i className="fas fa-heart"></i>
@@ -186,11 +198,7 @@ function HomeNavbar() {
                             />
                           </Link>
 
-                          <a
-                           
-                            className="btn-remove"
-                            title="Remove Product"
-                          >
+                          <a className="btn-remove" title="Remove Product">
                             <span>×</span>
                           </a>
                         </figure>
@@ -222,11 +230,7 @@ function HomeNavbar() {
                             />
                           </Link>
 
-                          <a
-                           
-                            className="btn-remove"
-                            title="Remove Product"
-                          >
+                          <a className="btn-remove" title="Remove Product">
                             <span>×</span>
                           </a>
                         </figure>
@@ -257,11 +261,7 @@ function HomeNavbar() {
                               height="80"
                             />
                           </Link>
-                          <a
-                           
-                            className="btn-remove"
-                            title="Remove Product"
-                          >
+                          <a className="btn-remove" title="Remove Product">
                             <span>×</span>
                           </a>
                         </figure>
@@ -374,7 +374,6 @@ function HomeNavbar() {
                   </li>
                 </ul>
               </nav>
-          
             </div>
           </div>
         </div>
@@ -444,17 +443,14 @@ function HomeNavbar() {
 
             <div className="social-icons">
               <a
-               
                 className="social-icon social-facebook icon-facebook"
                 target="_blank"
               ></a>
               <a
-               
                 className="social-icon social-twitter icon-twitter"
                 target="_blank"
               ></a>
               <a
-               
                 className="social-icon social-instagram icon-instagram"
                 target="_blank"
               ></a>

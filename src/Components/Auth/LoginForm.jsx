@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import { useDispatch } from "react-redux";
+import { setUserData } from "../../Store/UserSlice";
 
 function LoginForm() {
   const [loading, setLoading] = useState(false);
@@ -25,16 +26,16 @@ function LoginForm() {
         "auth/login-customer",
         loginCredentials
       );
+      dispatch(setUserData(response.data));
 
-      // if (response) {
-      //   setLoginCredentials({
-      //     email: "",
-      //     password: "",
-      //   });
-      //   navigate("/myAccount");
-      //   setLoading(false);
-      //   dispatch(setUserData(response.data));
-      // }
+      if (response.status === "success") {
+        setLoginCredentials({
+          email: "",
+          password: "",
+        });
+        navigate("/myAccount");
+        setLoading(false);
+      }
 
       setLoading(false);
     } catch (error) {
