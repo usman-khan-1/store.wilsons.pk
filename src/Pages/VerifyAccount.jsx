@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makePostRequest } from "../Apis";
+import { toast, Toaster } from "react-hot-toast";
 
 function VerifyAccount() {
   const [code, setCode] = useState();
@@ -16,6 +17,7 @@ function VerifyAccount() {
       const response = await makePostRequest("auth/verify-customer", code);
 
       if (response.status === "success") {
+        toast.success("Verification successful! Redirecting...");
         navigate("/myAccount");
         setLoading(false);
       }
@@ -59,6 +61,7 @@ function VerifyAccount() {
           </div>
         </div>
       </main>
+      <Toaster />
     </div>
   );
 }
