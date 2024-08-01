@@ -6,7 +6,7 @@ function RegisterForm() {
   const [loading, setLoading] = useState(false);
 
   const [registerCredentials, setRegisterCredentials] = useState({
-    fullName: "",
+    full_name: "",
     email: "",
     phone: "",
     password: "",
@@ -23,7 +23,7 @@ function RegisterForm() {
       );
       // setProducts(response?.data);
       setRegisterCredentials({
-        fullName: "",
+        full_name: "",
         email: "",
         phone: "",
         password: "",
@@ -50,10 +50,10 @@ function RegisterForm() {
         <span className="required">*</span>
       </label>
       <input
-        id="fullName"
+        id="full_name"
         type="text"
         className="form-input form-wide"
-        value={registerCredentials.fullName}
+        value={registerCredentials.full_name}
         onChange={handleRegisterChange}
         required
       />
