@@ -59,7 +59,7 @@ function App() {
           <Route path="product-details" element={<ProductDetails />} />
         
           <Route path="checkout" element={<Checkout />} />
-          <Route path="verify-account" element={<VerifyAccount />} />
+          <Route path="verify-customer/:slug" element={<VerifyAccount />} />
           <Route path="category" element={<Shop />} />
           <Route path="category/:slug" element={<Shop />} />
         </Routes>
