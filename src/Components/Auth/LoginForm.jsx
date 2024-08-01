@@ -42,7 +42,6 @@ function LoginForm() {
       setLoading(false);
       console.error("Error fetching videos data:", error);
     }
-    console.log("Login Credentials:", loginCredentials);
   };
 
   return (
