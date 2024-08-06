@@ -138,7 +138,7 @@ function HomeNavbar() {
                       <div className="select-custom">
                         <select id="cat" name="cat">
                           <option value="">All Categories</option>
-                          {category.map((data, index) => (
+                          {category?.map((data, index) => (
                             <option key={index} value="">
                               {data?.name}
                             </option>

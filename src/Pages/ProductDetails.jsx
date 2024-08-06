@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import RelatedProductsCarosuel from "../Components/Home/RelatedProductsCarosuel";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { makePostRequest } from "../Apis";
 
 function ProductDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
 
+  const slug = useParams();
+  const [loading, setLoading] = useState(false);
   const [borderIndex, setBorderIndex] = useState(0);
+  const [productDetails, setProductDetails] = useState({});
+  console.log("productDetails", productDetails);
 
   const productImages = [
     {
@@ -24,6 +29,22 @@ function ProductDetails() {
       image: "/assets/Images/products/zoom/cranpure.png",
     },
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await makePostRequest("product/detail", slug);
+        setProductDetails(response.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, [slug]);
+
   return (
     <Layout>
       <main className="main">
@@ -42,16 +63,9 @@ function ProductDetails() {
           </nav>
 
           <div className="product-single-container product-single-default">
-            <div className="cart-message d-none">
-              <strong className="single-cart-notice">
-                “Men Black Sports Shoes”
-              </strong>
-              <span>has been added to your cart.</span>
-            </div>
-
             <div className="row">
               <div className="col-lg-5 col-md-6 product-single-gallery">
-                <div className="product-slider-container">
+                {/* <div className="product-slider-container">
                   <div
                     id="custCarousel"
                     className="carousel slide p-3"
@@ -124,81 +138,35 @@ function ProductDetails() {
                       </a>
                     </div>
                   ))}
-                </div>
+                </div> */}
+
+                <img src={productDetails?.details?.image} alt="" />
               </div>
 
               <div className="col-lg-7 col-md-6 product-single-details">
-                <h1 className="product-title">Men Black Sports Shoes</h1>
-
-                <div className="product-nav">
-                  <div className="product-prev">
-                    <a href="#">
-                      <span className="product-link"></span>
-
-                      <span className="product-popup">
-                        <span className="box-content">
-                          <img
-                            alt="product"
-                            width="150"
-                            height="150"
-                            src="/assets/Images/products/product-3.jpg"
-                            style={{ paddingTop: "0px" }}
-                          />
-
-                          <span>Circled Ultimate 3D Speaker</span>
-                        </span>
-                      </span>
-                    </a>
-                  </div>
-
-                  <div className="product-next">
-                    <a href="#">
-                      <span className="product-link"></span>
-
-                      <span className="product-popup">
-                        <span className="box-content">
-                          <img
-                            alt="product"
-                            width="150"
-                            height="150"
-                            src="/assets/Images/products/product-4.jpg"
-                            style={{ paddingTop: "0px" }}
-                          />
-
-                          <span>Blue Backpack for the Young</span>
-                        </span>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-
-                <div className="ratings-container">
-                  <div className="product-ratings">
-                    <span className="ratings" style={{ width: "60%" }}></span>
-
-                    <span className="tooltiptext tooltip-top"></span>
-                  </div>
-
-                  <a href="#" className="rating-link">
-                    ( 6 Reviews )
-                  </a>
-                </div>
+                <h1 className="product-title">
+                  {" "}
+                  {productDetails?.details?.heading}
+                </h1>
+                {/* <h6>Formula: {productDetails?.details?.generic_name}</h6> */}
 
                 <hr className="short-divider" />
 
                 <div className="price-box">
-                  <span className="old-price">$1,999.00</span>
-                  <span className="new-price">$1,699.00</span>
+                  {/* <span className="old-price">$1,999.00</span> */}
+                  <span className="new-price">
+                    {" "}
+                    Rs. {productDetails?.details?.price}
+                  </span>
                 </div>
 
                 <div className="product-desc">
-                  <p>
-                    Pellentesque habitant morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas. Vestibulum tortor quam,
-                    feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-                    eu libero sit amet quam egestas semper. Aenean ultricies mi
-                    vitae est. Mauris placerat eleifend leo.
-                  </p>
+                  <div
+                    className="my-3"
+                    dangerouslySetInnerHTML={{
+                      __html: productDetails?.details?.details,
+                    }}
+                  />
                 </div>
 
                 <ul className="single-info-list">
@@ -207,28 +175,22 @@ function ProductDetails() {
                   </li>
 
                   <li>
+                    Formula: {" "}
+                    <strong>
+                      <a href="#" className="product-category">
+                        {productDetails?.details?.generic_name}
+                      </a>
+                    </strong>
+                  </li>
+                  <li>
                     CATEGORY:{" "}
                     <strong>
                       <a href="#" className="product-category">
-                        SHOES
+                        {productDetails?.details?.category}
                       </a>
                     </strong>
                   </li>
 
-                  <li>
-                    TAGs:{" "}
-                    <strong>
-                      <a href="#" className="product-category">
-                        CLOTHES
-                      </a>
-                    </strong>
-                    ,
-                    <strong>
-                      <a href="#" className="product-category">
-                        SWEATER
-                      </a>
-                    </strong>
-                  </li>
                 </ul>
 
                 <div className="product-action">
@@ -270,31 +232,26 @@ function ProductDetails() {
 
                   <div className="social-icons mr-2">
                     <a
-                     
                       className="social-icon social-facebook icon-facebook"
                       target="_blank"
                       title="Facebook"
                     ></a>
                     <a
-                     
                       className="social-icon social-twitter icon-twitter"
                       target="_blank"
                       title="Twitter"
                     ></a>
                     <a
-                     
                       className="social-icon social-linkedin fab fa-linkedin-in"
                       target="_blank"
                       title="Linkedin"
                     ></a>
                     <a
-                     
                       className="social-icon social-gplus fab fa-google-plus-g"
                       target="_blank"
                       title="Google +"
                     ></a>
                     <a
-                     
                       className="social-icon social-mail icon-mail-alt"
                       target="_blank"
                       title="Mail"
@@ -341,20 +298,6 @@ function ProductDetails() {
                   aria-selected="false"
                 >
                   Additional Information
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  id="product-tab-reviews"
-                  data-toggle="tab"
-                  href="#product-reviews-content"
-                  role="tab"
-                  aria-controls="product-reviews-content"
-                  aria-selected="false"
-                >
-                  Reviews (1)
                 </a>
               </li>
             </ul>
@@ -421,678 +364,19 @@ function ProductDetails() {
                   </tbody>
                 </table>
               </div>
-
-              <div
-                className="tab-pane fade"
-                id="product-reviews-content"
-                role="tabpanel"
-                aria-labelledby="product-tab-reviews"
-              >
-                <div className="product-reviews-content">
-                  <h3 className="reviews-title">
-                    1 review for Men Black Sports Shoes
-                  </h3>
-
-                  <div className="comment-list">
-                    <div className="comments">
-                      <figure className="img-thumbnail">
-                        <img
-                          src="/assets/Images/blog/author.jpg"
-                          alt="author"
-                          width="80"
-                          height="80"
-                        />
-                      </figure>
-
-                      <div className="comment-block">
-                        <div className="comment-header">
-                          <div className="comment-arrow"></div>
-
-                          <div className="ratings-container float-sm-right">
-                            <div className="product-ratings">
-                              <span
-                                className="ratings"
-                                style={{ width: "60%" }}
-                              ></span>
-
-                              <span className="tooltiptext tooltip-top"></span>
-                            </div>
-                          </div>
-
-                          <span className="comment-by">
-                            <strong>Joe Doe</strong> – April 12, 2018
-                          </span>
-                        </div>
-
-                        <div className="comment-content">
-                          <p>Excellent.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="divider"></div>
-
-                  <div className="add-product-review">
-                    <h3 className="review-title">Add a review</h3>
-
-                    <form action="#" className="comment-form m-0">
-                      <div className="rating-form">
-                        <label htmlFor="rating">
-                          Your rating <span className="required">*</span>
-                        </label>
-                        <span className="rating-stars">
-                          <a className="star-1" href="#">
-                            1
-                          </a>
-                          <a className="star-2" href="#">
-                            2
-                          </a>
-                          <a className="star-3" href="#">
-                            3
-                          </a>
-                          <a className="star-4" href="#">
-                            4
-                          </a>
-                          <a className="star-5" href="#">
-                            5
-                          </a>
-                        </span>
-
-                        <select
-                          name="rating"
-                          id="rating"
-                          required=""
-                          style={{ display: "none " }}
-                        >
-                          <option value="">Rate…</option>
-                          <option value="5">Perfect</option>
-                          <option value="4">Good</option>
-                          <option value="3">Average</option>
-                          <option value="2">Not that bad</option>
-                          <option value="1">Very poor</option>
-                        </select>
-                      </div>
-
-                      <div className="form-group">
-                        <label>
-                          Your review <span className="required">*</span>
-                        </label>
-                        <textarea
-                          cols="5"
-                          rows="6"
-                          className="form-control form-control-sm"
-                        ></textarea>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-md-6 col-xl-12">
-                          <div className="form-group">
-                            <label>
-                              Name <span className="required">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control form-control-sm"
-                              required
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6 col-xl-12">
-                          <div className="form-group">
-                            <label>
-                              Email <span className="required">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control form-control-sm"
-                              required
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-12">
-                          <div className="custom-control custom-checkbox">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input"
-                              id="save-name"
-                            />
-                            <label
-                              className="custom-control-label mb-0"
-                              htmlFor="save-name"
-                            >
-                              Save my name, email, and website in this browser
-                              for the next time I comment.
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-
-                      <input
-                        type="submit"
-                        className="btn btn-primary"
-                        value="Submit"
-                      />
-                    </form>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
-          <div className="products-section pt-0">
-            <RelatedProductsCarosuel />
-          </div>
+          {productDetails?.lists?.length > 0 && (
+            <div className="products-section pt-0">
+              <RelatedProductsCarosuel
+                productDetails={productDetails}
+                load={loading}
+              />
+            </div>
+          )}
 
           <hr className="mt-0 m-b-5" />
-
-          {/* <div className="product-widgets-container row pb-2">
-            <div className="col-lg-3 col-sm-6 pb-5 pb-md-0">
-              <h4 className="section-sub-title">Featured Products</h4>
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-1.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-1-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Ultimate 3D Bluetooth Speaker</a>
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-2-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Brown Women Casual HandBag</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top">5.00</span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-3.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-3-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Circled Ultimate 3D Speaker</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-sm-6 pb-5 pb-md-0">
-              <h4 className="section-sub-title">Best Selling Products</h4>
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-4.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-4-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Blue Backpack for the Young - S</a>
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top">5.00</span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-5.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-5-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Casual Spring Blue Shoes</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-6.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-6-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Men Black Gentle Belt</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top">5.00</span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-sm-6 pb-5 pb-md-0">
-              <h4 className="section-sub-title">Latest Products</h4>
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-7.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-7-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Men Black Sports Shoes</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-8.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-8-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Brown-Black Men Casual Glasses</a>
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top">5.00</span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-9.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-9-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Black Men Casual Glasses</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-sm-6 pb-5 pb-md-0">
-              <h4 className="section-sub-title">Top Rated Products</h4>
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-10.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-10-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Basketball Sports Blue Shoes</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-11.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-11-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Men Sports Travel Bag</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top">5.00</span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="product-default left-details product-widget">
-                <figure>
-                  <a href="product.html">
-                    <img
-                      src="/assets/Images/products/small/product-12.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                    <img
-                      src="/assets/Images/products/small/product-12-2.jpg"
-                      width="74"
-                      height="74"
-                      alt="product"
-                    />
-                  </a>
-                </figure>
-
-                <div className="product-details">
-                  <h3 className="product-title">
-                    {" "}
-                    <a href="product.html">Brown HandBag</a>{" "}
-                  </h3>
-
-                  <div className="ratings-container">
-                    <div className="product-ratings">
-                      <span
-                        className="ratings"
-                        style={{ width: "100%" }}
-                      ></span>
-
-                      <span className="tooltiptext tooltip-top"></span>
-                    </div>
-                  </div>
-
-                  <div className="price-box">
-                    <span className="product-price">$49.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </main>
     </Layout>

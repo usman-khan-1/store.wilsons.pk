@@ -8,10 +8,10 @@ import ImageWithLoader from "../ImageWithLoader"; // import the ImageWithLoader 
 
 function TestimonialCarousel() {
   const responsive = {
-    superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 5 },
-    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 5 },
-    tablet: { breakpoint: { max: 1024, min: 464 }, items: 2 },
-    mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
+    superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 6 },
+    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 6 },
+    tablet: { breakpoint: { max: 1024, min: 464 }, items: 3 },
+    mobile: { breakpoint: { max: 464, min: 0 }, items: 2 },
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,7 +46,7 @@ function TestimonialCarousel() {
         className="TestimonialCarousel"
       >
         {loading
-          ? [1, 2, 3, 4, 5].map((_, index) => <ProductShimmer key={index} />)
+          ? [1, 2, 3, 4, 5,6].map((_, index) => <ProductShimmer key={index} />)
           : products?.map((product, index) => (
               <div key={index}>
                 <div className="single-testimonial-item">

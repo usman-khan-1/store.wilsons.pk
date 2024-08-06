@@ -29,12 +29,12 @@ function BestSellerElectronics() {
       <div className="row">
         {loading
           ? [1, 2, 3, 4].map((_, index) => (
-              <div key={index} className="col-lg-3 col-md-4 col-sm-6">
+              <div key={index} className="col-lg-2 col-md-3 col-sm-6">
                 <ProductShimmer />
               </div>
             ))
           : products?.map((data, index) => (
-              <div key={index} className="col-lg-3 col-md-4 col-sm-6">
+              <div key={index} className="col-lg-2 col-md-3 col-sm-6">
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
                     <Link to={`/product/${data.seo_slug}`}>
