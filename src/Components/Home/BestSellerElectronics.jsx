@@ -28,7 +28,7 @@ function BestSellerElectronics() {
       <h2 className="section-title ls-n-10 pb-3 m-b-4">Best Sellers</h2>
       <div className="row">
         {loading
-          ? [1, 2, 3, 4].map((_, index) => (
+          ? [1, 2, 3, 4,5,6].map((_, index) => (
               <div key={index} className="col-lg-2 col-md-3 col-sm-6">
                 <ProductShimmer />
               </div>

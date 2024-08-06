@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 
 function HomeCarosuel() {
   const homeSliderBannerImg = [
-    "/assets/imagess/aaa.jpg",
+    "/assets/imagess/banner.jpg",
   ];
   return (
     <div>

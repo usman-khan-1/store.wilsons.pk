@@ -85,7 +85,7 @@ function HomeNavbar() {
                 <div className="Categories">
                 <h4>Shops By Category</h4>
                   <div className="row">
-                    {category.map((data, index) => (
+                    {category?.map((data, index) => (
                       <div className="col-12 category">
                         <Link key={index} to={`/category/${data?.slug}`}>
                           <img

@@ -88,7 +88,7 @@ function Footer() {
                     <div className="col-sm-6 pl-sm-0">
                       <div className="contact-widget">
                         <h4 className="widget-title">WORKING DAYS/HOURS:</h4>
-                        <a href="#">Mon - Sun / 9:00AM - 8:00PM</a>
+                        <a href="#">Mon - Fri / 9:00AM - 5:00PM</a>
                       </div>
                     </div>
                   </div>
