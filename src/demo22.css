@@ -9627,7 +9627,7 @@ header a {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   color: #fff;
-  background: #01abec;
+  background: #f4f4f4;
 }
 .header-center,
 .header-left,
@@ -9804,7 +9804,7 @@ header .separator {
 }
 .header-icon i {
   font-size: 2.8rem;
-  color: #fff;
+  color: #000;
 }
 .header-icon:hover {
   color: #222529;
@@ -9814,7 +9814,7 @@ header .separator {
   vertical-align: middle;
   width: 25px;
   height: 20px;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   border-radius: 0 0 5px 5px;
   position: relative;
   opacity: 0.9;
@@ -11466,6 +11466,7 @@ footer .contact-info-label {
 }
 .header-icon a {
   transition: none;
+ 
 }
 .minicart-icon {
   border-color: #fff;
@@ -11492,7 +11493,7 @@ footer .contact-info-label {
   height: 52px;
   font-size: 2.5rem;
   border-radius: 50%;
-  border: 1px solid rgba(244, 244, 244, 0.5);
+  border: 1px solid #000;
 }
 .header-user i:before {
   margin-top: 4px;
@@ -11504,13 +11505,13 @@ footer .contact-info-label {
   margin-bottom: 3px;
   font-size: 1.2rem;
   font-weight: 400;
-  color: #fff;
+  color: #000;
 }
 .header-userinfo h4 {
   line-height: 1;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #fff;
+  color: #000;
 }
 .header-middle.fixed {
   background: #01abec;

@@ -10105,7 +10105,7 @@ header .separator {
   vertical-align: middle;
   width: 25px;
   height: 20px;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   border-radius: 0 0 5px 5px;
   position: relative;
   opacity: 0.9;
@@ -10595,7 +10595,7 @@ header .separator {
 }
 .header-search .form-control,
 .header-search .select-custom {
-  background: #f4f4f4;
+  background: #fff;
 }
 @media (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .header-search .form-control {
@@ -10689,7 +10689,7 @@ header .separator {
   min-width: 40px;
   color: #222529;
   font-size: 16px;
-  background: #f4f4f4;
+  background: #fff;
 }
 .header-search-wrapper .btn:before {
   display: inline-block;

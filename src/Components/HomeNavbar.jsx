@@ -66,7 +66,7 @@ function HomeNavbar() {
             <div className="header-left">
               <Link to={"/"} className="logo">
                 <img
-                  src="/assets/Images/logo-white.png"
+                  src="/assets/Images/wilmart-logo.png"
                   alt="Porto Logo"
                   width="111"
                   height="44"
@@ -122,7 +122,7 @@ function HomeNavbar() {
             <div className="header-right ml-0 ml-lg-auto">
               <div className="header-icon d-md-block d-none mr-0">
                 <div className="header-user">
-                  <i className="fas fa-user"></i>
+                  {/* <i className="fas fa-user"></i> */}
                   {user ? (
                     <Link to={"/myAccount"}>
                       <div className="header-userinfo">
@@ -135,7 +135,7 @@ function HomeNavbar() {
                   ) : (
                     <Link to={"/login"}>
                       <div className="header-userinfo">
-                        <h4 className="font1 mb-0">Login</h4>
+                        <h4 className="font1 mb-0">Login / Register</h4>
                       </div>
                     </Link>
                   )}

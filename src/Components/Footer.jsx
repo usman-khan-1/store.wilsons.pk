@@ -53,7 +53,7 @@ function Footer() {
                   <Link to={"/"}>
                     <img
                       className="logo"
-                      src="/assets/Images/logo-black.png"
+                      src="/assets/Images/wilmart-logo.png"
                       alt="Porto Logo"
                       width="220"
                       height="80"
