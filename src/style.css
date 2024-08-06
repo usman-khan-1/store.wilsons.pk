@@ -9310,7 +9310,7 @@ a:hover {
 }
 @media (min-width: 1220px) {
   .container {
-    max-width: 1200px;
+    max-width: 90%;
   }
 }
 @media (min-width: 1200px) {
@@ -10706,7 +10706,7 @@ header .separator {
   border: #e7e7e7;
 }
 .header-search-inline .form-control {
-  min-width: 21rem;
+  min-width: 11rem;
   padding: 1rem 2rem;
 }
 @media (min-width: 992px) {
@@ -18419,5 +18419,78 @@ div.shimmer {
 .top-categories .category-icon{
   width: 100px;
   margin-bottom: 20px;
+
+}
+
+
+.left-sidebar-active .left-sidebar-container {
+  transform: translateX(0);
+}
+
+.left-sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 9999;
+  overflow-y: auto;
+}
+.left-sidebar-container::-webkit-scrollbar {
+  display: none;
+}
+.left-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+.left-sidebar-wrapper {
+  padding: 20px;
+}
+
+.left-sidebar-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  
+}
+
+.left-nav .left-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.left-nav .left-menu li {
+  margin: 10px 0;
+}
+
+.left-nav .left-menu li a {
+  color: #000;
+  text-decoration: none;
+}
+.Categories {
+  /* overflow-y: auto; */
+}
+.Categories h4{
+  font-size: 2rem;
+  font-family: Poppins, sans-serif;
+}
+.Categories .category{
+  padding: 10px 0px;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.category-bars .fa-bars{  
+  font-size: 20px;
+  margin: 0 10px;
 
 }

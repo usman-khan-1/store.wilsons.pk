@@ -7,12 +7,13 @@ function HomeNavbar() {
   const location = useLocation();
   const [isFixed, setIsFixed] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
+  const [isLeftSidebar, setIsLeftSidebar] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
   const [openCart, setOpenCart] = useState(false);
 
   const user = useSelector((state) => state.user.value);
 
-  console.log("user",user)
+  console.log("user", user);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +43,10 @@ function HomeNavbar() {
     setOpenCategory(!openCategory);
   };
 
+  const toggleLeftSidebar = () => {
+    setIsLeftSidebar(!isLeftSidebar);
+  };
+
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
@@ -62,8 +67,51 @@ function HomeNavbar() {
           className="header-middle sticky-header"
           data-sticky-options="{'mobile': true}"
         >
+          <div className={`${isLeftSidebar ? "left-sidebar-active" : ""}`}>
+            {isLeftSidebar && (
+              <div
+                className="left-sidebar-overlay"
+                onClick={() => setIsLeftSidebar(false)}
+              ></div>
+            )}
+            <div className="left-sidebar-container">
+              <div className="left-sidebar-wrapper">
+                <span
+                  onClick={() => setIsLeftSidebar(false)}
+                  className="left-sidebar-close"
+                >
+                  <i className="fa fa-times"></i>
+                </span>
+                <div className="Categories">
+                <h4>Shops By Category</h4>
+                  <div className="row">
+                    {category.map((data, index) => (
+                      <div className="col-12 category">
+                        <Link key={index} to={`/category/${data?.slug}`}>
+                          <img
+                            className="category-icon"
+                            src={data?.icon}
+                            alt=""
+                          />
+                          {data?.name}
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="container">
             <div className="header-left">
+
+              <div className="category-bars">
+
+              <i className="fas fa-bars" onClick={toggleLeftSidebar}></i>
+              </div>
+
+
               <Link to={"/"} className="logo">
                 <img
                   src="/assets/Images/wilmart-logo.png"
@@ -123,6 +171,17 @@ function HomeNavbar() {
               <div className="header-icon d-md-block d-none mr-0">
                 <div className="header-user">
                   {/* <i className="fas fa-user"></i> */}
+                  <Link to={"/"}>
+                    <div className="header-userinfo">
+                      <h4 className="font1 mb-0">Home</h4>
+                    </div>
+                  </Link>
+                  <Link to={"/about"}>
+                    <div className="header-userinfo">
+                      <h4 className="font1 mb-0">About</h4>
+                    </div>
+                  </Link>
+
                   {user ? (
                     <Link to={"/myAccount"}>
                       <div className="header-userinfo">
@@ -294,7 +353,7 @@ function HomeNavbar() {
           </div>
         </div>
 
-        <div
+        {/* <div
           className="header-bottom sticky-header "
           data-sticky-options="{'mobile': false, 'offset': 684}"
         >
@@ -319,7 +378,6 @@ function HomeNavbar() {
                   >
                     {category.map((data, index) => (
                       <Link key={index} to={`/category/${data?.slug}`}>
-                        {/* <i className="icon-category-medicine"></i> */}
                         <img
                           className="category-icon"
                           src={data?.icon}
@@ -376,7 +434,7 @@ function HomeNavbar() {
               </nav>
             </div>
           </div>
-        </div>
+        </div> */}
       </header>
 
       <div className={`${isSideBar ? "mmenu-active" : ""}`}>

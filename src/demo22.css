@@ -11466,6 +11466,7 @@ footer .contact-info-label {
 }
 .header-icon a {
   transition: none;
+  margin: 0 10px;
  
 }
 .minicart-icon {
@@ -11521,7 +11522,7 @@ footer .contact-info-label {
   width: 100%;
 }
 .header-search-inline .form-control {
-  max-width: 400px;
+  max-width: 250px;
   flex: 1;
   font-size: 1.4rem;
   padding: 0.9rem 1.5rem 1rem 3rem;
@@ -16047,9 +16048,9 @@ aside .widget-info i {
   }
 }
 @media (min-width: 1220px) {
-  .intro-section .col-lg-12 {
+  /* .intro-section .col-lg-12 {
     padding-left: 298px;
-  }
+  } */
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .count-down .product-countdown-title {

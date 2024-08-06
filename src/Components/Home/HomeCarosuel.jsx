@@ -3,12 +3,12 @@ import { Carousel } from "react-bootstrap";
 
 function HomeCarosuel() {
   const homeSliderBannerImg = [
-    "/assets/imagess/homebanner.jpg",
+    "/assets/imagess/aaa.jpg",
   ];
   return (
     <div>
-      <section className="intro-section">
-        <div className="container">
+      <section className="">
+        <div className="">
           <div className="row">
             <div className="col-lg-12 mb-2">
               <div className="home-caroseul">
