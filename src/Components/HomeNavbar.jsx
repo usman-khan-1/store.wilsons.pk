@@ -83,7 +83,7 @@ function HomeNavbar() {
                   <i className="fa fa-times"></i>
                 </span>
                 <div className="Categories">
-                <h4>Shops By Category</h4>
+                  <h4>Shops By Category</h4>
                   <div className="row">
                     {category?.map((data, index) => (
                       <div key={index} className="col-12 category">
@@ -105,12 +105,9 @@ function HomeNavbar() {
 
           <div className="container">
             <div className="header-left">
-
               <div className="category-bars">
-
-              <i className="fas fa-bars" onClick={toggleLeftSidebar}></i>
+                <i className="fas fa-bars" onClick={toggleLeftSidebar}></i>
               </div>
-
 
               <Link to={"/"} className="logo">
                 <img
@@ -176,11 +173,29 @@ function HomeNavbar() {
                       <h4 className="font1 mb-0">Home</h4>
                     </div>
                   </Link>
-                  <Link to={"/about"}>
+                  {/* <Link to={"/about"}>
                     <div className="header-userinfo">
                       <h4 className="font1 mb-0">About</h4>
                     </div>
-                  </Link>
+                  </Link> */}
+                  <ul className="menu">
+                    <li className="dropdown">
+                      <a>
+                        <b>About</b>
+                      </a>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <Link to="/company-profile">Company Profile</Link>
+                        </li>
+                        <li>
+                          <Link to="/manufacturing">Manufacturing</Link>
+                        </li>
+                        <li>
+                          <Link to="/quality-policy">Quality Policy</Link>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
 
                   {user ? (
                     <Link to={"/myAccount"}>

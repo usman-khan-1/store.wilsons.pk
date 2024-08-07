@@ -22,6 +22,9 @@ import ShippingPolicy from "./Pages/ShippingPolicy";
 import ReturnPolicy from "./Pages/ReturnPolicy";
 import VerifyAccount from "./Pages/VerifyAccount";
 import TermsCondition from "./Pages/TermsCondition";
+import CompanyProfile from "./Pages/CompanyProfile";
+import QualityPolicy from "./Pages/QualityPolicy";
+import Manufacturing from "./Pages/Manufacturing";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -59,11 +62,14 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="product/:slug" element={<ProductDetails />} />
           <Route path="product-details" element={<ProductDetails />} />
-        
+
           <Route path="checkout" element={<Checkout />} />
           <Route path="verify-customer/:slug" element={<VerifyAccount />} />
           <Route path="category" element={<Shop />} />
           <Route path="category/:slug" element={<Shop />} />
+          <Route path="company-profile" element={<CompanyProfile />} />
+          <Route path="quality-policy" element={<QualityPolicy />} />
+          <Route path="manufacturing" element={<Manufacturing />} />
         </Routes>
       </BrowserRouter>
     </>
