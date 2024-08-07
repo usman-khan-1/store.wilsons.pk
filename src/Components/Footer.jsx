@@ -14,20 +14,13 @@ function Footer() {
           <div className="footer-top">
             <div className="container">
               <div className="row align-items-center">
-                <div className="col-md-6 col-lg-3">
+                <div className="col-md-12 col-lg-6">
                   <h4 className="widget-newsletter-title font1 font-weight-bold text-white">
                     Sign Up to Newsletter
                   </h4>
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <p className="widget-newsletter-content ls-10 text-white mb-0">
-                    Get all the latest information on Events, Sales and Offers.
-                  </p>
-                  <span className="widget-newsletter-content d-block font-weight-bold ls-10 text-white">
-                    Receive $10 coupon for first shopping.
-                  </span>
-                </div>
-                <div className="col-md-10 col-lg-5">
+               
+                <div className="col-md-6 col-lg-6">
                   <form action="#" className="mb-0">
                     <div className="footer-submit-wrapper d-flex">
                       <input

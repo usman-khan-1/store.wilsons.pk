@@ -216,9 +216,7 @@ function HomeNavbar() {
                 </div>
               </div>
 
-              <Link to={"/wishlist"} className="header-icon">
-                <i className="fas fa-heart"></i>
-              </Link>
+          
 
               <div className="dropdown cart-dropdown">
                 <Link

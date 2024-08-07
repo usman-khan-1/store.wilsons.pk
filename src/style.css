@@ -9987,7 +9987,7 @@ header a {
   z-index: 1040;
 }
 .logo {
-  max-width: 111px;
+  max-width: 100%;
 }
 .header-contact {
   align-items: center;
@@ -10716,6 +10716,8 @@ header .separator {
   }
   .header-search-inline.header-search .header-search-wrapper {
     display: flex;
+    align-items: center;
+    justify-content: center;
     display: -ms-flex;
     position: static;
     margin: 0;

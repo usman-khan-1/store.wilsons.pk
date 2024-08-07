@@ -2,13 +2,25 @@ import React, { useEffect } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
 
-function Manufacturing() {
+function CompanyProfile() {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
   return (
     <Layout>
       <main className="main about">
+        <div
+          className="page-header page-header-bg text-left"
+          style={{
+            background:
+              "50%/cover #D4E1EA url(/assets/Images/page-header-bg.jpg)",
+          }}
+        >
+          <div className="container">
+            <h1>Manufacturing</h1>
+          </div>
+        </div>
+
         <nav aria-label="breadcrumb" className="breadcrumb-nav">
           <div className="container">
             <ol className="breadcrumb">
@@ -18,7 +30,7 @@ function Manufacturing() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Company Profile
+                Manufacturing
               </li>
             </ol>
           </div>
@@ -26,9 +38,7 @@ function Manufacturing() {
 
         <div className="about-section">
           <div className="container">
-            <div className="row">
-              <div className="col-lg-6 col-sm-12">
-                <h2 className="subtitle">Production Facility:</h2>
+          <h2 className="subtitle">Production Facility:</h2>
                 <p>
                   Wilson’s Healthcare is one of the pioneer’s in the
                   Manufacturing of Neutraceutical products in Pakistan. It has
@@ -47,21 +57,14 @@ function Manufacturing() {
                 <p>
                 At Wilson’s Healthcare, it is mandatory for all the products to undergo the process of ‘Scientific Validation’, which involves screening of all the steps that initiates from dispensing of raw materials to the finished goods. Scientific validation involves several extensive tests to confirm potency of the products, using state of the art equipment such as High Performance Liquid Chromatography (HPLC), Infra Red Spectroscopy (IR), etc. The process further involves rigorous analysis to ensure that highest level of purity & efficacy is expressed in to the products that we manufacture.
                 </p>
-               
-              </div>
-              <div className="col-lg-6 col-sm-12">
-                <img
-                   src="https://img.freepik.com/free-vector/images-concept-illustration_114360-298.jpg?ga=GA1.1.1838803056.1721801062&semt=ais_hybrid"
-                  className="h-100"
-                  alt=""
-                />
-              </div>
-            </div>
           </div>
         </div>
+
+      
+
       </main>
     </Layout>
   );
 }
 
-export default Manufacturing;
+export default CompanyProfile;

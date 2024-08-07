@@ -9,6 +9,18 @@ function QualityPolicy() {
   return (
     <Layout>
       <main className="main about">
+        <div
+          className="page-header page-header-bg text-left"
+          style={{
+            background:
+              "50%/cover #D4E1EA url(/assets/Images/page-header-bg.jpg)",
+          }}
+        >
+          <div className="container">
+            <h1>Manufacturing</h1>
+          </div>
+        </div>
+
         <nav aria-label="breadcrumb" className="breadcrumb-nav">
           <div className="container">
             <ol className="breadcrumb">
@@ -18,7 +30,7 @@ function QualityPolicy() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Company Profile
+                Manufacturing
               </li>
             </ol>
           </div>
@@ -26,9 +38,7 @@ function QualityPolicy() {
 
         <div className="about-section">
           <div className="container">
-            <div className="row">
-              <div className="col-lg-6 col-sm-12">
-                <h2 className="subtitle">Quality Policy</h2>
+          <h2 className="subtitle">Quality Policy</h2>
                 <p>
                   We at Wilson’s Healthcare assure to provide best quality
                   Healthcare products to our customers, application of QMS
@@ -39,17 +49,11 @@ function QualityPolicy() {
                   committed to fulfill all applicable regulatory & statutory
                   requirements.
                 </p>
-              </div>
-              <div className="col-lg-6 col-sm-12">
-                <img
-                   src="https://img.freepik.com/free-vector/images-concept-illustration_114360-298.jpg?ga=GA1.1.1838803056.1721801062&semt=ais_hybrid"
-                  className="h-100"
-                  alt=""
-                />
-              </div>
-            </div>
           </div>
         </div>
+
+      
+
       </main>
     </Layout>
   );
