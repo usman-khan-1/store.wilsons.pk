@@ -19,7 +19,7 @@ function ShippingPolicy() {
           <div className="container">
             <h1>
               {/* <span>ABOUT US</span> */}
-               Shipping Policy
+              Shipping Policy
             </h1>
             {/* <a className="btn btn-dark">Contact</a> */}
           </div>
@@ -42,32 +42,31 @@ function ShippingPolicy() {
 
         <div className="about-section">
           <div className="container">
-            <h2 className="subtitle">OUR STORY</h2>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged.
-            </p>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              Enjoy Free Shipping across Pakistan on all orders above PKR 2,500.
             </p>
 
             <p className="lead">
-              “ Many desktop publishing packages and web page editors now use
-              Lorem Ipsum as their default model search for evolved over
-              sometimes by accident, sometimes on purpose ”
+              Why charge a shipping cost on orders below PKR 2,500?
             </p>
+            <p>
+              It'll be unfair to expect free shipping on a 300-rupee order,
+              after all, shipping has a cost too
+            </p>
+            <h2 className="subtitle">Note:</h2>
+            <p className="lead">Shipping is available all over Pakistan.</p>
+            <p>
+              Please allow maximum 3 working days for delivery (may change
+              during special events or situations in the country).
+            </p>
+            <p>
+              Goods will be delivered to your postal address given during
+              check-out.
+            </p>
+            <p className="lead">For Cash On Delivery Orders:</p>
+            <p>Payment will be collected at the time of delivery.</p>
           </div>
         </div>
-
-      
-          
       </main>
     </Layout>
   );

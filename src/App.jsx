@@ -21,6 +21,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import ShippingPolicy from "./Pages/ShippingPolicy";
 import ReturnPolicy from "./Pages/ReturnPolicy";
 import VerifyAccount from "./Pages/VerifyAccount";
+import TermsCondition from "./Pages/TermsCondition";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -50,6 +51,7 @@ function App() {
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="return-policy" element={<ReturnPolicy />} />
+          <Route path="terms-of-service" element={<TermsCondition />} />
           <Route path="blog" element={<Blogs />} />
           <Route path="blog-details" element={<BlogDetails />} />
           <Route path="wishList" element={<WishList />} />

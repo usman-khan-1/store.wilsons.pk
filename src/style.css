@@ -11759,6 +11759,10 @@ footer .contact-info-label {
   color: #21293c;
   font-size: 1.9rem;
 }
+.about-section ul li{
+  list-style:disc;
+  margin: 10px 0 10px 30px;
+}
 .about-section {
   padding: 1rem 0 2.5rem;
   color: #7b858a;

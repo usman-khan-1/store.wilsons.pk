@@ -130,6 +130,9 @@ function Footer() {
                       <li>
                         <Link to={"/return-policy"}>Return Policy</Link>
                       </li>
+                      <li>
+                        <Link to={"/terms-of-service"}>Terms Of Service & Condition</Link>
+                      </li>
                     </ul>
                   </div>
                 </div>
