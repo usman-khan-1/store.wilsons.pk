@@ -13,7 +13,7 @@ function HomeNavbar() {
 
   const user = useSelector((state) => state.user.value);
 
-  console.log("user", user);
+  // console.log("user", user);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,7 +86,7 @@ function HomeNavbar() {
                 <h4>Shops By Category</h4>
                   <div className="row">
                     {category?.map((data, index) => (
-                      <div className="col-12 category">
+                      <div key={index} className="col-12 category">
                         <Link key={index} to={`/category/${data?.slug}`}>
                           <img
                             className="category-icon"
@@ -458,7 +458,7 @@ function HomeNavbar() {
                     Categories <span className="mmenu-btn"></span>
                   </Link>
                   <ul className={`${openCategory && "d-block"}`}>
-                    {category.map((data, index) => (
+                    {category?.map((data, index) => (
                       <li key={index}>
                         <Link>{data?.name}</Link>
                       </li>

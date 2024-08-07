@@ -71,7 +71,7 @@ function Home() {
         </div>
       </div>
 
-      <TopCategoryCarosuel />
+    <TopCategoryCarosuel />
       <MostViewedCarosuel />
 
       <BestSellerElectronics />
