@@ -8,11 +8,11 @@ const headers = {
 };
 
 const data = {
-    "host":"store.wilsons.pk"
-}
+  host: "wilmart.pk",
+};
 
 export const makePostRequest = async (endpoint, data = {}) => {
-    data.host = "store.wilsons.pk";
+  data.host = "wilmart.pk";
   const response = await axios
     .post(server + endpoint, data, {
       headers: headers,

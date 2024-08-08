@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makePostRequest } from "../../Apis";
+import { toast,ToastContainer } from "react-toastify";
 
 function RegisterForm() {
   const [products, setProducts] = useState([]);
@@ -29,6 +30,7 @@ function RegisterForm() {
         password: "",
       });
       setLoading(false);
+      // toast.success()
     } catch (error) {
       setLoading(false);
       console.error("Error fetching videos data:", error);
@@ -102,7 +104,9 @@ function RegisterForm() {
           {loading ? "Please Wait.." : "Register"}
         </button>
       </div>
+      <ToastContainer/>
     </form>
+    
   );
 }
 

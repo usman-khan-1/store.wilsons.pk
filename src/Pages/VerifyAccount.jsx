@@ -10,8 +10,11 @@ function VerifyAccount() {
     setCode(e.target.value);
   };
 
-  const handleVerifyAccount = async () => {
+  const handleVerifyAccount = async (e) => {
     e.preventDefault();
+
+    console.log("hello");
+
     setLoading(true);
     try {
       const response = await makePostRequest("auth/verify-customer", code);
@@ -38,7 +41,7 @@ function VerifyAccount() {
         <div class="container login-container">
           <div class="row">
             <div class="col-lg-6 mx-auto">
-              <form onSubmit={handleVerifyAccount}>
+              <form method="get" onSubmit={handleVerifyAccount}>
                 <label for="login-email">
                   Code
                   <span class="required">*</span>
