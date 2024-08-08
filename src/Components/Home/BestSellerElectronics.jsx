@@ -8,7 +8,6 @@ function BestSellerElectronics() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  
   const [toggleStates, setToggleStates] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +29,6 @@ function BestSellerElectronics() {
     newToggleStates[index] = !newToggleStates[index];
     setToggleStates(newToggleStates);
   };
-
 
   return (
     <div className="container ">
@@ -81,32 +79,30 @@ function BestSellerElectronics() {
                         </Link>
                       </div>
                       <div
-                          title="Add to Wishlist"
-                          className="btn-icon-wish"
-                          onClick={() => handleToggle(index)}
-                          style={{
-                            color: toggleStates[index] ? "blue" : "gray",
-                          }}
-                        >
-                          <i className="icon-heart"></i>
-                        </div>
+                        title="Add to Wishlist"
+                        className="btn-icon-wish"
+                        onClick={() => handleToggle(index)}
+                        style={{
+                          color: toggleStates[index] ? "#01abec" : "gray",
+                        }}
+                      >
+                        {toggleStates[index] ? (
+                          <i class="fa-solid fa-heart"></i>
+                        ) : (
+                          <i class="fa-regular fa-heart"></i>
+                        )}
+                      </div>
                     </div>
                     <h3 className="product-title">
                       <Link to={`/product/${data.seo_slug}`}>
                         {data?.heading}
                       </Link>
                     </h3>
-                    <div className="ratings-container">
-                      <div className="product-ratings">
-                        <span
-                          className="ratings"
-                          style={{ width: "80%" }}
-                        ></span>
-                        <span className="tooltiptext tooltip-top"></span>
-                      </div>
-                    </div>
+
                     <div className="price-box">
-                      <span className="product-price">Rs {data?.price.toLocaleString()}</span>
+                      <span className="product-price">
+                        Rs. {data.price.toLocaleString("en-US")}
+                      </span>
                     </div>
                   </div>
                 </div>

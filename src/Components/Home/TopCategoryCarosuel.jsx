@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import { makePostRequest } from "../../Apis";
 import { Link } from "react-router-dom";
+import ImageWithLoader from "../ImageWithLoader";
 
 function TopCategoryCarosuel() {
   const categoryList = [
@@ -109,7 +110,15 @@ function TopCategoryCarosuel() {
           >
             {category?.map((category, index) => (
               <div key={index} className="category-item">
-                <img className="category-icon" src={category?.icon} alt="" />
+                <ImageWithLoader
+                  src={category?.icon}
+                  width="217"
+                  height="217"
+                  
+                  loaderHeight={"100px"}
+                  alt="product"
+                />
+                {/* <img className="category-icon" src={category?.icon} alt="" /> */}
                 <Link to={`/category/${category?.slug}`} key={index}>
                   <span>{category?.name}</span>
                 </Link>

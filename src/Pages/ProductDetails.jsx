@@ -3,6 +3,12 @@ import Layout from "../Components/Layout";
 import RelatedProductsCarosuel from "../Components/Home/RelatedProductsCarosuel";
 import { Link, useParams } from "react-router-dom";
 import { makePostRequest } from "../Apis";
+import ImageWithLoader from "../Components/ImageWithLoader";
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+} from "react-share";
 
 function ProductDetails() {
   useEffect(() => {
@@ -10,6 +16,8 @@ function ProductDetails() {
   });
 
   const slug = useParams();
+  const currentUrl = window.location.href;
+
   const [loading, setLoading] = useState(false);
   const [borderIndex, setBorderIndex] = useState(0);
   const [productDetails, setProductDetails] = useState({});
@@ -57,7 +65,7 @@ function ProductDetails() {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <a href="#">Products</a>
+                <a href="#">Product</a>
               </li>
             </ol>
           </nav>
@@ -140,7 +148,15 @@ function ProductDetails() {
                   ))}
                 </div> */}
 
-                <img src={productDetails?.details?.image} alt="" />
+                <ImageWithLoader
+                  src={productDetails?.details?.image}
+                  width="217"
+                  height="217"
+                  loaderHeight={"450px"}
+                  alt="product"
+                />
+
+                {/* <img src={productDetails?.details?.image} alt="" /> */}
               </div>
 
               <div className="col-lg-7 col-md-6 product-single-details">
@@ -161,12 +177,7 @@ function ProductDetails() {
                 </div>
 
                 <div className="product-desc">
-                  <div
-                    className="my-3"
-                    dangerouslySetInnerHTML={{
-                      __html: productDetails?.details?.details,
-                    }}
-                  />
+                  <p>{productDetails?.details?.short_detail}</p>
                 </div>
 
                 <ul className="single-info-list">
@@ -175,7 +186,7 @@ function ProductDetails() {
                   </li>
 
                   <li>
-                    Formula: {" "}
+                    Formula:{" "}
                     <strong>
                       <a href="#" className="product-category">
                         {productDetails?.details?.generic_name}
@@ -190,7 +201,6 @@ function ProductDetails() {
                       </a>
                     </strong>
                   </li>
-
                 </ul>
 
                 <div className="product-action">
@@ -231,32 +241,30 @@ function ProductDetails() {
                   <label className="sr-only">Share:</label>
 
                   <div className="social-icons mr-2">
-                    <a
-                      className="social-icon social-facebook icon-facebook"
-                      target="_blank"
-                      title="Facebook"
-                    ></a>
-                    <a
-                      className="social-icon social-twitter icon-twitter"
-                      target="_blank"
-                      title="Twitter"
-                    ></a>
-                    <a
-                      className="social-icon social-linkedin fab fa-linkedin-in"
-                      target="_blank"
-                      title="Linkedin"
-                    ></a>
-                    <a
-                      className="social-icon social-gplus fab fa-google-plus-g"
-                      target="_blank"
-                      title="Google +"
-                    ></a>
-                    <a
-                      className="social-icon social-mail icon-mail-alt"
-                      target="_blank"
-                      title="Mail"
-                    ></a>
+                    <FacebookShareButton url={currentUrl}>
+                      <a
+                        className="social-icon social-facebook icon-facebook"
+                        target="_blank"
+                        title="Facebook"
+                      ></a>
+                    </FacebookShareButton>
+
+                    <TwitterShareButton url={currentUrl}>
+                      <a
+                        className="social-icon social-twitter icon-twitter"
+                        target="_blank"
+                        title="Twitter"
+                      ></a>
+                    </TwitterShareButton>
+                    <LinkedinShareButton url={currentUrl}>
+                      <a
+                        className="social-icon social-linkedin fab fa-linkedin-in"
+                        target="_blank"
+                        title="Linkedin"
+                      ></a>
+                    </LinkedinShareButton>
                   </div>
+                  
 
                   <Link
                     to={"/wishlist"}
@@ -297,7 +305,7 @@ function ProductDetails() {
                   aria-controls="product-tags-content"
                   aria-selected="false"
                 >
-                  Additional Information
+                  Inner Leaf
                 </a>
               </li>
             </ul>
@@ -309,29 +317,16 @@ function ProductDetails() {
                 role="tabpanel"
                 aria-labelledby="product-tab-desc"
               >
-                <div className="product-desc-content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, nostrud ipsum consectetur
-                    sed do, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat.
-                  </p>
-                  <ul>
-                    <li>
-                      Any Product types that You want - Simple, Configurable
-                    </li>
-                    <li>Downloadable/Digital Products, Virtual Products</li>
-                    <li>Inventory Management with Backordered items</li>
-                  </ul>
-                  <p>
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.{" "}
-                  </p>
-                </div>
+                {productDetails?.details?.details === "<p><br></p>" ? (
+                  <p>No Description Yet</p>
+                ) : (
+                  <div
+                    className="my-3"
+                    dangerouslySetInnerHTML={{
+                      __html: productDetails?.details?.details,
+                    }}
+                  />
+                )}
               </div>
 
               <div
@@ -340,29 +335,10 @@ function ProductDetails() {
                 role="tabpanel"
                 aria-labelledby="product-tab-tags"
               >
-                <table className="table table-striped mt-2">
-                  <tbody>
-                    <tr>
-                      <th>Weight</th>
-                      <td>23 kg</td>
-                    </tr>
-
-                    <tr>
-                      <th>Dimensions</th>
-                      <td>12 × 24 × 35 cm</td>
-                    </tr>
-
-                    <tr>
-                      <th>Color</th>
-                      <td>Black, Green, Indigo</td>
-                    </tr>
-
-                    <tr>
-                      <th>Size</th>
-                      <td>Large, Medium, Small</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8bUqIUkfyesCXuAFw-MFLebEI-5to1ouplw&s"
+                  alt=""
+                />
               </div>
             </div>
           </div>

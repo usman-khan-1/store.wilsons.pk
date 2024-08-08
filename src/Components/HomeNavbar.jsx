@@ -113,7 +113,7 @@ function HomeNavbar() {
                 <img
                   src="/assets/Images/wilmart-logo.png"
                   alt="Porto Logo"
-                  width="160"
+                  width="200"
                 
                 />
               </Link>

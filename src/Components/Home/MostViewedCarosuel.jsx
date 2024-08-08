@@ -21,7 +21,6 @@ function TestimonialCarousel() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [toggleStates, setToggleStates] = useState([]);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,10 +98,14 @@ function TestimonialCarousel() {
                           className="btn-icon-wish"
                           onClick={() => handleToggle(index)}
                           style={{
-                            color: toggleStates[index] ? "blue" : "gray",
+                            color: toggleStates[index] ? "#01abec" : "gray",
                           }}
                         >
-                          <i className="icon-heart"></i>
+                          {toggleStates[index] ? (
+                            <i class="fa-solid fa-heart"></i>
+                          ) : (
+                            <i class="fa-regular fa-heart"></i>
+                          )}
                         </div>
                       </div>
                       <h3 className="product-title">
@@ -110,18 +113,10 @@ function TestimonialCarousel() {
                           {product.heading}
                         </Link>
                       </h3>
-                      <div className="ratings-container">
-                        <div className="product-ratings">
-                          <span
-                            className="ratings"
-                            style={{ width: "80%" }}
-                          ></span>
-                          <span className="tooltiptext tooltip-top"></span>
-                        </div>
-                      </div>
+
                       <div className="price-box">
                         <span className="product-price">
-                          Rs. {product.price.toLocaleString()}
+                          Rs. {product.price.toLocaleString("en-US")}
                         </span>
                       </div>
                     </div>

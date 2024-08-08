@@ -10672,7 +10672,7 @@ header .separator {
   border-left: 1px solid #fff;
   padding-left: 15px;
   padding-right: 14px;
-  line-height: 36px;
+  line-height: 40px;
   letter-spacing: 0.005em;
   color: inherit;
   -moz-appearance: none;
@@ -10683,7 +10683,7 @@ header .separator {
 }
 .header-search-wrapper .btn {
   position: relative;
-  padding: 5px 0;
+  padding: 7px 0;
   border: 0;
   border-left: 1px solid #fff;
   min-width: 40px;
@@ -10771,9 +10771,10 @@ header .separator {
 .menu > li {
   float: left;
   position: relative;
-  margin-right: 2.8rem;
+  /* margin-right: 2.8rem; */
 }
 .menu > li > a {
+  margin-bottom: 2px;
   padding: 1rem 0;
   font-size: 13px;
   font-weight: 400;

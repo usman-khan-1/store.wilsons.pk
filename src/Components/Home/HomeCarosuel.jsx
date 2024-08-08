@@ -11,14 +11,20 @@ function HomeCarosuel() {
     "/assets/imagess/daiy-cal.jpg",
     "/assets/imagess/wil-D.jpg",
   ];
+
   return (
     <div className="row">
       <div className="col-lg-12 mb-2">
         <div className="home-caroseul">
-          <Carousel fade indicators={false}>
+          <Carousel
+            indicators={false}
+            interval={3000} // Adjust the interval as needed
+            controls={true} // Optional: hides the navigation controls
+            pause="hover" // Optional: pauses on hover
+          >
             {homeSliderBannerImg.map((data, index) => (
               <Carousel.Item key={index}>
-                <img className="d-block w-100" src={data} />
+                <img className="d-block w-100" src={data} alt={`Slide ${index}`} />
               </Carousel.Item>
             ))}
           </Carousel>

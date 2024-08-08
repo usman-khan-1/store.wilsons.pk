@@ -13,7 +13,7 @@ function ReturnPolicy() {
           className="page-header page-header-bg text-left"
           style={{
             background:
-              "50%/cover #D4E1EA url(/assets/Images/page-header-bg.jpg)",
+              "50%/cover #D4E1EA url(/assets/imagess/return-policy.jpg)",
           }}
         >
           <div className="container">

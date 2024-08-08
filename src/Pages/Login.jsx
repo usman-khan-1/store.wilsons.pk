@@ -1,4 +1,4 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
 import LoginForm from "../Components/Auth/LoginForm";
@@ -15,19 +15,15 @@ function Login() {
         <div className="page-header">
           <div className="container d-flex flex-column align-items-center">
             <nav aria-label="breadcrumb" className="breadcrumb-nav">
-              <div className="container">
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <Link to={"/"}>Home</Link>
-                  </li>
-                  <li className="breadcrumb-item">
-                    <Link to={"/category"}>Shop</Link>
-                  </li>
-                  <li className="breadcrumb-item active" aria-current="page">
-                    My Account
-                  </li>
-                </ol>
-              </div>
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <Link to={"/"}>Home</Link>
+                </li>
+
+                <li className="breadcrumb-item active" aria-current="page">
+                  My Account
+                </li>
+              </ol>
             </nav>
             <h1>My Account</h1>
           </div>
