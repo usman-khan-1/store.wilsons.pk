@@ -21,7 +21,7 @@ function ProductDetails() {
   const [loading, setLoading] = useState(false);
   const [borderIndex, setBorderIndex] = useState(0);
   const [productDetails, setProductDetails] = useState({});
-  console.log("productDetails", productDetails);
+  // console.log("productDetails", productDetails);
 
   const productImages = [
     {

@@ -1,13 +1,37 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { makePostRequest } from "../Apis";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Footer() {
   const branding = useSelector((state) => state.branding.value);
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    try {
+      const response = await makePostRequest("newsletter/add", { email });
+      setLoading(false);
+      if (response?.status === "success") {
+        toast.success(response?.message);
+        setEmail("");
+      } else {
+        setEmail("");
+        toast.error(response?.message);
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error("Failed to subscribe. Please try again.");
+      console.error("Error fetching data:", error);
+    }
   };
 
   return (
@@ -23,7 +47,7 @@ function Footer() {
                   </h4>
                 </div>
                 <div className="col-md-6 col-lg-6">
-                  <form action="#" className="mb-0">
+                  <form onSubmit={handleSubmit} className="mb-0">
                     <div className="footer-submit-wrapper d-flex justify-content-end">
                       <input
                         name="email"
@@ -35,7 +59,7 @@ function Footer() {
                         required
                       />
                       <button type="submit" className="btn btn-md btn-dark">
-                        Subscribe
+                        {loading ? "Subscribing..." : "Subscribe"}
                       </button>
                     </div>
                   </form>
@@ -47,7 +71,6 @@ function Footer() {
             <div className="footer-middle">
               <div className="row">
                 <div className="col-lg-3">
-                 
                   <div className="row">
                     <div className="col-lg-12 col-sm-6 pr-sm-0">
                       <div className="contact-widget">
@@ -55,7 +78,7 @@ function Footer() {
                         <p>{branding?.site_headoffice_address}</p>
                       </div>
                     </div>
-                  
+
                     <div className="col-lg-12 col-sm-6 pr-sm-0">
                       <div className="contact-widget">
                         <h4 className="widget-title">EMAIL:</h4>
@@ -69,7 +92,6 @@ function Footer() {
                         </a>
                       </div>
                     </div>
-                   
                   </div>
                   <div className="social-icons mb-3 mb-lg-0">
                     <a
@@ -96,16 +118,14 @@ function Footer() {
                   </div>
                 </div>
                 <div className="col-lg-3">
-                 
                   <div className="row">
-                  
                     <div className="col-lg-12 col-sm-6 pl-sm-0">
                       <div className="contact-widget">
                         <h4 className="widget-title">PHONE:</h4>
                         <p>{branding?.site_landline_number}</p>
                       </div>
                     </div>
-                 
+
                     <div className="col-lg-12 col-sm-6 pl-sm-0">
                       <div className="contact-widget">
                         <h4 className="widget-title">WORKING DAYS/HOURS:</h4>
@@ -113,7 +133,6 @@ function Footer() {
                       </div>
                     </div>
                   </div>
-                 
                 </div>
                 <div className="col-lg-3">
                   <div className="widget widget-sm">
@@ -175,6 +194,7 @@ function Footer() {
                 />
               </div>
             </div> */}
+            <ToastContainer />
           </div>
         </div>
       </footer>
