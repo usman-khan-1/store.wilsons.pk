@@ -8,6 +8,8 @@ function BestSellerElectronics() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  
+  const [toggleStates, setToggleStates] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -22,6 +24,13 @@ function BestSellerElectronics() {
     };
     fetchData();
   }, []);
+
+  const handleToggle = (index) => {
+    const newToggleStates = [...toggleStates];
+    newToggleStates[index] = !newToggleStates[index];
+    setToggleStates(newToggleStates);
+  };
+
 
   return (
     <div className="container ">
@@ -71,13 +80,16 @@ function BestSellerElectronics() {
                           {data?.category}
                         </Link>
                       </div>
-                      <Link
-                        to={"/wishlist"}
-                        title="Add to Wishlist"
-                        className="btn-icon-wish"
-                      >
-                        <i className="icon-heart"></i>
-                      </Link>
+                      <div
+                          title="Add to Wishlist"
+                          className="btn-icon-wish"
+                          onClick={() => handleToggle(index)}
+                          style={{
+                            color: toggleStates[index] ? "blue" : "gray",
+                          }}
+                        >
+                          <i className="icon-heart"></i>
+                        </div>
                     </div>
                     <h3 className="product-title">
                       <Link to={`/product/${data.seo_slug}`}>
@@ -94,7 +106,7 @@ function BestSellerElectronics() {
                       </div>
                     </div>
                     <div className="price-box">
-                      <span className="product-price">Rs {data?.price}</span>
+                      <span className="product-price">Rs {data?.price.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>

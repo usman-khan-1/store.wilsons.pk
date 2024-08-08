@@ -14,7 +14,13 @@ function RelatedProductsCarosuel({productDetails, load}) {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
 
-  console.log("loaddddd", load);
+  const [toggleStates, setToggleStates] = useState([]);
+  const handleToggle = (index) => {
+    const newToggleStates = [...toggleStates];
+    newToggleStates[index] = !newToggleStates[index];
+    setToggleStates(newToggleStates);
+  };
+
 
   return (
     <div className="container">
@@ -67,13 +73,16 @@ function RelatedProductsCarosuel({productDetails, load}) {
                             {product?.category}
                           </Link>
                         </div>
-                        <Link
-                          to={"/wishist"}
+                        <div
                           title="Add to Wishlist"
                           className="btn-icon-wish"
+                          onClick={() => handleToggle(index)}
+                          style={{
+                            color: toggleStates[index] ? "blue" : "gray",
+                          }}
                         >
                           <i className="icon-heart"></i>
-                        </Link>
+                        </div>
                       </div>
                       <h3 className="product-title">
                         <Link to={"/product-details"}>{product?.heading}</Link>
@@ -81,7 +90,7 @@ function RelatedProductsCarosuel({productDetails, load}) {
                     
                       <div className="price-box">
                         <span className="product-price">
-                          Rs. {product?.price}
+                          Rs. {product?.price.toLocaleString()}
                         </span>
                       </div>
                     </div>

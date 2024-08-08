@@ -13,12 +13,15 @@ function TestimonialCarousel() {
     tablet: { breakpoint: { max: 1024, min: 464 }, items: 3 },
     mobile: { breakpoint: { max: 464, min: 0 }, items: 2 },
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [toggleStates, setToggleStates] = useState([]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +29,7 @@ function TestimonialCarousel() {
       try {
         const response = await makePostRequest("product/list");
         setProducts(response?.data);
+        // setToggleStates(new Array(response?.data.length).fill(false)); // initialize toggle states
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -34,6 +38,12 @@ function TestimonialCarousel() {
     };
     fetchData();
   }, []);
+
+  const handleToggle = (index) => {
+    const newToggleStates = [...toggleStates];
+    newToggleStates[index] = !newToggleStates[index];
+    setToggleStates(newToggleStates);
+  };
 
   return (
     <div className="container">
@@ -46,7 +56,7 @@ function TestimonialCarousel() {
         className="TestimonialCarousel"
       >
         {loading
-          ? [1, 2, 3, 4, 5,6].map((_, index) => <ProductShimmer key={index} />)
+          ? [1, 2, 3, 4, 5, 6].map((_, index) => <ProductShimmer key={index} />)
           : products?.map((product, index) => (
               <div key={index}>
                 <div className="single-testimonial-item">
@@ -84,13 +94,16 @@ function TestimonialCarousel() {
                             {product.category}
                           </Link>
                         </div>
-                        <Link
-                          to={"/wishlist"}
+                        <div
                           title="Add to Wishlist"
                           className="btn-icon-wish"
+                          onClick={() => handleToggle(index)}
+                          style={{
+                            color: toggleStates[index] ? "blue" : "gray",
+                          }}
                         >
                           <i className="icon-heart"></i>
-                        </Link>
+                        </div>
                       </div>
                       <h3 className="product-title">
                         <Link to={`/product/${product.seo_slug}`}>
@@ -108,7 +121,7 @@ function TestimonialCarousel() {
                       </div>
                       <div className="price-box">
                         <span className="product-price">
-                          Rs. {product.price}
+                          Rs. {product.price.toLocaleString()}
                         </span>
                       </div>
                     </div>

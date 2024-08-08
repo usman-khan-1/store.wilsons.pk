@@ -20,6 +20,8 @@ function RecentProductsCarosuel() {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  
+  const [toggleStates, setToggleStates] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +37,13 @@ function RecentProductsCarosuel() {
     };
     fetchData();
   }, []);
+
+  const handleToggle = (index) => {
+    const newToggleStates = [...toggleStates];
+    newToggleStates[index] = !newToggleStates[index];
+    setToggleStates(newToggleStates);
+  };
+
 
   return (
     <div className="container">
@@ -87,13 +96,16 @@ function RecentProductsCarosuel() {
                             {product.category}
                           </Link>
                         </div>
-                        <Link
-                          to={"/wishist"}
+                        <div
                           title="Add to Wishlist"
                           className="btn-icon-wish"
+                          onClick={() => handleToggle(index)}
+                          style={{
+                            color: toggleStates[index] ? "blue" : "gray",
+                          }}
                         >
                           <i className="icon-heart"></i>
-                        </Link>
+                        </div>
                       </div>
                       <h3 className="product-title">
                       <Link to={`/product/${product.seo_slug}`}>{product.heading}</Link>
@@ -109,7 +121,7 @@ function RecentProductsCarosuel() {
                       </div>
                       <div className="price-box">
                         <span className="product-price">
-                          Rs. {product.price}
+                          Rs. {product.price.toLocaleString()}
                         </span>
                       </div>
                     </div>

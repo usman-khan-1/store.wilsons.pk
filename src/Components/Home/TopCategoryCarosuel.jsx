@@ -98,7 +98,7 @@ function TopCategoryCarosuel() {
             responsive={responsive}
             ssr={true} // means to render carousel on server-side
             infinite={true}
-            autoPlay={true}
+            autoPlay={false}
             autoPlaySpeed={2000} // Adjust this speed for smoother transitions
             keyBoardControl={true}
             customTransition="transform 0.5s ease"

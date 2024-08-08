@@ -113,8 +113,8 @@ function HomeNavbar() {
                 <img
                   src="/assets/Images/wilmart-logo.png"
                   alt="Porto Logo"
-                  width="111"
-                  height="44"
+                  width="160"
+                
                 />
               </Link>
               <div className="header-col">

@@ -18500,3 +18500,12 @@ div.shimmer {
   margin: 0 10px;
 
 }
+.category-item span{
+  text-align: center;
+}
+.category-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

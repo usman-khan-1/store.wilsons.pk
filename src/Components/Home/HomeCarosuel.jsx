@@ -2,7 +2,15 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 
 function HomeCarosuel() {
-  const homeSliderBannerImg = ["/assets/imagess/banner.jpg"];
+  const homeSliderBannerImg = [
+    "/assets/imagess/banner.jpg",
+    "/assets/imagess/seacal.jpg",
+    "/assets/imagess/supreme-z.jpg",
+    "/assets/imagess/vitamin-c.jpg",
+    "/assets/imagess/cozme-10.jpg",
+    "/assets/imagess/daiy-cal.jpg",
+    "/assets/imagess/wil-D.jpg",
+  ];
   return (
     <div className="row">
       <div className="col-lg-12 mb-2">
