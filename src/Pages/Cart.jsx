@@ -1,11 +1,40 @@
 import React, { useEffect } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../Store/CartSlice";
 
 function Cart() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
+
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
+  const calculateSubtotal = () => {
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  };
+
+  const subtotal = calculateSubtotal();
+
+  const handleIncrement = (item) => {
+    dispatch(addToCart({ product: item, quantity: item.quantity + 1 }));
+  };
+
+  const handleDecrement = (item) => {
+    if (item.quantity > 1) {
+      dispatch(addToCart({ product: item, quantity: item.quantity - 1 }));
+    }
+  };
+
+  const handleRemove = (id) => {
+    dispatch(removeFromCart({ id }));
+  };
+
   return (
     <Layout>
       <main className="main">
@@ -36,170 +65,70 @@ function Cart() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="product-row">
-                      <td>
-                        <figure className="product-image-container">
-                          <Link
-                            to={"/product-details"}
-                            className="product-image"
-                          >
-                            <img
-                              src="/assets/Images/products/product-4.jpg"
-                              alt="product"
-                            />
-                          </Link>
-
-                          <a
-                           
-                            className="btn-remove icon-cancel"
-                            title="Remove Product"
-                          ></a>
-                        </figure>
-                      </td>
-                      <td className="product-col">
-                        <h5 className="product-title">
-                          <Link to={"/product-details"}>Men Watch</Link>
-                        </h5>
-                      </td>
-                      <td>$17.90</td>
-                      <td>
-                        <div className="product-single-qty">
-                          <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                            <span className="input-group-btn input-group-prepend">
-                              <button
-                                className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
-                                type="button"
-                              ></button>
-                            </span>
-                            <input
-                              className="horizontal-quantity form-control"
-                              type="text"
-                              value={1}
-                            />
-                            <span className="input-group-btn input-group-append">
-                              <button
-                                className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
-                                type="button"
-                              ></button>
-                            </span>
+                    {cartItems?.map((data) => (
+                      <tr key={data.uid} className="product-row">
+                        <td>
+                          <figure className="product-image-container">
+                            <Link
+                              to={`/product-details/${data.uid}`}
+                              className="product-image"
+                            >
+                              <img src={data?.image} alt="product" />
+                            </Link>
+                            <a
+                              className="btn-remove icon-cancel"
+                              title="Remove Product"
+                              onClick={() => handleRemove(data.uid)}
+                            ></a>
+                          </figure>
+                        </td>
+                        <td className="product-col">
+                          <h5 className="product-title">
+                            <Link to={`/product/${data.seo_slug}`}>
+                              {data?.heading}
+                            </Link>
+                          </h5>
+                        </td>
+                        <td>Rs. {data?.price}</td>
+                        <td>
+                          <div className="product-single-qty">
+                            <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                              <span className="input-group-btn input-group-prepend">
+                                <button
+                                  className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                  type="button"
+                                  onClick={() => handleDecrement(data)}
+                                >
+                                  -
+                                </button>
+                              </span>
+                              <input
+                                className="horizontal-quantity form-control"
+                                type="text"
+                                value={data?.quantity}
+                                readOnly
+                              />
+                              <span className="input-group-btn input-group-append">
+                                <button
+                                  className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                  type="button"
+                                  onClick={() => handleIncrement(data)}
+                                >
+                                  +
+                                </button>
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="text-right">
-                        <span className="subtotal-price">$17.90</span>
-                      </td>
-                    </tr>
-
-                    <tr className="product-row">
-                      <td>
-                        <figure className="product-image-container">
-                          <Link
-                            to={"/product-details"}
-                            className="product-image"
-                          >
-                            <img
-                              src="/assets/Images/products/product-3.jpg"
-                              alt="product"
-                            />
-                          </Link>
-
-                          <a
-                           
-                            className="btn-remove icon-cancel"
-                            title="Remove Product"
-                          ></a>
-                        </figure>
-                      </td>
-                      <td className="product-col">
-                        <h5 className="product-title">
-                          <Link to={"/product-details"}>Men Watch</Link>
-                        </h5>
-                      </td>
-                      <td>$17.90</td>
-                      <td>
-                        <div className="product-single-qty">
-                          <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                            <span className="input-group-btn input-group-prepend">
-                              <button
-                                className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
-                                type="button"
-                              ></button>
-                            </span>
-                            <input
-                              className="horizontal-quantity form-control"
-                              type="text"
-                              value={1}
-                            />
-                            <span className="input-group-btn input-group-append">
-                              <button
-                                className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
-                                type="button"
-                              ></button>
-                            </span>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="text-right">
-                        <span className="subtotal-price">$17.90</span>
-                      </td>
-                    </tr>
-
-                    <tr className="product-row">
-                      <td>
-                        <figure className="product-image-container">
-                          <Link
-                            to={"/product-details"}
-                            className="product-image"
-                          >
-                            <img
-                              src="/assets/Images/products/product-6.jpg"
-                              alt="product"
-                            />
-                          </Link>
-
-                          <a
-                           
-                            className="btn-remove icon-cancel"
-                            title="Remove Product"
-                          ></a>
-                        </figure>
-                      </td>
-                      <td className="product-col">
-                        <h5 className="product-title">
-                          <a to={"/product-details"}>Men Black Gentle Belt</a>
-                        </h5>
-                      </td>
-                      <td>$17.90</td>
-                      <td>
-                        <div className="product-single-qty">
-                          <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                            <span className="input-group-btn input-group-prepend">
-                              <button
-                                className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
-                                type="button"
-                              ></button>
-                            </span>
-                            <input
-                              className="horizontal-quantity form-control"
-                              type="text"
-                              value={1}
-                            />
-                            <span className="input-group-btn input-group-append">
-                              <button
-                                className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
-                                type="button"
-                              ></button>
-                            </span>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="text-right">
-                        <span className="subtotal-price">$17.90</span>
-                      </td>
-                    </tr>
+                        </td>
+                        <td className="text-right">
+                          <span className="subtotal-price">
+                            Rs. {(data.price * data.quantity).toFixed(2)}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
-
-                  <tfoot>
+                  {/* <tfoot>
                     <tr>
                       <td colSpan="5" className="clearfix">
                         <div className="float-left">
@@ -232,7 +161,7 @@ function Cart() {
                         </div>
                       </td>
                     </tr>
-                  </tfoot>
+                  </tfoot> */}
                 </table>
               </div>
             </div>
@@ -243,10 +172,10 @@ function Cart() {
 
                 <table className="table table-totals">
                   <tbody>
-                    <tr>
+                    {/* <tr>
                       <td>Subtotal</td>
                       <td>$17.90</td>
-                    </tr>
+                    </tr> */}
 
                     <tr>
                       <td colSpan="2" className="text-left">
@@ -261,7 +190,7 @@ function Cart() {
                               //   checked
                             />
                             <label className="custom-control-label">
-                              Local pickup
+                              Cash On Delivery
                             </label>
                           </div>
                         </div>
@@ -274,7 +203,7 @@ function Cart() {
                               className="custom-control-input"
                             />
                             <label className="custom-control-label">
-                              Flat rate
+                              Other Payment Method
                             </label>
                           </div>
                         </div>
@@ -334,7 +263,7 @@ function Cart() {
                   <tfoot>
                     <tr>
                       <td>Total</td>
-                      <td>$17.90</td>
+                      <td>Rs. {""}{subtotal}</td>
                     </tr>
                   </tfoot>
                 </table>

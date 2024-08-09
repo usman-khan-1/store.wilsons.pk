@@ -20,7 +20,6 @@ function LoginForm() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    // Save login credentials
     setLoading(true);
     try {
       const response = await makePostRequest(
@@ -28,17 +27,17 @@ function LoginForm() {
         loginCredentials
       );
 
-      dispatch(setUserData(response.data));
+      dispatch(setUserData(response?.data));
 
-      if (response.status === "success") {
+      if (response?.status === "success") {
         setLoginCredentials({
           email: "",
           password: "",
         });
         toast.success(response?.message);
-        // setTimeout(() => {
-        //   navigate("/myAccount");
-        // }, 500);
+        setTimeout(() => {
+          navigate("/myAccount");
+        }, 2000);
         setLoading(false);
       } else {
         toast.error(response?.message);
@@ -92,7 +91,7 @@ function LoginForm() {
         </div>
 
         <Link
-          to="/forgot-password"
+          // to="/forgot-password"
           className="forget-password text-dark form-footer-right"
         >
           Forgot Password?

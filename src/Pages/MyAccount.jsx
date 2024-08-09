@@ -227,10 +227,9 @@ function MyAccount() {
                     </div>
 
                     <div className="col-6 col-md-4">
-                      <div className="feature-box text-center pb-4">
-                        <Link to={"/login"}>
-                          <i className="sicon-logout"></i>
-                        </Link>
+                      <div onClick={handleLogout} className="feature-box text-center pb-4">
+                        <i className="sicon-logout"></i>
+
                         <div className="feature-box-content">
                           <h3>LOGOUT</h3>
                         </div>

@@ -10370,6 +10370,7 @@ header .separator {
   line-height: 2rem;
   font-size: 1.8rem;
   font-weight: 500;
+  cursor: pointer;
 }
 .cart-dropdown .btn-remove span {
   display: block;
@@ -15375,6 +15376,7 @@ aside .widget-info i {
 .table.table-wishlist .btn-remove {
   right: -10px;
   font-size: 1.1rem;
+  cursor: pointer;
 }
 .table.table-cart tfoot td,
 .table.table-wishlist tfoot td {

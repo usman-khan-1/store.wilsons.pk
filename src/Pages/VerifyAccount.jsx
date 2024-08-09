@@ -4,13 +4,15 @@ import { makePostRequest } from "../Apis";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../Components/Layout";
 import { toast, ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../Store/UserSlice";
 
 function VerifyAccount() {
   const { slug } = useParams(); // Extract the slug from the URL
   const [code, setCode] = useState(slug || ""); // Set the initial state to the slug
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (slug) {
@@ -31,7 +33,11 @@ function VerifyAccount() {
 
       if (response?.status === "success") {
         toast.success("Verification successful! Redirecting...");
-        navigate("/login"); 
+        dispatch(setUserData(response.data));
+        setTimeout(() => {
+          navigate("/myAccount");
+          // navigate("/login");
+        }, 2000);
       } else {
         toast.error("Verification failed. Please check your code.");
       }
@@ -78,7 +84,7 @@ function VerifyAccount() {
           </div>
         </div>
       </main>
-      <ToastContainer/>
+      <ToastContainer />
     </Layout>
   );
 }

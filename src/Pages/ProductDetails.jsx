@@ -9,34 +9,22 @@ import {
   LinkedinShareButton,
   TwitterShareButton,
 } from "react-share";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../Store/CartSlice";
+import { toast, ToastContainer } from "react-toastify";
 
 function ProductDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
 
   const slug = useParams();
   const currentUrl = window.location.href;
-
+  const cartItems = useSelector((state) => state.cart.cartItems);
   const [loading, setLoading] = useState(false);
-  const [borderIndex, setBorderIndex] = useState(0);
   const [productDetails, setProductDetails] = useState({});
-  // console.log("productDetails", productDetails);
-
-  const productImages = [
-    {
-      image: "/assets/Images/products/zoom/joshanda.png  ",
-    },
-    {
-      image: "/assets/Images/products/zoom/plantcal.png",
-    },
-    {
-      image: "/assets/Images/products/zoom/capZyme.png",
-    },
-    {
-      image: "/assets/Images/products/zoom/cranpure.png",
-    },
-  ];
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,16 +35,50 @@ function ProductDetails() {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.error("Error fetching videos data:", error);
+        console.error("Error fetching product data:", error);
       }
     };
     fetchData();
   }, [slug]);
 
+  // const handleAddToCart = () => {
+  //   if (quantity > 0) {
+  //     // Ensure quantity is valid before dispatching
+  //     dispatch(addToCart({ product: productDetails.details, quantity }));
+  //   }
+  // };
+
+  const handleAddToCart = () => {
+    if (quantity > 0 && productDetails?.details?.uid) {
+      const isProductInCart = cartItems?.some(
+        (item) => item?.uid === productDetails.details.uid
+      );
+      if (isProductInCart) {
+        toast.error("This product is already in your cart!");
+      } else {
+        // toast.success("Product added to cart successfully!");
+        dispatch(addToCart({ product: productDetails.details, quantity }));
+      }
+    }
+  };
+
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
+  };
+
+  useEffect(() => {
+    console.log("Cart Items:", cartItems); // Log cartItems to the console to check if it’s working
+  }, [cartItems]);
+
   return (
     <Layout>
       <main className="main">
         <div className="container">
+          {/* Breadcrumb */}
           <nav aria-label="breadcrumb" className="breadcrumb-nav">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
@@ -70,84 +92,10 @@ function ProductDetails() {
             </ol>
           </nav>
 
+          {/* Product Details */}
           <div className="product-single-container product-single-default">
             <div className="row">
               <div className="col-lg-5 col-md-6 product-single-gallery">
-                {/* <div className="product-slider-container">
-                  <div
-                    id="custCarousel"
-                    className="carousel slide p-3"
-                    data-ride="carousel"
-                    align="center"
-                  >
-                    <div className="carousel-inner cus-carousel-inner">
-                      {productImages?.map((image, index) => (
-                        <div
-                          key={index}
-                          className={`carousel-item ${
-                            index === 0 ? "active" : ""
-                          }`}
-                        >
-                          <div
-                            style={{
-                              backgroundImage: `url(${image.image})`,
-                              backgroundPosition: "center center",
-                              backgroundSize: "cover",
-                              backgroundRepeat: "no-repeat",
-                              height: "400px",
-                              width: "100%",
-                            }}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                    <a
-                      className=" carousel-control-prev"
-                      href="#custCarousel"
-                      data-slide="prev"
-                      onClick={() =>
-                        setBorderIndex((prv) => (prv === 0 ? 3 : prv - 1))
-                      }
-                    >
-                      <span className="carousel-control-prev-icon" />
-                    </a>
-                    <a
-                      className=" carousel-control-next"
-                      href="#custCarousel"
-                      data-slide="next"
-                      onClick={() =>
-                        setBorderIndex((prv) => (prv === 3 ? 0 : prv + 1))
-                      }
-                    >
-                      <span className="carousel-control-next-icon" />
-                    </a>
-                  </div>
-                </div>
-
-                <div className="prod-thumbnail owl-dots">
-                  {productImages?.map((data, index) => (
-                    <div className="owl-dot" key={index}>
-                      <a
-                        data-slide-to={`${index}`}
-                        data-target={`#custCarousel`}
-                        onClick={() => setBorderIndex(index)}
-                        href=""
-                      >
-                        <img
-                          style={{
-                            border:
-                              borderIndex === index && "2px solid #01abec",
-                          }}
-                          src={data.image}
-                          width="110"
-                          height="110"
-                          alt="product-thumbnail"
-                        />
-                      </a>
-                    </div>
-                  ))}
-                </div> */}
-
                 <ImageWithLoader
                   src={productDetails?.details?.image}
                   width="217"
@@ -155,23 +103,17 @@ function ProductDetails() {
                   loaderHeight={"450px"}
                   alt="product"
                 />
-
-                {/* <img src={productDetails?.details?.image} alt="" /> */}
               </div>
 
               <div className="col-lg-7 col-md-6 product-single-details">
                 <h1 className="product-title">
-                  {" "}
                   {productDetails?.details?.heading}
                 </h1>
-                {/* <h6>Formula: {productDetails?.details?.generic_name}</h6> */}
 
                 <hr className="short-divider" />
 
                 <div className="price-box">
-                  {/* <span className="old-price">$1,999.00</span> */}
                   <span className="new-price">
-                    {" "}
                     Rs. {productDetails?.details?.price}
                   </span>
                 </div>
@@ -184,25 +126,15 @@ function ProductDetails() {
                   <li>
                     SKU: <strong>654613612</strong>
                   </li>
-
                   <li>
                     Formula:{" "}
-                    <strong>
-                      <a href="#" className="product-category">
-                        {productDetails?.details?.generic_name}
-                      </a>
-                    </strong>
+                    <strong>{productDetails?.details?.generic_name}</strong>
                   </li>
                   <li>
                     CATEGORY:{" "}
-                    <strong>
-                      <a href="#" className="product-category">
-                        {productDetails?.details?.category}
-                      </a>
-                    </strong>
+                    <strong>{productDetails?.details?.category}</strong>
                   </li>
                 </ul>
-
                 <div className="product-action">
                   <div className="product-single-qty">
                     <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
@@ -210,23 +142,34 @@ function ProductDetails() {
                         <button
                           className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
                           type="button"
-                        ></button>
+                          onClick={handleDecrement}
+                        >
+                          -
+                        </button>
                       </span>
                       <input
                         className="horizontal-quantity form-control"
                         type="text"
-                        defaultValue={1}
+                        value={quantity}
+                        readOnly
                       />
                       <span className="input-group-btn input-group-append">
                         <button
                           className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
                           type="button"
-                        ></button>
+                          onClick={handleIncrement}
+                        >
+                          +
+                        </button>
                       </span>
                     </div>
                   </div>
 
-                  <a className="btn btn-dark add-cart mr-2" title="Add to Cart">
+                  <a
+                    className="btn btn-dark add-cart mr-2"
+                    title="Add to Cart"
+                    onClick={handleAddToCart} // Add to Cart handler
+                  >
                     Add to Cart
                   </a>
 
@@ -237,9 +180,9 @@ function ProductDetails() {
 
                 <hr className="divider mb-0 mt-0" />
 
+                {/* Share buttons */}
                 <div className="product-single-share mb-3">
                   <label className="sr-only">Share:</label>
-
                   <div className="social-icons mr-2">
                     <FacebookShareButton url={currentUrl}>
                       <a
@@ -264,7 +207,6 @@ function ProductDetails() {
                       ></a>
                     </LinkedinShareButton>
                   </div>
-                  
 
                   <Link
                     to={"/wishlist"}
@@ -279,6 +221,7 @@ function ProductDetails() {
             </div>
           </div>
 
+          {/* Product Tabs */}
           <div className="product-single-tabs">
             <ul className="nav nav-tabs" role="tablist">
               <li className="nav-item">
@@ -354,6 +297,7 @@ function ProductDetails() {
 
           <hr className="mt-0 m-b-5" />
         </div>
+        <ToastContainer />
       </main>
     </Layout>
   );

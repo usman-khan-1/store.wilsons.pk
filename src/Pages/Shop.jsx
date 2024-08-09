@@ -247,21 +247,7 @@ function Shop() {
                             alt="product"
                           />
                         </Link>
-                        <div className="btn-icon-group">
-                          <a
-                           
-                            className="btn-icon btn-add-cart product-type-simple"
-                          >
-                            <i className="icon-shopping-cart"></i>
-                          </a>
-                        </div>
-                        <a
-                          // href="ajax/product-quick-view.html"
-                          className="btn-quickview"
-                          title="Quick View"
-                        >
-                          Quick View
-                        </a>
+                      
                       </figure>
                       <div className="product-details">
                         <div className="category-wrap">
