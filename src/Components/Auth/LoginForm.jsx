@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../Store/UserSlice";
+import { toast } from "react-toastify";
 
 function LoginForm() {
   const [loading, setLoading] = useState(false);
@@ -26,6 +27,7 @@ function LoginForm() {
         "auth/login-customer",
         loginCredentials
       );
+
       dispatch(setUserData(response.data));
 
       if (response.status === "success") {
@@ -33,8 +35,13 @@ function LoginForm() {
           email: "",
           password: "",
         });
-        navigate("/myAccount");
+        toast.success(response?.message);
+        // setTimeout(() => {
+        //   navigate("/myAccount");
+        // }, 500);
         setLoading(false);
+      } else {
+        toast.error(response?.message);
       }
 
       setLoading(false);

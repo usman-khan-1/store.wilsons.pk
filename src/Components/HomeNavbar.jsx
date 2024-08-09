@@ -13,7 +13,7 @@ function HomeNavbar() {
 
   const user = useSelector((state) => state.user.value);
 
-  // console.log("user", user);
+  console.log("user", user);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,7 +114,6 @@ function HomeNavbar() {
                   src="/assets/Images/wilmart-logo.png"
                   alt="Porto Logo"
                   width="200"
-                
                 />
               </Link>
               <div className="header-col">
@@ -200,10 +199,10 @@ function HomeNavbar() {
                   {user ? (
                     <Link to={"/myAccount"}>
                       <div className="header-userinfo">
-                        <span className="d-inline-block line-height-1 ls-10">
+                        {/* <span className="d-inline-block line-height-1 ls-10">
                           Hello!
-                        </span>
-                        <h4 className="font1 mb-0">{user?.fullname}</h4>
+                        </span> */}
+                        <h4 className="font1 mb-0">My Account</h4>
                       </div>
                     </Link>
                   ) : (
@@ -215,8 +214,6 @@ function HomeNavbar() {
                   )}
                 </div>
               </div>
-
-          
 
               <div className="dropdown cart-dropdown">
                 <Link
