@@ -52,24 +52,7 @@ function BestSellerElectronics() {
                         alt="product"
                       />{" "}
                     </Link>
-                    {/* <div className="label-group">
-                <div className="product-label label-hot">HOT</div>
-              </div> */}
-                    <div className="btn-icon-group">
-                      <a
-                        title="Add To Cart"
-                        className="btn-icon btn-add-cart product-type-simple"
-                      >
-                        <i className="icon-shopping-cart"></i>
-                      </a>
-                    </div>
-                    <a
-                      // href="ajax/product-quick-view.html"
-                      className="btn-quickview"
-                      title="Quick View"
-                    >
-                      Quick View
-                    </a>
+                  
                   </figure>
                   <div className="product-details">
                     <div className="category-wrap">
@@ -100,8 +83,9 @@ function BestSellerElectronics() {
                     </h3>
 
                     <div className="price-box">
+                        Rs. {""}
                       <span className="product-price">
-                        Rs. {data.price.toLocaleString("en-US")}
+                        {data.price.toLocaleString("en-US")}
                       </span>
                     </div>
                   </div>

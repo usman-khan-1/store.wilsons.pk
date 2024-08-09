@@ -69,22 +69,6 @@ function TestimonialCarousel() {
                           alt="product"
                         />
                       </Link>
-
-                      <div className="btn-icon-group">
-                        <a
-                          title="Add To Cart"
-                          className="btn-icon btn-add-cart product-type-simple"
-                        >
-                          <i className="icon-shopping-cart"></i>
-                        </a>
-                      </div>
-                      <a
-                        // href="ajax/product-quick-view.html"
-                        className="btn-quickview"
-                        title="Quick View"
-                      >
-                        Quick View
-                      </a>
                     </figure>
                     <div className="product-details">
                       <div className="category-wrap">
@@ -115,8 +99,9 @@ function TestimonialCarousel() {
                       </h3>
 
                       <div className="price-box">
+                        Rs. {""}
                         <span className="product-price">
-                          Rs. {product.price.toLocaleString("en-US")}
+                          {product.price.toLocaleString("en-US")}
                         </span>
                       </div>
                     </div>

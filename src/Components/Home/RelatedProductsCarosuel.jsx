@@ -22,7 +22,7 @@ function RelatedProductsCarosuel({ productDetails, load }) {
   };
 
   return (
-    <div className="container">
+    <div className="">
       <h2 className="section-title ls-n-10 pb-3 m-b-4">Related Products</h2>
 
       <Carousel
@@ -49,21 +49,7 @@ function RelatedProductsCarosuel({ productDetails, load }) {
                       />
                     </Link>
 
-                    <div className="btn-icon-group">
-                      <a
-                        title="Add To Cart"
-                        className="btn-icon btn-add-cart product-type-simple"
-                      >
-                        <i className="icon-shopping-cart"></i>
-                      </a>
-                    </div>
-                    <a
-                      // href="ajax/product-quick-view.html"
-                      className="btn-quickview"
-                      title="Quick View"
-                    >
-                      Quick View
-                    </a>
+                    
                   </figure>
                   <div className="product-details">
                     <div className="category-wrap">
@@ -92,8 +78,9 @@ function RelatedProductsCarosuel({ productDetails, load }) {
                     </h3>
 
                     <div className="price-box">
+                        Rs. {""} 
                       <span className="product-price">
-                        Rs. {product?.price.toLocaleString("en-US")}
+                        {product?.price.toLocaleString("en-US")}
                       </span>
                     </div>
                   </div>

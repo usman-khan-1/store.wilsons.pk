@@ -24,17 +24,17 @@ function TopCategoryCarosuel() {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 10,
+      items: 8,
       slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 7,
+      items: 5,
       slidesToSlide: 1, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 4,
+      items: 3,
       slidesToSlide: 1, // optional, default to 1.
     },
   };
@@ -93,38 +93,39 @@ function TopCategoryCarosuel() {
             Top Categories
           </h2>
 
-          <Carousel
-            swipeable={true}
-            draggable={true}
-            responsive={responsive}
-            ssr={true} // means to render carousel on server-side
-            infinite={true}
-            autoPlay={false}
-            autoPlaySpeed={2000} // Adjust this speed for smoother transitions
-            keyBoardControl={true}
-            customTransition="transform 0.5s ease"
-            transitionDuration={500}
-            containerclassName="carousel-container"
-            dotListclassName="custom-dot-list-style"
-            arrows={true} // Hide arrows~
-          >
-            {category?.map((category, index) => (
-              <div key={index} className="category-item">
-                <ImageWithLoader
-                  src={category?.icon}
-                  width="217"
-                  height="217"
-                  
-                  loaderHeight={"100px"}
-                  alt="product"
-                />
-                {/* <img className="category-icon" src={category?.icon} alt="" /> */}
-                <Link to={`/category/${category?.slug}`} key={index}>
-                  <span>{category?.name}</span>
-                </Link>
-              </div>
-            ))}
-          </Carousel>
+          <div className="">
+            <Carousel
+              swipeable={true}
+              draggable={true}
+              responsive={responsive}
+              ssr={true} // means to render carousel on server-side
+              infinite={true}
+              autoPlay={false}
+              autoPlaySpeed={2000} // Adjust this speed for smoother transitions
+              keyBoardControl={true}
+              customTransition="transform 0.5s ease"
+              transitionDuration={500}
+              containerclassName="carousel-container"
+              dotListclassName="custom-dot-list-style"
+              arrows={true} // Hide arrows~
+            >
+              {category?.map((category, index) => (
+                <div key={index} className="category-item">
+                  <Link to={`/category/${category?.slug}`} key={index}>
+                    <ImageWithLoader
+                      src={category?.icon}
+                      width="217"
+                      height="217"
+                      loaderHeight={"100px"}
+                      alt="product"
+                    />
+                    {/* <img className="category-icon" src={category?.icon} alt="" /> */}
+                    <span>{category?.name}</span>
+                  </Link>
+                </div>
+              ))}
+            </Carousel>
+          </div>
         </div>
       </section>
     </div>

@@ -20,7 +20,7 @@ function RecentProductsCarosuel() {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  
+
   const [toggleStates, setToggleStates] = useState([]);
 
   useEffect(() => {
@@ -43,7 +43,6 @@ function RecentProductsCarosuel() {
     newToggleStates[index] = !newToggleStates[index];
     setToggleStates(newToggleStates);
   };
-
 
   return (
     <div className="container">
@@ -69,25 +68,6 @@ function RecentProductsCarosuel() {
                           alt="product"
                         />
                       </Link>
-                      {/* <div className="label-group">
-                    <div className="product-label label-hot">HOT</div>
-                  </div> */}
-                      <div className="btn-icon-group">
-                        <a
-                         
-                          title="Add To Cart"
-                          className="btn-icon btn-add-cart product-type-simple"
-                        >
-                          <i className="icon-shopping-cart"></i>
-                        </a>
-                      </div>
-                      <a
-                        // href="ajax/product-quick-view.html"
-                        className="btn-quickview"
-                        title="Quick View"
-                      >
-                        Quick View
-                      </a>
                     </figure>
                     <div className="product-details">
                       <div className="category-wrap">
@@ -97,27 +77,30 @@ function RecentProductsCarosuel() {
                           </Link>
                         </div>
                         <div
-                        title="Add to Wishlist"
-                        className="btn-icon-wish"
-                        onClick={() => handleToggle(index)}
-                        style={{
-                          color: toggleStates[index] ? "#01abec" : "gray",
-                        }}
-                      >
-                        {toggleStates[index] ? (
-                          <i class="fa-solid fa-heart"></i>
-                        ) : (
-                          <i class="fa-regular fa-heart"></i>
-                        )}
-                      </div>
+                          title="Add to Wishlist"
+                          className="btn-icon-wish"
+                          onClick={() => handleToggle(index)}
+                          style={{
+                            color: toggleStates[index] ? "#01abec" : "gray",
+                          }}
+                        >
+                          {toggleStates[index] ? (
+                            <i class="fa-solid fa-heart"></i>
+                          ) : (
+                            <i class="fa-regular fa-heart"></i>
+                          )}
+                        </div>
                       </div>
                       <h3 className="product-title">
-                      <Link to={`/product/${product.seo_slug}`}>{product.heading}</Link>
+                        <Link to={`/product/${product.seo_slug}`}>
+                          {product.heading}
+                        </Link>
                       </h3>
-                   
+
                       <div className="price-box">
+                        Rs. {""}
                         <span className="product-price">
-                          Rs. {product.price.toLocaleString("en-US")}
+                          {product.price.toLocaleString("en-US")}
                         </span>
                       </div>
                     </div>
