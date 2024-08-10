@@ -13,11 +13,11 @@ function QualityPolicy() {
           className="page-header page-header-bg text-left"
           style={{
             background:
-              "50%/cover #D4E1EA url(/assets/Images/page-header-bg.jpg)",
+              "50%/cover #D4E1EA url(/assets/imagess/policy.png)",
           }}
         >
           <div className="container">
-            <h1>Manufacturing</h1>
+            <h1>Quality Policy</h1>
           </div>
         </div>
 

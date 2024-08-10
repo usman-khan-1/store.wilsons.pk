@@ -4,7 +4,6 @@ import { makePostRequest } from "../Apis";
 import { useSelector } from "react-redux";
 import CartSidebar from "./CartSideBar";
 
-
 function HomeNavbar() {
   const location = useLocation();
   const [isFixed, setIsFixed] = useState(false);
@@ -51,6 +50,7 @@ function HomeNavbar() {
 
   const [category, setCategory] = useState([]);
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -95,7 +95,7 @@ function HomeNavbar() {
                             src={data?.icon}
                             alt=""
                           />
-                          {data?.name}
+                          {data?.name} ({data?.product_count})
                         </Link>
                       </div>
                     ))}
@@ -184,14 +184,19 @@ function HomeNavbar() {
                   </ul>
 
                   {user ? (
-                    <Link to={"/myAccount"}>
-                      <div className="header-userinfo">
-                        {/* <span className="d-inline-block line-height-1 ls-10">
+                    <>
+                      <Link to={"/myAccount"}>
+                        <div className="header-userinfo">
+                          {/* <span className="d-inline-block line-height-1 ls-10">
                           Hello!
                         </span> */}
-                        <h4 className="font1 mb-0">My Account</h4>
-                      </div>
-                    </Link>
+                          <h4 className="font1 mb-0">My Account</h4>
+                        </div>
+                      </Link>
+                      <Link to={"/wishlist"} class="header-icon">
+                        <i class="icon-wishlist-2"></i>
+                      </Link>
+                    </>
                   ) : (
                     <Link to={"/login"}>
                       <div className="header-userinfo">

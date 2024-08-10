@@ -6,6 +6,8 @@ function RegisterForm() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  
+
   const [registerCredentials, setRegisterCredentials] = useState({
     full_name: "",
     email: "",

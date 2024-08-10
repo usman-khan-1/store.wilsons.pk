@@ -10,49 +10,6 @@ function Shop() {
   });
   const [value, setValue] = useState([0, 100]);
 
-  const productDetail = [
-    {
-      title: "1080p Wifi IP Camera",
-      price: "596.00",
-      image: "/assets/Images/demoes/demo22/products/product-4.jpg",
-    },
-    {
-      title: "Battery Charger",
-      price: "299.00",
-      image: "/assets/Images/demoes/demo22/products/product-5.jpg",
-    },
-    {
-      title: "Black Grey Headset",
-      price: "39.00",
-      image: "/assets/Images/demoes/demo22/products/product-4.jpg",
-    },
-    {
-      title: "Black Shoes",
-      price: "101.00",
-      image: "/assets/Images/demoes/demo22/products/product-8.jpg",
-    },
-    {
-      title: "Black Watch",
-      price: "555.00",
-      image: "/assets/Images/demoes/demo22/products/product-7.jpg",
-    },
-    {
-      title: "Black Watches",
-      price: "129.00",
-      image: "/assets/Images/demoes/demo22/products/product-21.jpg",
-    },
-    {
-      title: "Blue Gentle Shoes",
-      price: "111.00",
-      image: "/assets/Images/demoes/demo22/products/product-11.jpg",
-    },
-    {
-      title: "Bluetooth Speaker",
-      price: "49.00",
-      image: "/assets/Images/demoes/demo22/products/product-10.jpg",
-    },
-  ];
-
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -60,6 +17,20 @@ function Shop() {
       try {
         const response = await makePostRequest("product/list");
         setProducts(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("category/list");
+        setCategory(response?.data);
       } catch (error) {
         console.error("Error fetching videos data:", error);
       }
@@ -247,7 +218,6 @@ function Shop() {
                             alt="product"
                           />
                         </Link>
-                      
                       </figure>
                       <div className="product-details">
                         <div className="category-wrap">
@@ -352,80 +322,14 @@ function Shop() {
                   <div className="collapse show" id="widget-body-1">
                     <div className="widget-body">
                       <ul className="cat-list">
-                        <li>
-                          <a
-                            href="#widget-category-1"
-                            data-toggle="collapse"
-                            role="button"
-                            aria-expanded="true"
-                            aria-controls="widget-category-1"
-                          >
-                            Electronics
-                            <span className="products-count">(8)</span>
-                            <span className="toggle"></span>
-                          </a>
-                          <div className="collapse show" id="widget-category-1">
-                            <ul className="cat-sublist">
-                              <li>
-                                <a href="#">
-                                  Headphone
-                                  <span className="products-count">(3)</span>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                        <li>
-                          <a
-                            href="#widget-category-2"
-                            className="collapsed"
-                            data-toggle="collapse"
-                            role="button"
-                            aria-expanded="false"
-                            aria-controls="widget-category-2"
-                          >
-                            Fashion<span className="products-count">(3)</span>
-                            <span className="toggle"></span>
-                          </a>
-                          <div className="collapse" id="widget-category-2">
-                            <ul className="cat-sublist">
-                              <li>
-                                Motors
-                                <span className="products-count">(3)</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                        <li>
-                          <a href="#">
-                            Gifts<span className="products-count">(5)</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#widget-category-4"
-                            className="collapsed"
-                            data-toggle="collapse"
-                            role="button"
-                            aria-expanded="false"
-                            aria-controls="widget-category-4"
-                          >
-                            Music<span className="products-count">(5)</span>
-                            <span className="toggle"></span>
-                          </a>
-                          <div className="collapse" id="widget-category-4">
-                            <ul className="cat-sublist">
-                              <li>
-                                Garden
-                                <span className="products-count">(4)</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
-                        <li>
-                          <a href="#">Trousers</a>
-                          <span className="products-count">(5)</span>
-                        </li>
+                        {category?.map((data, index) => (
+                          <li key={index}>
+                            <a href="#">
+                              {data?.name}
+                              <span className="products-count">( {data?.product_count})</span>
+                            </a>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>

@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Checkoutform from "../Components/Checkoutform";
+import { setCartItems, setUserDetails } from "../Store/OrderSlice";
+import { makePostRequest } from "../Apis";
 
 function Checkout() {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
-
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const orderDeatils = useSelector((state) => state.order.orderDetails);
+  const user = useSelector((state) => state.user.value);
+  const [accountPassword, setAccountPassword] = useState(""); // State for account password
+  const [createAccount, setCreateAccount] = useState(false);
+
+  console.log("orderDeatils", orderDeatils);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -19,7 +29,7 @@ function Checkout() {
     email: "",
     orderNotes: "",
   });
-  console.log("formData", formData);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -37,6 +47,34 @@ function Checkout() {
 
   const subtotal = calculateSubtotal();
 
+  const handlePasswordChange = (e) => {
+    setAccountPassword(e.target.value);
+  };
+
+  const handleCreateAccountChange = (e) => {
+    setCreateAccount(e.target.checked);
+  };
+
+  const handlePlaceOrder = async () => {
+    dispatch(setCartItems(cartItems));
+    dispatch(setUserDetails(formData));
+
+    if (createAccount && !user) {
+      try {
+        const response = await makePostRequest("auth/customer-register", {
+          full_name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          phone: formData.phone,
+          password: accountPassword,
+        });
+        // Handle success (e.g., show a success message, redirect, etc.)
+      } catch (error) {
+        // Handle error (e.g., show an error message)
+        console.error("Account creation failed:", error);
+      }
+    }
+  };
+
   return (
     <Layout>
       <main className="main main-test">
@@ -52,79 +90,6 @@ function Checkout() {
               <Link href="#">Order Complete</Link>
             </li>
           </ul>
-
-          {/* <div className="login-form-container">
-                    <h4>Returning customer?
-                        <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" className="btn btn-link btn-toggle ml-2">Login</button>
-                    </h4>
-
-                    <div id="collapseOne" className="collapse">
-                        <div className="login-section feature-box">
-                            <div className="feature-box-content">
-                                <form action="#" id="login-form">
-                                    <p>
-                                        If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing & Shipping section.
-                                    </p>
-
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label className="mb-0 pb-1">Username or email <span
-                                                        className="required">*</span></label>
-                                                <input type="email" className="form-control" required />
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label className="mb-0 pb-1">Password <span
-                                                        className="required">*</span></label>
-                                                <input type="password" className="form-control" required />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" className="btn">LOGIN</button>
-
-                                    <div className="form-footer mb-1">
-                                        <div className="custom-control custom-checkbox mb-0 mt-0">
-                                            <input type="checkbox" className="custom-control-input" id="lost-password" />
-                                            <label className="custom-control-label mb-0"  htmlFor="lost-password">Remember
-                                                me</label>
-                                        </div>
-
-                                        <a  className="forget-password">Lost your password?</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="checkout-discount">
-                    <h4>Have a coupon?
-                        <button data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne" className="btn btn-link btn-toggle ml-2">ENTER YOUR CODE</button>
-                    </h4>
-
-                    <div id="collapseTwo" className="collapse">
-                        <div className="feature-box">
-                            <div className="feature-box-content">
-                                <p>If you have a coupon code, please apply it below.</p>
-
-                                <form action="#">
-                                    <div className="input-group">
-                                        <input type="text" className="form-control form-control-sm w-auto" placeholder="Coupon code" required="" />
-                                        <div className="input-group-append">
-                                            <button className="btn btn-sm mt-0" type="submit">
-                                                Apply Coupon
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
 
           <div className="row">
             <div className="col-lg-7">
@@ -264,6 +229,8 @@ function Checkout() {
                           type="checkbox"
                           className="custom-control-input"
                           id="create-account"
+                          checked={createAccount}
+                          onChange={handleCreateAccountChange}
                         />
                         <label
                           className="custom-control-label"
@@ -289,7 +256,9 @@ function Checkout() {
                           type="password"
                           placeholder="Password"
                           className="form-control"
-                          required
+                          value={accountPassword}
+                          onChange={handlePasswordChange}
+                          required={createAccount}
                         />
                       </div>
                     </div>
@@ -306,8 +275,6 @@ function Checkout() {
                         placeholder="Notes about your order, e.g. special notes for delivery."
                       ></textarea>
                     </div>
-
-                  
                   </form>
                 </li>
               </ul>
@@ -360,7 +327,7 @@ function Checkout() {
                     </tr>
                     <tr className="order-shipping">
                       <td className="text-left" colSpan="2">
-                        <h4 className="m-b-sm">Delivery</h4>
+                        <h4 className="m-b-sm">Payment Method</h4>
 
                         <div className="form-group form-group-custom-control">
                           <div className="custom-control custom-radio d-flex">
@@ -383,7 +350,7 @@ function Checkout() {
                               className="custom-control-input"
                             />
                             <label className="custom-control-label">
-                              Other Payment Method
+                              Credit Card
                             </label>
                           </div>
                         </div>
@@ -419,6 +386,7 @@ function Checkout() {
                 </div>
 
                 <button
+                  onClick={handlePlaceOrder}
                   type="submit"
                   className="btn btn-dark btn-place-order"
                   form="checkout-form"

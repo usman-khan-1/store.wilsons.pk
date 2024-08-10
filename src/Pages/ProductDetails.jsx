@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Store/CartSlice";
 import { toast, ToastContainer } from "react-toastify";
+import { addToWishlist, removeFromWishlist } from "../Store/WishlistSlice";
 
 function ProductDetails() {
   useEffect(() => {
@@ -23,8 +24,11 @@ function ProductDetails() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [loading, setLoading] = useState(false);
   const [productDetails, setProductDetails] = useState({});
+  console.log("productDetails", productDetails);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+  const wishlistItems = useSelector((state) => state.wishlist.items);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,13 +44,6 @@ function ProductDetails() {
     };
     fetchData();
   }, [slug]);
-
-  // const handleAddToCart = () => {
-  //   if (quantity > 0) {
-  //     // Ensure quantity is valid before dispatching
-  //     dispatch(addToCart({ product: productDetails.details, quantity }));
-  //   }
-  // };
 
   const handleAddToCart = () => {
     if (quantity > 0 && productDetails?.details?.uid) {
@@ -73,6 +70,32 @@ function ProductDetails() {
   useEffect(() => {
     console.log("Cart Items:", cartItems); // Log cartItems to the console to check if it’s working
   }, [cartItems]);
+
+  // const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
+
+  const handleToggle = (product) => {
+    if (!user?.logged_id) {
+      alert("Please log in to add items to your wishlist.");
+      return;
+    }
+    const isWishlisted = wishlistItems.some(
+      (item) => item.uid === product?.uid
+    );
+
+    if (isWishlisted) {
+      dispatch(removeFromWishlist({ uid: product.uid }));
+      makePostRequest("wishlist/remove", {
+        customer_id: user.logged_id,
+        product_id: product.uid,
+      });
+    } else {
+      dispatch(addToWishlist(product));
+      makePostRequest("wishlist/add", {
+        customer_id: user.logged_id,
+        product_id: product.uid,
+      });
+    }
+  };
 
   return (
     <Layout>
@@ -173,9 +196,9 @@ function ProductDetails() {
                     Add to Cart
                   </a>
 
-                  <Link to={"/cart"} className="btn btn-gray view-cart d-none">
+                  {/* <Link to={"/cart"} className="btn btn-gray view-cart d-none">
                     View cart
-                  </Link>
+                  </Link> */}
                 </div>
 
                 <hr className="divider mb-0 mt-0" />
@@ -208,14 +231,43 @@ function ProductDetails() {
                     </LinkedinShareButton>
                   </div>
 
-                  <Link
-                    to={"/wishlist"}
-                    className="btn-icon-wish add-wishlist"
-                    title="Add to Wishlist"
+                  {/* <button
+                    onClick={handleWishlistToggle}
+                    style={{
+                      color: isWishlisted ? "#01abec" : "gray",
+                      border: "none",
+                      backgroundColor: "transparent",
+                      cursor: "pointer",
+                      fontSize: "24px",
+                    }}
                   >
-                    <i className="icon-wishlist-2"></i>
-                    <span>Add to Wishlist</span>
-                  </Link>
+                    {isWishlisted ? (
+                      <i className="fa-solid fa-heart"></i>
+                    ) : (
+                      <i className="fa-regular fa-heart"></i>
+                    )}
+                  </button> */}
+
+                  <div
+                    title="Add to Wishlist"
+                    className="btn-icon-wish"
+                    onClick={() => handleToggle(productDetails?.details)}
+                    style={{
+                      color: wishlistItems.some(
+                        (item) => item.uid === productDetails?.details?.uid
+                      )
+                        ? "#01abec"
+                        : "gray",
+                    }}
+                  >
+                    {wishlistItems.some(
+                      (item) => item.uid === productDetails?.details?.uid
+                    ) ? (
+                      <i className="fa-solid fa-heart"></i>
+                    ) : (
+                      <i className="fa-regular fa-heart"></i>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

@@ -3,12 +3,23 @@ import { Link } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import ProductShimmer from "../ProductShimmer";
 import ImageWithLoader from "../ImageWithLoader";
+import { useSelector, useDispatch } from "react-redux";
+// import { setWishlist } from "../../Store/WishlistSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+  clearWishlist,
+  setWishlist,
+} from "../../Store/WishlistSlice"; // Import actions
 
 function BestSellerElectronics() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [toggleStates, setToggleStates] = useState([]);
+  const user = useSelector((state) => state.user.value); // Get the user state
+  const wishlistItems = useSelector((state) => state.wishlist.items); // Get wishlist items from Redux
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -18,20 +29,57 @@ function BestSellerElectronics() {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.error("Error fetching videos data:", error);
+        console.error("Error fetching products data:", error);
       }
     };
-    fetchData();
-  }, []);
 
-  const handleToggle = (index) => {
-    const newToggleStates = [...toggleStates];
-    newToggleStates[index] = !newToggleStates[index];
-    setToggleStates(newToggleStates);
+    fetchData();
+
+    if (user?.logged_id) {
+      // Fetch the wishlist if the user is logged in
+      const fetchWishlist = async () => {
+        try {
+          const response = await makePostRequest("wishlist/list", {
+            customer_id: user?.logged_id,
+          });
+          dispatch(setWishlist(response?.data));
+        } catch (error) {
+          console.error("Error fetching wishlist data:", error);
+        }
+      };
+
+      fetchWishlist();
+    } else {
+      // Clear wishlist if the user is not logged in
+      dispatch(clearWishlist());
+    }
+  }, [user?.logged_id, dispatch]);
+
+  const handleToggle = (product) => {
+    if (!user?.logged_id) {
+      alert("Please log in to add items to your wishlist.");
+      return;
+    }
+
+    const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
+
+    if (isWishlisted) {
+      dispatch(removeFromWishlist({ uid: product.uid }));
+      makePostRequest("wishlist/remove", {
+        customer_id: user?.logged_id,
+        product_id: product.uid,
+      });
+    } else {
+      dispatch(addToWishlist(product));
+      makePostRequest("wishlist/add", {
+        customer_id: user?.logged_id,
+        product_id: product.uid,
+      });
+    }
   };
 
   return (
-    <div className="container ">
+    <div className="container">
       <h2 className="section-title ls-n-10 pb-3 m-b-4">Best Sellers</h2>
       <div className="row">
         {loading
@@ -40,52 +88,56 @@ function BestSellerElectronics() {
                 <ProductShimmer />
               </div>
             ))
-          : products?.map((data, index) => (
+          : products?.map((product, index) => (
               <div key={index} className="col-lg-2 col-md-3 col-sm-6">
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
-                    <Link to={`/product/${data.seo_slug}`}>
+                    <Link to={`/product/${product.seo_slug}`}>
                       <ImageWithLoader
-                        src={data.image}
+                        src={product.image}
                         width="217"
                         height="217"
                         alt="product"
-                      />{" "}
+                      />
                     </Link>
-                  
                   </figure>
                   <div className="product-details">
                     <div className="category-wrap">
                       <div className="category-list">
                         <Link to={"/category"} className="product-category">
-                          {data?.category}
+                          {product?.category}
                         </Link>
                       </div>
                       <div
                         title="Add to Wishlist"
                         className="btn-icon-wish"
-                        onClick={() => handleToggle(index)}
+                        // onClick={() => handleToggle(product)}
                         style={{
-                          color: toggleStates[index] ? "#01abec" : "gray",
+                          color: wishlistItems.some(
+                            (item) => item.uid === product.uid
+                          )
+                            ? "#01abec"
+                            : "gray",
                         }}
                       >
-                        {toggleStates[index] ? (
-                          <i class="fa-solid fa-heart"></i>
+                        {wishlistItems.some(
+                          (item) => item.uid === product.uid
+                        ) ? (
+                          <i className="fa-solid fa-heart"></i>
                         ) : (
-                          <i class="fa-regular fa-heart"></i>
+                          <i className="fa-regular fa-heart"></i>
                         )}
                       </div>
                     </div>
                     <h3 className="product-title">
-                      <Link to={`/product/${data.seo_slug}`}>
-                        {data?.heading}
+                      <Link to={`/product/${product.seo_slug}`}>
+                        {product?.heading}
                       </Link>
                     </h3>
-
                     <div className="price-box">
-                        Rs. {""}
+                      Rs.{" "}
                       <span className="product-price">
-                        {data.price.toLocaleString("en-US")}
+                        {product.price.toLocaleString("en-US")}
                       </span>
                     </div>
                   </div>

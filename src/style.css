@@ -10326,8 +10326,7 @@ header .separator {
   padding: 2rem 0;
   -ms-flex-align: center;
   align-items: center;
-  border-bottom: 1px solid #e6ebee;
-  box-shadow: none !important;
+  
   font-family: Poppins, sans-serif;
 }
 .cart-dropdown .product-image-container {
@@ -11733,7 +11732,7 @@ footer .contact-info-label {
   line-height: 27px;
 }
 .page-header-bg {
-  padding: 8.3rem 0 8.7rem;
+  padding: 18.3rem 0 18.3rem;
 }
 .page-header-bg h1 {
   color: #1e3636;
@@ -18513,3 +18512,15 @@ div.shimmer {
   flex-direction: column;
 }
 
+.continue-shopping{
+  background-color: #01abec;
+}
+
+.cart-product{
+  border-bottom: 1px solid #e6ebee;
+  /* box-shadow: none !important; */
+}
+.cart-product .table-cart td{
+  border: none !important;
+  padding: 0px;
+}
