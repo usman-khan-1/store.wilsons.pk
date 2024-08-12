@@ -10,7 +10,7 @@ function BlogDetails() {
     <Layout>
       <main className="main">
         <nav aria-label="breadcrumb" className="breadcrumb-nav">
-          <div className="container">
+          <div className="">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <Link to={"/"}>

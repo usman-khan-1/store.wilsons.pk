@@ -9,7 +9,7 @@ function Contact() {
     <Layout>
       <main className="main">
 			<nav aria-label="breadcrumb" className="breadcrumb-nav">
-				<div className="container">
+				<div className="">
 					<ol className="breadcrumb">
 						<li className="breadcrumb-item">
 							<a href="demo4.html"><i className="icon-home"></i></a>

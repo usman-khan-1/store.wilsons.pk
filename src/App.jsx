@@ -25,6 +25,10 @@ import TermsCondition from "./Pages/TermsCondition";
 import CompanyProfile from "./Pages/CompanyProfile";
 import QualityPolicy from "./Pages/QualityPolicy";
 import Manufacturing from "./Pages/Manufacturing";
+import ShopByCategory from "./Pages/ShopByCategory";
+import RegistrationSuccess from "./Pages/RegistrationSuccess";
+import OrderSuccess from "./Pages/OrderSuccess";
+import VerifySuccess from "./Pages/VerifySuccess";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -50,6 +54,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="myAccount" element={<MyAccount />} />
           <Route path="login" element={<Login />} />
+          <Route
+            path="registration-success"
+            element={<RegistrationSuccess />}
+          />
+          <Route path="order-success" element={<OrderSuccess />} />
+          <Route path="verify-success" element={<VerifySuccess />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
@@ -66,7 +76,7 @@ function App() {
           <Route path="checkout" element={<Checkout />} />
           <Route path="verify-customer/:slug" element={<VerifyAccount />} />
           <Route path="category" element={<Shop />} />
-          <Route path="category/:slug" element={<Shop />} />
+          <Route path="category/:slug" element={<ShopByCategory />} />
           <Route path="company-profile" element={<CompanyProfile />} />
           <Route path="quality-policy" element={<QualityPolicy />} />
           <Route path="manufacturing" element={<Manufacturing />} />

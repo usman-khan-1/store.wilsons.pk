@@ -13,7 +13,7 @@ function Login() {
     <Layout>
       <main className="main">
         <div className="page-header">
-          <div className="container d-flex flex-column align-items-center">
+          <div className=" d-flex flex-column align-items-center">
             <nav aria-label="breadcrumb" className="breadcrumb-nav">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">

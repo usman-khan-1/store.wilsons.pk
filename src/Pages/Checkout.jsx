@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Checkoutform from "../Components/Checkoutform";
 import { setCartItems, setUserDetails } from "../Store/OrderSlice";
@@ -9,15 +9,14 @@ import { makePostRequest } from "../Apis";
 function Checkout() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const orderDeatils = useSelector((state) => state.order.orderDetails);
   const user = useSelector((state) => state.user.value);
   const [accountPassword, setAccountPassword] = useState(""); // State for account password
   const [createAccount, setCreateAccount] = useState(false);
-
-  console.log("orderDeatils", orderDeatils);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -59,6 +58,8 @@ function Checkout() {
     dispatch(setCartItems(cartItems));
     dispatch(setUserDetails(formData));
 
+    
+
     if (createAccount && !user) {
       try {
         const response = await makePostRequest("auth/customer-register", {
@@ -73,6 +74,7 @@ function Checkout() {
         console.error("Account creation failed:", error);
       }
     }
+    navigate("/order-success");
   };
 
   return (

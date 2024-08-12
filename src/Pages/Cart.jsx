@@ -133,40 +133,7 @@ function Cart() {
                     <p className="text-center">No Items In Cart</p>
                     )}
                   </tbody>
-                  {/* <tfoot>
-                    <tr>
-                      <td colSpan="5" className="clearfix">
-                        <div className="float-left">
-                          <div className="cart-discount">
-                            <form action="#">
-                              <div className="input-group">
-                                <input
-                                  type="text"
-                                  className="form-control form-control-sm"
-                                  placeholder="Coupon Code"
-                                  required
-                                />
-                                <div className="input-group-append">
-                                  <button className="btn btn-sm" type="submit">
-                                    Apply Coupon
-                                  </button>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-
-                        <div className="float-right">
-                          <button
-                            type="submit"
-                            className="btn btn-shop btn-update-cart"
-                          >
-                            Update Cart
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tfoot> */}
+               
                 </table>
               </div>
             </div>

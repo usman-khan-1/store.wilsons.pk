@@ -18524,3 +18524,15 @@ div.shimmer {
   border: none !important;
   padding: 0px;
 }
+.success-box{
+  /* background-color: red; */
+  width: 50%;
+  margin: 60px auto;
+  box-shadow: rgba(149, 157, 165, 0.3) 0px 0px 34px;
+  padding: 60px ;
+  border-radius: 20px;
+  text-align: center;
+}
+.success-box a{
+  border-radius: 8px;
+}

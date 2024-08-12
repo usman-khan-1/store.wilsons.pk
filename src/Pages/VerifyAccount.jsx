@@ -32,10 +32,10 @@ function VerifyAccount() {
       const response = await makePostRequest("auth/verify-customer", { code });
 
       if (response?.status === "success") {
-        toast.success("Verification successful! Redirecting...");
+        // toast.success("Verification successful! Redirecting...");
+        navigate("/verify-success");
         dispatch(setUserData(response.data));
         setTimeout(() => {
-          navigate("/myAccount");
           // navigate("/login");
         }, 2000);
       } else {

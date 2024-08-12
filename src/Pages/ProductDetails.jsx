@@ -20,15 +20,15 @@ function ProductDetails() {
   }, []);
 
   const slug = useParams();
-  const currentUrl = window.location.href;
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const [loading, setLoading] = useState(false);
-  const [productDetails, setProductDetails] = useState({});
-  console.log("productDetails", productDetails);
-  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const currentUrl = window.location.href;
   const user = useSelector((state) => state.user.value);
   const wishlistItems = useSelector((state) => state.wishlist.items);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
+  const [loading, setLoading] = useState(false);
+  const [productDetails, setProductDetails] = useState({});
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,14 +47,23 @@ function ProductDetails() {
 
   const handleAddToCart = () => {
     if (quantity > 0 && productDetails?.details?.uid) {
-      const isProductInCart = cartItems?.some(
+      const isProductInCart = cartItems?.find(
         (item) => item?.uid === productDetails.details.uid
       );
+
       if (isProductInCart) {
-        toast.error("This product is already in your cart!");
+        // If the product is already in the cart, update the quantity by adding the new quantity to the existing one
+        dispatch(
+          addToCart({
+            product: productDetails.details,
+            quantity: isProductInCart.quantity + quantity,
+          })
+        );
+        toast.success("Product quantity updated in cart!");
       } else {
-        // toast.success("Product added to cart successfully!");
+        // If the product is not in the cart, add it as a new item
         dispatch(addToCart({ product: productDetails.details, quantity }));
+        toast.success("Product added to cart successfully!");
       }
     }
   };
@@ -349,7 +358,7 @@ function ProductDetails() {
 
           <hr className="mt-0 m-b-5" />
         </div>
-        <ToastContainer />
+        <ToastContainer limit={1}/>
       </main>
     </Layout>
   );

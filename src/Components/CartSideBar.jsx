@@ -55,15 +55,15 @@ function CartSidebar({ setOpenCart }) {
           ×
         </a>
 
-      <div className="dropdownmenu-wrapper custom-scrollbar">
+        <div className="dropdownmenu-wrapper custom-scrollbar">
           <div className="dropdown-cart-header">Shopping Cart</div>
 
           <div className="dropdown-cart-products">
             {cartItems.length === 0 ? (
               <h4>No items in the cart</h4>
             ) : (
-              cartItems.map((data) => (
-                <div className="cart-product">
+              cartItems.map((data, index) => (
+                <div key={index} className="cart-product">
                   <div key={data.uid} className="product">
                     <div className="product-details">
                       <h4 className="product-title">

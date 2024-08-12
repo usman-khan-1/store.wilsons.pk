@@ -59,33 +59,8 @@ function MyAccount() {
                   </a>
                 </li>
 
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="order-tab"
-                    data-toggle="tab"
-                    href="#order"
-                    role="tab"
-                    aria-controls="order"
-                    aria-selected="true"
-                  >
-                    Orders
-                  </a>
-                </li>
+            
 
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="download-tab"
-                    data-toggle="tab"
-                    href="#download"
-                    role="tab"
-                    aria-controls="download"
-                    aria-selected="false"
-                  >
-                    Downloads
-                  </a>
-                </li>
 
                 <li className="nav-item">
                   <a
@@ -114,24 +89,8 @@ function MyAccount() {
                     Account details
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="shop-address-tab"
-                    data-toggle="tab"
-                    href="#shipping"
-                    role="tab"
-                    aria-controls="edit"
-                    aria-selected="false"
-                  >
-                    Shopping Addres
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/wishlist"}>
-                    Wishlist
-                  </Link>
-                </li>
+             
+                
                 <li className="nav-item" onClick={handleLogout}>
                   Logout
                 </li>
@@ -144,34 +103,8 @@ function MyAccount() {
                 role="tabpanel"
               >
                 <div className="dashboard-content">
-                  <p>
-                    Hello <strong className="text-dark">Editor</strong> (not
-                    <strong className="text-dark">Editor</strong>?
-                    <div onClick={handleLogout} className="btn btn-link ">
-                      Log out
-                    </div>
-                    )
-                  </p>
-
-                  <p>
-                    From your account dashboard you can view your
-                    <a className="btn btn-link link-to-tab" href="#order">
-                      recent orders
-                    </a>
-                    , manage your
-                    <a className="btn btn-link link-to-tab" href="#address">
-                      shipping and billing addresses
-                    </a>
-                    , and
-                    <a className="btn btn-link link-to-tab" href="#edit">
-                      edit your password and account details.
-                    </a>
-                  </p>
-
-                  <div className="mb-4"></div>
-
                   <div className="row row-lg">
-                    <div className="col-6 col-md-4">
+                    <div className="col-6 col-md-3">
                       <div className="feature-box text-center pb-4">
                         <a href="#order" className="link-to-tab">
                           <i className="sicon-social-dropbox"></i>
@@ -182,18 +115,7 @@ function MyAccount() {
                       </div>
                     </div>
 
-                    <div className="col-6 col-md-4">
-                      <div className="feature-box text-center pb-4">
-                        <a href="#download" className="link-to-tab">
-                          <i className="sicon-cloud-download"></i>
-                        </a>
-                        <div className=" feature-box-content">
-                          <h3>DOWNLOADS</h3>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-6 col-md-4">
+                    <div className="col-6 col-md-3">
                       <div className="feature-box text-center pb-4">
                         <a href="#address" className="link-to-tab">
                           <i className="sicon-location-pin"></i>
@@ -204,7 +126,7 @@ function MyAccount() {
                       </div>
                     </div>
 
-                    <div className="col-6 col-md-4">
+                    <div className="col-6 col-md-3">
                       <div className="feature-box text-center pb-4">
                         <a href="#edit" className="link-to-tab">
                           <i className="icon-user-2"></i>
@@ -215,23 +137,13 @@ function MyAccount() {
                       </div>
                     </div>
 
-                    <div className="col-6 col-md-4">
+                    <div className="col-6 col-md-3">
                       <div className="feature-box text-center pb-4">
                         <Link to={"/wishlist"}>
                           <i className="sicon-heart"></i>
                         </Link>
                         <div className="feature-box-content">
                           <h3>WISHLIST</h3>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-6 col-md-4">
-                      <div onClick={handleLogout} className="feature-box text-center pb-4">
-                        <i className="sicon-logout"></i>
-
-                        <div className="feature-box-content">
-                          <h3>LOGOUT</h3>
                         </div>
                       </div>
                     </div>

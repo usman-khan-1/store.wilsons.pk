@@ -70,26 +70,28 @@ function RelatedProductsCarousel({ productDetails, load }) {
                             {product?.category}
                           </Link>
                         </div>
-                        <div
-                          title="Add to Wishlist"
-                          className="btn-icon-wish"
-                          // onClick={() => handleToggle(product)}
-                          style={{
-                            color: wishlistItems.some(
+                        {user && (
+                          <div
+                            title="Add to Wishlist"
+                            className="btn-icon-wish"
+                            // onClick={() => handleToggle(product)}
+                            style={{
+                              color: wishlistItems.some(
+                                (item) => item.uid === product.uid
+                              )
+                                ? "#01abec"
+                                : "gray",
+                            }}
+                          >
+                            {wishlistItems.some(
                               (item) => item.uid === product.uid
-                            )
-                              ? "#01abec"
-                              : "gray",
-                          }}
-                        >
-                          {wishlistItems.some(
-                            (item) => item.uid === product.uid
-                          ) ? (
-                            <i className="fa-solid fa-heart"></i>
-                          ) : (
-                            <i className="fa-regular fa-heart"></i>
-                          )}
-                        </div>
+                            ) ? (
+                              <i className="fa-solid fa-heart"></i>
+                            ) : (
+                              <i className="fa-regular fa-heart"></i>
+                            )}
+                          </div>
+                        )}
                       </div>
                       <h3 className="product-title">
                         <Link to={`/product/${product.seo_slug}`}>

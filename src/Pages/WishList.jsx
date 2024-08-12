@@ -10,9 +10,9 @@ function WishList() {
     <Layout>
       <main className="main">
         <div className="page-header">
-          <div className="container d-flex flex-column align-items-center">
+          <div className=" d-flex flex-column align-items-center">
             <nav aria-label="breadcrumb" className="breadcrumb-nav">
-              <div className="container">
+              <div className="">
                 <ol className="breadcrumb">
                   <li className="breadcrumb-item">
                     <Link to={"/"}>Home</Link>
@@ -55,7 +55,6 @@ function WishList() {
                       </Link>
 
                       <a
-                       
                         className="btn-remove icon-cancel"
                         title="Remove Product"
                       ></a>
@@ -95,7 +94,6 @@ function WishList() {
                       </Link>
 
                       <a
-                       
                         className="btn-remove icon-cancel"
                         title="Remove Product"
                       ></a>
@@ -138,7 +136,6 @@ function WishList() {
                       </a>
 
                       <a
-                     
                         className="btn-remove icon-cancel"
                         title="Remove Product"
                       ></a>

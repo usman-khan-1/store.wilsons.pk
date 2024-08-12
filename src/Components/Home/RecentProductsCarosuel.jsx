@@ -6,7 +6,12 @@ import { makePostRequest } from "../../Apis";
 import ProductShimmer from "../ProductShimmer";
 import ImageWithLoader from "../ImageWithLoader";
 import { useSelector, useDispatch } from "react-redux";
-import { addToWishlist, clearWishlist, removeFromWishlist, setWishlist } from "../../Store/WishlistSlice";
+import {
+  addToWishlist,
+  clearWishlist,
+  removeFromWishlist,
+  setWishlist,
+} from "../../Store/WishlistSlice";
 
 function RecentProductsCarosuel() {
   const responsive = {
@@ -81,7 +86,7 @@ function RecentProductsCarosuel() {
   };
   return (
     <div className="container">
-      <h2 className="section-title ls-n-10 pb-3 m-b-4">Most Viewed Products</h2>
+      <h2 className="section-title ls-n-10 pb-3 m-b-4">Recent Products</h2>
       <Carousel
         autoPlay={true}
         autoPlaySpeed={3000}
@@ -112,26 +117,28 @@ function RecentProductsCarosuel() {
                             {product.category}
                           </Link>
                         </div>
-                        <div
-                          title="Add to Wishlist"
-                          className="btn-icon-wish"
-                          // onClick={() => handleToggle(product)}
-                          style={{
-                            color: wishlistItems.some(
+                        {user && (
+                          <div
+                            title="Add to Wishlist"
+                            className="btn-icon-wish"
+                            // onClick={() => handleToggle(product)}
+                            style={{
+                              color: wishlistItems.some(
+                                (item) => item.uid === product.uid
+                              )
+                                ? "#01abec"
+                                : "gray",
+                            }}
+                          >
+                            {wishlistItems.some(
                               (item) => item.uid === product.uid
-                            )
-                              ? "#01abec"
-                              : "gray",
-                          }}
-                        >
-                          {wishlistItems.some(
-                            (item) => item.uid === product.uid
-                          ) ? (
-                            <i className="fa-solid fa-heart"></i>
-                          ) : (
-                            <i className="fa-regular fa-heart"></i>
-                          )}
-                        </div>
+                            ) ? (
+                              <i className="fa-solid fa-heart"></i>
+                            ) : (
+                              <i className="fa-regular fa-heart"></i>
+                            )}
+                          </div>
+                        )}
                       </div>
                       <h3 className="product-title">
                         <Link to={`/product/${product.seo_slug}`}>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { makePostRequest } from "../../Apis";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  
 
   const [registerCredentials, setRegisterCredentials] = useState({
     full_name: "",
@@ -32,12 +32,12 @@ function RegisterForm() {
         password: "",
       });
       setLoading(false);
-      
-      if (response?.status === "success") {
-        toast.success(response?.message);
-      }else if((response?.status === "fail")){
-        toast.error(response?.message);
 
+      if (response?.status === "success") {
+        navigate("/registration-success");
+        // toast.success(response?.message);
+      } else if (response?.status === "fail") {
+        toast.error(response?.message);
       }
     } catch (error) {
       setLoading(false);
