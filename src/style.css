@@ -11732,7 +11732,7 @@ footer .contact-info-label {
   line-height: 27px;
 }
 .page-header-bg {
-  padding: 18.3rem 0 18.3rem;
+  /* padding: 1.3rem 0 18.3rem; */
 }
 .page-header-bg h1 {
   color: #1e3636;
@@ -15569,6 +15569,11 @@ tbody .product-col {
   font-size: 1.5rem;
   letter-spacing: -0.015em;
   padding: 1em 0;
+  width: 310px;
+  float: right;
+}
+.table-cart tfoot{
+  width: 100%;
 }
 .checkout-methods .btn i {
   margin-left: 1.2rem;

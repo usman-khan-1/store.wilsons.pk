@@ -26,7 +26,7 @@ function PrivacyPolicy() {
         </div>
 
         <nav aria-label="breadcrumb" className="breadcrumb-nav">
-          <div className="">
+          <div className="container">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <Link to={"/"}>

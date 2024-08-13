@@ -21,7 +21,7 @@ function Footer() {
       const response = await makePostRequest("newsletter/add", { email });
       setLoading(false);
       if (response?.status === "success") {
-        toast.success(response?.message);
+        // toast.success(response?.message);
         setEmail("");
       } else {
         setEmail("");

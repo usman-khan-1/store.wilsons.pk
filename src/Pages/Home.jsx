@@ -21,6 +21,43 @@ function Home() {
   return (
     <Layout>
       <HomeCarosuel />
+      <TopCategoryCarosuel />
+
+      <div className="container">
+        <div className="row m-b-3">
+          <div className="col-lg-6">
+            <div
+              className="banner banner1 mb-2 "
+              style={{ backgroundColor: "#f4f4f4" }}
+            >
+              <figure>
+                <img
+                  src="/assets/imagess/category-2.jpg"
+                  alt="banner"
+                  width="700"
+                  height="236"
+                />
+              </figure>
+            </div>
+          </div>
+          <div className="col-lg-6">
+            <div
+              className="banner banner1 mb-2 "
+              style={{ backgroundColor: "#f4f4f4" }}
+            >
+              <figure>
+                <img
+                  src="/assets/imagess/category-1.jpg"
+                  alt="banner"
+                  width="700"
+                  height="236"
+                />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container my-5">
         <div className="info-boxes-container">
           <div className="row m-0 divide-line">
@@ -71,7 +108,6 @@ function Home() {
         </div>
       </div>
 
-    <TopCategoryCarosuel />
       <MostViewedCarosuel />
 
       <BestSellerElectronics />

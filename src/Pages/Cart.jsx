@@ -53,7 +53,7 @@ function Cart() {
           </ul>
 
           <div className="row">
-            <div className="col-lg-8">
+            <div className="col-lg-12">
               <div className="cart-table-container">
                 <table className="table table-cart">
                   <thead>
@@ -130,119 +130,22 @@ function Cart() {
                         </tr>
                       ))
                     ) : (
-                    <p className="text-center">No Items In Cart</p>
+                      <p className="text-center">No Items In Cart</p>
                     )}
                   </tbody>
-               
-                </table>
-              </div>
-            </div>
-
-            <div className="col-lg-4">
-              <div className="cart-summary">
-                <h3>CART TOTALS</h3>
-
-                <table className="table table-totals">
-                  <tbody>
-                    {/* <tr>
-                      <td>Subtotal</td>
-                      <td>$17.90</td>
-                    </tr> */}
-
+                  {/* <tfoot>
                     <tr>
-                      <td colSpan="2" className="text-left">
-                        <h4>Shipping</h4>
-
-                        <div className="form-group form-group-custom-control">
-                          <div className="custom-control custom-radio">
-                            <input
-                              type="radio"
-                              className="custom-control-input"
-                              name="radio"
-                              //   checked
-                            />
-                            <label className="custom-control-label">
-                              Cash On Delivery
-                            </label>
-                          </div>
-                        </div>
-
-                        <div className="form-group form-group-custom-control mb-0">
-                          <div className="custom-control custom-radio mb-0">
-                            <input
-                              type="radio"
-                              name="radio"
-                              className="custom-control-input"
-                            />
-                            <label className="custom-control-label">
-                              Other Payment Method
-                            </label>
-                          </div>
-                        </div>
-
-                        <form action="#">
-                          <div className="form-group form-group-sm">
-                            <label>
-                              Shipping to <strong>NY.</strong>
-                            </label>
-                            <div className="select-custom">
-                              <select className="form-control form-control-sm">
-                                <option value="USA">United States (US)</option>
-                                <option value="Turkey">Turkey</option>
-                                <option value="China">China</option>
-                                <option value="Germany">Germany</option>
-                              </select>
-                            </div>
-                          </div>
-
-                          <div className="form-group form-group-sm">
-                            <div className="select-custom">
-                              <select className="form-control form-control-sm">
-                                <option value="NY">New York</option>
-                                <option value="CA">California</option>
-                                <option value="TX">Texas</option>
-                              </select>
-                            </div>
-                          </div>
-
-                          <div className="form-group form-group-sm">
-                            <input
-                              type="text"
-                              className="form-control form-control-sm"
-                              placeholder="Town / City"
-                            />
-                          </div>
-
-                          <div className="form-group form-group-sm">
-                            <input
-                              type="text"
-                              className="form-control form-control-sm"
-                              placeholder="ZIP"
-                            />
-                          </div>
-
-                          <button
-                            type="submit"
-                            className="btn btn-shop btn-update-total"
-                          >
-                            Update Totals
-                          </button>
-                        </form>
-                      </td>
-                    </tr>
-                  </tbody>
-
-                  <tfoot>
-                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       <td>Total</td>
                       <td>
                         Rs. {""}
                         {subtotal}
                       </td>
                     </tr>
-                  </tfoot>
+                  </tfoot> */}
                 </table>
-
                 <div className="checkout-methods">
                   <Link to={"/checkout"} className="btn btn-block btn-dark">
                     Proceed to Checkout

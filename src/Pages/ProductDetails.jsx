@@ -59,11 +59,11 @@ function ProductDetails() {
             quantity: isProductInCart.quantity + quantity,
           })
         );
-        toast.success("Product quantity updated in cart!");
+        // toast.success("Product quantity updated in cart!");
       } else {
         // If the product is not in the cart, add it as a new item
         dispatch(addToCart({ product: productDetails.details, quantity }));
-        toast.success("Product added to cart successfully!");
+        // toast.success("Product added to cart successfully!");
       }
     }
   };
@@ -358,7 +358,7 @@ function ProductDetails() {
 
           <hr className="mt-0 m-b-5" />
         </div>
-        <ToastContainer limit={1}/>
+        <ToastContainer limit={1} />
       </main>
     </Layout>
   );

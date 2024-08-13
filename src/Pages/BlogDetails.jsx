@@ -1,16 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { makePostRequest } from "../Apis";
 
 function BlogDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
+
+  const slug = useParams();
+  const [blogDetails, setBlogDetails] = useState([]);
+
+  console.log("blogDetailaaas", blogDetails);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("blogs/detail", slug);
+        setBlogDetails(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <Layout>
       <main className="main">
         <nav aria-label="breadcrumb" className="breadcrumb-nav">
-          <div className="">
+          <div className="container">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <Link to={"/"}>
@@ -29,7 +47,7 @@ function BlogDetails() {
             <div className="col-lg-9">
               <article className="post single">
                 <div className="post-media">
-                  <img src=" assets/Images/blog/post-1.jpg" alt="Post" />
+                  <img src=" /assets/Images/blog/post-1.jpg" alt="Post" />
                 </div>
 
                 <div className="post-body">
@@ -38,7 +56,7 @@ function BlogDetails() {
                     <span className="month">Jun</span>
                   </div>
 
-                  <h2 className="post-title">Top New Collection</h2>
+                  <h2 className="post-title">{blogDetails?.detail?.heading}</h2>
 
                   <div className="post-meta">
                     <a href="#" className="hash-scroll">
@@ -84,7 +102,6 @@ function BlogDetails() {
 
                     <div className="social-icons">
                       <a
-                       
                         className="social-icon social-facebook"
                         target="_blank"
                         title="Facebook"
@@ -92,7 +109,6 @@ function BlogDetails() {
                         <i className="icon-facebook"></i>
                       </a>
                       <a
-                       
                         className="social-icon social-twitter"
                         target="_blank"
                         title="Twitter"
@@ -100,7 +116,6 @@ function BlogDetails() {
                         <i className="icon-twitter"></i>
                       </a>
                       <a
-                       
                         className="social-icon social-linkedin"
                         target="_blank"
                         title="Linkedin"
@@ -108,7 +123,6 @@ function BlogDetails() {
                         <i className="fab fa-linkedin-in"></i>
                       </a>
                       <a
-                       
                         className="social-icon social-gplus"
                         target="_blank"
                         title="Google +"
@@ -116,7 +130,6 @@ function BlogDetails() {
                         <i className="fab fa-google-plus-g"></i>
                       </a>
                       <a
-                       
                         className="social-icon social-mail"
                         target="_blank"
                         title="Email"
@@ -134,7 +147,7 @@ function BlogDetails() {
                     <figure>
                       <a href="#">
                         <img
-                          src=" assets/Images/blog/author.jpg"
+                          src="/assets/Images/blog/author.jpg"
                           alt="author"
                         />
                       </a>
@@ -236,7 +249,7 @@ function BlogDetails() {
                     <div className="post-media zoom-effect">
                       <Link to={"/blog-details"}>
                         <img
-                          src=" assets/Images/blog/related/post-1.jpg"
+                          src="/assets/Images/blog/related/post-1.jpg"
                           alt="Post"
                         />
                       </Link>
@@ -270,7 +283,7 @@ function BlogDetails() {
                     <div className="post-media zoom-effect">
                       <Link to={"/blog-details"}>
                         <img
-                          src=" assets/Images/blog/related/post-2.jpg"
+                          src="/assets/Images/blog/related/post-2.jpg"
                           alt="Post"
                         />
                       </Link>
@@ -304,7 +317,7 @@ function BlogDetails() {
                     <div className="post-media zoom-effect">
                       <Link to={"/blog-details"}>
                         <img
-                          src=" assets/Images/blog/related/post-3.jpg"
+                          src="/assets/Images/blog/related/post-3.jpg"
                           alt="Post"
                         />
                       </Link>
@@ -338,7 +351,7 @@ function BlogDetails() {
                     <div className="post-media zoom-effect">
                       <Link to={"/blog-details"}>
                         <img
-                          src=" assets/Images/blog/related/post-1.jpg"
+                          src="/assets/Images/blog/related/post-1.jpg"
                           alt="Post"
                         />
                       </Link>
@@ -416,7 +429,7 @@ function BlogDetails() {
                       <div className="post-media">
                         <Link to={"/blog-details"}>
                           <img
-                            src=" assets/Images/blog/widget/post-1.jpg"
+                            src="/assets/Images/blog/widget/post-1.jpg"
                             alt="Post"
                           />
                         </Link>
@@ -431,7 +444,7 @@ function BlogDetails() {
                       <div className="post-media">
                         <Link to={"/blog-details"}>
                           <img
-                            src=" assets/Images/blog/widget/post-2.jpg"
+                            src="/assets/Images/blog/widget/post-2.jpg"
                             alt="Post"
                           />
                         </Link>

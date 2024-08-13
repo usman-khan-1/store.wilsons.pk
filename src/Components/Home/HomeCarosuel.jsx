@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
+import { makePostRequest } from "../../Apis";
 
 function HomeCarosuel() {
   const homeSliderBannerImg = [
@@ -12,6 +13,21 @@ function HomeCarosuel() {
     "/assets/imagess/wil-D.jpg",
   ];
 
+  const [banner, setBanner] = useState([]);
+  console.log("banner", banner);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("branding/banners");
+        setBanner(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="row">
       <div className="col-lg-12 mb-2">
@@ -22,9 +38,13 @@ function HomeCarosuel() {
             controls={true} // Optional: hides the navigation controls
             pause="hover" // Optional: pauses on hover
           >
-            {homeSliderBannerImg.map((data, index) => (
+            {homeSliderBannerImg?.map((data, index) => (
               <Carousel.Item key={index}>
-                <img className="d-block w-100" src={data} alt={`Slide ${index}`} />
+                <img
+                  className="d-block w-100"
+                  src={data}
+                  alt={`Slide ${index}`}
+                />
               </Carousel.Item>
             ))}
           </Carousel>

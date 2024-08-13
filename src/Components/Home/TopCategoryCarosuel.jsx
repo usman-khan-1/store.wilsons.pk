@@ -57,38 +57,7 @@ function TopCategoryCarosuel() {
     <div>
       <section className="top-categories">
         <div className="container">
-          <div className="row m-b-3">
-            <div className="col-lg-6">
-              <div
-                className="banner banner1 mb-2 "
-                style={{ backgroundColor: "#f4f4f4" }}
-              >
-                <figure>
-                  <img
-                    src="/assets/imagess/category-2.jpg"
-                    alt="banner"
-                    width="700"
-                    height="236"
-                  />
-                </figure>
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div
-                className="banner banner1 mb-2 "
-                style={{ backgroundColor: "#f4f4f4" }}
-              >
-                <figure>
-                  <img
-                    src="/assets/imagess/category-1.jpg"
-                    alt="banner"
-                    width="700"
-                    height="236"
-                  />
-                </figure>
-              </div>
-            </div>
-          </div>
+         
           <h2 className="section-title line-height-1 ls-10 pb-4 mb-4">
             Top Categories
           </h2>

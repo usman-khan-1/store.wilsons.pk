@@ -1,16 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
+import { makePostRequest } from "../Apis";
 
 function Blogs() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
+
+  const [blogs, setBlogs] = useState([]);
+  console.log("blogs", blogs);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makePostRequest("blogs/list");
+        setBlogs(response?.data);
+      } catch (error) {
+        console.error("Error fetching videos data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <Layout>
       <main className="main">
         <nav aria-label="breadcrumb" className="breadcrumb-nav">
-          <div className="">
+          <div className="container">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <Link to={"/"}>
@@ -28,142 +45,51 @@ function Blogs() {
           <div className="row">
             <div className="col-lg-9">
               <div className="blog-section row">
-                <div className="col-md-6 col-lg-4">
-                  <article className="post">
-                    <div className="post-media">
-                      <Link to={"/blog-details"}>
-                        <img
-                          src=" assets/Images/blog/home/post-1.jpg"
-                          alt="Post"
-                          width="225"
-                          height="280"
-                        />
-                      </Link>
-                      <div className="post-date">
-                        <span className="day">26</span>
-                        <span className="month">Feb</span>
-                      </div>
-                    </div>
+                {blogs?.length === 0 ? (
+                  <h1>No Blogs Listed</h1>
+                ) : (
+                  blogs?.map((data, index) => {
+                    const date = new Date(data?.date);
+                    const day = date.getDate();
+                    const month = date.toLocaleString("default", {
+                      month: "short",
+                    });
+                    const year = date.getFullYear();
+                    return (
+                      <div key={index} className="col-md-6 col-lg-4">
+                        <article className="post">
+                          <div className="post-media">
+                            <Link to={`/blog-details/${data?.slug}`}>
+                              <img
+                                src=" assets/Images/blog/home/post-1.jpg"
+                                alt="Post"
+                                width="225"
+                                height="280"
+                              />
+                            </Link>
+                            <div className="post-date">
+                              <span className="day">{day}</span>
+                              <span className="month">
+                                {month} {year}
+                              </span>
+                            </div>
+                          </div>
 
-                    <div className="post-body">
-                      <h2 className="post-title">
-                        <Link to={"/blog-details"}>Top New Collection</Link>
-                      </h2>
-                      <div className="post-content">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Cras non placerat mi. Etiam non tellus sem.
-                          Aenean...
-                        </p>
+                          <div className="post-body">
+                            <h2 className="post-title">
+                              <Link to={`/blog-details/${data?.slug}`}>
+                                {data?.heading}
+                              </Link>
+                            </h2>
+                            <div className="post-content">
+                              <p>{data?.short_detail}</p>
+                            </div>
+                          </div>
+                        </article>
                       </div>
-                      <Link to={"/blog-details"} className="post-comment">
-                        0 Comments
-                      </Link>
-                    </div>
-                  </article>
-                </div>
-                <div className="col-md-6 col-lg-4">
-                  <article className="post">
-                    <div className="post-media">
-                      <Link to={"/blog-details"}>
-                        <img
-                          src="  assets/Images/blog/home/post-2.jpg"
-                          alt="Post"
-                          width="225"
-                          height="280"
-                        />
-                      </Link>
-                      <div className="post-date">
-                        <span className="day">26</span>
-                        <span className="month">Feb</span>
-                      </div>
-                    </div>
-
-                    <div className="post-body">
-                      <h2 className="post-title">
-                        <Link to={"/blog-details"}>Fashion Trends</Link>
-                      </h2>
-                      <div className="post-content">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Cras non placerat mi. Etiam non tellus sem.
-                          Aenean...
-                        </p>
-                      </div>
-                      <Link to={"/blog-details"} className="post-comment">
-                        0 Comments
-                      </Link>
-                    </div>
-                  </article>
-                </div>
-                <div className="col-md-6 col-lg-4">
-                  <article className="post">
-                    <div className="post-media">
-                      <Link to={"/blog-details"}>
-                        <img
-                          src=" assets/Images/blog/home/post-3.jpg"
-                          alt="Post"
-                          width="225"
-                          height="280"
-                        />
-                      </Link>
-                      <div className="post-date">
-                        <span className="day">26</span>
-                        <span className="month">Feb</span>
-                      </div>
-                    </div>
-
-                    <div className="post-body">
-                      <h2 className="post-title">
-                        <Link to={"/blog-details"}>Etiam laoreet sem</Link>
-                      </h2>
-                      <div className="post-content">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Cras non placerat mi. Etiam non tellus sem.
-                          Aenean...
-                        </p>
-                      </div>
-                      <Link to={"/blog-details"} className="post-comment">
-                        0 Comments
-                      </Link>
-                    </div>
-                  </article>
-                </div>
-                <div className="col-md-6 col-lg-4">
-                  <article className="post">
-                    <div className="post-media">
-                      <Link to={"/blog-details"}>
-                        <img
-                          src=" assets/Images/blog/home/post-4.jpg"
-                          alt="Post"
-                          width="225"
-                          height="280"
-                        />
-                      </Link>
-                      <div className="post-date">
-                        <span className="day">26</span>
-                        <span className="month">Feb</span>
-                      </div>
-                    </div>
-
-                    <div className="post-body">
-                      <h2 className="post-title">
-                        <Link to={"/blog-details"}>Perfect Accessories</Link>
-                      </h2>
-                      <div className="post-content">
-                        <p>
-                          Leap into electronic typesetting, remaining
-                          essentially unchanged. It was popularised in the 1960s
-                          with the release of Letraset sheets...
-                        </p>
-                      </div>
-                      <Link to={"/blog-details"} className="post-comment">
-                        0 Comments
-                      </Link>
-                    </div>
-                  </article>
-                </div>
+                    );
+                  })
+                )}
               </div>
             </div>
 

@@ -50,7 +50,6 @@ function HomeNavbar() {
 
   const [category, setCategory] = useState([]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -182,6 +181,16 @@ function HomeNavbar() {
                       </ul>
                     </li>
                   </ul>
+                  <Link to={"/offers"}>
+                    <div className="header-userinfo">
+                      <h4 className="font1 mb-0">Offers</h4>
+                    </div>
+                  </Link>
+                  <Link to={"/blog"}>
+                    <div className="header-userinfo">
+                      <h4 className="font1 mb-0">Wellness Tips</h4>
+                    </div>
+                  </Link>
 
                   {user ? (
                     <>

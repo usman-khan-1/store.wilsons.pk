@@ -29,6 +29,7 @@ import ShopByCategory from "./Pages/ShopByCategory";
 import RegistrationSuccess from "./Pages/RegistrationSuccess";
 import OrderSuccess from "./Pages/OrderSuccess";
 import VerifySuccess from "./Pages/VerifySuccess";
+import Offers from "./Pages/Offers";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -61,12 +62,13 @@ function App() {
           <Route path="order-success" element={<OrderSuccess />} />
           <Route path="verify-success" element={<VerifySuccess />} />
           <Route path="about" element={<AboutUs />} />
+          <Route path="offers" element={<Offers />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="return-policy" element={<ReturnPolicy />} />
           <Route path="terms-of-service" element={<TermsCondition />} />
           <Route path="blog" element={<Blogs />} />
-          <Route path="blog-details" element={<BlogDetails />} />
+          <Route path="blog-details/:slug" element={<BlogDetails />} />
           <Route path="wishList" element={<WishList />} />
           <Route path="cart" element={<Cart />} />
           <Route path="contact" element={<Contact />} />

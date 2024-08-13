@@ -26,7 +26,7 @@ function TermsCondition() {
         </div>
 
         <nav aria-label="breadcrumb" className="breadcrumb-nav">
-          <div className="">
+          <div className="container">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <Link to={"/"}>
@@ -34,7 +34,7 @@ function TermsCondition() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-              Terms Of Service & Condition
+                Terms Of Service & Condition
               </li>
             </ol>
           </div>
@@ -166,9 +166,10 @@ function TermsCondition() {
             <h6>Section 15 - Contact Information:</h6>
             <ul>
               <li>
-                {" "}
                 Questions about the Terms of Service can be sent to WILMART at{" "}
-                <b>WILMART@Wilsons.pk</b>{" "}
+                <b>
+                  <a href="mailto:info@wilmart.pk">info@wilmart.pk</a>
+                </b>
               </li>
             </ul>
           </div>
