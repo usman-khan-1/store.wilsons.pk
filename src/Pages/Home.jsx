@@ -13,6 +13,7 @@ import TopCategoryCarosuel from "../Components/Home/TopCategoryCarosuel";
 import TopBrand from "../Components/Home/TopBrand";
 import RecentProductsCarosuel from "../Components/Home/RecentProductsCarosuel";
 import { Link } from "react-router-dom";
+import CustomCarousel from "../Components/Home/CustomCarosuel";
 
 function Home() {
   useEffect(() => {
@@ -21,6 +22,7 @@ function Home() {
   return (
     <Layout>
       <HomeCarosuel />
+      {/* <CustomCarousel/> */}
       <TopCategoryCarosuel />
 
       <div className="container">

@@ -148,7 +148,9 @@ function CartSidebar({ setOpenCart }) {
             <span>SUBTOTAL:</span>
             <span className="cart-total-price float-right">
               Rs. {""}
-              {subtotal.toFixed(2)}
+              {subtotal
+              // .toFixed(2)
+              .toLocaleString()}
             </span>
           </div>
 

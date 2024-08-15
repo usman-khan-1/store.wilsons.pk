@@ -47,7 +47,7 @@ function BlogDetails() {
             <div className="col-lg-9">
               <article className="post single">
                 <div className="post-media">
-                  <img src=" /assets/Images/blog/post-1.jpg" alt="Post" />
+                  <img src={blogDetails?.detail?.image} alt="Post" />
                 </div>
 
                 <div className="post-body">

@@ -61,7 +61,7 @@ function Blogs() {
                           <div className="post-media">
                             <Link to={`/blog-details/${data?.slug}`}>
                               <img
-                                src=" assets/Images/blog/home/post-1.jpg"
+                                src={data?.image}
                                 alt="Post"
                                 width="225"
                                 height="280"

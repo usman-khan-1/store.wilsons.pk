@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makePostRequest } from "../../Apis";
-import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 function RegisterForm() {
   const navigate = useNavigate();
@@ -54,66 +54,68 @@ function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleRegisterSubmit}>
-      <label htmlFor="register-fullName">
-        Full Name
-        <span className="required">*</span>
-      </label>
-      <input
-        id="full_name"
-        type="text"
-        className="form-input form-wide"
-        value={registerCredentials.full_name}
-        onChange={handleRegisterChange}
-        required
-      />
+    <>
+      <form onSubmit={handleRegisterSubmit}>
+        <label htmlFor="register-fullName">
+          Full Name
+          <span className="required">*</span>
+        </label>
+        <input
+          id="full_name"
+          type="text"
+          className="form-input form-wide"
+          value={registerCredentials.full_name}
+          onChange={handleRegisterChange}
+          required
+        />
 
-      <label htmlFor="register-email">
-        Email address
-        <span className="required">*</span>
-      </label>
-      <input
-        id="email"
-        type="email"
-        className="form-input form-wide"
-        value={registerCredentials.email}
-        onChange={handleRegisterChange}
-        required
-      />
+        <label htmlFor="register-email">
+          Email address
+          <span className="required">*</span>
+        </label>
+        <input
+          id="email"
+          type="email"
+          className="form-input form-wide"
+          value={registerCredentials.email}
+          onChange={handleRegisterChange}
+          required
+        />
 
-      <label htmlFor="register-phone">
-        Phone
-        <span className="required">*</span>
-      </label>
-      <input
-        id="phone"
-        type="tel"
-        className="form-input form-wide"
-        value={registerCredentials.phone}
-        onChange={handleRegisterChange}
-        required
-      />
+        <label htmlFor="register-phone">
+          Phone
+          <span className="required">*</span>
+        </label>
+        <input
+          id="phone"
+          type="tel"
+          className="form-input form-wide"
+          value={registerCredentials.phone}
+          onChange={handleRegisterChange}
+          required
+        />
 
-      <label htmlFor="register-password">
-        Password
-        <span className="required">*</span>
-      </label>
-      <input
-        id="password"
-        type="password"
-        className="form-input form-wide"
-        value={registerCredentials.password}
-        onChange={handleRegisterChange}
-        required
-      />
+        <label htmlFor="register-password">
+          Password
+          <span className="required">*</span>
+        </label>
+        <input
+          id="password"
+          type="password"
+          className="form-input form-wide"
+          value={registerCredentials.password}
+          onChange={handleRegisterChange}
+          required
+        />
 
-      <div className="form-footer mb-2">
-        <button type="submit" className="btn btn-dark btn-md w-100 mr-0">
-          {loading ? "Please Wait.." : "Register"}
-        </button>
-      </div>
-      <ToastContainer />
-    </form>
+        <div className="form-footer mb-2">
+          <button type="submit" className="btn btn-dark btn-md w-100 mr-0">
+            {loading ? "Please Wait.." : "Register"}
+          </button>
+        </div>
+      </form>
+      <Toaster position="top-right" reverseOrder={true} />
+    </>
   );
 }
 

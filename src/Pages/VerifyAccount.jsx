@@ -3,9 +3,9 @@ import { makePostRequest } from "../Apis";
 
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../Components/Layout";
-import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../Store/UserSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 function VerifyAccount() {
   const { slug } = useParams(); // Extract the slug from the URL
@@ -84,7 +84,7 @@ function VerifyAccount() {
           </div>
         </div>
       </main>
-      <ToastContainer />
+      <Toaster position="top-right" reverseOrder={true} />
     </Layout>
   );
 }

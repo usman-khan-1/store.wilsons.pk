@@ -11,8 +11,8 @@ import {
 } from "react-share";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Store/CartSlice";
-import { toast, ToastContainer } from "react-toastify";
 import { addToWishlist, removeFromWishlist } from "../Store/WishlistSlice";
+import toast from "react-hot-toast";
 
 function ProductDetails() {
   useEffect(() => {
@@ -59,11 +59,11 @@ function ProductDetails() {
             quantity: isProductInCart.quantity + quantity,
           })
         );
-        // toast.success("Product quantity updated in cart!");
+        toast.success("Product quantity updated in cart!");
       } else {
         // If the product is not in the cart, add it as a new item
         dispatch(addToCart({ product: productDetails.details, quantity }));
-        // toast.success("Product added to cart successfully!");
+        toast.success("Product added to cart successfully!");
       }
     }
   };
@@ -358,7 +358,6 @@ function ProductDetails() {
 
           <hr className="mt-0 m-b-5" />
         </div>
-        <ToastContainer limit={1} />
       </main>
     </Layout>
   );

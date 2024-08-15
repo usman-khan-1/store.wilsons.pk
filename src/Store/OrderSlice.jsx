@@ -2,8 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   orderDetails: {
-    items: [], // Will store cart items
-    user_detail: {}, // Will store user form data
+    product_detail: [], // Will store cart items
+    basic_info: {}, // Will store user form data
+    payment: {}, // Will store user form data
   },
 };
 
@@ -15,10 +16,13 @@ const orderSlice = createSlice({
       state.orderDetails = action.payload;
     },
     setCartItems: (state, action) => {
-      state.orderDetails.items = action.payload;
+      state.orderDetails.product_detail = action.payload;
     },
     setUserDetails: (state, action) => {
-      state.orderDetails.user_detail = action.payload;
+      state.orderDetails.basic_info = action.payload;
+    },
+    setPaymentDetails: (state, action) => {
+      state.orderDetails.payment = action.payload;
     },
     clearOrderDetails: (state) => {
       state.orderDetails = initialState.orderDetails;
@@ -26,6 +30,12 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setOrderDetails, setCartItems, setUserDetails, clearOrderDetails } = orderSlice.actions;
+export const {
+  setOrderDetails,
+  setCartItems,
+  setUserDetails,
+  clearOrderDetails,
+  setPaymentDetails
+} = orderSlice.actions;
 
 export default orderSlice.reducer;

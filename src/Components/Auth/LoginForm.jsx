@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../Store/UserSlice";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 
 function LoginForm() {
   const [loading, setLoading] = useState(false);
@@ -51,56 +51,59 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleLoginSubmit}>
-      <label htmlFor="email">
-        Username or email address
-        <span className="required">*</span>
-      </label>
-      <input
-        type="email"
-        className="form-input form-wide"
-        id="email"
-        value={loginCredentials.email}
-        onChange={handleLoginChange}
-        required
-      />
+    <>
+      <form onSubmit={handleLoginSubmit}>
+        <label htmlFor="email">
+          Username or email address
+          <span className="required">*</span>
+        </label>
+        <input
+          type="email"
+          className="form-input form-wide"
+          id="email"
+          value={loginCredentials.email}
+          onChange={handleLoginChange}
+          required
+        />
 
-      <label htmlFor="password">
-        Password
-        <span className="required">*</span>
-      </label>
-      <input
-        type="password"
-        className="form-input form-wide"
-        id="password"
-        value={loginCredentials.password}
-        onChange={handleLoginChange}
-        required
-      />
+        <label htmlFor="password">
+          Password
+          <span className="required">*</span>
+        </label>
+        <input
+          type="password"
+          className="form-input form-wide"
+          id="password"
+          value={loginCredentials.password}
+          onChange={handleLoginChange}
+          required
+        />
 
-      <div className="form-footer">
-        <div className="custom-control custom-checkbox mb-0">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="remember-me"
-          />
-          <label className="custom-control-label mb-0" htmlFor="remember-me">
-            Remember me
-          </label>
+        <div className="form-footer">
+          <div className="custom-control custom-checkbox mb-0">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="remember-me"
+            />
+            <label className="custom-control-label mb-0" htmlFor="remember-me">
+              Remember me
+            </label>
+          </div>
+
+          <Link
+            // to="/forgot-password"
+            className="forget-password text-dark form-footer-right"
+          >
+            Forgot Password?
+          </Link>
         </div>
-
-        <Link
-          // to="/forgot-password"
-          className="forget-password text-dark form-footer-right"
-        >
-          Forgot Password?
-        </Link>
-      </div>
-      <button type="submit" className="btn btn-dark btn-md w-100">
-        {loading ? "Please Wait.." : "Login"}
-      </button>
-    </form>
+        <button type="submit" className="btn btn-dark btn-md w-100">
+          {loading ? "Please Wait.." : "Login"}
+        </button>
+      </form>
+      <Toaster position="top-right" reverseOrder={true} />
+    </>
   );
 }
 

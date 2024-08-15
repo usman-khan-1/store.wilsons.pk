@@ -24,6 +24,9 @@ const cartSlice = createSlice({
         (item) => item.uid !== action.payload.id
       );
     },
+    clearCart: (state) => {
+      state.cartItems = initialState.cartItems;
+    },
   },
 });
 

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { makePostRequest } from "../Apis";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 function Footer() {
   const branding = useSelector((state) => state.branding.value);
   const [email, setEmail] = useState("");
@@ -21,7 +20,7 @@ function Footer() {
       const response = await makePostRequest("newsletter/add", { email });
       setLoading(false);
       if (response?.status === "success") {
-        // toast.success(response?.message);
+        toast.success(response?.message);
         setEmail("");
       } else {
         setEmail("");
@@ -194,7 +193,7 @@ function Footer() {
                 />
               </div>
             </div> */}
-            <ToastContainer />
+            <Toaster  position="top-right" reverseOrder={true}/>
           </div>
         </div>
       </footer>
