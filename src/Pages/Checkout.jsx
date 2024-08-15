@@ -3,6 +3,8 @@ import Layout from "../Components/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Checkoutform from "../Components/Checkoutform";
+import { InputMask } from "primereact/inputmask";
+
 import {
   clearOrderDetails,
   setCartItems,
@@ -305,11 +307,12 @@ function Checkout() {
                           *
                         </abbr>
                       </label>
-                      <input
-                        type="tel"
+                      <InputMask
+                        mask="+99 999 9999999"
                         className="form-control"
                         name="phone_no"
                         value={formData.phone_no}
+                        type="tel"
                         onChange={handleInputChange}
                         required
                       />
@@ -413,7 +416,7 @@ function Checkout() {
                         <td className="price-col">
                           <span>
                             Rs. {""}
-                            {data?.quantity * data?.price}
+                            {data?.quantity * (+data?.price).toLocaleString()}
                           </span>
                         </td>
                       </tr>
@@ -428,7 +431,7 @@ function Checkout() {
                       <td className="price-col">
                         <span>
                           Rs. {""}
-                          {subtotal}
+                          {subtotal.toLocaleString()}
                         </span>
                       </td>
                     </tr>
@@ -491,25 +494,6 @@ function Checkout() {
                             <form className="m-0 mt-3">
                               <div className="form-group">
                                 <label>
-                                  Card number
-                                  <abbr className="required" title="required">
-                                    *
-                                  </abbr>
-                                </label>
-                                <input
-                                  type="tel"
-                                  className="form-control"
-                                  name="card_number"
-                                  value={paymentDetails.card_number}
-                                  onChange={handlePaymentInputChange}
-                                  required={
-                                    paymentDetails.payment_mode === "cc"
-                                  }
-                                />
-                              </div>
-
-                              <div className="form-group">
-                                <label>
                                   Name on card
                                   <abbr className="required" title="required">
                                     *
@@ -520,6 +504,25 @@ function Checkout() {
                                   className="form-control"
                                   name="card_name"
                                   value={paymentDetails.card_name}
+                                  onChange={handlePaymentInputChange}
+                                  required={
+                                    paymentDetails.payment_mode === "cc"
+                                  }
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label>
+                                  Card number
+                                  <abbr className="required" title="required">
+                                    *
+                                  </abbr>
+                                </label>
+                                <InputMask
+                                mask="9999 9999 9999 9999 "
+                                  type="tel"
+                                  className="form-control"
+                                  name="card_number"
+                                  value={paymentDetails.card_number}
                                   onChange={handlePaymentInputChange}
                                   required={
                                     paymentDetails.payment_mode === "cc"
@@ -539,7 +542,9 @@ function Checkout() {
                                         *
                                       </abbr>
                                     </label>
-                                    <input
+                                    <InputMask
+                                      mask="99/99"
+                                      slotChar="MM/YY"
                                       type="tel"
                                       className="form-control"
                                       name="card_expiry"
@@ -563,8 +568,11 @@ function Checkout() {
                                         *
                                       </abbr>
                                     </label>
-                                    <input
+                                    <InputMask
                                       type="tel"
+                                      mask="9999"
+                                      // placeholder="99/99/9999"
+                                      // slotChar="mm/dd/yyyy"
                                       className="form-control"
                                       name="card_cvv"
                                       value={paymentDetails.card_cvv}
