@@ -27,6 +27,9 @@ function Checkout() {
 
   // console.log("orderDeatils", orderDeatils);
 
+  const [orderResponse, setOrderResponse] = useState({});
+  console.log("orderResponse0", orderResponse);
+
   const calculateSubtotal = () => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
@@ -50,6 +53,7 @@ function Checkout() {
     delivery_amount: 0,
     total_amount: subtotal,
     promo_discount: 0,
+    final_amount: 0,
   });
 
   const [paymentDetails, setPaymentDetails] = useState({
@@ -160,6 +164,7 @@ function Checkout() {
         product_detail: productDetail,
         payment: paymentDetails,
       });
+      setOrderResponse(response?.data);
       // Handle success (e.g., show a success message, redirect, etc.)
     } catch (error) {
       // Handle error (e.g., show an error message)
@@ -182,7 +187,7 @@ function Checkout() {
     }
 
     // Navigate to order success page or further order processing
-    // navigate("/order-success");
+    navigate("/order-success", { state: orderResponse });
   };
 
   return (
@@ -518,7 +523,7 @@ function Checkout() {
                                   </abbr>
                                 </label>
                                 <InputMask
-                                mask="9999 9999 9999 9999 "
+                                  mask="9999 9999 9999 9999 "
                                   type="tel"
                                   className="form-control"
                                   name="card_number"
