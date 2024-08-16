@@ -170,7 +170,7 @@ function Offers() {
     
                   <div className="row divide-line no-gutters m-0">
                     {products?.map((data, index) => (
-                      <div className="col-6 col-sm-4 col-xl-3">
+                      <div className="col-6 col-sm-3 col-xl-2">
                         <div className="product-default inner-quickview inner-icon">
                           <figure>
                             <Link to={`/product/${data?.seo_slug}`}>
