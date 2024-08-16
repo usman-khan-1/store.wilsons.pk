@@ -69,7 +69,7 @@ function Footer() {
           <div className="container">
             <div className="footer-middle">
               <div className="row">
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                   <div className="row">
                     <div className="col-lg-12 col-sm-6 pr-sm-0">
                       <div className="contact-widget">
@@ -116,7 +116,7 @@ function Footer() {
                     </a>
                   </div>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                   <div className="row">
                     <div className="col-lg-12 col-sm-6 pl-sm-0">
                       <div className="contact-widget">
@@ -133,7 +133,7 @@ function Footer() {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                   <div className="widget widget-sm">
                     <h4 className="widget-title">Policies</h4>
                     <ul className="links">
@@ -154,45 +154,10 @@ function Footer() {
                     </ul>
                   </div>
                 </div>
-                <div className="col-lg-3">
-                  <div className="widget widget-sm">
-                    <h4 className="widget-title">Features</h4>
-                    <ul className="links">
-                      <li>
-                        <a href="#">Super Fast HTML Template</a>
-                      </li>
-                      <li>
-                        <a href="#">Mobile & Retina Optimized</a>
-                      </li>
-                      <li>
-                        <a href="#">Powerful Admin Panel</a>
-                      </li>
-                      <li>
-                        <a href="#">1st Fully working Ajax Theme</a>
-                      </li>
-                      <li>
-                        <a href="#">42 Unique Shop Layouts</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                
               </div>
             </div>
-            {/* <div className="footer-bottom d-sm-flex align-items-center">
-              <div className="footer-left">
-                <span className="footer-copyright">
-                  © Porto eCommerce. 2021. All Rights Reserved
-                </span>
-              </div>
-              <div className="footer-right ml-auto mt-1 mt-sm-0">
-                <img
-                  src="/assets/Images/demoes/demo22/payment-icon.png"
-                  alt="payment"
-                  width="200"
-                  height="27"
-                />
-              </div>
-            </div> */}
+          
             <Toaster  position="top-right" reverseOrder={true}/>
           </div>
         </div>

@@ -46,9 +46,7 @@ function BlogDetails() {
           <div className="row">
             <div className="col-lg-9">
               <article className="post single">
-                <div className="post-media">
-                  <img src={blogDetails?.detail?.image} alt="Post" />
-                </div>
+               
 
                 <div className="post-body">
                   <div className="post-date">
@@ -58,11 +56,17 @@ function BlogDetails() {
 
                   <h2 className="post-title">{blogDetails?.detail?.heading}</h2>
 
+                  
+
                   <div className="post-meta">
                     <a href="#" className="hash-scroll">
                       0 Comments
                     </a>
                   </div>
+
+                  <div className="post-media">
+                  <img src={blogDetails?.detail?.image} alt="Post" />
+                </div>
 
                   <div className="post-content">
                     <p>

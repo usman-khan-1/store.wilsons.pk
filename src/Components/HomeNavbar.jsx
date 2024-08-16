@@ -50,6 +50,13 @@ function HomeNavbar() {
 
   const [category, setCategory] = useState([]);
 
+  
+  const filteredCategory = category.filter(
+    (category) => category.product_count > 0
+  );
+  
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -86,7 +93,7 @@ function HomeNavbar() {
                 <div className="Categories">
                   <h4>Shops By Category</h4>
                   <div className="row">
-                    {category?.map((data, index) => (
+                    {filteredCategory?.map((data, index) => (
                       <div key={index} className="col-12 category">
                         <Link key={index} to={`/category/${data?.slug}`}>
                           <img

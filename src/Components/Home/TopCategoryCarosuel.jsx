@@ -41,6 +41,8 @@ function TopCategoryCarosuel() {
 
   const [category, setCategory] = useState([]);
 
+  const filteredCategory = category?.filter((cat) => cat?.product_count > 0);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -57,7 +59,6 @@ function TopCategoryCarosuel() {
     <div>
       <section className="top-categories">
         <div className="container">
-         
           <h2 className="section-title line-height-1 ls-10 pb-4 mb-4">
             Top Categories
           </h2>
@@ -78,7 +79,7 @@ function TopCategoryCarosuel() {
               dotListclassName="custom-dot-list-style"
               arrows={true} // Hide arrows~
             >
-              {category?.map((category, index) => (
+              {filteredCategory?.map((category, index) => (
                 <div key={index} className="category-item">
                   <Link to={`/category/${category?.slug}`} key={index}>
                     <ImageWithLoader
