@@ -13,7 +13,7 @@ function CompanyProfile() {
           className="page-header page-header-bg text-left"
           style={{
             background:
-              "50%/cover #D4E1EA url(/assets/imagess/Manufacturing.png)",
+              "50%/cover #D4E1EA url(/assets/imagess/manufacturing.jpg)",
           }}
         >
           <div className="container">

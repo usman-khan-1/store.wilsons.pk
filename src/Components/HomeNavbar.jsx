@@ -195,7 +195,7 @@ function HomeNavbar() {
                   </Link>
                   <Link to={"/blog"}>
                     <div className="header-userinfo">
-                      <h4 className="font1 mb-0">Wellness Tips</h4>
+                      <h4 className="font1 mb-0">Medical Insight</h4>
                     </div>
                   </Link>
 
