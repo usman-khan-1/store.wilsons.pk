@@ -3,14 +3,19 @@ import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
 import { Slider } from "@mui/material";
 import { makePostRequest } from "../Apis";
+import ReactPaginate from "react-paginate";
+import { IoArrowBackOutline, IoArrowForward } from "react-icons/io5";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function Shop() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [value, setValue] = useState([0, 100]);
-
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const productsPerPage = 12;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +43,45 @@ function Shop() {
     fetchData();
   }, []);
 
+  const filteredCategory = category.filter((cat) => cat?.product_count > 0);
+
+  // price filter
+
+  const minPrice = Math.min(...(products?.map((p) => p.price) || [0]));
+  const maxPrice = Math.max(...(products?.map((p) => p.price) || [100]));
+
+  useEffect(() => {
+    if (products?.length) {
+      setValue([minPrice, maxPrice]);
+    }
+  }, [products]);
+
+  useEffect(() => {
+    if (products) {
+      const filtered = products.filter(
+        (product) => product.price >= value[0] && product.price <= value[1]
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [products, value]);
+
+  const handlePriceChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  // pagination
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const offset = currentPage * productsPerPage;
+  const currentProducts = filteredProducts?.slice(
+    offset,
+    offset + productsPerPage
+  );
+  const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
+
   return (
     <Layout>
       <main className="main">
@@ -57,44 +101,7 @@ function Shop() {
 
           <div className="row main-content">
             <div className="col-lg-9">
-              <div className="category-banner banner bg-gray py-3 mb-3">
-                {/* <div className="row m-0 no-gutters align-items-center">
-                  <div className="col-sm-4">
-                    <h2 className="font1 ls-10 text-left text-sm-right text-uppercase mb-0">
-                      Smart
-                    </h2>
-                    <h3 className="font1 ls-10 text-left text-sm-right text-uppercase m-0">
-                      Phone Deals
-                    </h3>
-                  </div>
-                  <div className="col-sm-4">
-                    <figure>
-                      <img
-                        src="/assets/Images/demoes/demo22/banners/category-banner.jpg"
-                        alt="banner"
-                        width="372"
-                        height="247"
-                      />
-                    </figure>
-                  </div>
-                  <div className="col-sm-4">
-                    <div className="coupon-sale-text d-flex flex-column align-items-start mb-4">
-                      <h4 className="m-b-2 font1 ls-10 text-white bg-dark skew-box">
-                        Exclusive COUPON
-                      </h4>
-                      <h5 className="mb-0 font1 d-inline-block bg-dark skew-box">
-                        <i className="text-dark ls-0">UP TO</i>
-                        <b className="text-white">$100</b>
-                        <sub className="text-dark">OFF</sub>
-                      </h5>
-                    </div>
-
-                    <a href="#" className="btn btn-light btn-lg font1 ml-0">
-                      View All Now
-                    </a>
-                  </div>
-                </div> */}
-              </div>
+              <div className="category-banner banner bg-gray py-3 mb-3"></div>
 
               <nav
                 className="toolbox sticky-header mt-2"
@@ -192,7 +199,7 @@ function Shop() {
 
                 <div className="toolbox-right">
                   <div className="toolbox-item toolbox-show">
-                    <label>Show:</label>
+                    {/* <label>Show:</label>
 
                     <div className="select-custom">
                       <select name="count" className="form-control">
@@ -200,14 +207,14 @@ function Shop() {
                         <option value="24">24</option>
                         <option value="36">36</option>
                       </select>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </nav>
 
               <div className="row divide-line no-gutters m-0">
-                {products?.map((data, index) => (
-                  <div className="col-6 col-sm-4 col-xl-3">
+                {currentProducts?.map((data, index) => (
+                  <div key={index} className="col-6 col-sm-4 col-xl-3">
                     <div className="product-default inner-quickview inner-icon">
                       <figure>
                         <Link to={`/product/${data?.seo_slug}`}>
@@ -259,7 +266,7 @@ function Shop() {
 
               <nav className="toolbox toolbox-pagination">
                 <div className="toolbox-item toolbox-show">
-                  <label>Show:</label>
+                  {/* <label>Show:</label>
 
                   <div className="select-custom">
                     <select name="count" className="form-control">
@@ -267,10 +274,10 @@ function Shop() {
                       <option value="24">24</option>
                       <option value="36">36</option>
                     </select>
-                  </div>
+                  </div> */}
                 </div>
 
-                <ul className="pagination toolbox-item">
+                {/* <ul className="pagination toolbox-item">
                   <li className="page-item disabled">
                     <a className="page-link page-link-btn" href="#">
                       <i className="icon-angle-left"></i>
@@ -299,7 +306,21 @@ function Shop() {
                       <i className="icon-angle-right"></i>
                     </a>
                   </li>
-                </ul>
+                </ul> */}
+
+                <ReactPaginate
+                  previousLabel={<FaChevronLeft />}
+                  nextLabel={<FaChevronRight />}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={pageCount}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={2}
+                  onPageChange={handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"paginateActive"}
+                />
               </nav>
             </div>
 
@@ -322,12 +343,14 @@ function Shop() {
                   <div className="collapse show" id="widget-body-1">
                     <div className="widget-body">
                       <ul className="cat-list">
-                        {category?.map((data, index) => (
+                        {filteredCategory?.map((data, index) => (
                           <li key={index}>
-                            <a href="#">
+                            <Link to={`/category/${data?.slug}`}>
                               {data?.name}
-                              <span className="products-count">( {data?.product_count})</span>
-                            </a>
+                              <span className="products-count">
+                                ( {data?.product_count})
+                              </span>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -352,120 +375,22 @@ function Shop() {
                     <div className="widget-body pt-4 pb-0">
                       <Slider
                         value={value}
-                        onChange={(event, newValue) => setValue(newValue)}
-                        min={0}
-                        max={100}
+                        min={minPrice}
+                        max={maxPrice}
+                        onChange={handlePriceChange}
+                        valueLabelDisplay="auto"
                       />
                       <div className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
                         <div className="filter-price-text">
-                          Price:
-                          <span id="filter-price-range">{`$${value}`}</span>
+                          Price Range:
+                          <span id="filter-price-range">{`Rs ${value}`}</span>
                         </div>
                       </div>
-                      {/* <form action="#">
-                                            <div className="price-slider-wrapper">
-                                                <div id="price-slider"></div> 
-                                            </div> 
-
-                                            <div
-                                                className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
-                                                <div className="filter-price-text">
-                                                    Price:
-                                                    <span id="filter-price-range"></span>
-                                                </div> 
-
-                                                <button type="submit" className="btn btn-primary">Filter</button>
-                                            </div> 
-                                        </form> */}
                     </div>
                   </div>
                 </div>
 
-                {/* <div className="widget widget-color">
-                  <h3 className="widget-title">
-                    <a
-                      data-toggle="collapse"
-                      href="#widget-body-3"
-                      role="button"
-                      aria-expanded="true"
-                      aria-controls="widget-body-3"
-                    >
-                      Color
-                    </a>
-                  </h3>
-
-                  <div className="collapse show " id="widget-body-3">
-                    <div className="widget-body pb-0">
-                      <ul className="config-swatch-list">
-                        <li className="active">
-                          <a href="#" style={{ backgroundColor: "#000" }}>
-                            Black
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" style={{ backgroundColor: "#0188cc" }}>
-                            Blue
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" style={{ backgroundColor: "#81d742" }}>
-                            Green
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" style={{ backgroundColor: "#eded65" }}>
-                            Yellow
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" style={{ backgroundColor: "#6085a5" }}>
-                            Indigo
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" style={{ backgroundColor: "#ab6e6e" }}>
-                            Red
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="widget widget-size">
-                  <h3 className="widget-title">
-                    <a
-                      data-toggle="collapse"
-                      href="#widget-body-4"
-                      role="button"
-                      aria-expanded="true"
-                      aria-controls="widget-body-4"
-                    >
-                      Size
-                    </a>
-                  </h3>
-
-                  <div className="collapse show" id="widget-body-4">
-                    <div className="widget-body">
-                      <ul className="cat-list">
-                        <li>
-                          <a href="#">Extra Large</a>
-                        </li>
-                        <li>
-                          <a href="#">Large</a>
-                        </li>
-                        <li>
-                          <a href="#">Medium</a>
-                        </li>
-                        <li>
-                          <a href="#">Small</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div> */}
-
-                <div className="widget widget-featured">
+                {/* <div className="widget widget-featured">
                   <h3 className="widget-title">Featured Products</h3>
 
                   <div className="widget-body">
@@ -538,7 +463,7 @@ function Shop() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </aside>
           </div>

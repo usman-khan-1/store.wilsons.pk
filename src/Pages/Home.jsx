@@ -18,7 +18,7 @@ import CustomCarousel from "../Components/Home/CustomCarosuel";
 function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  },[]);
   return (
     <Layout>
       <HomeCarosuel />

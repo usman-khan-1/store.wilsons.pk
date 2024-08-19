@@ -6,14 +6,12 @@ import brandingReducer from "./BrandingSlice";
 import userReducer from "./UserSlice";
 import cartReducer from "./CartSlice";
 import wishlistReducer from "./WishlistSlice";
-import orderReducer from "./OrderSlice";
 
 const rootReducer = combineReducers({
-    branding: brandingReducer,
-    user: userReducer,
-    cart: cartReducer,
-    wishlist: wishlistReducer,
-    order: orderReducer,
+  branding: brandingReducer,
+  user: userReducer,
+  cart: cartReducer,
+  wishlist: wishlistReducer,
 });
 
 const persistConfig = {

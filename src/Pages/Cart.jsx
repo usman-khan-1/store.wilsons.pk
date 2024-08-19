@@ -3,7 +3,6 @@ import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../Store/CartSlice";
-import { setCartItems } from "../Store/OrderSlice";
 
 function Cart() {
   useEffect(() => {

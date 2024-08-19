@@ -8,7 +8,7 @@ function OrderSuccess() {
     window.scrollTo(0, 0);
   }, []);
   const location = useLocation();
-console.log("location",location)
+console.log("location",location.state)
 const { order_id } = location.state || {};
   return (
     <Layout>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function TermsCondition() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  },[]);
   return (
     <Layout>
       <main className="main about">

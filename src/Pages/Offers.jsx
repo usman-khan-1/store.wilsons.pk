@@ -9,7 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 function Offers() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  },[]);
   const [value, setValue] = useState([0, 100]);
 
   const [products, setProducts] = useState([]);

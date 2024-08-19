@@ -2,15 +2,8 @@ import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Checkoutform from "../Components/Checkoutform";
 import { InputMask } from "primereact/inputmask";
 
-import {
-  clearOrderDetails,
-  setCartItems,
-  setUserDetails,
-  setPaymentDetails,
-} from "../Store/OrderSlice";
 import { makePostRequest } from "../Apis";
 
 function Checkout() {
@@ -20,15 +13,13 @@ function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const orderDeatils = useSelector((state) => state.order.orderDetails);
   const user = useSelector((state) => state.user.value);
   // const [accountPassword, setAccountPassword] = useState(""); // State for account password
   // const [createAccount, setCreateAccount] = useState(false);
 
-  // console.log("orderDeatils", orderDeatils);
 
   const [orderResponse, setOrderResponse] = useState({});
-  console.log("orderResponse0", orderResponse);
+  // console.log("orderResponse0", orderResponse);
 
   const calculateSubtotal = () => {
     return cartItems.reduce(
@@ -53,7 +44,7 @@ function Checkout() {
     delivery_amount: 0,
     total_amount: subtotal,
     promo_discount: 0,
-    final_amount: 0,
+    final_amount: subtotal,
   });
 
   const [paymentDetails, setPaymentDetails] = useState({
@@ -74,7 +65,7 @@ function Checkout() {
 
   // console.log("carttt", productDetail);
   // console.log("paymentDeatils", paymentDetails);
-  console.log("form", formData);
+  // console.log("form", formData);
 
   // useEffect(() => {
   //   setFormData({
@@ -152,23 +143,71 @@ function Checkout() {
     }
     return true;
   };
+
+  // const handlePlaceOrder = async () => {
+  //   // if (!validateForm()) {
+
+  //   //   return;
+  //   // }
+
+  //   try {
+  //     const orderResponse = await makePostRequest("orders/add", {
+  //       basic_info: formData,
+  //       product_detail: productDetail,
+  //       payment: paymentDetails,
+  //     });
+  //     console.log("orderResponse", orderResponse);
+  //     setOrderResponse(orderResponse?.data);
+  //     // Handle success (e.g., show a success message, redirect, etc.)
+  //   } catch (error) {
+  //     // Handle error (e.g., show an error message)
+  //     console.error("Account creation failed:", error);
+  //   }
+
+  //   if (formData.create_account && !user) {
+  //     try {
+  //       const response = await makePostRequest("auth/customer-register", {
+  //         full_name: `${formData.first_name} ${formData.last_name}`,
+  //         email: formData.email,
+  //         phone: formData.phone_no,
+  //         password: formData.password,
+  //       });
+  //       // Handle success (e.g., show a success message, redirect, etc.)
+  //     } catch (error) {
+  //       // Handle error (e.g., show an error message)
+  //       console.error("Account creation failed:", error);
+  //     }
+  //   }
+
+  //   // Navigate to order success page or further order processing
+  //   setTimeout(() => {
+  //     navigate("/order-success", { state: orderResponse });
+  //   }, 1500);
+  // };
+
   const handlePlaceOrder = async () => {
     // if (!validateForm()) {
-
     //   return;
     // }
 
     try {
-      const response = await makePostRequest("orders/add", {
+      const orderResponse = await makePostRequest("orders/add", {
         basic_info: formData,
         product_detail: productDetail,
         payment: paymentDetails,
       });
-      setOrderResponse(response?.data);
+      console.log("orderResponse", orderResponse);
+
+      // Set the order response state and wait for it to be updated
+      setOrderResponse(orderResponse.data);
+
+      // Use the callback function of the setState to navigate after the state has been updated
+      navigate("/order-success", { state: orderResponse.data });
+
       // Handle success (e.g., show a success message, redirect, etc.)
     } catch (error) {
       // Handle error (e.g., show an error message)
-      console.error("Account creation failed:", error);
+      console.error("Order placement failed:", error);
     }
 
     if (formData.create_account && !user) {
@@ -185,9 +224,6 @@ function Checkout() {
         console.error("Account creation failed:", error);
       }
     }
-
-    // Navigate to order success page or further order processing
-    navigate("/order-success", { state: orderResponse });
   };
 
   return (

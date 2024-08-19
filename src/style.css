@@ -18639,3 +18639,33 @@ div.shimmer {
 .carousel .control-next.control-arrow:before {
   content: '\203A'; /* Right chevron */
 }
+
+.category-banner{
+  position: relative;
+}
+.category-heading{
+  position: absolute;
+  top: 120px;
+  color: #333;
+}
+
+.pagination .disabled{
+  display: none;
+}
+.pagination li a{
+  padding: 7px 10px;
+  border: 1px solid #333; 
+  margin: 0 5px;
+}
+.pagination .paginateActive  a{
+  background-color: #01abec;
+  color: #fff;
+  border-color: #01abec;
+}
+.pagination .previous a , .pagination .next a{
+  margin: 0;
+  border: none ;
+}
+.css-ttgsjq-MuiSlider-track,.css-188mx6n-MuiSlider-root {
+  color: #01abec !important;
+}
