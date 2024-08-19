@@ -19,7 +19,7 @@ function TermsCondition() {
           <div className="container">
             <h1>
               {/* <span>ABOUT US</span> */}
-              Terms Of Service & Condition
+              Terms of Service & Condition
             </h1>
             {/* <a className="btn btn-dark">Contact</a> */}
           </div>
@@ -34,7 +34,7 @@ function TermsCondition() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Terms Of Service & Condition
+                Terms of Service & Condition
               </li>
             </ol>
           </div>
