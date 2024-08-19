@@ -148,7 +148,7 @@ function Footer() {
                       </li>
                       <li>
                         <Link to={"/terms-of-service"}>
-                          Terms Of Service & Condition
+                          Terms of Service & Condition
                         </Link>
                       </li>
                     </ul>
