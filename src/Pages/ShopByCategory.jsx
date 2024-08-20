@@ -5,11 +5,12 @@ import { Slider } from "@mui/material";
 import { makePostRequest } from "../Apis";
 import ReactPaginate from "react-paginate";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import ImageWithLoader from "../Components/ImageWithLoader";
 
 function ShopByCategory() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
+  }, []);
   const slug = useParams();
 
   const [products, setProducts] = useState([]);
@@ -21,8 +22,6 @@ function ShopByCategory() {
   const [categoryDetail, setCategoryDetail] = useState([]);
 
   // console.log("filteredProducts", filteredProducts);
-
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,9 +49,8 @@ function ShopByCategory() {
     fetchData();
   }, [slug]);
 
+  // price filter
 
-  // price filter 
-  
   const minPrice = Math.min(
     ...(categoryDetail?.products?.map((p) => p.price) || [0])
   );
@@ -65,7 +63,6 @@ function ShopByCategory() {
       setValue([minPrice, maxPrice]);
     }
   }, [categoryDetail]);
-  
 
   useEffect(() => {
     if (categoryDetail?.products) {
@@ -82,7 +79,6 @@ function ShopByCategory() {
 
   // pagination
 
-
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
@@ -93,7 +89,6 @@ function ShopByCategory() {
     offset + productsPerPage
   );
   const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
-
 
   return (
     <Layout>
@@ -117,9 +112,11 @@ function ShopByCategory() {
               <div
                 className="category-banner"
                 style={{
-                  backgroundImage: `url(${categoryDetail?.detail?.cover_image})`,
-                  height: "300px",
-                  width: "100%",
+                  backgroundImage: `url(${
+                    categoryDetail?.detail?.cover_image
+                      ? categoryDetail?.detail?.cover_image
+                      : "/assets/imagess/no-image-prod-category.jpg"
+                  })`,
                 }}
               ></div>
               <h1 className="category-heading">
@@ -200,39 +197,10 @@ function ShopByCategory() {
                     </svg>
                     <span>Filter</span>
                   </a>
-
-                  <div className="toolbox-item toolbox-sort">
-                    <label>Sort By:</label>
-
-                    <div className="select-custom">
-                      <select name="orderby" className="form-control">
-                        <option value="menu_order">Default sorting</option>
-                        <option value="popularity">Sort by popularity</option>
-                        <option value="rating">Sort by average rating</option>
-                        <option value="date">Sort by newness</option>
-                        <option value="price">
-                          Sort by price: low to high
-                        </option>
-                        <option value="price-desc">
-                          Sort by price: high to low
-                        </option>
-                      </select>
-                    </div>
-                  </div>
                 </div>
 
                 <div className="toolbox-right">
-                  <div className="toolbox-item toolbox-show">
-                    {/* <label>Show:</label>
-
-                    <div className="select-custom">
-                      <select name="count" className="form-control">
-                        <option value="12">12</option>
-                        <option value="24">24</option>
-                        <option value="36">36</option>
-                      </select>
-                    </div> */}
-                  </div>
+                  <div className="toolbox-item toolbox-show"></div>
                 </div>
               </nav>
 
@@ -242,7 +210,7 @@ function ShopByCategory() {
                     <div className="product-default inner-quickview inner-icon">
                       <figure>
                         <Link to={`/product/${data?.seo_slug}`}>
-                          <img
+                          <ImageWithLoader
                             src={data.image}
                             width="217"
                             height="217"
@@ -404,12 +372,12 @@ function ShopByCategory() {
                         onChange={handlePriceChange}
                         valueLabelDisplay="auto"
                       />
-                      <div className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
+                      {/* <div className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
                         <div className="filter-price-text">
                           Price Range:
                           <span id="filter-price-range">{`Rs ${value}`}</span>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

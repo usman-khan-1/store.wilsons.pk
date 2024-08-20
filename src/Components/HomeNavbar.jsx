@@ -3,6 +3,8 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { makePostRequest } from "../Apis";
 import { useSelector } from "react-redux";
 import CartSidebar from "./CartSideBar";
+import Searching from "../Components/Searching";
+
 
 function HomeNavbar() {
   const location = useLocation();
@@ -14,7 +16,7 @@ function HomeNavbar() {
 
   const user = useSelector((state) => state.user.value);
 
-  // console.log("user", user);
+  console.log("user", user);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,12 +52,9 @@ function HomeNavbar() {
 
   const [category, setCategory] = useState([]);
 
-  
   const filteredCategory = category.filter(
     (category) => category.product_count > 0
   );
-  
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -124,41 +123,9 @@ function HomeNavbar() {
                   width="200"
                 />
               </Link>
-              <div className="header-col">
-                <div className="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
-                  <a href="#" className="search-toggle" role="button">
-                    <i className="icon-search-3"></i>
-                  </a>
-                  <form action="#" method="get">
-                    <div className="header-search-wrapper">
-                      <input
-                        type="search"
-                        className="form-control"
-                        name="q"
-                        id="q"
-                        placeholder="I'm searching for..."
-                        required
-                      />
-                      <div className="select-custom">
-                        <select id="cat" name="cat">
-                          <option value="">All Categories</option>
-                          {category?.map((data, index) => (
-                            <option key={index} value="">
-                              {data?.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
 
-                      <button
-                        className="btn icon-magnifier"
-                        title="search"
-                        type="submit"
-                      ></button>
-                    </div>
-                  </form>
-                </div>
-              </div>
+
+            <Searching/>
             </div>
 
             <div className="header-right ml-0 ml-lg-auto">
@@ -199,7 +166,7 @@ function HomeNavbar() {
                     </div>
                   </Link>
 
-                  {user ? (
+                  {user?.lenght > 0 ? (
                     <>
                       <Link to={"/myAccount"}>
                         <div className="header-userinfo">

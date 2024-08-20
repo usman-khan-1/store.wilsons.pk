@@ -26,6 +26,7 @@ function TestimonialCarousel() {
 
   const user = useSelector((state) => state.user.value); // Get the user state
   const wishlistItems = useSelector((state) => state.wishlist.items); // Get wishlist items from Redux
+  // console.log("wishlistItems",wishlistItems)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -122,7 +123,7 @@ function TestimonialCarousel() {
                           <div
                             title="Add to Wishlist"
                             className="btn-icon-wish"
-                            // onClick={() => handleToggle(product)}
+                            onClick={() => handleToggle(product)}
                             style={{
                               color: wishlistItems.some(
                                 (item) => item.uid === product.uid

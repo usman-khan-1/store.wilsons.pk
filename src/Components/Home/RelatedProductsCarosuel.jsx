@@ -74,7 +74,7 @@ function RelatedProductsCarousel({ productDetails, load }) {
                           <div
                             title="Add to Wishlist"
                             className="btn-icon-wish"
-                            // onClick={() => handleToggle(product)}
+                            onClick={() => handleToggle(product)}
                             style={{
                               color: wishlistItems.some(
                                 (item) => item.uid === product.uid

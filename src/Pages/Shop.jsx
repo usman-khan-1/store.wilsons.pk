@@ -6,6 +6,7 @@ import { makePostRequest } from "../Apis";
 import ReactPaginate from "react-paginate";
 import { IoArrowBackOutline, IoArrowForward } from "react-icons/io5";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import ImageWithLoader from "../Components/ImageWithLoader";
 
 function Shop() {
   useEffect(() => {
@@ -103,122 +104,13 @@ function Shop() {
             <div className="col-lg-9">
               <div className="category-banner banner bg-gray py-3 mb-3"></div>
 
-              <nav
-                className="toolbox sticky-header mt-2"
-                data-sticky-options="{'mobile': true}"
-              >
-                <div className="toolbox-left">
-                  <a href="#" className="sidebar-toggle">
-                    <svg
-                      data-name="Layer 3"
-                      id="Layer_3"
-                      viewBox="0 0 32 32"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <line
-                        x1="15"
-                        x2="26"
-                        y1="9"
-                        y2="9"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="6"
-                        x2="9"
-                        y1="9"
-                        y2="9"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="23"
-                        x2="26"
-                        y1="16"
-                        y2="16"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="6"
-                        x2="17"
-                        y1="16"
-                        y2="16"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="17"
-                        x2="26"
-                        y1="23"
-                        y2="23"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="6"
-                        x2="11"
-                        y1="23"
-                        y2="23"
-                        className="cls-1"
-                      ></line>
-                      <path
-                        d="M14.5,8.92A2.6,2.6,0,0,1,12,11.5,2.6,2.6,0,0,1,9.5,8.92a2.5,2.5,0,0,1,5,0Z"
-                        className="cls-2"
-                      ></path>
-                      <path
-                        d="M22.5,15.92a2.5,2.5,0,1,1-5,0,2.5,2.5,0,0,1,5,0Z"
-                        className="cls-2"
-                      ></path>
-                      <path
-                        d="M21,16a1,1,0,1,1-2,0,1,1,0,0,1,2,0Z"
-                        className="cls-3"
-                      ></path>
-                      <path
-                        d="M16.5,22.92A2.6,2.6,0,0,1,14,25.5a2.6,2.6,0,0,1-2.5-2.58,2.5,2.5,0,0,1,5,0Z"
-                        className="cls-2"
-                      ></path>
-                    </svg>
-                    <span>Filter</span>
-                  </a>
-
-                  <div className="toolbox-item toolbox-sort">
-                    <label>Sort By:</label>
-
-                    <div className="select-custom">
-                      <select name="orderby" className="form-control">
-                        <option value="menu_order">Default sorting</option>
-                        <option value="popularity">Sort by popularity</option>
-                        <option value="rating">Sort by average rating</option>
-                        <option value="date">Sort by newness</option>
-                        <option value="price">
-                          Sort by price: low to high
-                        </option>
-                        <option value="price-desc">
-                          Sort by price: high to low
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="toolbox-right">
-                  <div className="toolbox-item toolbox-show">
-                    {/* <label>Show:</label>
-
-                    <div className="select-custom">
-                      <select name="count" className="form-control">
-                        <option value="12">12</option>
-                        <option value="24">24</option>
-                        <option value="36">36</option>
-                      </select>
-                    </div> */}
-                  </div>
-                </div>
-              </nav>
-
               <div className="row divide-line no-gutters m-0">
                 {currentProducts?.map((data, index) => (
                   <div key={index} className="col-6 col-sm-4 col-xl-3">
                     <div className="product-default inner-quickview inner-icon">
                       <figure>
                         <Link to={`/product/${data?.seo_slug}`}>
-                          <img
+                          <ImageWithLoader
                             src={data.image}
                             width="217"
                             height="217"
@@ -242,7 +134,9 @@ function Shop() {
                           </Link>
                         </div>
                         <h3 className="product-title">
-                          <Link to={"/product-details"}>{data.heading}</Link>
+                          <Link to={`/product/${data?.seo_slug}`}>
+                            {data.heading}
+                          </Link>
                         </h3>
                         <div className="ratings-container">
                           <div className="product-ratings">
@@ -266,47 +160,10 @@ function Shop() {
 
               <nav className="toolbox toolbox-pagination">
                 <div className="toolbox-item toolbox-show">
-                  {/* <label>Show:</label>
-
-                  <div className="select-custom">
-                    <select name="count" className="form-control">
-                      <option value="12">12</option>
-                      <option value="24">24</option>
-                      <option value="36">36</option>
-                    </select>
-                  </div> */}
+               
                 </div>
 
-                {/* <ul className="pagination toolbox-item">
-                  <li className="page-item disabled">
-                    <a className="page-link page-link-btn" href="#">
-                      <i className="icon-angle-left"></i>
-                    </a>
-                  </li>
-                  <li className="page-item active">
-                    <a className="page-link" href="#">
-                      1 <span className="sr-only">(current)</span>
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <span className="page-link">...</span>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link page-link-btn" href="#">
-                      <i className="icon-angle-right"></i>
-                    </a>
-                  </li>
-                </ul> */}
+                
 
                 <ReactPaginate
                   previousLabel={<FaChevronLeft />}
@@ -380,12 +237,6 @@ function Shop() {
                         onChange={handlePriceChange}
                         valueLabelDisplay="auto"
                       />
-                      <div className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
-                        <div className="filter-price-text">
-                          Price Range:
-                          <span id="filter-price-range">{`Rs ${value}`}</span>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

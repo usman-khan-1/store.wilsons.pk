@@ -5173,7 +5173,7 @@ figure:hover .overlay-visible {
   }
 }
 .page-header {
-  padding: 5.5rem 0;
+  padding: 6.5rem 0;
   color: #222529;
   background-color: #f4f4f4;
   text-align: center;
@@ -18642,11 +18642,14 @@ div.shimmer {
 
 .category-banner{
   position: relative;
+  height: 200px;
+                  width: 100%;
 }
 .category-heading{
   position: absolute;
-  top: 120px;
+  top: 80px;
   color: #333;
+  margin-left: 20px;
 }
 
 .pagination .disabled{
@@ -18668,4 +18671,28 @@ div.shimmer {
 }
 .css-ttgsjq-MuiSlider-track,.css-188mx6n-MuiSlider-root {
   color: #01abec !important;
+}
+
+
+.search-dropdown{
+  position: absolute;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 20px;
+  z-index: 111;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 50px;
+}
+.search-dropdown li{
+  /* margin: 10px 0; */
+  border-bottom: 1px solid #f4f4f4;
+  padding-bottom: 5px;
+}
+.search-dropdown img{
+  width: 40px;
+}
+.search-dropdown li p{
+  text-align: start;
+  margin-left: 10px;
 }
