@@ -18513,12 +18513,14 @@ div.shimmer {
 }
 .category-item span{
   text-align: center;
+  margin-top: 10px;
 }
 .category-item{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 0 10px;
 }
 
 .continue-shopping{
@@ -18696,3 +18698,4 @@ div.shimmer {
   text-align: start;
   margin-left: 10px;
 }
+

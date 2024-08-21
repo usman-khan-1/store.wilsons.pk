@@ -25,7 +25,7 @@ function BestSellerElectronics() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await makePostRequest("product/list");
+        const response = await makePostRequest("product/best-seller");
         setProducts(response?.data);
         setLoading(false);
       } catch (error) {
@@ -109,7 +109,7 @@ function BestSellerElectronics() {
                           {product?.category}
                         </Link>
                       </div>
-                      {user.length > 0 && (
+                      {user?.length > 0 && (
                         <div
                           title="Add to Wishlist"
                           className="btn-icon-wish"

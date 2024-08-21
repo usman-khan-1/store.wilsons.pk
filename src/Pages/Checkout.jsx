@@ -210,20 +210,20 @@ function Checkout() {
       console.error("Order placement failed:", error);
     }
 
-    if (formData.create_account && !user) {
-      try {
-        const response = await makePostRequest("auth/customer-register", {
-          full_name: `${formData.first_name} ${formData.last_name}`,
-          email: formData.email,
-          phone: formData.phone_no,
-          password: formData.password,
-        });
-        // Handle success (e.g., show a success message, redirect, etc.)
-      } catch (error) {
-        // Handle error (e.g., show an error message)
-        console.error("Account creation failed:", error);
-      }
-    }
+    // if (formData.create_account && !user) {
+    //   try {
+    //     const response = await makePostRequest("auth/customer-register", {
+    //       full_name: `${formData.first_name} ${formData.last_name}`,
+    //       email: formData.email,
+    //       phone: formData.phone_no,
+    //       password: formData.password,
+    //     });
+    //     // Handle success (e.g., show a success message, redirect, etc.)
+    //   } catch (error) {
+    //     // Handle error (e.g., show an error message)
+    //     console.error("Account creation failed:", error);
+    //   }
+    // }
   };
 
   return (

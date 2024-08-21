@@ -87,20 +87,19 @@ function ProductDetails() {
       alert("Please log in to add items to your wishlist.");
       return;
     }
-    const isWishlisted = wishlistItems.some(
-      (item) => item.uid === product?.uid
-    );
+
+    const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
 
     if (isWishlisted) {
       dispatch(removeFromWishlist({ uid: product.uid }));
       makePostRequest("wishlist/remove", {
-        customer_id: user.logged_id,
+        customer_id: user?.logged_id,
         product_id: product.uid,
       });
     } else {
       dispatch(addToWishlist(product));
       makePostRequest("wishlist/add", {
-        customer_id: user.logged_id,
+        customer_id: user?.logged_id,
         product_id: product.uid,
       });
     }
@@ -240,43 +239,30 @@ function ProductDetails() {
                     </LinkedinShareButton>
                   </div>
 
-                  {/* <button
-                    onClick={handleWishlistToggle}
-                    style={{
-                      color: isWishlisted ? "#01abec" : "gray",
-                      border: "none",
-                      backgroundColor: "transparent",
-                      cursor: "pointer",
-                      fontSize: "24px",
-                    }}
-                  >
-                    {isWishlisted ? (
-                      <i className="fa-solid fa-heart"></i>
-                    ) : (
-                      <i className="fa-regular fa-heart"></i>
-                    )}
-                  </button> */}
+                
 
-                  <div
-                    title="Add to Wishlist"
-                    className="btn-icon-wish"
-                    onClick={() => handleToggle(productDetails?.details)}
-                    style={{
-                      color: wishlistItems.some(
-                        (item) => item.uid === productDetails?.details?.uid
-                      )
-                        ? "#01abec"
-                        : "gray",
-                    }}
-                  >
-                    {wishlistItems.some(
-                      (item) => item.uid === productDetails?.details?.uid
-                    ) ? (
-                      <i className="fa-solid fa-heart"></i>
-                    ) : (
-                      <i className="fa-regular fa-heart"></i>
-                    )}
-                  </div>
+                  {user && (
+                    <div
+                      title="Add to Wishlist"
+                      className="btn-icon-wish"
+                      onClick={() => handleToggle(product)}
+                      style={{
+                        color: wishlistItems.some(
+                          (item) => item.uid === product.uid
+                        )
+                          ? "#01abec"
+                          : "gray",
+                      }}
+                    >
+                      {wishlistItems.some(
+                        (item) => item.uid === product.uid
+                      ) ? (
+                        <i className="fa-solid fa-heart"></i>
+                      ) : (
+                        <i className="fa-regular fa-heart"></i>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

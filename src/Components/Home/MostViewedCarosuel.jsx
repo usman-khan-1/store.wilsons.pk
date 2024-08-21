@@ -33,7 +33,8 @@ function TestimonialCarousel() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await makePostRequest("product/list");
+        const response = await makePostRequest("product/most-viewed");
+
         setProducts(response?.data);
         setLoading(false);
       } catch (error) {

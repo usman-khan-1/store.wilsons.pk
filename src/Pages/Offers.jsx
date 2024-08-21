@@ -5,13 +5,17 @@ import { makePostRequest } from "../Apis";
 import ImageWithLoader from "../Components/ImageWithLoader";
 import { BeatLoader } from "react-spinners";
 import { Carousel } from "react-responsive-carousel";
+import ReactPaginate from "react-paginate";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 
 function Offers() {
   useEffect(() => {
     window.scrollTo(0, 0);
   },[]);
   const [value, setValue] = useState([0, 100]);
-
+  const [currentPage, setCurrentPage] = useState(0);
+  const productsPerPage = 12;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -27,6 +31,20 @@ function Offers() {
   }, []);
 
   const homeSliderBannerImg = ["/assets/imagess/hd108.png"];
+
+  // pagination
+
+  
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const offset = currentPage * productsPerPage;
+  const currentProducts = products?.slice(
+    offset,
+    offset + productsPerPage
+  );
+  const pageCount = Math.ceil(products.length / productsPerPage);
 
   return (
     <Layout>
@@ -142,49 +160,20 @@ function Offers() {
                     <span>Filter</span>
                   </a>
 
-                  <div className="toolbox-item toolbox-sort">
-                    <label>Sort By:</label>
-
-                    <div className="select-custom">
-                      <select name="orderby" className="form-control">
-                        <option value="menu_order">Default sorting</option>
-                        <option value="popularity">Sort by popularity</option>
-                        <option value="rating">Sort by average rating</option>
-                        <option value="date">Sort by newness</option>
-                        <option value="price">
-                          Sort by price: low to high
-                        </option>
-                        <option value="price-desc">
-                          Sort by price: high to low
-                        </option>
-                      </select>
-                    </div>
-                  </div>
+                
                 </div>
 
-                <div className="toolbox-right">
-                  <div className="toolbox-item toolbox-show">
-                    <label>Show:</label>
-
-                    <div className="select-custom">
-                      <select name="count" className="form-control">
-                        <option value="12">12</option>
-                        <option value="24">24</option>
-                        <option value="36">36</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+               
               </nav>
 
               <div className="row divide-line no-gutters m-0">
-                {products?.length === 0 ? (
+                {currentProducts?.length === 0 ? (
                   <div className="w-100 d-flex align-items-center justify-content-center">
                     <BeatLoader color="#01abec" />
                   </div>
                 ) : (
-                  products?.map((data, index) => (
-                    <div className="col-6 col-sm-4 col-xl-3">
+                  currentProducts?.map((data, index) => (
+                    <div key={index} className="col-6 col-sm-3 col-xl-2">
                       <div className="product-default inner-quickview inner-icon">
                         <figure>
                           <Link to={`/product/${data?.seo_slug}`}>
@@ -240,47 +229,22 @@ function Offers() {
 
               <nav className="toolbox toolbox-pagination">
                 <div className="toolbox-item toolbox-show">
-                  <label>Show:</label>
-
-                  <div className="select-custom">
-                    <select name="count" className="form-control">
-                      <option value="12">12</option>
-                      <option value="24">24</option>
-                      <option value="36">36</option>
-                    </select>
-                  </div>
+               
                 </div>
 
-                <ul className="pagination toolbox-item">
-                  <li className="page-item disabled">
-                    <a className="page-link page-link-btn" href="#">
-                      <i className="icon-angle-left"></i>
-                    </a>
-                  </li>
-                  <li className="page-item active">
-                    <a className="page-link" href="#">
-                      1 <span className="sr-only">(current)</span>
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <span className="page-link">...</span>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link page-link-btn" href="#">
-                      <i className="icon-angle-right"></i>
-                    </a>
-                  </li>
-                </ul>
+                <ReactPaginate
+                  previousLabel={<FaChevronLeft />}
+                  nextLabel={<FaChevronRight />}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={pageCount}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={2}
+                  onPageChange={handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"paginateActive"}
+                />
               </nav>
             </div>
           </div>

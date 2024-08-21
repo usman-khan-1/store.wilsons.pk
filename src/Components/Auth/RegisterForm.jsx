@@ -35,7 +35,7 @@ function RegisterForm() {
 
       if (response?.status === "success") {
         navigate("/registration-success");
-        // toast.success(response?.message);
+        toast.success(response?.message);
       } else if (response?.status === "fail") {
         toast.error(response?.message);
       }
@@ -114,7 +114,7 @@ function RegisterForm() {
           </button>
         </div>
       </form>
-      <Toaster position="top-right" reverseOrder={true} />
+      <Toaster duration= "60000"  position="top-right" reverseOrder={true} />
     </>
   );
 }

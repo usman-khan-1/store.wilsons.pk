@@ -31,7 +31,7 @@ function RecentProductsCarosuel() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await makePostRequest("product/list");
+        const response = await makePostRequest("product/recent-product");
         setProducts(response?.data);
         setLoading(false);
       } catch (error) {

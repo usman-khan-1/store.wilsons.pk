@@ -114,7 +114,7 @@ function Home() {
 
       <BestSellerElectronics />
       <RecentProductsCarosuel />
-
+{/* 
       <section className="recent-products">
         <div className="container">
           <div
@@ -170,7 +170,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <ElectronicSection /> */}
       {/* <TopBrand /> */}

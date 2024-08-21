@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import Carousel from "react-bootstrap/Carousel";
 import { makePostRequest } from "../../Apis";
 import { BeatLoader } from "react-spinners";
 import ImageWithLoader from "../ImageWithLoader";
@@ -7,17 +6,9 @@ import { Carousel } from "react-responsive-carousel";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-function HomeCarosuel() {
-  const homeSliderBannerImg = [
-    "/assets/imagess/cozymebanner.jpg",
-    "/assets/imagess/wil-d-banner.jpg",
-    "/assets/imagess/daily-cal.jpg",
-    "/assets/imagess/seacal-banner.jpg",
-  ];
-
+function HomeCarousel() {
   const [banner, setBanner] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log("banner", banner);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,48 +25,59 @@ function HomeCarosuel() {
     fetchData();
   }, []);
 
+  const fadeAnimationHandler = (props, state) => {
+    const transitionTime = `${props.transitionTime}ms`;
+    const transitionTimingFunction = 'ease-in-out';
+
+    let slideStyle = {
+      position: 'absolute',
+      display: 'block',
+      zIndex: -2,
+      minHeight: '100%',
+      opacity: 0,
+      top: 0,
+      right: 0,
+      left: 0,
+      bottom: 0,
+      transitionTimingFunction,
+    };
+
+    if (!state.swiping) {
+      slideStyle = {
+        ...slideStyle,
+        WebkitTransitionDuration: transitionTime,
+        MozTransitionDuration: transitionTime,
+        OTransitionDuration: transitionTime,
+        transitionDuration: transitionTime,
+        msTransitionDuration: transitionTime,
+      };
+    }
+
+    return {
+      slideStyle,
+      selectedStyle: { ...slideStyle, opacity: 1, position: 'relative' },
+      prevStyle: { ...slideStyle },
+    };
+  };
+
   return (
     <div className="row">
       <div className="col-lg-12 mb-2">
-        <div className="home-caroseul">
+        <div className="home-carousel">
           {loading ? (
+            
             <div className="w-100 d-flex align-items-center justify-content-center">
               <BeatLoader color="#01abec" size={20} />
             </div>
           ) : (
-            // <Carousel
-            //   fade
-            //   indicators={false}
-            //   controls={true} // Optional: hides the navigation controls
-            //   pause="hover" // Optional: pauses on hover
-            // >
-            //   {banner?.map((data, index) => (
-            //     <Carousel.Item key={index}>
-            //       {/* <img
-            //         className="d-block w-100"
-            //         src={data?.image}
-            //         alt={`Slide ${index}`}
-            //       /> */}
-
-            //       <ImageWithLoader
-            //         src={data?.image}
-            //         width="100%"
-            //         height="217"
-            //         alt="product"
-            //         loaderHeight={470}
-            //       />
-            //     </Carousel.Item>
-            //   ))}
-            // </Carousel>
-
             <Carousel
+              animationHandler={fadeAnimationHandler}
               showThumbs={false}
               interval={8000}
               autoPlay={true}
-              swipeable={true}
+              swipeable={false}
               transitionTime={1200}
               showIndicators={false}
-              // infiniteLoop={true}
             >
               {banner?.map((data, index) => (
                 <div key={index}>
@@ -96,4 +98,4 @@ function HomeCarosuel() {
   );
 }
 
-export default HomeCarosuel;
+export default HomeCarousel;

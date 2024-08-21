@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../Store/UserSlice";
 import toast, { Toaster } from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function LoginForm() {
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginCredentials, setLoginCredentials] = useState({
@@ -50,6 +52,10 @@ function LoginForm() {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   return (
     <>
       <form onSubmit={handleLoginSubmit}>
@@ -70,14 +76,28 @@ function LoginForm() {
           Password
           <span className="required">*</span>
         </label>
-        <input
-          type="password"
-          className="form-input form-wide"
-          id="password"
-          value={loginCredentials.password}
-          onChange={handleLoginChange}
-          required
-        />
+        <div className="password-input-container" style={{ position: "relative" }}>
+          <input
+            type={showPassword ? "text" : "password"}
+            className="form-input form-wide"
+            id="password"
+            value={loginCredentials.password}
+            onChange={handleLoginChange}
+            required
+          />
+          <span
+            onClick={togglePasswordVisibility}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "50%",
+              transform: "translateY(-90%)",
+              cursor: "pointer",
+            }}
+          >
+            {showPassword ? <FaEye size={18}/> : <FaEyeSlash size={18}/>}
+          </span>
+        </div>
 
         <div className="form-footer">
           <div className="custom-control custom-checkbox mb-0">
