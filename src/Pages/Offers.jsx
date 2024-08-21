@@ -30,7 +30,7 @@ function Offers() {
     fetchData();
   }, []);
 
-  const homeSliderBannerImg = ["/assets/imagess/hd108.png"];
+  const homeSliderBannerImg = ["/assets/imagess/web-offer-ban.jpg"];
 
   // pagination
 
