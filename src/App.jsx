@@ -30,6 +30,7 @@ import RegistrationSuccess from "./Pages/RegistrationSuccess";
 import OrderSuccess from "./Pages/OrderSuccess";
 import VerifySuccess from "./Pages/VerifySuccess";
 import Offers from "./Pages/Offers";
+import BlogsByCategory from "./Pages/BlogsByCategory";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -68,7 +69,8 @@ function App() {
           <Route path="return-policy" element={<ReturnPolicy />} />
           <Route path="terms-of-service" element={<TermsCondition />} />
           <Route path="blog" element={<Blogs />} />
-          <Route path="blog-details/:slug" element={<BlogDetails />} />
+          <Route path="blog/category/:slug" element={<BlogsByCategory />} />
+          <Route path="blog/details/:slug" element={<BlogDetails />} />
           <Route path="wishList" element={<WishList />} />
           <Route path="cart" element={<Cart />} />
           <Route path="contact" element={<Contact />} />

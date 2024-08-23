@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { makePostRequest } from "../Apis";
 import ImageWithLoader from "../Components/ImageWithLoader";
 import { BeatLoader } from "react-spinners";
 import moment from "moment";
 
-function Blogs() {
+function BlogsByCategory() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const slug = useParams();
+
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log("blogs", blogs);
+//   console.log("blogs?.lists[1]?.category", blogs?.lists[0]?.category);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await makePostRequest("blogs/list");
+        const response = await makePostRequest("blogs/category-detail", slug);
         setBlogs(response?.data);
         setLoading(false);
       } catch (error) {
@@ -28,7 +30,7 @@ function Blogs() {
       }
     };
     fetchData();
-  }, []);
+  }, [slug]);
 
   return (
     <Layout>
@@ -51,6 +53,7 @@ function Blogs() {
         <div className="container">
           <div className="row">
             <div className="col-lg-9">
+              {/* <h1>{blogs?.lists[1]?.category} </h1> */}
               <div className="blog-section row">
                 {loading ? (
                   <div className="w-100 d-flex align-items-center justify-content-center">
@@ -81,18 +84,20 @@ function Blogs() {
                                 }}
                               ></div>
                               {/* <ImageWithLoader
-                              a  src={data?.image}
-                                alt="Post"
-                                width="225"
-                                height="280"
-                              /> */}
+                                  a  src={data?.image}
+                                    alt="Post"
+                                    width="225"
+                                    height="280"
+                                  /> */}
                             </Link>
-                            <div className="post-date">
-                              <span className="day">{day}</span>
-                              <span className="month">
-                                {month} {year}
-                              </span>
-                            </div>
+                            {data?.published_date && (
+                              <div className="post-date">
+                                <span className="day">{day}</span>
+                                <span className="month">
+                                  {month} {year}
+                                </span>
+                              </div>
+                            )}
                           </div>
 
                           <div className="post-body">
@@ -143,29 +148,29 @@ function Blogs() {
 
                       return (
                         <li className="row" >
-                        <div className="col-4">
-                          <div
-                          className="post-media"
-                            style={{
-                              backgroundImage: `url(${data?.image})`,
-                              height: "70px",
-                              width: "100%",
-                              backgroundPosition: "center center",
-                              backgroundSize: "cover",
-                            }}
-                          ></div>
-                        </div>
-                        <div className="col-8">
-                          <div className="post-info ">
-                            <Link to={`/blog/details/${data?.slug}`}>
-                              {data?.heading}
-                            </Link>
-                            {data?.published_date && (
-                              <div className="post-meta">{formattedDate}</div>
-                            )}
+                          <div className="col-4">
+                            <div
+                                 className="post-media"
+                              style={{
+                                backgroundImage: `url(${data?.image})`,
+                                height: "70px",
+                                width: "100%",
+                                backgroundPosition: "center center",
+                                backgroundSize: "cover",
+                              }}
+                            ></div>
                           </div>
-                        </div>
-                      </li>
+                          <div className="col-8">
+                            <div className="post-info ">
+                              <Link to={`/blog/details/${data?.slug}`}>
+                                {data?.heading}
+                              </Link>
+                              {data?.published_date && (
+                                <div className="post-meta">{formattedDate}</div>
+                              )}
+                            </div>
+                          </div>
+                        </li>
                       );
                     })}
                   </ul>
@@ -179,4 +184,4 @@ function Blogs() {
   );
 }
 
-export default Blogs;
+export default BlogsByCategory;
