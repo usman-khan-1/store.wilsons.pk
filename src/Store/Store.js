@@ -5,13 +5,11 @@ import storage from "redux-persist/lib/storage";
 import brandingReducer from "./BrandingSlice";
 import userReducer from "./UserSlice";
 import cartReducer from "./CartSlice";
-import wishlistReducer from "./WishlistSlice";
 
 const rootReducer = combineReducers({
   branding: brandingReducer,
   user: userReducer,
   cart: cartReducer,
-  wishlist: wishlistReducer,
 });
 
 const persistConfig = {

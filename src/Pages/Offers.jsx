@@ -7,16 +7,18 @@ import { BeatLoader } from "react-spinners";
 import { Carousel } from "react-responsive-carousel";
 import ReactPaginate from "react-paginate";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
+import { useSelector } from "react-redux";
 
 function Offers() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
+  }, []);
   const [value, setValue] = useState([0, 100]);
   const [currentPage, setCurrentPage] = useState(0);
   const productsPerPage = 12;
   const [products, setProducts] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
+  const user = useSelector((state) => state.user.value);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,23 +30,60 @@ function Offers() {
       }
     };
     fetchData();
-  }, []);
+
+    if (user?.logged_id) {
+      // Fetch the wishlist if the user is logged in
+      const fetchWishlist = async () => {
+        try {
+          const response = await makePostRequest("wishlist/list", {
+            customer_id: user?.logged_id,
+          });
+          setWishlistItems(response?.data);
+        } catch (error) {
+          console.error("Error fetching wishlist data:", error);
+        }
+      };
+
+      fetchWishlist();
+    } else {
+      // Clear wishlist if the user is not logged in
+      setWishlistItems([]);
+    }
+  }, [user?.logged_id]);
 
   const homeSliderBannerImg = ["/assets/imagess/web-offer-ban.jpg"];
 
-  // pagination
-
-  
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
 
   const offset = currentPage * productsPerPage;
-  const currentProducts = products?.slice(
-    offset,
-    offset + productsPerPage
-  );
+  const currentProducts = products?.slice(offset, offset + productsPerPage);
   const pageCount = Math.ceil(products.length / productsPerPage);
+
+  const handleToggle = async (product) => {
+    const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
+
+    try {
+      if (isWishlisted) {
+        await makePostRequest("wishlist/remove", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.uid !== product.uid)
+        );
+      } else {
+        await makePostRequest("wishlist/add", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) => [...prevItems, product]);
+      }
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
+    }
+  };
 
   return (
     <Layout>
@@ -86,86 +125,6 @@ function Offers() {
 
           <div className="row main-content">
             <div className="col-lg-12">
-              <nav
-                className="toolbox sticky-header mt-2"
-                data-sticky-options="{'mobile': true}"
-              >
-                <div className="toolbox-left">
-                  <a href="#" className="sidebar-toggle">
-                    <svg
-                      data-name="Layer 3"
-                      id="Layer_3"
-                      viewBox="0 0 32 32"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <line
-                        x1="15"
-                        x2="26"
-                        y1="9"
-                        y2="9"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="6"
-                        x2="9"
-                        y1="9"
-                        y2="9"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="23"
-                        x2="26"
-                        y1="16"
-                        y2="16"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="6"
-                        x2="17"
-                        y1="16"
-                        y2="16"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="17"
-                        x2="26"
-                        y1="23"
-                        y2="23"
-                        className="cls-1"
-                      ></line>
-                      <line
-                        x1="6"
-                        x2="11"
-                        y1="23"
-                        y2="23"
-                        className="cls-1"
-                      ></line>
-                      <path
-                        d="M14.5,8.92A2.6,2.6,0,0,1,12,11.5,2.6,2.6,0,0,1,9.5,8.92a2.5,2.5,0,0,1,5,0Z"
-                        className="cls-2"
-                      ></path>
-                      <path
-                        d="M22.5,15.92a2.5,2.5,0,1,1-5,0,2.5,2.5,0,0,1,5,0Z"
-                        className="cls-2"
-                      ></path>
-                      <path
-                        d="M21,16a1,1,0,1,1-2,0,1,1,0,0,1,2,0Z"
-                        className="cls-3"
-                      ></path>
-                      <path
-                        d="M16.5,22.92A2.6,2.6,0,0,1,14,25.5a2.6,2.6,0,0,1-2.5-2.58,2.5,2.5,0,0,1,5,0Z"
-                        className="cls-2"
-                      ></path>
-                    </svg>
-                    <span>Filter</span>
-                  </a>
-
-                
-                </div>
-
-               
-              </nav>
-
               <div className="row divide-line no-gutters m-0">
                 {currentProducts?.length === 0 ? (
                   <div className="w-100 d-flex align-items-center justify-content-center">
@@ -195,13 +154,28 @@ function Offers() {
                                 {data?.category}
                               </Link>
                             </div>
-                            <Link
-                              to={"/wishlist"}
-                              title="Wishlist"
-                              className="btn-icon-wish"
-                            >
-                              <i className="icon-heart"></i>
-                            </Link>
+                            {user?.logged_id && (
+                              <div
+                                title="Add to Wishlist"
+                                className="btn-icon-wish"
+                                onClick={() => handleToggle(data)}
+                                style={{
+                                  color: wishlistItems.some(
+                                    (item) => item.uid === data.uid
+                                  )
+                                    ? "#01abec"
+                                    : "gray",
+                                }}
+                              >
+                                {wishlistItems.some(
+                                  (item) => item.uid === data.uid
+                                ) ? (
+                                  <i className="fa-solid fa-heart"></i>
+                                ) : (
+                                  <i className="fa-regular fa-heart"></i>
+                                )}
+                              </div>
+                            )}
                           </div>
                           <h3 className="product-title">
                             <Link to={"/product-details"}>{data.heading}</Link>
@@ -228,9 +202,7 @@ function Offers() {
               </div>
 
               <nav className="toolbox toolbox-pagination">
-                <div className="toolbox-item toolbox-show">
-               
-                </div>
+                <div className="toolbox-item toolbox-show"></div>
 
                 <ReactPaginate
                   previousLabel={<FaChevronLeft />}

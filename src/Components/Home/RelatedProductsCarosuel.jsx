@@ -5,8 +5,7 @@ import { makePostRequest } from "../../Apis";
 import { Link } from "react-router-dom";
 import ProductShimmer from "../ProductShimmer";
 import ImageWithLoader from "../ImageWithLoader";
-import { useSelector, useDispatch } from "react-redux";
-import { addToWishlist, removeFromWishlist } from "../../Store/WishlistSlice";
+import { useSelector } from "react-redux";
 
 function RelatedProductsCarousel({ productDetails, load }) {
   const responsive = {
@@ -16,28 +15,61 @@ function RelatedProductsCarousel({ productDetails, load }) {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
 
-  const user = useSelector((state) => state.user.value);
-  const wishlistItems = useSelector((state) => state.wishlist.items);
-  const dispatch = useDispatch();
+  const [wishlistItems, setWishlistItems] = useState([]);
 
-  const handleToggle = (product) => {
+  const user = useSelector((state) => state.user.value); // Get the user state
+
+  useEffect(() => {
+    if (user?.logged_id) {
+      // Fetch the wishlist if the user is logged in
+      const fetchWishlist = async () => {
+        try {
+          const response = await makePostRequest("wishlist/list", {
+            customer_id: user?.logged_id,
+          });
+          setWishlistItems(response?.data);
+        } catch (error) {
+          console.error("Error fetching wishlist data:", error);
+        }
+      };
+
+      fetchWishlist();
+    } else {
+      // Clear wishlist if the user is not logged in
+      setWishlistItems([]);
+    }
+  }, [user?.logged_id]);
+
+  const handleToggle = async (product) => {
+    if (!user?.logged_id) {
+      alert("Please log in to add items to your wishlist.");
+      return;
+    }
+
     const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
 
-    if (isWishlisted) {
-      dispatch(removeFromWishlist({ uid: product.uid }));
-      makePostRequest("wishlist/remove", {
-        customer_id: user.logged_id,
-        product_id: product.uid,
-      });
-    } else {
-      dispatch(addToWishlist(product));
-      makePostRequest("wishlist/add", {
-        customer_id: user.logged_id,
-        product_id: product.uid,
-      });
+    try {
+      if (isWishlisted) {
+        // Remove from wishlist
+        await makePostRequest("wishlist/remove", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.uid !== product.uid)
+        );
+      } else {
+        // Add to wishlist
+        await makePostRequest("wishlist/add", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) => [...prevItems, product]);
+      }
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
     }
   };
-
   return (
     <div className="">
       <h2 className="section-title ls-n-10 pb-3 m-b-4">Related Products</h2>

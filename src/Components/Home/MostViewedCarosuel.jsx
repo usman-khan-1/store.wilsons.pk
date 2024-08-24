@@ -5,13 +5,7 @@ import { Link } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import ProductShimmer from "../ProductShimmer";
 import ImageWithLoader from "../ImageWithLoader";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  addToWishlist,
-  clearWishlist,
-  removeFromWishlist,
-  setWishlist,
-} from "../../Store/WishlistSlice";
+import { useSelector } from "react-redux";
 
 function TestimonialCarousel() {
   const responsive = {
@@ -23,18 +17,15 @@ function TestimonialCarousel() {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const user = useSelector((state) => state.user.value); // Get the user state
-  const wishlistItems = useSelector((state) => state.wishlist.items); // Get wishlist items from Redux
-  // console.log("wishlistItems",wishlistItems)
-  const dispatch = useDispatch();
+  const [wishlistItems, setWishlistItems] = useState([]); // Local wishlist state
+  const user = useSelector((state) => state.user.value);
+  
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await makePostRequest("product/most-viewed");
-
         setProducts(response?.data);
         setLoading(false);
       } catch (error) {
@@ -45,48 +36,51 @@ function TestimonialCarousel() {
 
     fetchData();
 
-    if (user?.logged_id) {
-      // Fetch the wishlist if the user is logged in
-      const fetchWishlist = async () => {
-        try {
-          const response = await makePostRequest("wishlist/list", {
-            customer_id: user?.logged_id,
-          });
-          dispatch(setWishlist(response?.data));
-        } catch (error) {
-          console.error("Error fetching wishlist data:", error);
-        }
-      };
+      if (user?.logged_id) {
+        // Fetch the wishlist if the user is logged in
+        const fetchWishlist = async () => {
+          try {
+            const response = await makePostRequest("wishlist/list", {
+              customer_id: user?.logged_id,
+            });
+            setWishlistItems(response?.data);
+          } catch (error) {
+            console.error("Error fetching wishlist data:", error);
+          }
+        };
 
-      fetchWishlist();
-    } else {
-      // Clear wishlist if the user is not logged in
-      dispatch(clearWishlist());
-    }
-  }, [user?.logged_id, dispatch]);
+        fetchWishlist();
+      } else {
+        // Clear wishlist if the user is not logged in
+        setWishlistItems([]);
+      }
+  }, [user?.logged_id]);
 
-  const handleToggle = (product) => {
-    if (!user?.logged_id) {
-      alert("Please log in to add items to your wishlist.");
-      return;
-    }
-
+  const handleToggle = async (product) => {
     const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
+    
 
-    if (isWishlisted) {
-      dispatch(removeFromWishlist({ uid: product.uid }));
-      makePostRequest("wishlist/remove", {
-        customer_id: user?.logged_id,
-        product_id: product.uid,
-      });
-    } else {
-      dispatch(addToWishlist(product));
-      makePostRequest("wishlist/add", {
-        customer_id: user?.logged_id,
-        product_id: product.uid,
-      });
+    try {
+      if (isWishlisted) {
+        await makePostRequest("wishlist/remove", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.uid !== product.uid)
+        );
+      } else {
+        await makePostRequest("wishlist/add", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) => [...prevItems, product]);
+      }
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
     }
   };
+
   return (
     <div className="container">
       <h2 className="section-title ls-n-10 pb-3 m-b-4">Most Viewed Products</h2>
@@ -106,6 +100,7 @@ function TestimonialCarousel() {
                     <figure>
                       <Link to={`/product/${product.seo_slug}`}>
                         <ImageWithLoader
+                        loaderHeight={210}
                           src={product.image}
                           width="217"
                           height="217"
@@ -120,7 +115,7 @@ function TestimonialCarousel() {
                             {product.category}
                           </Link>
                         </div>
-                        {user && (
+                        {user?.logged_id && (
                           <div
                             title="Add to Wishlist"
                             className="btn-icon-wish"

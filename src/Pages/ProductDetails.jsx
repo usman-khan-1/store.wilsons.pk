@@ -11,7 +11,7 @@ import {
 } from "react-share";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Store/CartSlice";
-import { addToWishlist, removeFromWishlist } from "../Store/WishlistSlice";
+
 import toast from "react-hot-toast";
 
 function ProductDetails() {
@@ -23,11 +23,13 @@ function ProductDetails() {
   const dispatch = useDispatch();
   const currentUrl = window.location.href;
   const user = useSelector((state) => state.user.value);
-  const wishlistItems = useSelector((state) => state.wishlist.items);
+  // console.log("wishlistItems",wishlistItems)
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const [loading, setLoading] = useState(false);
   const [productDetails, setProductDetails] = useState({});
+  console.log("productDetails", productDetails);
+  const [wishlistItems, setWishlistItems] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -82,29 +84,54 @@ function ProductDetails() {
 
   // const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
 
-  const handleToggle = (product) => {
-    if (!user?.logged_id) {
-      alert("Please log in to add items to your wishlist.");
-      return;
-    }
+  useEffect(() => {
+    if (user?.logged_id) {
+      // Fetch the wishlist if the user is logged in
+      const fetchWishlist = async () => {
+        try {
+          const response = await makePostRequest("wishlist/list", {
+            customer_id: user?.logged_id,
+          });
+          setWishlistItems(response?.data);
+        } catch (error) {
+          console.error("Error fetching wishlist data:", error);
+        }
+      };
 
+      fetchWishlist();
+    } else {
+      // Clear wishlist if the user is not logged in
+      setWishlistItems([]);
+    }
+  }, [user?.logged_id]);
+
+  const handleToggle = async (product) => {
     const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
 
-    if (isWishlisted) {
-      dispatch(removeFromWishlist({ uid: product.uid }));
-      makePostRequest("wishlist/remove", {
-        customer_id: user?.logged_id,
-        product_id: product.uid,
-      });
-    } else {
-      dispatch(addToWishlist(product));
-      makePostRequest("wishlist/add", {
-        customer_id: user?.logged_id,
-        product_id: product.uid,
-      });
+    try {
+      if (isWishlisted) {
+        // Remove from wishlist
+        await makePostRequest("wishlist/remove", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.uid !== product.uid)
+        );
+        toast.success("Product Removed Successfully!");
+      } else {
+        // Add to wishlist
+        await makePostRequest("wishlist/add", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) => [...prevItems, product]);
+        toast.success("Product Added Successfully!");
+      }
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
     }
   };
-
   return (
     <Layout>
       <main className="main">
@@ -212,7 +239,7 @@ function ProductDetails() {
                 <hr className="divider mb-0 mt-0" />
 
                 {/* Share buttons */}
-                <div className="product-single-share mb-3">
+                <div className="product-single-share ">
                   <label className="sr-only">Share:</label>
                   <div className="social-icons mr-2">
                     <FacebookShareButton url={currentUrl}>
@@ -239,23 +266,21 @@ function ProductDetails() {
                     </LinkedinShareButton>
                   </div>
 
-                
-
-                  {user && (
+                  {user?.logged_id && (
                     <div
                       title="Add to Wishlist"
                       className="btn-icon-wish"
-                      onClick={() => handleToggle(product)}
+                      onClick={() => handleToggle(productDetails?.details)}
                       style={{
                         color: wishlistItems.some(
-                          (item) => item.uid === product.uid
+                          (item) => item.uid === productDetails?.details?.uid
                         )
                           ? "#01abec"
                           : "gray",
                       }}
                     >
                       {wishlistItems.some(
-                        (item) => item.uid === product.uid
+                        (item) => item.uid === productDetails?.details?.uid
                       ) ? (
                         <i className="fa-solid fa-heart"></i>
                       ) : (

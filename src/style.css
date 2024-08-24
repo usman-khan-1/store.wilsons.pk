@@ -13270,6 +13270,9 @@ main .sticky-header .product-ratings:before {
   flex-wrap: wrap;
   -ms-flex-wrap: wrap;
 }
+.product-single-share .fa-heart{
+  font-size: 20px;
+}
 .product-single-share label {
   margin-right: 1.2rem;
   margin-bottom: 0.5rem;

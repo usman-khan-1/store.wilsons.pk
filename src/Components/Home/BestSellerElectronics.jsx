@@ -3,23 +3,14 @@ import { Link } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import ProductShimmer from "../ProductShimmer";
 import ImageWithLoader from "../ImageWithLoader";
-import { useSelector, useDispatch } from "react-redux";
-// import { setWishlist } from "../../Store/WishlistSlice";
-import {
-  addToWishlist,
-  removeFromWishlist,
-  clearWishlist,
-  setWishlist,
-} from "../../Store/WishlistSlice"; // Import actions
+import { useSelector } from "react-redux";
 
 function BestSellerElectronics() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   const user = useSelector((state) => state.user.value); // Get the user state
-  const wishlistItems = useSelector((state) => state.wishlist.items); // Get wishlist items from Redux
-  console.log("wishlistItems",wishlistItems)
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +34,7 @@ function BestSellerElectronics() {
           const response = await makePostRequest("wishlist/list", {
             customer_id: user?.logged_id,
           });
-          dispatch(setWishlist(response?.data));
+          setWishlistItems(response?.data);
         } catch (error) {
           console.error("Error fetching wishlist data:", error);
         }
@@ -52,11 +43,11 @@ function BestSellerElectronics() {
       fetchWishlist();
     } else {
       // Clear wishlist if the user is not logged in
-      dispatch(clearWishlist());
+      setWishlistItems([]);
     }
-  }, [user?.logged_id, dispatch]);
+  }, [user?.logged_id]);
 
-  const handleToggle = (product) => {
+  const handleToggle = async (product) => {
     if (!user?.logged_id) {
       alert("Please log in to add items to your wishlist.");
       return;
@@ -64,18 +55,26 @@ function BestSellerElectronics() {
 
     const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
 
-    if (isWishlisted) {
-      dispatch(removeFromWishlist({ uid: product.uid }));
-      makePostRequest("wishlist/remove", {
-        customer_id: user?.logged_id,
-        product_id: product.uid,
-      });
-    } else {
-      dispatch(addToWishlist(product));
-      makePostRequest("wishlist/add", {
-        customer_id: user?.logged_id,
-        product_id: product.uid,
-      });
+    try {
+      if (isWishlisted) {
+        // Remove from wishlist
+        await makePostRequest("wishlist/remove", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.uid !== product.uid)
+        );
+      } else {
+        // Add to wishlist
+        await makePostRequest("wishlist/add", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) => [...prevItems, product]);
+      }
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
     }
   };
 
@@ -109,7 +108,7 @@ function BestSellerElectronics() {
                           {product?.category}
                         </Link>
                       </div>
-                      {user?.length > 0 && (
+                      {user?.logged_id && (
                         <div
                           title="Add to Wishlist"
                           className="btn-icon-wish"

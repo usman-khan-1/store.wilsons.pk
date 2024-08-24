@@ -36,8 +36,6 @@ function WishList() {
     fetchData();
   }, []);
 
-  console.log("wishList", wishList);
-  console.log("cartItems", cartItems);
 
   const handleRemove = async (productId) => {
     try {
@@ -46,6 +44,18 @@ function WishList() {
         product_id: productId,
       });
       fetchData();
+
+      // if (response?.success) {
+      //   
+      //   setWishlist((prevWishlist) =>
+      //     prevWishlist.filter((item) => item.uid !== productId)
+      //   );
+      //   toast.success("Product removed from wishlist!");
+      // } else {
+      //   toast.error("Failed to remove product from wishlist.");
+      // }
+
+
     } catch (error) {
       console.error("Error fetching videos data:", error);
     }
@@ -122,7 +132,7 @@ function WishList() {
                       <td>
                         <figure className="product-image-container">
                           <Link
-                            to={`/product/${data?.seo_slug}`}
+                            to={`/product/${data?.slug}`}
                             className="product-image"
                           >
                             <ImageWithLoader
@@ -141,7 +151,7 @@ function WishList() {
                       </td>
                       <td>
                         <h5 className="product-title">
-                          <Link to={"/product-details"}>{data?.heading}</Link>
+                          <Link to={`/product/${data.slug}`}>{data?.heading}</Link>
                         </h5>
                       </td>
                       <td className="price-box">Rs. {data?.price}</td>

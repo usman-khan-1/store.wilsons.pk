@@ -166,7 +166,7 @@ function HomeNavbar() {
                     </div>
                   </Link>
 
-                  {user?.lenght > 0 ? (
+                  {user?.logged_id  ? (
                     <>
                       <Link to={"/myAccount"}>
                         <div className="header-userinfo">
@@ -176,8 +176,8 @@ function HomeNavbar() {
                           <h4 className="font1 mb-0">My Account</h4>
                         </div>
                       </Link>
-                      <Link to={"/wishlist"} class="header-icon">
-                        <i class="icon-wishlist-2"></i>
+                      <Link to={"/wishlist"} className="header-icon">
+                        <i className="icon-wishlist-2"></i>
                       </Link>
                     </>
                   ) : (

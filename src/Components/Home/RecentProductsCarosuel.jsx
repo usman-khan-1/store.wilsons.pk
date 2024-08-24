@@ -5,13 +5,8 @@ import { Link } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import ProductShimmer from "../ProductShimmer";
 import ImageWithLoader from "../ImageWithLoader";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  addToWishlist,
-  clearWishlist,
-  removeFromWishlist,
-  setWishlist,
-} from "../../Store/WishlistSlice";
+import { useSelector } from "react-redux";
+
 
 function RecentProductsCarosuel() {
   const responsive = {
@@ -22,16 +17,15 @@ function RecentProductsCarosuel() {
   };
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   const user = useSelector((state) => state.user.value); // Get the user state
-  const wishlistItems = useSelector((state) => state.wishlist.items); // Get wishlist items from Redux
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await makePostRequest("product/recent-product");
+        const response = await makePostRequest("product/best-seller");
         setProducts(response?.data);
         setLoading(false);
       } catch (error) {
@@ -49,7 +43,7 @@ function RecentProductsCarosuel() {
           const response = await makePostRequest("wishlist/list", {
             customer_id: user?.logged_id,
           });
-          dispatch(setWishlist(response?.data));
+          setWishlistItems(response?.data);
         } catch (error) {
           console.error("Error fetching wishlist data:", error);
         }
@@ -58,30 +52,34 @@ function RecentProductsCarosuel() {
       fetchWishlist();
     } else {
       // Clear wishlist if the user is not logged in
-      dispatch(clearWishlist());
+      setWishlistItems([]);
     }
-  }, [user?.logged_id, dispatch]);
+  }, [user?.logged_id]);
 
-  const handleToggle = (product) => {
-    if (!user?.logged_id) {
-      alert("Please log in to add items to your wishlist.");
-      return;
-    }
-
+  const handleToggle = async (product) => {
+  
     const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
 
-    if (isWishlisted) {
-      dispatch(removeFromWishlist({ uid: product.uid }));
-      makePostRequest("wishlist/remove", {
-        customer_id: user?.logged_id,
-        product_id: product.uid,
-      });
-    } else {
-      dispatch(addToWishlist(product));
-      makePostRequest("wishlist/add", {
-        customer_id: user?.logged_id,
-        product_id: product.uid,
-      });
+    try {
+      if (isWishlisted) {
+        // Remove from wishlist
+        await makePostRequest("wishlist/remove", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.uid !== product.uid)
+        );
+      } else {
+        // Add to wishlist
+        await makePostRequest("wishlist/add", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) => [...prevItems, product]);
+      }
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
     }
   };
   return (
@@ -103,6 +101,7 @@ function RecentProductsCarosuel() {
                     <figure>
                       <Link to={`/product/${product.seo_slug}`}>
                         <ImageWithLoader
+                        loaderHeight={210}
                           src={product.image}
                           width="217"
                           height="217"
