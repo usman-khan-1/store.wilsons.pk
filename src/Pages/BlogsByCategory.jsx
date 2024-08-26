@@ -44,7 +44,7 @@ function BlogsByCategory() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Blog
+              Medical Insight
               </li>
             </ol>
           </div>
@@ -53,7 +53,7 @@ function BlogsByCategory() {
         <div className="container">
           <div className="row">
             <div className="col-lg-9">
-              {/* <h1>{blogs?.lists[1]?.category} </h1> */}
+              <h1>{blogs?.heading} </h1>
               <div className="blog-section row">
                 {loading ? (
                   <div className="w-100 d-flex align-items-center justify-content-center">
@@ -124,7 +124,7 @@ function BlogsByCategory() {
                 data-sticky-sidebar-options='{"offsetTop": 72}'
               >
                 <div className="widget widget-categories">
-                  <h4 className="widget-title">Blog Categories</h4>
+                  <h4 className="widget-title">Categories</h4>
 
                   <ul className="list">
                     {blogs?.category_lists?.map((data) => (

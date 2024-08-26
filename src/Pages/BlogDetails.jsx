@@ -50,7 +50,7 @@ function BlogDetails() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Blog Post
+              Medical Insight
               </li>
             </ol>
           </div>

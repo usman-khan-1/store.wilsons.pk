@@ -76,7 +76,10 @@ function LoginForm() {
           Password
           <span className="required">*</span>
         </label>
-        <div className="password-input-container" style={{ position: "relative" }}>
+        <div
+          className="password-input-container"
+          style={{ position: "relative" }}
+        >
           <input
             type={showPassword ? "text" : "password"}
             className="form-input form-wide"
@@ -95,7 +98,7 @@ function LoginForm() {
               cursor: "pointer",
             }}
           >
-            {showPassword ? <FaEye size={18}/> : <FaEyeSlash size={18}/>}
+            {showPassword ? <FaEye size={18} /> : <FaEyeSlash size={18} />}
           </span>
         </div>
 
@@ -122,7 +125,17 @@ function LoginForm() {
           {loading ? "Please Wait.." : "Login"}
         </button>
       </form>
-      <Toaster position="top-right" reverseOrder={true} />
+      <Toaster
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 15000,
+          style: {
+            display: "none",
+          },
+        }}
+        position="top-right"
+      />
     </>
   );
 }

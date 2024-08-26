@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { makePostRequest } from "../../Apis";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function RegisterForm() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [registerCredentials, setRegisterCredentials] = useState({
     full_name: "",
@@ -41,8 +44,10 @@ function RegisterForm() {
       }
     } catch (error) {
       setLoading(false);
+      toast.error("Error");
       console.error("Error fetching videos data:", error);
     }
+
     console.log("Register Credentials:", registerCredentials);
   };
 
@@ -52,7 +57,9 @@ function RegisterForm() {
       [e.target.id]: e.target.value,
     });
   };
-
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
   return (
     <>
       <form onSubmit={handleRegisterSubmit}>
@@ -99,14 +106,32 @@ function RegisterForm() {
           Password
           <span className="required">*</span>
         </label>
-        <input
-          id="password"
-          type="password"
-          className="form-input form-wide"
-          value={registerCredentials.password}
-          onChange={handleRegisterChange}
-          required
-        />
+
+        <div
+          className="password-input-container"
+          style={{ position: "relative" }}
+        >
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            className="form-input form-wide"
+            value={registerCredentials.password}
+            onChange={handleRegisterChange}
+            required
+          />
+          <span
+            onClick={togglePasswordVisibility}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "50%",
+              transform: "translateY(-90%)",
+              cursor: "pointer",
+            }}
+          >
+            {showPassword ? <FaEye size={18} /> : <FaEyeSlash size={18} />}
+          </span>
+        </div>
 
         <div className="form-footer mb-2">
           <button type="submit" className="btn btn-dark btn-md w-100 mr-0">
@@ -114,7 +139,17 @@ function RegisterForm() {
           </button>
         </div>
       </form>
-      <Toaster duration= "60000"  position="top-right" reverseOrder={true} />
+      <Toaster
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 15000,
+          style: {
+            display: "none",
+          },
+        }}
+        position="top-right"
+      />
     </>
   );
 }

@@ -71,7 +71,7 @@ function Home() {
                   FREE SHIPPING &amp; RETURN
                 </h4>
                 <p className="font-weight-light">
-                  Free shipping on orders over $99.
+                  Free shipping on orders over PKR 2500.
                 </p>
               </div>
             </div>
@@ -94,7 +94,7 @@ function Home() {
                 <h4 className="font1 line-height-1 ls-10">
                   ONLINE SUPPORT 24/7
                 </h4>
-                <p className="font-weight-light">Lorem ipsum dolor sit amet.</p>
+                <p className="font-weight-light">Help Anytime, Anywhere</p>
               </div>
             </div>
 
@@ -103,7 +103,7 @@ function Home() {
 
               <div className="info-box-content">
                 <h4 className="font1 line-height-1 ls-10">SECURE PAYMENT</h4>
-                <p className="font-weight-light">Lorem Ipsum dolor sit amet.</p>
+                <p className="font-weight-light">Pay with Confidence</p>
               </div>
             </div>
           </div>

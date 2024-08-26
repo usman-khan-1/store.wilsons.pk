@@ -42,7 +42,7 @@ function Blogs() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Blog
+              Medical Insight
               </li>
             </ol>
           </div>
@@ -119,7 +119,7 @@ function Blogs() {
                 data-sticky-sidebar-options='{"offsetTop": 72}'
               >
                 <div className="widget widget-categories">
-                  <h4 className="widget-title">Blog Categories</h4>
+                  <h4 className="widget-title"> Categories</h4>
 
                   <ul className="list">
                     {blogs?.category_lists?.map((data) => (

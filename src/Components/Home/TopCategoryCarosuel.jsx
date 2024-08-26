@@ -63,7 +63,24 @@ function TopCategoryCarosuel() {
             Top Categories
           </h2>
 
-          <div className="">
+          <div className="top-flex-categories">
+            {filteredCategory?.map((category, index) => (
+              <div key={index} className="category-item">
+                <Link to={`/category/${category?.slug}`}>
+                  <ImageWithLoader
+                    src={category?.icon}
+                    width="217"
+                    height="217"
+                    loaderHeight={"100px"}
+                    alt="product"
+                  />
+                  <span>{category?.name}</span>
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          {/* <div className="">
             <Carousel
               swipeable={true}
               draggable={true}
@@ -89,13 +106,12 @@ function TopCategoryCarosuel() {
                       loaderHeight={"100px"}
                       alt="product"
                     />
-                    {/* <img className="category-icon" src={category?.icon} alt="" /> */}
                     <span>{category?.name}</span>
                   </Link>
                 </div>
               ))}
             </Carousel>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>

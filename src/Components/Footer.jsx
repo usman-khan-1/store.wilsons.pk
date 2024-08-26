@@ -5,6 +5,7 @@ import { makePostRequest } from "../Apis";
 import toast, { Toaster } from "react-hot-toast";
 function Footer() {
   const branding = useSelector((state) => state.branding.value);
+  console.log("branding", branding);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -86,7 +87,7 @@ function Footer() {
                             className="__cf_email__"
                             data-cfemail="4825292124082d30292538242d662b2725"
                           >
-                            info@wilsons.com
+                            info@wilmart.com
                           </span>
                         </a>
                       </div>
@@ -100,20 +101,25 @@ function Footer() {
                     >
                       <i className="fab fa-facebook-f"></i>
                     </a>
-                    <a
-                      href={branding?.site_twitter}
-                      className="social-icon social-twitter"
-                      target="_blank"
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </a>
-                    <a
-                      href={branding?.site_linkedin}
-                      className="social-icon social-linkedin"
-                      target="_blank"
-                    >
-                      <i className="fab fa-linkedin-in"></i>
-                    </a>
+
+                    {branding?.site_twitter && (
+                      <a
+                        href={branding?.site_twitter}
+                        className="social-icon social-twitter"
+                        target="_blank"
+                      >
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                    )}
+                    {branding?.site_linkedin && (
+                      <a
+                        href={branding?.site_linkedin}
+                        className="social-icon social-linkedin"
+                        target="_blank"
+                      >
+                        <i className="fab fa-linkedin-in"></i>
+                      </a>
+                    )}
                   </div>
                 </div>
                 <div className="col-lg-4">
@@ -154,11 +160,10 @@ function Footer() {
                     </ul>
                   </div>
                 </div>
-                
               </div>
             </div>
-          
-            <Toaster  position="top-right" reverseOrder={true}/>
+
+            <Toaster position="top-right" reverseOrder={true} />
           </div>
         </div>
       </footer>
