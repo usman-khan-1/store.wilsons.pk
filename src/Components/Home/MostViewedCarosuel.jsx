@@ -89,13 +89,13 @@ function TestimonialCarousel() {
         autoPlaySpeed={3000}
         infinite={true}
         responsive={responsive}
-        className="TestimonialCarousel"
+        className="TestimonialCarousel "
       >
         {loading
           ? [1, 2, 3, 4, 5, 6].map((_, index) => <ProductShimmer key={index} />)
           : products?.map((product, index) => (
               <div key={index}>
-                <div className="single-testimonial-item">
+                <div className="single-testimonial-item ">
                   <div className="product-default inner-quickview inner-icon">
                     <figure>
                       <Link to={`/product/${product.seo_slug}`}>

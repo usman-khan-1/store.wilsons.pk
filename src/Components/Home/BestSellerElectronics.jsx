@@ -94,6 +94,7 @@ function BestSellerElectronics() {
                   <figure>
                     <Link to={`/product/${product.seo_slug}`}>
                       <ImageWithLoader
+                      loaderHeight={200}
                         src={product.image}
                         width="217"
                         height="217"
