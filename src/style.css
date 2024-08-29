@@ -18736,3 +18736,12 @@ div.shimmer {
     flex: 1 1 100%; /* 1 item per row on small screens */
   }
 }
+.why-choose{
+  background-color: #01abec;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+.why-choose h4{
+  color: #fff;
+
+}

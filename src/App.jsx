@@ -31,6 +31,7 @@ import OrderSuccess from "./Pages/OrderSuccess";
 import VerifySuccess from "./Pages/VerifySuccess";
 import Offers from "./Pages/Offers";
 import BlogsByCategory from "./Pages/BlogsByCategory";
+import WhyChoose from "./Pages/WhyChoose";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -84,6 +85,7 @@ function App() {
           <Route path="company-profile" element={<CompanyProfile />} />
           <Route path="quality-policy" element={<QualityPolicy />} />
           <Route path="manufacturing" element={<Manufacturing />} />
+          <Route path="why-choose-wilmart" element={<WhyChoose />} />
         </Routes>
       </BrowserRouter>
     </>

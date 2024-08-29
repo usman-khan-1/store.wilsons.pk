@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import CartSidebar from "./CartSideBar";
 import Searching from "../Components/Searching";
 
-
 function HomeNavbar() {
   const location = useLocation();
   const [isFixed, setIsFixed] = useState(false);
@@ -15,7 +14,6 @@ function HomeNavbar() {
   const [openCart, setOpenCart] = useState(false);
 
   const user = useSelector((state) => state.user.value);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,8 +121,7 @@ function HomeNavbar() {
                 />
               </Link>
 
-
-            <Searching/>
+              <Searching />
             </div>
 
             <div className="header-right ml-0 ml-lg-auto">
@@ -165,18 +162,12 @@ function HomeNavbar() {
                     </div>
                   </Link>
 
-                  {user?.logged_id  ? (
+                  {user?.logged_id ? (
                     <>
                       <Link to={"/myAccount"}>
                         <div className="header-userinfo">
-                          {/* <span className="d-inline-block line-height-1 ls-10">
-                          Hello!
-                        </span> */}
                           <h4 className="font1 mb-0">My Account</h4>
                         </div>
-                      </Link>
-                      <Link to={"/wishlist"} className="header-icon">
-                        <i className="icon-wishlist-2"></i>
                       </Link>
                     </>
                   ) : (
@@ -184,6 +175,18 @@ function HomeNavbar() {
                       <div className="header-userinfo">
                         <h4 className="font1 mb-0">Login / Register</h4>
                       </div>
+                    </Link>
+                  )}
+
+                  <Link to={"/why-choose-wilmart"}>
+                    <div className="header-userinfo why-choose">
+                      <h4 className="font1 mb-0">Why Choose Wilmart</h4>
+                    </div>
+                  </Link>
+
+                  {user?.logged_id && (
+                    <Link to={"/wishlist"} className="header-icon">
+                      <i className="icon-wishlist-2"></i>
                     </Link>
                   )}
                 </div>
