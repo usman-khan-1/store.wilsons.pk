@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { makePostRequest } from "../Apis";
 import toast, { Toaster } from "react-hot-toast";
+import { FloatingWhatsApp } from "react-floating-whatsapp";
 function Footer() {
   const branding = useSelector((state) => state.branding.value);
   console.log("branding", branding);
@@ -162,6 +163,16 @@ function Footer() {
                 </div>
               </div>
             </div>
+
+            {branding?.site_whatsapp && (
+              <FloatingWhatsApp
+                phoneNumber={branding?.site_whatsapp}
+                message="Hello!"
+                accountName={branding?.site_title}
+                avatar="/assets/images/whatsapp-user.png"
+                // avatar={branding?.site_logo}
+              />
+            )}
 
             <Toaster position="top-right" reverseOrder={true} />
           </div>
