@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { IoHome } from "react-icons/io5";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { IoIosLogIn } from "react-icons/io";
+import { FaClinicMedical, FaQuestion } from "react-icons/fa";
 
 function BottomNavigationBar() {
   const theme = useTheme();
@@ -19,9 +21,9 @@ function BottomNavigationBar() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Link 1" icon={<IoHome />} />
-          <BottomNavigationAction label="Link 2" icon={<IoHome />} />
-          <BottomNavigationAction label="Link 3" icon={<IoHome />} />
+          <BottomNavigationAction icon={<IoIosLogIn />} />
+          <BottomNavigationAction icon={<FaClinicMedical />} />
+          <BottomNavigationAction icon={<FaQuestion />} />
         </BottomNavigation>
       )}
     </div>
