@@ -30,7 +30,7 @@ function QualityPolicy() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Manufacturing
+              Quality Policy
               </li>
             </ol>
           </div>

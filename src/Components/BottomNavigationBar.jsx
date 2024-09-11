@@ -5,11 +5,14 @@ import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { IoIosLogIn } from "react-icons/io";
 import { FaClinicMedical, FaQuestion } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function BottomNavigationBar() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [value, setValue] = useState();
+
   return (
     <div>
       {isMobile && (
@@ -21,9 +24,18 @@ function BottomNavigationBar() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction icon={<IoIosLogIn />} />
-          <BottomNavigationAction icon={<FaClinicMedical />} />
-          <BottomNavigationAction icon={<FaQuestion />} />
+          <BottomNavigationAction
+            onClick={() => navigate("/login")}
+            icon={<IoIosLogIn />}
+          />
+          <BottomNavigationAction
+          onClick={() => navigate("/blog")}
+            icon={<FaClinicMedical />}
+          />
+          <BottomNavigationAction
+            onClick={() => navigate("/why-choose-wilmart")}
+            icon={<FaQuestion />}
+          />
         </BottomNavigation>
       )}
     </div>

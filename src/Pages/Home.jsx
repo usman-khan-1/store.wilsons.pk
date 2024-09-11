@@ -63,7 +63,7 @@ function Home() {
       <div className="container my-5">
         <div className="info-boxes-container">
           <div className="row m-0 divide-line">
-            <div className="col-sm-6 col-lg-3 info-box info-box-icon-left ">
+            <div className="col-sm-6 col-lg-3 info-box  ">
               <FaShippingFast size={30} className="me-5" />
 
               <div className="info-box-content">
@@ -76,7 +76,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="info-box info-box-icon-left col-sm-6 col-lg-3">
+            <div className="info-box  col-sm-6 col-lg-3">
               <RiMoneyDollarCircleLine size={30} className="me-5" />
 
               <div className="info-box-content">
@@ -87,7 +87,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="info-box info-box-icon-left col-sm-6 col-lg-3">
+            <div className="info-box  col-sm-6 col-lg-3">
               <PiTimerBold size={30} className="me-5" />
 
               <div className="info-box-content">
@@ -98,7 +98,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="info-box info-box-icon-left col-sm-6 col-lg-3">
+            <div className="info-box  col-sm-6 col-lg-3">
               <MdPayment size={30} className="me-5" />
 
               <div className="info-box-content">

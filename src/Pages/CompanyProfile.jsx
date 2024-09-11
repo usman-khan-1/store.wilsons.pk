@@ -30,7 +30,7 @@ function CompanyProfile() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                About Us
+              Company Profile
               </li>
             </ol>
           </div>

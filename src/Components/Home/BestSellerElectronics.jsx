@@ -89,7 +89,7 @@ function BestSellerElectronics() {
               </div>
             ))
           : products?.map((product, index) => (
-              <div key={index} className="col-lg-2 col-md-3 col-sm-6">
+              <div key={index} className="col-lg-2 col-md-3 col-6">
                 <div className="product-default inner-quickview inner-icon">
                   <figure>
                     <Link to={`/product/${product.seo_slug}`}>

@@ -67,13 +67,15 @@ function TopCategoryCarosuel() {
             {filteredCategory?.map((category, index) => (
               <div key={index} className="category-item">
                 <Link to={`/category/${category?.slug}`}>
-                  <ImageWithLoader
-                    src={category?.icon}
-                    width="217"
-                    height="217"
-                    loaderHeight={"100px"}
-                    alt="product"
-                  />
+                  <div className="d-center">
+                    <ImageWithLoader
+                      src={category?.icon}
+                      width="217"
+                      height="217"
+                      loaderHeight={"100px"}
+                      alt="product"
+                    />
+                  </div>
                   <span>{category?.name}</span>
                 </Link>
               </div>

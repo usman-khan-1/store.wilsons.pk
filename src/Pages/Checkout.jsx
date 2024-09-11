@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { InputMask } from "primereact/inputmask";
 
 import { makePostRequest } from "../Apis";
+import { clearCart } from "../Store/CartSlice";
 
 function Checkout() {
   useEffect(() => {
@@ -16,7 +17,6 @@ function Checkout() {
   const user = useSelector((state) => state.user.value);
   // const [accountPassword, setAccountPassword] = useState(""); // State for account password
   // const [createAccount, setCreateAccount] = useState(false);
-
 
   const [orderResponse, setOrderResponse] = useState({});
   // console.log("orderResponse0", orderResponse);
@@ -200,9 +200,10 @@ function Checkout() {
 
       // Set the order response state and wait for it to be updated
       setOrderResponse(orderResponse.data);
+      navigate("/order-success", { state: orderResponse.data });
+      dispatch(clearCart());
 
       // Use the callback function of the setState to navigate after the state has been updated
-      navigate("/order-success", { state: orderResponse.data });
 
       // Handle success (e.g., show a success message, redirect, etc.)
     } catch (error) {
@@ -225,6 +226,8 @@ function Checkout() {
     //   }
     // }
   };
+
+ 
 
   return (
     <Layout>
@@ -656,6 +659,8 @@ function Checkout() {
                 >
                   Place order
                 </button>
+
+             
               </div>
             </div>
           </div>

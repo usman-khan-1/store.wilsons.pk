@@ -4,14 +4,19 @@ import { makePostRequest } from "../Apis";
 import { useSelector } from "react-redux";
 import CartSidebar from "./CartSideBar";
 import Searching from "../Components/Searching";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import SidebarSearching from "./SidebarSearching";
 
 function HomeNavbar() {
   const location = useLocation();
+  const theme = useTheme();
   const [isFixed, setIsFixed] = useState(false);
   const [isSideBar, setIsSideBar] = useState(false);
   const [isLeftSidebar, setIsLeftSidebar] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const user = useSelector((state) => state.user.value);
 
@@ -44,7 +49,11 @@ function HomeNavbar() {
   };
 
   const toggleLeftSidebar = () => {
-    setIsLeftSidebar(!isLeftSidebar);
+    if (isMobile) {
+      setIsSideBar(!isSideBar); // Toggle sidebar for mobile
+    } else {
+      setIsLeftSidebar(!isLeftSidebar); // Toggle left sidebar for larger screens
+    }
   };
 
   const [category, setCategory] = useState([]);
@@ -180,7 +189,7 @@ function HomeNavbar() {
 
                   <Link to={"/why-choose-wilmart"}>
                     <div className="header-userinfo why-choose">
-                      <h4 className="font1 mb-0">Why Choose Wilmart</h4>
+                      <h4 className="font1 mb-0">Why Choose WILMART</h4>
                     </div>
                   </Link>
 
@@ -247,33 +256,7 @@ function HomeNavbar() {
               </ul>
             </nav>
 
-            <form className="search-wrapper mb-2" action="#">
-              <input
-                type="text"
-                className="form-control mb-0"
-                placeholder="Search..."
-                required
-              />
-              <button
-                className="btn icon-search text-white bg-transparent p-0"
-                type="submit"
-              ></button>
-            </form>
-
-            <div className="social-icons">
-              <a
-                className="social-icon social-facebook icon-facebook"
-                target="_blank"
-              ></a>
-              <a
-                className="social-icon social-twitter icon-twitter"
-                target="_blank"
-              ></a>
-              <a
-                className="social-icon social-instagram icon-instagram"
-                target="_blank"
-              ></a>
-            </div>
+            <SidebarSearching />
           </div>
         </div>
       </div>

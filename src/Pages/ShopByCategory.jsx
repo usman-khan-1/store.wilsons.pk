@@ -6,6 +6,7 @@ import { makePostRequest } from "../Apis";
 import ReactPaginate from "react-paginate";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ImageWithLoader from "../Components/ImageWithLoader";
+import { RxCross2 } from "react-icons/rx";
 
 function ShopByCategory() {
   useEffect(() => {
@@ -20,6 +21,7 @@ function ShopByCategory() {
   const productsPerPage = 4;
   const [category, setCategory] = useState([]);
   const [categoryDetail, setCategoryDetail] = useState([]);
+  const [showSideBar, setShowSideBar] = useState(false);
 
   // console.log("filteredProducts", filteredProducts);
 
@@ -108,6 +110,81 @@ function ShopByCategory() {
           </nav>
 
           <div className="row main-content">
+            <div
+              className={showSideBar ? "sidebar-opened col-lg-3" : "col-lg-3"}
+            >
+              <aside className="sidebar-shop  order-lg-first mobile-sidebar ">
+                <div className="sidebar-wrapper">
+                  <div className="text-right">
+                    <RxCross2 onClick={() => setShowSideBar(false)} />
+                  </div>
+                  <div className="widget">
+                    <h3 className="widget-title">
+                      <a
+                        data-toggle="collapse"
+                        href="#widget-body-1"
+                        role="button"
+                        aria-expanded="true"
+                        aria-controls="widget-body-1"
+                      >
+                        Categories
+                      </a>
+                    </h3>
+
+                    <div className="collapse show" id="widget-body-1">
+                      <div className="widget-body">
+                        <ul className="cat-list">
+                          {filteredCategory?.map((data, index) => (
+                            <li key={index}>
+                              <Link to={`/category/${data?.slug}`}>
+                                {data?.name}
+                                <span className="products-count">
+                                  ( {data?.product_count})
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget">
+                    <h3 className="widget-title">
+                      <a
+                        data-toggle="collapse"
+                        href="#widget-body-2"
+                        role="button"
+                        aria-expanded="true"
+                        aria-controls="widget-body-2"
+                      >
+                        Price
+                      </a>
+                    </h3>
+
+                    <div className="collapse show" id="widget-body-2">
+                      <div className="widget-body pt-4 pb-0">
+                        <Slider
+                          value={value}
+                          min={minPrice}
+                          max={maxPrice}
+                          onChange={handlePriceChange}
+                          valueLabelDisplay="auto"
+                        />
+                        {/* <div className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
+                        <div className="filter-price-text">
+                          Price Range:
+                          <span id="filter-price-range">{`Rs ${value}`}</span>
+                        </div>
+                      </div> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+              <div className="sidebar-overlay"></div>
+            </div>
+
             <div className="col-lg-9">
               <div
                 className="category-banner"
@@ -129,7 +206,11 @@ function ShopByCategory() {
                 data-sticky-options="{'mobile': true}"
               >
                 <div className="toolbox-left">
-                  <a href="#" className="sidebar-toggle">
+                  <a
+                    onClick={() => setShowSideBar(true)}
+                    href="#"
+                    className="sidebar-toggle"
+                  >
                     <svg
                       data-name="Layer 3"
                       id="Layer_3"
@@ -316,73 +397,7 @@ function ShopByCategory() {
               </nav>
             </div>
 
-            <div className="sidebar-overlay"></div>
-            <aside className="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
-              <div className="sidebar-wrapper">
-                <div className="widget">
-                  <h3 className="widget-title">
-                    <a
-                      data-toggle="collapse"
-                      href="#widget-body-1"
-                      role="button"
-                      aria-expanded="true"
-                      aria-controls="widget-body-1"
-                    >
-                      Categories
-                    </a>
-                  </h3>
-
-                  <div className="collapse show" id="widget-body-1">
-                    <div className="widget-body">
-                      <ul className="cat-list">
-                        {filteredCategory?.map((data, index) => (
-                          <li key={index}>
-                            <Link to={`/category/${data?.slug}`}>
-                              {data?.name}
-                              <span className="products-count">
-                                ( {data?.product_count})
-                              </span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="widget">
-                  <h3 className="widget-title">
-                    <a
-                      data-toggle="collapse"
-                      href="#widget-body-2"
-                      role="button"
-                      aria-expanded="true"
-                      aria-controls="widget-body-2"
-                    >
-                      Price
-                    </a>
-                  </h3>
-
-                  <div className="collapse show" id="widget-body-2">
-                    <div className="widget-body pt-4 pb-0">
-                      <Slider
-                        value={value}
-                        min={minPrice}
-                        max={maxPrice}
-                        onChange={handlePriceChange}
-                        valueLabelDisplay="auto"
-                      />
-                      {/* <div className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
-                        <div className="filter-price-text">
-                          Price Range:
-                          <span id="filter-price-range">{`Rs ${value}`}</span>
-                        </div>
-                      </div> */}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </aside>
+          
           </div>
         </div>
 

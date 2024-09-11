@@ -51,109 +51,98 @@ function Cart() {
             </li>
           </ul>
 
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="cart-table-container">
-                <table className="table table-cart">
-                  <thead>
-                    <tr>
-                      <th className="thumbnail-col"></th>
-                      <th className="product-col">Product</th>
-                      <th className="price-col">Price</th>
-                      <th className="qty-col">Quantity</th>
-                      <th className="text-right">Subtotal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartItems.length > 0 ? (
-                      cartItems?.map((data) => (
-                        <tr key={data.uid} className="product-row">
-                          <td>
-                            <figure className="product-image-container">
-                              <Link
-                                to={`/product-details/${data.uid}`}
-                                className="product-image"
-                              >
-                                <img src={data?.image} alt="product" />
-                              </Link>
-                              <a
-                                className="btn-remove icon-cancel"
-                                title="Remove Product"
-                                onClick={() => handleRemove(data.uid)}
-                              ></a>
-                            </figure>
-                          </td>
-                          <td className="product-col">
-                            <h5 className="product-title">
-                              <Link to={`/product/${data.seo_slug}`}>
-                                {data?.heading}
-                              </Link>
-                            </h5>
-                          </td>
-                          <td>Rs. {data?.price}</td>
-                          <td>
-                            <div className="product-single-qty">
-                              <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                                <span className="input-group-btn input-group-prepend">
-                                  <button
-                                    className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
-                                    type="button"
-                                    onClick={() => handleDecrement(data)}
-                                  >
-                                    -
-                                  </button>
-                                </span>
-                                <input
-                                  className="horizontal-quantity form-control"
-                                  type="text"
-                                  value={data?.quantity}
-                                  readOnly
-                                />
-                                <span className="input-group-btn input-group-append">
-                                  <button
-                                    className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
-                                    type="button"
-                                    onClick={() => handleIncrement(data)}
-                                  >
-                                    +
-                                  </button>
-                                </span>
+          {cartItems.length > 0 ? (
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="cart-table-container">
+                  <table className="table table-cart">
+                    <thead>
+                      <tr>
+                        <th className="thumbnail-col"></th>
+                        <th className="product-col">Product</th>
+                        <th className="price-col">Price</th>
+                        <th className="qty-col">Quantity</th>
+                        <th className="text-right">Subtotal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {   cartItems?.map((data) => (
+                          <tr key={data.uid} className="product-row">
+                            <td>
+                              <figure className="product-image-container">
+                                <Link
+                                  to={`/product-details/${data.uid}`}
+                                  className="product-image"
+                                >
+                                  <img src={data?.image} alt="product" />
+                                </Link>
+                                <a
+                                  className="btn-remove icon-cancel"
+                                  title="Remove Product"
+                                  onClick={() => handleRemove(data.uid)}
+                                ></a>
+                              </figure>
+                            </td>
+                            <td className="product-col">
+                              <h5 className="product-title">
+                                <Link to={`/product/${data.seo_slug}`}>
+                                  {data?.heading}
+                                </Link>
+                              </h5>
+                            </td>
+                            <td>Rs. {data?.price}</td>
+                            <td>
+                              <div className="product-single-qty">
+                                <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                  <span className="input-group-btn input-group-prepend">
+                                    <button
+                                      className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                      type="button"
+                                      onClick={() => handleDecrement(data)}
+                                    >
+                                      -
+                                    </button>
+                                  </span>
+                                  <input
+                                    className="horizontal-quantity form-control"
+                                    type="text"
+                                    value={data?.quantity}
+                                    readOnly
+                                  />
+                                  <span className="input-group-btn input-group-append">
+                                    <button
+                                      className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                      type="button"
+                                      onClick={() => handleIncrement(data)}
+                                    >
+                                      +
+                                    </button>
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                          <td className="text-right">
-                            <span className="subtotal-price">
-                              Rs. {(data.price * data.quantity).toFixed(2)}
-                            </span>
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <p className="text-center">No Items In Cart</p>
-                    )}
-                  </tbody>
-                  {/* <tfoot>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>Total</td>
-                      <td>
-                        Rs. {""}
-                        {subtotal}
-                      </td>
-                    </tr>
-                  </tfoot> */}
-                </table>
-                <div className="checkout-methods">
-                  <Link to={"/checkout"} className="btn btn-block btn-dark">
-                    Proceed to Checkout
-                    <i className="fa fa-arrow-right"></i>
-                  </Link>
+                            </td>
+                            <td className="text-right">
+                              <span className="subtotal-price">
+                                Rs. {(data.price * data.quantity).toFixed(2)}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+
+                  <div className="checkout-methods">
+                    <Link to={"/checkout"} className="btn btn-block btn-dark">
+                      Proceed to Checkout
+                      <i className="fa fa-arrow-right"></i>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <h1 className="text-center">No Items In Cart</h1>
+          )}
         </div>
 
         <div className="mb-6"></div>

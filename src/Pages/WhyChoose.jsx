@@ -17,7 +17,7 @@ function WhyChoose() {
           }}
         >
           <div className="container">
-            <h1> Why Choose wilmart</h1>
+            <h1> Why Choose WILMART</h1>
           </div>
         </div>
 
@@ -30,7 +30,7 @@ function WhyChoose() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Why Choose wilmart
+                Why Choose WILMART
               </li>
             </ol>
           </div>

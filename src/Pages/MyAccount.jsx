@@ -26,9 +26,7 @@ function MyAccount() {
                   <li className="breadcrumb-item">
                     <Link to={"/"}>Home</Link>
                   </li>
-                  <li className="breadcrumb-item">
-                    <Link to={"/category"}>Shop</Link>
-                  </li>
+                 
                   <li className="breadcrumb-item active" aria-current="page">
                     My Account
                   </li>

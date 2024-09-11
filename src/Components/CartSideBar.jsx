@@ -103,7 +103,7 @@ function CartSidebar({ setOpenCart }) {
                     </figure>
                   </div>
 
-                  <table className="table table-cart">
+                  <table className="table ">
                     <tbody>
                       <tr key={data.uid} className="product-row">
                         <td>

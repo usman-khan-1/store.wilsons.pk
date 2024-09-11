@@ -51,8 +51,8 @@ function App() {
   // console.log("bravdv", branding);
   return (
     <>
-      <BottomNavigationBar />
       <BrowserRouter>
+      <BottomNavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="myAccount" element={<MyAccount />} />

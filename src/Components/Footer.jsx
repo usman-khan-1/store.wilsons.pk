@@ -6,7 +6,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 function Footer() {
   const branding = useSelector((state) => state.branding.value);
-  console.log("branding", branding);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -71,7 +70,7 @@ function Footer() {
           <div className="container">
             <div className="footer-middle">
               <div className="row">
-                <div className="col-lg-4">
+                <div className="col-lg-4 col-12">
                   <div className="row">
                     <div className="col-lg-12 col-sm-6 pr-sm-0">
                       <div className="contact-widget">
@@ -123,7 +122,7 @@ function Footer() {
                     )}
                   </div>
                 </div>
-                <div className="col-lg-4">
+                <div className="col-lg-4 col-6">
                   <div className="row">
                     <div className="col-lg-12 col-sm-6 pl-sm-0">
                       <div className="contact-widget">
@@ -140,7 +139,7 @@ function Footer() {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-4">
+                <div className="col-lg-4 col-6">
                   <div className="widget widget-sm">
                     <h4 className="widget-title">Policies</h4>
                     <ul className="links">
