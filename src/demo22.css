@@ -16300,21 +16300,29 @@ span.toggle {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
-.css-7k9rxi-MuiBottomNavigation-root {
+.BottomNavigation .css-7k9rxi-MuiBottomNavigation-root {
   background-color: #01abec !important;
   border-radius: 30px 30px 0px 0px;
   height: 60px !important;
   bottom: -5px !important;
 }
-.css-7k9rxi-MuiBottomNavigation-root button svg,
-.css-7k9rxi-MuiBottomNavigation-root button span {
+.BottomNavigation .css-7k9rxi-MuiBottomNavigation-root button svg,
+.BottomNavigation .css-7k9rxi-MuiBottomNavigation-root button span {
   color: #fff;
   font-size: 14px;
 }
 .css-imwso6-MuiBottomNavigationAction-label.Mui-selected {
   font-size: 16px !important;
 }
-
+.BottomNavigation .css-7k9rxi-MuiBottomNavigation-root button:nth-child(2) {
+  border: 2px solid #fff;
+  border-top: none;
+  border-bottom: none;
+}
+.BottomNavigation .css-7k9rxi-MuiBottomNavigation-root button svg,
+.BottomNavigation .css-7k9rxi-MuiBottomNavigation-root button span {
+  font-size: 18px;
+}
 .header.fixed-top {
   position: fixed;
   -webkit-box-shadow: 0 0.125rem 0.625rem -0.1875rem rgba(0, 0, 0, 0.1);

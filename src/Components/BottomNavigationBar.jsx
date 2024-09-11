@@ -14,7 +14,7 @@ function BottomNavigationBar() {
   const [value, setValue] = useState();
 
   return (
-    <div>
+    <div className="BottomNavigation">
       {isMobile && (
         <BottomNavigation
           showLabels
