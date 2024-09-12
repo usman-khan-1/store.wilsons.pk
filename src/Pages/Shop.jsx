@@ -7,6 +7,7 @@ import ReactPaginate from "react-paginate";
 import { IoArrowBackOutline, IoArrowForward } from "react-icons/io5";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ImageWithLoader from "../Components/ImageWithLoader";
+import { useSelector } from "react-redux";
 
 function Shop() {
   useEffect(() => {
@@ -17,6 +18,9 @@ function Shop() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const productsPerPage = 12;
+  const user = useSelector((state) => state.user.value);
+  const [wishlistItems, setWishlistItems] = useState([]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,6 +87,53 @@ function Shop() {
   );
   const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
 
+  useEffect(() => {
+    
+
+    if (user?.logged_id) {
+      // Fetch the wishlist if the user is logged in
+      const fetchWishlist = async () => {
+        try {
+          const response = await makePostRequest("wishlist/list", {
+            customer_id: user?.logged_id,
+          });
+          setWishlistItems(response?.data);
+        } catch (error) {
+          console.error("Error fetching wishlist data:", error);
+        }
+      };
+
+      fetchWishlist();
+    } else {
+      // Clear wishlist if the user is not logged in
+      setWishlistItems([]);
+    }
+  }, [user?.logged_id]);
+
+  const handleToggle = async (product) => {
+    const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
+
+    try {
+      if (isWishlisted) {
+        await makePostRequest("wishlist/remove", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.uid !== product.uid)
+        );
+      } else {
+        await makePostRequest("wishlist/add", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) => [...prevItems, product]);
+      }
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
+    }
+  };
+
   return (
     <Layout>
       <main className="main">
@@ -125,13 +176,28 @@ function Shop() {
                               {data?.category}
                             </Link>
                           </div>
-                          <Link
-                            to={"/wishlist"}
-                            title="Wishlist"
-                            className="btn-icon-wish"
-                          >
-                            <i className="icon-heart"></i>
-                          </Link>
+                          {user?.logged_id && (
+                            <div
+                              title="Add to Wishlist"
+                              className="btn-icon-wish"
+                              onClick={() => handleToggle(data)}
+                              style={{
+                                color: wishlistItems.some(
+                                  (item) => item.uid === data.uid
+                                )
+                                  ? "#01abec"
+                                  : "gray",
+                              }}
+                            >
+                              {wishlistItems.some(
+                                (item) => item.uid === data.uid
+                              ) ? (
+                                <i className="fa-solid fa-heart"></i>
+                              ) : (
+                                <i className="fa-regular fa-heart"></i>
+                              )}
+                            </div>
+                          )}
                         </div>
                         <h3 className="product-title">
                           <Link to={`/product/${data?.seo_slug}`}>
@@ -159,11 +225,7 @@ function Shop() {
               </div>
 
               <nav className="toolbox toolbox-pagination">
-                <div className="toolbox-item toolbox-show">
-               
-                </div>
-
-                
+                <div className="toolbox-item toolbox-show"></div>
 
                 <ReactPaginate
                   previousLabel={<FaChevronLeft />}

@@ -32,6 +32,8 @@ import VerifySuccess from "./Pages/VerifySuccess";
 import Offers from "./Pages/Offers";
 import BlogsByCategory from "./Pages/BlogsByCategory";
 import WhyChoose from "./Pages/WhyChoose";
+import MyOrders from "./Pages/MyOrders";
+import OrderDeatil from "./Pages/OrderDetail";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -52,7 +54,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <BottomNavigationBar />
+        <BottomNavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="myAccount" element={<MyAccount />} />
@@ -65,6 +67,8 @@ function App() {
           <Route path="verify-success" element={<VerifySuccess />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="offers" element={<Offers />} />
+          <Route path="my-orders" element={<MyOrders />} />
+          <Route path="order-detail" element={<OrderDeatil />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="return-policy" element={<ReturnPolicy />} />

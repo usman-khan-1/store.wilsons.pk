@@ -7,6 +7,7 @@ import ReactPaginate from "react-paginate";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ImageWithLoader from "../Components/ImageWithLoader";
 import { RxCross2 } from "react-icons/rx";
+import { useSelector } from "react-redux";
 
 function ShopByCategory() {
   useEffect(() => {
@@ -22,6 +23,9 @@ function ShopByCategory() {
   const [category, setCategory] = useState([]);
   const [categoryDetail, setCategoryDetail] = useState([]);
   const [showSideBar, setShowSideBar] = useState(false);
+  const user = useSelector((state) => state.user.value);
+  const [wishlistItems, setWishlistItems] = useState([]); 
+
 
   // console.log("filteredProducts", filteredProducts);
 
@@ -91,6 +95,67 @@ function ShopByCategory() {
     offset + productsPerPage
   );
   const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await makePostRequest("product/most-viewed");
+        setProducts(response?.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error("Error fetching products data:", error);
+      }
+    };
+
+    fetchData();
+
+      if (user?.logged_id) {
+        // Fetch the wishlist if the user is logged in
+        const fetchWishlist = async () => {
+          try {
+            const response = await makePostRequest("wishlist/list", {
+              customer_id: user?.logged_id,
+            });
+            setWishlistItems(response?.data);
+          } catch (error) {
+            console.error("Error fetching wishlist data:", error);
+          }
+        };
+
+        fetchWishlist();
+      } else {
+        // Clear wishlist if the user is not logged in
+        setWishlistItems([]);
+      }
+  }, [user?.logged_id]);
+
+  const handleToggle = async (product) => {
+    const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
+    
+
+    try {
+      if (isWishlisted) {
+        await makePostRequest("wishlist/remove", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.uid !== product.uid)
+        );
+      } else {
+        await makePostRequest("wishlist/add", {
+          customer_id: user?.logged_id,
+          product_id: product.uid,
+        });
+        setWishlistItems((prevItems) => [...prevItems, product]);
+      }
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
+    }
+  };
+
 
   return (
     <Layout>
@@ -182,7 +247,7 @@ function ShopByCategory() {
                   </div>
                 </div>
               </aside>
-              <div className="sidebar-overlay"></div>
+              <div className="sidebar-overlay"></div> 
             </div>
 
             <div className="col-lg-9">
@@ -306,13 +371,28 @@ function ShopByCategory() {
                               {data?.category}
                             </Link>
                           </div>
-                          <Link
-                            to={"/wishlist"}
-                            title="Wishlist"
+                          {user?.logged_id && (
+                          <div
+                            title="Add to Wishlist"
                             className="btn-icon-wish"
+                            onClick={() => handleToggle(data)}
+                            style={{
+                              color: wishlistItems.some(
+                                (item) => item.uid === data.uid
+                              )
+                                ? "#01abec"
+                                : "gray",
+                            }}
                           >
-                            <i className="icon-heart"></i>
-                          </Link>
+                            {wishlistItems.some(
+                              (item) => item.uid === data.uid
+                            ) ? (
+                              <i className="fa-solid fa-heart"></i>
+                            ) : (
+                              <i className="fa-regular fa-heart"></i>
+                            )}
+                          </div>
+                        )}
                         </div>
                         <h3 className="product-title">
                           <Link to={"/product-details"}>{data.heading}</Link>
