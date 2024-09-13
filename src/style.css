@@ -18835,4 +18835,8 @@ div.shimmer {
   cursor: pointer; 
   outline: none ;
 }
+.modal-content{
+  border-radius: 10px;
+  border: none;
+}
 

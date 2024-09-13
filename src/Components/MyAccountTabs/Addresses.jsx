@@ -1,26 +1,141 @@
 import React, { useEffect, useState } from "react";
 import { makePostRequest } from "../../Apis";
 import { useSelector } from "react-redux";
+import { Button, Modal } from "react-bootstrap";
 
 function Addresses({ id }) {
-  const [addresses, setAddresses] = useState([]);
-
   const user = useSelector((state) => state.user.value);
-  console.log("addresses", addresses);
+  const [addresses, setAddresses] = useState([]);
+  const [showAdd, setShowAdd] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [newAddress, setNewAddress] = useState({
+    customer_id: user?.logged_id,
+    full_name: "",
+    contact_no: "",
+    address: "",
+    city: "",
+    postal_code: "",
+    default: false,
+  });
+  const [editAddress, setEditAddress] = useState({
+    customer_id: user?.logged_id,
+    full_name: "",
+    contact_no: "",
+    address: "",
+    city: "",
+    postal_code: "",
+    default: false,
+  });
+
+  const fetchData = async () => {
+    try {
+      const response = await makePostRequest("auth/customer-address-list", {
+        customer_id: user?.logged_id,
+      });
+      setAddresses(response?.data || []);
+    } catch (error) {
+      console.error("Error fetching addresses data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await makePostRequest("auth/customer-address-list", {
-          customer_id: user?.logged_id,
-        });
-        setAddresses(response?.data);
-      } catch (error) {
-        console.error("Error fetching videos data:", error);
-      }
-    };
     fetchData();
-  }, []);
+  }, [user?.logged_id]);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setNewAddress((prevInfo) => ({
+      ...prevInfo,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setEditAddress((prevInfo) => ({
+      ...prevInfo,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleCloseAdd = () => {
+    setShowAdd(false);
+  };
+
+  const handleShowAdd = () => {
+    setShowAdd(true);
+  };
+
+  const handleCloseEdit = () => {
+    setShowEdit(false);
+  };
+
+  const handleShowEdit = (address) => {
+    setEditAddress(address);
+    setShowEdit(true);
+  };
+
+  const handleAddAddress = async () => {
+    setLoading(true);
+    try {
+      await makePostRequest("auth/customer-address-add", {
+        customer_id: user?.logged_id,
+        ...newAddress,
+      });
+      setLoading(false);
+      fetchData();
+      handleCloseAdd();
+      setNewAddress({
+        customer_id: user?.logged_id,
+        full_name: "",
+        contact_no: "",
+        address: "",
+        city: "",
+        postal_code: "",
+        default: false,
+      });
+    } catch (error) {
+      setLoading(false);
+      console.error("Error adding address:", error);
+    }
+  };
+
+  const handleEditAddress = async () => {
+    setLoading(true);
+    try {
+      await makePostRequest("auth/customer-address-action", {
+        customer_id: user?.logged_id,
+        address: editAddress.address,
+        uid: editAddress.uid,
+        fav_action: "update", // Update action
+        ...editAddress,
+      });
+      setLoading(false);
+      fetchData();
+      handleCloseEdit();
+    } catch (error) {
+      setLoading(false);
+      console.error("Error updating address:", error);
+    }
+  };
+
+  const handleDeleteAddress = async (uid, address) => {
+    setLoading(true);
+    try {
+      await makePostRequest("auth/customer-address-action", {
+        customer_id: user?.logged_id,
+        address,
+        uid,
+        fav_action: "", // Empty string for deletion
+      });
+      setLoading(false);
+      fetchData(); // Refresh the address list
+    } catch (error) {
+      setLoading(false);
+      console.error("Error deleting address:", error);
+    }
+  };
 
   return (
     <div className="tab-pane fade" id={id} role="tabpanel">
@@ -34,30 +149,32 @@ function Addresses({ id }) {
         </p>
 
         <div className="addresses">
-          {addresses.map((data, index) => (
-            <div className="address" key={index}>
+          {addresses.map((data) => (
+            <div className="address" key={data.uid}>
               <div className="row">
                 <div className="col-lg-1 col-md-1 col-1 text-center">
-                  {/* Grouping all radio buttons with the same name */}
-                  <input type="radio" name="selectedAddress" />
+                  <input type="checkbox" name="default" />
                 </div>
-                <div className="col-lg-9 col-md-9 col-9">
-                  <h4 className="text-dark mb-0">{data?.full_name}</h4>
-                  <p>
-                    {data?.address +
-                      ", " +
-                      data?.city +
-                      ", " +
-                      data?.postal_code}
+                <div className="col-lg-7 col-md-9 col-9">
+                  <h4 className="text-dark ">{data.full_name}</h4>
+                  <p className="mb-0">
+                    {data.address}, {data.city}, {data.postal_code}
                   </p>
+                  <p>{data.contact_no}</p>
                 </div>
-                <div className="col-lg-2 col-md-3 col-sm-12">
-                  <a
-                    href="#shipping"
-                    className="btn btn-default address-action link-to-tab"
+                <div className="col-lg-4 col-md-3 col-sm-12">
+                  <button
+                    className="btn btn-default address-action"
+                    onClick={() => handleShowEdit(data)}
                   >
-                    Change
-                  </a>
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-default address-action"
+                    onClick={() => handleDeleteAddress(data.uid, data.address)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
@@ -66,23 +183,253 @@ function Addresses({ id }) {
 
         <div className="row">
           <div className="address col-md-12 mt-5 mt-md-0">
-            <div className="heading d-flex">
-              <h4 className="text-dark mb-0">Shipping address</h4>
-            </div>
-
-            <div className="address-box">
-              You have not set up this type of address yet.
-            </div>
-
-            <a
-              href="#shipping"
-              className="btn btn-default address-action link-to-tab"
+            <button
+              onClick={handleShowAdd}
+              className="btn btn-default address-action"
             >
-              Add Address
-            </a>
+              Add New Address
+            </button>
           </div>
         </div>
       </div>
+
+      <Modal show={showAdd} onHide={handleCloseAdd}>
+        <Modal.Header>
+          <Modal.Title>Add New Address</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="address account-content mt-0 pt-2">
+            <h4 className="title">Billing address</h4>
+            <form className="mb-2">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="form-group mb-3">
+                    <label>
+                      Full name <span className="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="full_name"
+                      value={newAddress.full_name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group mb-3">
+                    <label>
+                      Phone <span className="required">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      name="contact_no"
+                      value={newAddress.contact_no}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>
+                      Street address <span className="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="House number or street name"
+                      name="address"
+                      value={newAddress.address}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>
+                      Town / City <span className="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="city"
+                      value={newAddress.city}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>
+                      Postcode / ZIP <span className="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="postal_code"
+                      value={newAddress.postal_code}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6 d-flex align-items-center">
+                  <div className="form-group d-flex align-items-center mb-0">
+                    <input
+                      type="checkbox"
+                      name="default"
+                      checked={newAddress.default}
+                      onChange={() =>
+                        setNewAddress((prev) => ({
+                          ...prev,
+                          default: !prev.default,
+                        }))
+                      }
+                    />
+                    <label className="ml-2">Set as default address</label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAdd}>
+            Close
+          </Button>
+          <Button
+            onClick={handleAddAddress}
+            variant="primary"
+            disabled={loading}
+          >
+            {loading ? "Adding Address..." : "Add Address"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showEdit} onHide={handleCloseEdit}>
+        <Modal.Header>
+          <Modal.Title>Edit Address</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="address account-content mt-0 pt-2">
+            <h4 className="title">Billing address</h4>
+            <form className="mb-2">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="form-group mb-3">
+                    <label>
+                      Full name <span className="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="full_name"
+                      value={editAddress?.full_name || ""}
+                      onChange={handleEditChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group mb-3">
+                    <label>
+                      Phone <span className="required">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      name="contact_no"
+                      value={editAddress?.contact_no || ""}
+                      onChange={handleEditChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>
+                      Street address <span className="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="House number or street name"
+                      name="address"
+                      value={editAddress?.address || ""}
+                      onChange={handleEditChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>
+                      Town / City <span className="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="city"
+                      value={editAddress?.city || ""}
+                      onChange={handleEditChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>
+                      Postcode / ZIP <span className="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="postal_code"
+                      value={editAddress?.postal_code || ""}
+                      onChange={handleEditChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6 d-flex align-items-center">
+                  <div className="form-group d-flex align-items-center mb-0">
+                    <input
+                      type="checkbox"
+                      name="default"
+                      checked={editAddress?.default || false}
+                      onChange={() =>
+                        setEditAddress((prev) => ({
+                          ...prev,
+                          default: !prev.default,
+                        }))
+                      }
+                    />
+                    <label className="ml-2">Set as default address</label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseEdit}>
+            Close
+          </Button>
+          <Button
+            onClick={handleEditAddress}
+            variant="primary"
+            disabled={loading}
+          >
+            {loading ? "Updating Address..." : "Update Address"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

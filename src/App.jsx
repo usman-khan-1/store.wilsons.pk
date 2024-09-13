@@ -34,6 +34,8 @@ import BlogsByCategory from "./Pages/BlogsByCategory";
 import WhyChoose from "./Pages/WhyChoose";
 import MyOrders from "./Pages/MyOrders";
 import OrderDeatil from "./Pages/OrderDetail";
+import ForgetPassword from "./Pages/ForgetPassword";
+import ResetPassword from "./Pages/ResetPassword";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -84,6 +86,8 @@ function App() {
 
           <Route path="checkout" element={<Checkout />} />
           <Route path="verify-customer/:slug" element={<VerifyAccount />} />
+          <Route path="forget-password/:slug" element={<ForgetPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
           <Route path="category" element={<Shop />} />
           <Route path="category/:slug" element={<ShopByCategory />} />
           <Route path="company-profile" element={<CompanyProfile />} />

@@ -81,7 +81,7 @@ function AccountDetails({ id }) {
   return (
     <div className="tab-pane fade" id={id} role="tabpanel">
       <h3 className="account-sub-title d-none d-md-block mt-0 pt-1 ml-1">
-        <i className="icon-user-2 align-middle mr-3 pr-1"></i>Account Details
+        <i className="icon-user-2 align-middle mr-3 pr-1"></i>Profile
       </h3>
       <div className="account-content">
         <form onSubmit={handleSubmit}>

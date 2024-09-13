@@ -115,7 +115,7 @@ function LoginForm() {
           </div>
 
           <Link
-            // to="/forgot-password"
+            to="/reset-password"
             className="forget-password text-dark form-footer-right"
           >
             Forgot Password?
