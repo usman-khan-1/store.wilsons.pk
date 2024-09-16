@@ -83,7 +83,7 @@ function MyAccount() {
                     aria-controls="edit"
                     aria-selected="false"
                   >
-                 Profile
+                    Profile 
                   </a>
                 </li>
                 <li className="nav-item">
@@ -160,16 +160,10 @@ function MyAccount() {
                 </div>
               </div>
 
-              <AccountDetails
-                id={"edit"}
-              
-              />
+              <AccountDetails id={"edit"} />
 
               <Addresses id={"address"} />
               <ChangePassword id={"change_password"} />
-
-           
-           
             </div>
           </div>
         </div>

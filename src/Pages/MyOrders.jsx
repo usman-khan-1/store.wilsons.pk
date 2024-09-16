@@ -1,12 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
 import ImageWithLoader from "../Components/ImageWithLoader";
+import { makePostRequest } from "../Apis";
+import { useSelector } from "react-redux";
+import moment from "moment";
 
 function MyOrders() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const user = useSelector((state) => state.user.value);
+  const [orders, setOrders] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await makePostRequest("orders/record", {
+        customer_id: user?.logged_id,
+      });
+      setOrders(response?.data || []);
+    } catch (error) {
+      console.error("Error fetching addresses data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [user?.logged_id]);
+
+  console.log("orders", orders);
   return (
     <Layout>
       <main className="main">
@@ -46,40 +68,41 @@ function MyOrders() {
                     <th className="price-col">Order ID</th>
                     <th className="price-col">Total Price</th>
                     <th className="price-col">Ordered Date</th>
+                    <th className="price-col">Status</th>
                     <th className="price-col">Action</th>
                     {/* <th className="action-col">Get By</th>
                     <th className="status-col">Status</th> */}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="product-row">
-                    <td>1</td>
-                    <td>
-                      <h5 className="product-title">#123456</h5>
-                    </td>
-                    <td className="price-box">Rs. 3500</td>
-                    <td className="price-box">12 Sep 2023</td>
+                  {orders?.map((data, index) => {
+                    const formattedDate = moment(data?.date).format(
+                      "DD MMM, YYYY"
+                    );
 
-                    <td className="action">
-                      <Link to={"/order-detail"} className="btn btn-dark btn-add-cart product-type-simple btn-shop">
-                        View Deatils
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr className="product-row">
-                    <td>2</td>
-                    <td>
-                      <h5 className="product-title">#123456</h5>
-                    </td>
-                    <td className="price-box">Rs. 3500</td>
-                    <td className="price-box">12 Sep 2023</td>
+                    return (
+                      <tr key={data?.uid} className="product-row">
+                        <td>{index + 1}</td>
+                        <td>
+                          <h5 className="price-box">{data?.order_id}</h5>
+                        </td>
+                        <td className="price-box">
+                          Rs. {(data?.total_price).toLocaleString()}
+                        </td>
+                        <td className="price-box">{formattedDate}</td>
+                        <td className="price-box">{data?.order_status}</td>
 
-                    <td className="action">
-                    <Link to={"/order-detail"} className="btn btn-dark btn-add-cart product-type-simple btn-shop">
-                        View Deatils
-                      </Link>
-                    </td>
-                  </tr>
+                        <td className="action">
+                          <Link
+                            to={`/order-detail/${data?.uid}`}
+                            className="btn btn-dark btn-add-cart product-type-simple btn-shop"
+                          >
+                            View Deatils
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

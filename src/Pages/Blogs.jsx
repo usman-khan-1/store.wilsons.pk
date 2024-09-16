@@ -13,7 +13,6 @@ function Blogs() {
 
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log("blogs", blogs);
 
   useEffect(() => {
     const fetchData = async () => {

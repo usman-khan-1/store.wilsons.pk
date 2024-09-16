@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../Components/Layout";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../Store/UserSlice";
-import toast, { Toaster } from "react-hot-toast";
 
 function ForgetPassword() {
   const { slug } = useParams(); // Extract the slug from the URL
@@ -13,7 +12,8 @@ function ForgetPassword() {
   const [newPassword, setNewPassword] = useState(""); // Set the initial state to the slug
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (slug) {
@@ -31,36 +31,53 @@ function ForgetPassword() {
   const handleVerifyAccount = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     try {
-      const response = await fetch("auth/forget-password-customer", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          code: code,
-          new_password: newPassword,
-          action: "change_password",
-        }),
-      });
-  
+      const response = await fetch(
+        "https://api.wilsons.pk/auth/forget-password-customer",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "wilson-api-key": "4575f1bc766790287f077b425b960a52",
+          },
+          body: JSON.stringify({
+            code: code,
+            new_password: newPassword,
+            action: "change_password",
+          }),
+        }
+      );
+
       const data = await response.json();
+
   
-      if (response.ok && data?.status === "success") {
-        // toast.success("Verification successful! Redirecting...");
-        navigate("/verify-success");
+
+      if (data?.status === "success") {
+        setMessage({ text: data?.message, type: "success" });
+        console.log("dataaaa",data)
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+
       } else {
-        toast.error("Verification failed. Please check your code.");
+       
+        setMessage({
+          text: data?.message,
+          type: "error",
+        });
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
+      setMessage({
+        text: "An error occurred. Please try again.",
+        type: "error",
+      });
       console.error("Error verifying account:", error);
     } finally {
       setLoading(false);
+      setTimeout(() => setMessage(""), 2000);
     }
   };
-  
 
   return (
     <Layout>
@@ -89,7 +106,7 @@ function ForgetPassword() {
                   onChange={handleInputChange}
                 />
                 <label htmlFor="code">
-                  Code <span className="required">*</span>
+                  New Password <span className="required">*</span>
                 </label>
                 <input
                   name="new_password"
@@ -97,20 +114,32 @@ function ForgetPassword() {
                   className="form-input form-wide"
                   id="new_password"
                   required
-                  placeholder="Paste Your Code Here...."
+                  placeholder="Enter New Password...."
                   value={newPassword} // Bind the input value to the code state
                   onChange={handlePasswordChange}
                 />
 
+                {message && (
+                  <p
+                    className={` ${
+                      message.type === "success"
+                        ? "text-success"
+                        : "text-danger"
+                    }`}
+                  >
+                    {message.text}
+                  </p>
+                )}
+
                 <button type="submit" className="btn btn-dark btn-md w-100">
-                  {loading ? "Please Wait..." : "Verify"}
+                  {loading ? "Please Wait..." : "Change Password"}
                 </button>
               </form>
             </div>
           </div>
         </div>
       </main>
-      <Toaster position="top-right" reverseOrder={true} />
+      {/* <Toaster position="top-right" reverseOrder={true} /> */}
     </Layout>
   );
 }

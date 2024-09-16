@@ -3,13 +3,12 @@ import { makePostRequest } from "../Apis";
 
 import { useNavigate } from "react-router-dom";
 import Layout from "../Components/Layout";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 
 function ResetPassword() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-
-  console.log("email", email);
+  const [message, setMessage] = useState(""); // Added state for messages
 
   const handleInputChange = (e) => {
     setEmail(e.target.value);
@@ -26,15 +25,24 @@ function ResetPassword() {
       });
 
       if (response?.status === "success") {
+        setEmail("");
+        setMessage({ text: response?.message, type: "success" });
         // navigate("/verify-success");
       } else {
-        toast.error("Verification failed. Please check your code.");
+        setEmail("");
+        setMessage({
+          text: response?.message,
+          type: "error",
+        });
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
-      console.error("Error verifying account:", error);
+      setMessage({
+        text: "An error occurred. Please try again.",
+        type: "error",
+      });
     } finally {
       setLoading(false);
+      setTimeout(() => setMessage(""), 2000);
     }
   };
 
@@ -65,6 +73,18 @@ function ResetPassword() {
                   onChange={handleInputChange}
                 />
 
+                {message && (
+                  <p
+                    className={` ${
+                      message.type === "success"
+                        ? "text-success"
+                        : "text-danger"
+                    }`}
+                  >
+                    {message.text}
+                  </p>
+                )}
+
                 <button type="submit" className="btn btn-dark btn-md w-100">
                   {loading ? "Please Wait..." : "Send Email"}
                 </button>
@@ -73,7 +93,7 @@ function ResetPassword() {
           </div>
         </div>
       </main>
-      <Toaster position="top-right" reverseOrder={true} />
+      {/* <Toaster position="top-right" reverseOrder={true} /> */}
     </Layout>
   );
 }

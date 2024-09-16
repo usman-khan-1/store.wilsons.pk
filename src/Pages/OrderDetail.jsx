@@ -1,12 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ImageWithLoader from "../Components/ImageWithLoader";
+import { makePostRequest } from "../Apis";
+import { useSelector } from "react-redux";
 
 function OrderDeatil() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const orderId = useParams();
+  const user = useSelector((state) => state.user.value);
+  
+  const [orderDetails, setOrderDetails] = useState();
+  const [loading, setLoading] = useState(false);
+
+
+  const fetchOrderDetails = async () => {
+    setLoading(true);
+    try {
+      const response = await makePostRequest("orders/record_details", {
+        customer_id: user?.logged_id,
+        order_id: orderId.id,
+      });
+      setOrderDetails(response?.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log("Error", error);
+    }
+  };
+
+  // useEffect(() => fetchOrderDetails(), [user.logged_id]);
+  useEffect(() => {
+    fetchOrderDetails();
+  }, [user?.logged_id]);
+
   return (
     <Layout>
       <main className="main">
@@ -15,7 +45,7 @@ function OrderDeatil() {
             <nav aria-label="breadcrumb" className="breadcrumb-nav">
               <div className="">
                 <ol className="breadcrumb">
-                <li className="breadcrumb-item">
+                  <li className="breadcrumb-item">
                     <Link to={"/"}>Home</Link>
                   </li>
                   <li className="breadcrumb-item">
@@ -48,7 +78,6 @@ function OrderDeatil() {
                     <h4>
                       Order: <span>#123456</span>
                     </h4>
-                  
                   </div>
                   <p>
                     Status: <span className="ship-status"> Shipped</span>
@@ -80,8 +109,6 @@ function OrderDeatil() {
                                 alt="product"
                               />
                             </Link>
-
-                          
                           </figure>
                         </td>
                         <td>
@@ -95,9 +122,7 @@ function OrderDeatil() {
                         </td>
                         <td className="price-box">Rs. 300</td>
                         <td className="price-box">1</td>
-                      
                       </tr>
-                    
                     </tbody>
                   </table>
                 </div>
@@ -109,7 +134,7 @@ function OrderDeatil() {
                 <p>Placed On: 12 Sep 2023</p>
                 <p>Get By: 22 Sep 2023 - 25 Sep 2023</p>
                 <button className="btn btn-dark btn-add-cart product-type-simple btn-shop">
-                 Track Your Order
+                  Track Your Order
                 </button>
               </div>
             </div>

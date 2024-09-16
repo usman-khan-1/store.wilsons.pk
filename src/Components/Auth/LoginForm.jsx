@@ -3,12 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { makePostRequest } from "../../Apis";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../Store/UserSlice";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState(""); // Added state for messages
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginCredentials, setLoginCredentials] = useState({
@@ -36,19 +38,25 @@ function LoginForm() {
           email: "",
           password: "",
         });
-        toast.success(response?.message);
+        setMessage({ text: response?.message, type: "success" });
         setTimeout(() => {
           navigate("/myAccount");
         }, 2000);
         setLoading(false);
       } else {
-        toast.error(response?.message);
+        setMessage({
+          text: response?.message,
+          type: "error",
+        });
       }
 
       setLoading(false);
     } catch (error) {
       setLoading(false);
       console.error("Error fetching videos data:", error);
+    } finally {
+      setLoading(false);
+      setTimeout(() => setMessage(""), 2000);
     }
   };
 
@@ -102,6 +110,16 @@ function LoginForm() {
           </span>
         </div>
 
+        {message && (
+          <p
+            className={` ${
+              message.type === "success" ? "text-success" : "text-danger"
+            }`}
+          >
+            {message.text}
+          </p>
+        )}
+
         <div className="form-footer">
           <div className="custom-control custom-checkbox mb-0">
             <input
@@ -125,7 +143,7 @@ function LoginForm() {
           {loading ? "Please Wait.." : "Login"}
         </button>
       </form>
-      <Toaster
+      {/* <Toaster
         toastOptions={{
           // Define default options
           className: "",
@@ -135,7 +153,7 @@ function LoginForm() {
           },
         }}
         position="top-right"
-      />
+      /> */}
     </>
   );
 }

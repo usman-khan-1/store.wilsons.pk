@@ -70,7 +70,7 @@ function App() {
           <Route path="about" element={<AboutUs />} />
           <Route path="offers" element={<Offers />} />
           <Route path="my-orders" element={<MyOrders />} />
-          <Route path="order-detail" element={<OrderDeatil />} />
+          <Route path="order-detail/:id" element={<OrderDeatil />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="return-policy" element={<ReturnPolicy />} />

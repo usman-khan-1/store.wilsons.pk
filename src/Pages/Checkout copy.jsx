@@ -15,9 +15,14 @@ function Checkout() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.user.value);
-  const [message, setMessage] = useState("");
-  const [addresses, setAddresses] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [message, setMessage] = useState(""); // Added state for messages
+  console.log("cartttt", cartItems?.length);
+
+  // const [accountPassword, setAccountPassword] = useState(""); // State for account password
+  // const [createAccount, setCreateAccount] = useState(false);
+
+  const [orderResponse, setOrderResponse] = useState({});
+  // console.log("orderResponse0", orderResponse);
 
   const calculateSubtotal = () => {
     return cartItems.reduce(
@@ -61,6 +66,17 @@ function Checkout() {
     }))
   );
 
+  // console.log("carttt", productDetail);
+  // console.log("paymentDeatils", paymentDetails);
+  // console.log("form", formData);
+
+  // useEffect(() => {
+  //   setFormData({
+  //     ...formData,
+  //     create_account: createAccount,
+  //   });
+  // }, [createAccount]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -95,6 +111,83 @@ function Checkout() {
     }));
   };
 
+  const validateForm = () => {
+    if (!formData.full_name) {
+      alert("Please enter your first name.");
+      return false;
+    }
+    if (!formData.last_name) {
+      alert("Please enter your last name.");
+      return false;
+    }
+    if (!formData.address) {
+      alert("Please enter your street address.");
+      return false;
+    }
+    if (!formData.city) {
+      alert("Please enter your city.");
+      return false;
+    }
+    if (!formData.zip_code) {
+      alert("Please enter your zip/postal code.");
+      return false;
+    }
+    if (!formData.phone_no) {
+      alert("Please enter your phone number.");
+      return false;
+    }
+    if (!formData.email) {
+      alert("Please enter your email address.");
+      return false;
+    }
+    if (formData.create_account && !formData.password) {
+      alert("Please enter a password to create an account.");
+      return false;
+    }
+    return true;
+  };
+
+  // const handlePlaceOrder = async () => {
+  //   // if (!validateForm()) {
+
+  //   //   return;
+  //   // }
+
+  //   try {
+  //     const orderResponse = await makePostRequest("orders/add", {
+  //       basic_info: formData,
+  //       product_detail: productDetail,
+  //       payment: paymentDetails,
+  //     });
+  //     console.log("orderResponse", orderResponse);
+  //     setOrderResponse(orderResponse?.data);
+  //     // Handle success (e.g., show a success message, redirect, etc.)
+  //   } catch (error) {
+  //     // Handle error (e.g., show an error message)
+  //     console.error("Account creation failed:", error);
+  //   }
+
+  //   if (formData.create_account && !user) {
+  //     try {
+  //       const response = await makePostRequest("auth/customer-register", {
+  //         full_name: `${formData.full_name} ${formData.last_name}`,
+  //         email: formData.email,
+  //         phone: formData.phone_no,
+  //         password: formData.password,
+  //       });
+  //       // Handle success (e.g., show a success message, redirect, etc.)
+  //     } catch (error) {
+  //       // Handle error (e.g., show an error message)
+  //       console.error("Account creation failed:", error);
+  //     }
+  //   }
+
+  //   // Navigate to order success page or further order processing
+  //   setTimeout(() => {
+  //     navigate("/order-success", { state: orderResponse });
+  //   }, 1500);
+  // };
+
   const handlePlaceOrder = async () => {
     // if (!validateForm()) {
     //   return;
@@ -114,7 +207,7 @@ function Checkout() {
       console.log("orderResponse", orderResponse);
 
       // Set the order response state and wait for it to be updated
-
+      setOrderResponse(orderResponse.data);
       navigate("/order-success", { state: orderResponse.data });
       dispatch(clearCart());
 
@@ -128,54 +221,21 @@ function Checkout() {
       setTimeout(() => setMessage(""), 2000);
     }
 
-    if (formData.create_account && !user) {
-      try {
-        const response = await makePostRequest("auth/customer-register", {
-          full_name: `${formData.full_name} ${formData.last_name}`,
-          email: formData.email,
-          phone: formData.phone_no,
-          password: formData.password,
-        });
-        // Handle success (e.g., show a success message, redirect, etc.)
-      } catch (error) {
-        // Handle error (e.g., show an error message)
-        console.error("Account creation failed:", error);
-      }
-    }
+    // if (formData.create_account && !user) {
+    //   try {
+    //     const response = await makePostRequest("auth/customer-register", {
+    //       full_name: `${formData.full_name} ${formData.last_name}`,
+    //       email: formData.email,
+    //       phone: formData.phone_no,
+    //       password: formData.password,
+    //     });
+    //     // Handle success (e.g., show a success message, redirect, etc.)
+    //   } catch (error) {
+    //     // Handle error (e.g., show an error message)
+    //     console.error("Account creation failed:", error);
+    //   }
+    // }
   };
-  const handleAddressSelect = (e) => {
-    const selectedUid = e.target.value;
-    const address = addresses.find((addr) => addr.uid === selectedUid);
-
-    if (address) {
-      setSelectedAddress(address);
-      setFormData({
-        ...formData,
-        full_name: address.full_name,
-        phone_no: address.contact_no,
-        address: address.address,
-        city: address.city,
-        zip_code: address.postal_code,
-      });
-    }
-  };
-
-  const fetchAddresses = async () => {
-    if (user?.logged_id) {
-      try {
-        const response = await makePostRequest("auth/customer-address-list", {
-          customer_id: user.logged_id,
-        });
-        setAddresses(response?.data || []);
-      } catch (error) {
-        console.error("Error fetching addresses data:", error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    fetchAddresses();
-  }, [user?.logged_id]);
 
   return (
     <Layout>
@@ -239,42 +299,43 @@ function Checkout() {
                           />
                         </div>
                       </div>
+                      {/* <div className="col-md-6">
+                        <div className="form-group">
+                          <label>
+                            Last name
+                            <abbr className="required" title="required">
+                              *
+                            </abbr>
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="last_name"
+                            value={formData.last_name}
+                            onChange={handleInputChange}
+                            required
+                          />
+                        </div>
+                      </div> */}
                     </div>
 
-                    {addresses.length > 0 ? (
-                      <div className="form-group">
-                        <label>Select Address</label>
-                        <select
-                          className="form-control"
-                          onChange={handleAddressSelect}
-                        >
-                          <option value="">Select an address</option>
-                          {addresses.map((address) => (
-                            <option key={address.uid} value={address.uid}>
-                              {address.full_name} - {address.address}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    ) : (
-                      <div className="form-group mb-1 pb-2">
-                        <label>
-                          Street address
-                          <abbr className="required" title="required">
-                            *
-                          </abbr>
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="address"
-                          value={formData.address}
-                          onChange={handleInputChange}
-                          placeholder="House number and street name"
-                          required
-                        />
-                      </div>
-                    )}
+                    <div className="form-group mb-1 pb-2">
+                      <label>
+                        Street address
+                        <abbr className="required" title="required">
+                          *
+                        </abbr>
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleInputChange}
+                        placeholder="House number and street name"
+                        required
+                      />
+                    </div>
 
                     <div className="form-group">
                       <label>

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { makePostRequest } from "../../Apis";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function RegisterForm() {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [message, setMessage] = useState(""); // Added state for messages
   const [showPassword, setShowPassword] = useState(false);
 
   const [registerCredentials, setRegisterCredentials] = useState({
@@ -38,17 +37,20 @@ function RegisterForm() {
 
       if (response?.status === "success") {
         navigate("/registration-success");
-        toast.success(response?.message);
       } else if (response?.status === "fail") {
-        toast.error(response?.message);
+        setMessage({ text: response?.message, type: "error" });
       }
     } catch (error) {
       setLoading(false);
-      toast.error("Error");
+      setMessage({
+        text: "An error occurred. Please try again.",
+        type: "success",
+      });
       console.error("Error fetching videos data:", error);
+    } finally {
+      setLoading(false);
+      setTimeout(() => setMessage(""), 2000);
     }
-
-    console.log("Register Credentials:", registerCredentials);
   };
 
   const handleRegisterChange = (e) => {
@@ -133,13 +135,23 @@ function RegisterForm() {
           </span>
         </div>
 
+        {message && (
+          <p
+            className={` ${
+              message.type === "success" ? "text-success" : "text-danger"
+            }`}
+          >
+            {message.text}
+          </p>
+        )}
+
         <div className="form-footer mb-2">
           <button type="submit" className="btn btn-dark btn-md w-100 mr-0">
             {loading ? "Please Wait.." : "Register"}
           </button>
         </div>
       </form>
-      <Toaster
+      {/* <Toaster
         toastOptions={{
           // Define default options
           className: "",
@@ -149,7 +161,7 @@ function RegisterForm() {
           },
         }}
         position="top-right"
-      />
+      /> */}
     </>
   );
 }

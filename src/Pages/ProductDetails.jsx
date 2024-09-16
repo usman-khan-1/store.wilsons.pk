@@ -28,7 +28,6 @@ function ProductDetails() {
 
   const [loading, setLoading] = useState(false);
   const [productDetails, setProductDetails] = useState({});
-  console.log("productDetails", productDetails);
   const [wishlistItems, setWishlistItems] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
