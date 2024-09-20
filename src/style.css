@@ -18809,8 +18809,13 @@ div.shimmer {
   justify-content: space-between;
   padding: 0 20px;
 }
+.order-detail .wishlist-title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-.single-order .ship-status {
+}
+ .ship-status {
   background-color: #0073b2;
   padding: 7px 20px;
   color: #fff;

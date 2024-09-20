@@ -6,6 +6,7 @@ import { clearUserData } from "../Store/UserSlice";
 import AccountDetails from "../Components/MyAccountTabs/AccountDetails";
 import Addresses from "../Components/MyAccountTabs/Addresses";
 import ChangePassword from "../Components/MyAccountTabs/ChangePassword";
+import Orders from "./Orders";
 
 function MyAccount() {
   useEffect(() => {
@@ -59,6 +60,21 @@ function MyAccount() {
                   </a>
                 </li>
 
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="order-tab"
+                    data-toggle="tab"
+                    href="#order"
+                    role="tab"
+                    aria-controls="order"
+                    aria-selected="true"
+                  >
+                    Orders
+                  </a>
+                </li>
+               
+
                 <li className="nav-item">
                   <a
                     className="nav-link"
@@ -83,7 +99,7 @@ function MyAccount() {
                     aria-controls="edit"
                     aria-selected="false"
                   >
-                    Profile 
+                    Profile
                   </a>
                 </li>
                 <li className="nav-item">
@@ -164,6 +180,8 @@ function MyAccount() {
 
               <Addresses id={"address"} />
               <ChangePassword id={"change_password"} />
+
+              <Orders id={"order"} />
             </div>
           </div>
         </div>

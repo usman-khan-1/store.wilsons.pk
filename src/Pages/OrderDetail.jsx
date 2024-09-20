@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import ImageWithLoader from "../Components/ImageWithLoader";
 import { makePostRequest } from "../Apis";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 function OrderDeatil() {
   useEffect(() => {
@@ -12,10 +13,10 @@ function OrderDeatil() {
 
   const orderId = useParams();
   const user = useSelector((state) => state.user.value);
-  
-  const [orderDetails, setOrderDetails] = useState();
-  const [loading, setLoading] = useState(false);
 
+  const [orderDetails, setOrderDetails] = useState();
+
+  const [loading, setLoading] = useState(false);
 
   const fetchOrderDetails = async () => {
     setLoading(true);
@@ -36,6 +37,10 @@ function OrderDeatil() {
   useEffect(() => {
     fetchOrderDetails();
   }, [user?.logged_id]);
+
+  const orderDate = moment(orderDetails?.basic_detail?.order_date).format(
+    "DD MMM, YYYY"
+  );
 
   return (
     <Layout>
@@ -65,23 +70,27 @@ function OrderDeatil() {
           </div>
         </div>
 
-        <div className="container">
+        <div className="container order-detail">
           <div className="wishlist-title">
             <h2 className="p-2">Order Detail</h2>
+            <p>
+              Status:{" "}
+              <span className="ship-status">
+                {" "}
+                {orderDetails?.basic_detail?.status}
+              </span>
+            </p>
           </div>
 
           <div className="row">
             <div className="col-lg-8 col-12">
               <div className="single-order">
-                <div className="order-detail">
+                <div className="">
                   <div>
                     <h4>
-                      Order: <span>#123456</span>
+                      Order ID: <span>{orderDetails?.basic_detail?.order_id}</span>
                     </h4>
                   </div>
-                  <p>
-                    Status: <span className="ship-status"> Shipped</span>
-                  </p>
                 </div>
                 <div className="wishlist-table-container">
                   <table className="table table-wishlist mb-0">
@@ -96,43 +105,53 @@ function OrderDeatil() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="product-row">
-                        <td>
-                          <figure className="product-image-container">
-                            <Link
-                              // to={`/product/${data?.slug}`}
-                              className="product-image"
-                            >
-                              <ImageWithLoader
-                                loaderHeight={80}
-                                src={"/assets/imagess/Wilsop-60mg.webp"}
-                                alt="product"
-                              />
-                            </Link>
-                          </figure>
-                        </td>
-                        <td>
-                          <h5 className="product-title">
-                            <Link
-                            //   to={`/product/${data.slug}`}
-                            >
-                              Wilsop 60mg
-                            </Link>
-                          </h5>
-                        </td>
-                        <td className="price-box">Rs. 300</td>
-                        <td className="price-box">1</td>
-                      </tr>
+                      {orderDetails?.order_details.map((data) => (
+                        <tr className="product-row">
+                          <td>
+                            <figure className="product-image-container">
+                              <Link
+                                // to={`/product/${data?.slug}`}
+                                className="product-image"
+                              >
+                                <ImageWithLoader
+                                  loaderHeight={80}
+                                  src={data?.image}
+                                  alt="product"
+                                />
+                              </Link>
+                            </figure>
+                          </td>
+                          <td>
+                            <h5 className="product-title">
+                              <Link
+                              //   to={`/product/${data.slug}`}
+                              >
+                                {data?.title}
+                              </Link>
+                            </h5>
+                          </td>
+                          <td className="price-box">
+                            Rs. {(data?.price).toLocaleString()}
+                          </td>
+                          <td className="price-box">{data?.quantity}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
             <div className="col-lg-4 col-12">
-              <div className="single-order">
-                <p>Tracking ID: #23453213</p>
-                <p>Placed On: 12 Sep 2023</p>
-                <p>Get By: 22 Sep 2023 - 25 Sep 2023</p>
+              <div className="single-order order-detail-righbar">
+                <p>
+                  <span>Tracking ID:</span> #23453213
+                </p>
+                <p>
+                  <span>Placed On: </span> {orderDate}
+                </p>
+                <p>
+                  <span>Get By: </span> 22 Sep 2023 - 25 Sep 2023
+                </p>
                 <button className="btn btn-dark btn-add-cart product-type-simple btn-shop">
                   Track Your Order
                 </button>

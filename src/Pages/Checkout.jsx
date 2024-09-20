@@ -450,7 +450,7 @@ function Checkout() {
                           </div>
                         </div>
 
-                        <div className="form-group form-group-custom-control mb-0">
+                        {/* <div className="form-group form-group-custom-control mb-0">
                           <div
                             className="custom-control custom-radio d-flex mb-0"
                             data-toggle="collapse"
@@ -578,7 +578,7 @@ function Checkout() {
                               </div>
                             </form>
                           </div>
-                        </div>
+                        </div> */}
                       </td>
                     </tr>
 
