@@ -136,11 +136,12 @@ function HomeNavbar() {
             <div className="header-right ml-0 ml-lg-auto">
               <div className="header-icon d-md-block d-none mr-0">
                 <div className="header-user">
-                  <Link to={"/"}>
+
+                  <NavLink activeClassName="active" to={"/"}>
                     <div className="header-userinfo">
                       <h4 className="font1 mb-0">Home</h4>
                     </div>
-                  </Link>
+                  </NavLink>
 
                   <ul className="menu">
                     <li className="dropdown">
@@ -149,54 +150,54 @@ function HomeNavbar() {
                       </a>
                       <ul className="dropdown-menu">
                         <li>
-                          <Link to="/company-profile">Company Profile</Link>
+                          <NavLink to="/company-profile">Company Profile</NavLink>
                         </li>
                         <li>
-                          <Link to="/manufacturing">Manufacturing</Link>
+                          <NavLink to="/manufacturing">Manufacturing</NavLink>
                         </li>
                         <li>
-                          <Link to="/quality-policy">Quality Policy</Link>
+                          <NavLink to="/quality-policy">Quality Policy</NavLink>
                         </li>
                       </ul>
                     </li>
                   </ul>
-                  <Link to={"/offers"}>
+                  <NavLink to={"/offers"}>
                     <div className="header-userinfo">
                       <h4 className="font1 mb-0">Offers</h4>
                     </div>
-                  </Link>
-                  <Link to={"/blog"}>
+                  </NavLink>
+                  <NavLink to={"/blog"}>
                     <div className="header-userinfo">
                       <h4 className="font1 mb-0">Medical Insight</h4>
                     </div>
-                  </Link>
+                  </NavLink>
 
                   {user?.logged_id ? (
                     <>
-                      <Link to={"/myAccount"}>
+                      <NavLink to={"/myAccount"}>
                         <div className="header-userinfo">
                           <h4 className="font1 mb-0">My Account</h4>
                         </div>
-                      </Link>
+                      </NavLink>
                     </>
                   ) : (
-                    <Link to={"/login"}>
+                    <NavLink to={"/login"}>
                       <div className="header-userinfo">
                         <h4 className="font1 mb-0">Login / Register</h4>
                       </div>
-                    </Link>
+                    </NavLink>
                   )}
 
-                  <Link to={"/why-choose-wilmart"}>
+                  <NavLink to={"/why-choose-wilmart"}>
                     <div className="header-userinfo why-choose">
                       <h4 className="font1 mb-0">Why Choose WILMART</h4>
                     </div>
-                  </Link>
+                  </NavLink>
 
                   {user?.logged_id && (
-                    <Link to={"/wishlist"} className="header-icon">
+                    <NavLink to={"/wishlist"} className="header-icon">
                       <i className="icon-wishlist-2"></i>
-                    </Link>
+                    </NavLink>
                   )}
                 </div>
               </div>

@@ -29,7 +29,7 @@ function BottomNavigationBar() {
             icon={<IoIosLogIn />}
           />
           <BottomNavigationAction
-          onClick={() => navigate("/blog")}
+            onClick={() => navigate("/blog")}
             icon={<FaClinicMedical />}
           />
           <BottomNavigationAction
