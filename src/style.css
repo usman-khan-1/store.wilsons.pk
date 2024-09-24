@@ -18742,7 +18742,7 @@ div.shimmer {
   border-radius: 20px;
 }
 .why-choose h4 {
-  color: #fff;
+  color: #fff !important;
 }
 
 .d-center div {
@@ -18852,4 +18852,8 @@ div.shimmer {
 }
 .header-user a.active h4{
   color: #01abec;
+}
+.styles-module_avatar__afcc4 img{
+  background-color: #fff;
+ 
 }
