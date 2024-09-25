@@ -40,15 +40,15 @@ function CompanyProfile() {
           <div className="container">
             <h2 className="subtitle">About Us</h2>
             <p>
-              Wilson’s Healthcare is a privately owned Neutraceutical company
+              WILSON'S Healthcare is a privately owned Neutraceutical company
               where science and nature are integrated to provide science based
               health care products with well researched formulations around the
               globe.
             </p>
             <p>
-              Centered in Islamabad, Pakistan, Wilson’s Healthcare sources the
+              Centered in Islamabad, Pakistan, WILSON'S Healthcare sources the
               finest quality raw materials from the world’s renowned sources.
-              Wilson’s Healthcare is embodied by highly qualified Research &
+              WILSON'S Healthcare is embodied by highly qualified Research &
               Development Teams who are dedicated to carefully research and
               develop the products with highest level of Purity & Efficacy. The
               teams are committed to ensure that quality is met at every stage
