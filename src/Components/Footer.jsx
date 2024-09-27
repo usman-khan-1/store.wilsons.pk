@@ -168,7 +168,7 @@ function Footer() {
                 phoneNumber={branding?.site_whatsapp}
                 message="Hello!"
                 accountName={branding?.site_title}
-                avatar="/assets/Images/wilmart-fav.png"
+                avatar="/assets/imagess/WILMART.png"
                 // avatar={branding?.site_logo}
               />
             )}
