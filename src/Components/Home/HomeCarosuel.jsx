@@ -27,13 +27,13 @@ function HomeCarousel() {
 
   const fadeAnimationHandler = (props, state) => {
     const transitionTime = `${props.transitionTime}ms`;
-    const transitionTimingFunction = 'ease-in-out';
+    const transitionTimingFunction = "ease-in-out";
 
     let slideStyle = {
-      position: 'absolute',
-      display: 'block',
+      position: "absolute",
+      display: "block",
       zIndex: -2,
-      minHeight: '100%',
+      minHeight: "100%",
       opacity: 0,
       top: 0,
       right: 0,
@@ -55,7 +55,7 @@ function HomeCarousel() {
 
     return {
       slideStyle,
-      selectedStyle: { ...slideStyle, opacity: 1, position: 'relative' },
+      selectedStyle: { ...slideStyle, opacity: 1, position: "relative" },
       prevStyle: { ...slideStyle },
     };
   };
@@ -65,7 +65,6 @@ function HomeCarousel() {
       <div className="col-lg-12 mb-2">
         <div className="home-carousel">
           {loading ? (
-            
             <div className="w-100 d-flex align-items-center justify-content-center">
               <BeatLoader color="#01abec" size={20} />
             </div>
@@ -73,11 +72,12 @@ function HomeCarousel() {
             <Carousel
               animationHandler={fadeAnimationHandler}
               showThumbs={false}
-              interval={8000}
+              interval={5000}
               autoPlay={true}
               swipeable={false}
               transitionTime={1200}
               showIndicators={false}
+              infiniteLoop={true}
             >
               {banner?.map((data, index) => (
                 <div key={index}>
