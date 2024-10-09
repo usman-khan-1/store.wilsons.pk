@@ -20,7 +20,6 @@ function Shop() {
   const productsPerPage = 12;
   const user = useSelector((state) => state.user.value);
   const [wishlistItems, setWishlistItems] = useState([]);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,8 +87,6 @@ function Shop() {
   const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
 
   useEffect(() => {
-    
-
     if (user?.logged_id) {
       // Fetch the wishlist if the user is logged in
       const fetchWishlist = async () => {
@@ -153,7 +150,16 @@ function Shop() {
 
           <div className="row main-content">
             <div className="col-lg-9">
-              <div className="category-banner banner bg-gray py-3 mb-3"></div>
+              {/* <div className="category-banner banner bg-gray py-3 mb-3"></div> */}
+              <div
+                className="category-banner"
+                style={{
+                  backgroundImage:
+                    "url(/assets/imagess/no-image-prod-category.jpg)",
+               
+                }}
+              ></div>
+              <h1 className="category-heading">Our Products</h1>
 
               <div className="row divide-line no-gutters m-0">
                 {currentProducts?.map((data, index) => (
@@ -204,7 +210,7 @@ function Shop() {
                             {data.heading}
                           </Link>
                         </h3>
-                       
+
                         <div className="price-box">
                           <span className="product-price">
                             Rs {data?.price}
