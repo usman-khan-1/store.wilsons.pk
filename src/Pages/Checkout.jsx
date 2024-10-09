@@ -27,6 +27,8 @@ function Checkout() {
   };
 
   const subtotal = calculateSubtotal();
+  const shippingFee = subtotal < 1600 ? 250 : 0;
+  const total = subtotal + shippingFee;
 
   const [formData, setFormData] = useState({
     full_name: "",
@@ -39,10 +41,10 @@ function Checkout() {
     remarks: "",
     password: "",
     create_account: false,
-    delivery_amount: 0,
+    delivery_amount: shippingFee,
     total_amount: subtotal,
     promo_discount: 0,
-    final_amount: subtotal,
+    final_amount: total,
   });
 
   const [paymentDetails, setPaymentDetails] = useState({
@@ -427,6 +429,18 @@ function Checkout() {
                         </span>
                       </td>
                     </tr>
+                    <tr className="">
+                      <td>
+                        <h4>Shipping Fee</h4>
+                      </td>
+
+                      <td className="price-col">
+                        <span>
+                          Rs. {""}
+                          {shippingFee}
+                        </span>
+                      </td>
+                    </tr>
                     <tr className="order-shipping">
                       <td className="text-left" colSpan="2">
                         <h4 className="m-b-sm">Payment Method</h4>
@@ -591,7 +605,7 @@ function Checkout() {
                           <span>
                             {" "}
                             Rs. {""}
-                            {subtotal.toLocaleString()}
+                            {total.toLocaleString()}
                           </span>
                         </b>
                       </td>

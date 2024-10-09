@@ -204,15 +204,7 @@ function Shop() {
                             {data.heading}
                           </Link>
                         </h3>
-                        <div className="ratings-container">
-                          <div className="product-ratings">
-                            <span
-                              className="ratings"
-                              style={{ width: "80%" }}
-                            ></span>
-                            <span className="tooltiptext tooltip-top"></span>
-                          </div>
-                        </div>
+                       
                         <div className="price-box">
                           <span className="product-price">
                             Rs {data?.price}

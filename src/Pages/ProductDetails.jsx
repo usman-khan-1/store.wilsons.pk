@@ -30,6 +30,8 @@ function ProductDetails() {
   const [productDetails, setProductDetails] = useState({});
   const [wishlistItems, setWishlistItems] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [message, setMessage] = useState("");
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,23 +53,28 @@ function ProductDetails() {
       const isProductInCart = cartItems?.find(
         (item) => item?.uid === productDetails.details.uid
       );
-
+  
       if (isProductInCart) {
-        // If the product is already in the cart, update the quantity by adding the new quantity to the existing one
+        // Update the quantity if the product is already in the cart
+        const updatedQuantity = isProductInCart.quantity + quantity;
         dispatch(
           addToCart({
             product: productDetails.details,
-            quantity: isProductInCart.quantity + quantity,
+            quantity: updatedQuantity,
           })
         );
-        toast.success("Product quantity updated in cart!");
+        setMessage({ text: "Product quantity updated in cart!", type: "success" });
       } else {
-        // If the product is not in the cart, add it as a new item
+        // Add the product as a new item if it's not in the cart
         dispatch(addToCart({ product: productDetails.details, quantity }));
-        toast.success("Product added to cart successfully!");
+        setMessage({ text: "Product added to cart successfully", type: "success" });
       }
+  
+      // Clear the message after 2 seconds
+      setTimeout(() => setMessage(""), 2000);
     }
   };
+  
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -117,7 +124,7 @@ function ProductDetails() {
         setWishlistItems((prevItems) =>
           prevItems.filter((item) => item.uid !== product.uid)
         );
-        toast.success("Product Removed Successfully!");
+        setMessage({ text: "Product Removed Successfully", type: "success" });
       } else {
         // Add to wishlist
         await makePostRequest("wishlist/add", {
@@ -125,10 +132,13 @@ function ProductDetails() {
           product_id: product.uid,
         });
         setWishlistItems((prevItems) => [...prevItems, product]);
-        toast.success("Product Added Successfully!");
+        setMessage({ text: "Product Added Successfully", type: "success" });
       }
     } catch (error) {
       console.error("Error updating wishlist:", error);
+    } finally {
+      setLoading(false);
+      setTimeout(() => setMessage(""), 2000); // Clear the message after 2 seconds
     }
   };
   return (
@@ -234,6 +244,15 @@ function ProductDetails() {
                     View cart
                   </Link> */}
                 </div>
+
+                {message && (
+                  <p
+                    className={` ${message.type === "success" ? "text-success" : "text-danger"
+                      }`}
+                  >
+                    {message.text}
+                  </p>
+                )}
 
                 <hr className="divider mb-0 mt-0" />
 

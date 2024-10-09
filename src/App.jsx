@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import MyAccount from "./Pages/MyAccount";
 import Login from "./Pages/Login";
-import AboutUs from "./Pages/AboutUs";
 import Blogs from "./Pages/Blogs";
 import WishList from "./Pages/WishList";
 import Cart from "./Pages/Cart";
@@ -67,7 +66,6 @@ function App() {
           />
           <Route path="order-success" element={<OrderSuccess />} />
           <Route path="verify-success" element={<VerifySuccess />} />
-          <Route path="about" element={<AboutUs />} />
           <Route path="offers" element={<Offers />} />
           <Route path="my-orders" element={<MyOrders />} />
           <Route path="order-detail/:id" element={<OrderDeatil />} />

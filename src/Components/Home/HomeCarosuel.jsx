@@ -76,8 +76,9 @@ function HomeCarousel() {
               autoPlay={true}
               swipeable={false}
               transitionTime={1200}
-              showIndicators={false}
+              showIndicators={true}
               infiniteLoop={true}
+              showArrows={false}
             >
               {banner?.map((data, index) => (
                 <div key={index}>

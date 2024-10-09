@@ -32,17 +32,16 @@ function VerifyAccount() {
       const response = await makePostRequest("auth/verify-customer", { code });
 
       if (response?.status === "success") {
-        // toast.success("Verification successful! Redirecting...");
         navigate("/verify-success");
         dispatch(setUserData(response.data));
         setTimeout(() => {
           // navigate("/login");
         }, 2000);
       } else {
-        toast.error("Verification failed. Please check your code.");
+        // toast.error("Verification failed. Please check your code.");
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
+      // toast.error("An error occurred. Please try again.");
       console.error("Error verifying account:", error);
     } finally {
       setLoading(false);

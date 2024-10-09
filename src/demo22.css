@@ -16366,3 +16366,11 @@ span.toggle {
   
 
 }
+
+.carousel-slider .dot{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 129px 40px !important; 
+
+}
+.carousel-slider .dot.selected{
+  background-color: #01a8e7;
+}

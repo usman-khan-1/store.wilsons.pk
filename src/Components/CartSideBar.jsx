@@ -149,8 +149,8 @@ function CartSidebar({ setOpenCart }) {
             <span className="cart-total-price float-right">
               Rs. {""}
               {subtotal
-              // .toFixed(2)
-              .toLocaleString()}
+                // .toFixed(2)
+                .toLocaleString()}
             </span>
           </div>
 
@@ -158,9 +158,12 @@ function CartSidebar({ setOpenCart }) {
             <Link to={"/cart"} className="btn btn-gray btn-block view-cart">
               View Cart
             </Link>
-            <Link to={"/checkout"} className="btn btn-dark btn-block">
-              Checkout
-            </Link>
+            {cartItems?.length !== 0 && (
+              <Link to={"/checkout"} className="btn btn-dark btn-block">
+                Checkout
+              </Link>
+            )}
+
             <Link
               to={"/category"}
               className="btn btn-dark btn-block continue-shopping"

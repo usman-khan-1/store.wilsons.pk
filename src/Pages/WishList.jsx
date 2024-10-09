@@ -6,15 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import ImageWithLoader from "../Components/ImageWithLoader";
 import { BeatLoader } from "react-spinners";
 import { addToCart } from "../Store/CartSlice";
-import toast from "react-hot-toast";
 
 function WishList() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
   const dispatch = useDispatch();
   const [wishList, setWishlist] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [addedItems, setAddedItems] = useState({}); // Track added items
 
   const user = useSelector((state) => state.user.value);
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -29,75 +30,58 @@ function WishList() {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.error("Error fetching videos data:", error);
+      console.error("Error fetching wishlist data:", error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-
   const handleRemove = async (productId) => {
     try {
-      const response = await makePostRequest("wishlist/remove", {
+      await makePostRequest("wishlist/remove", {
         customer_id: user.logged_id,
         product_id: productId,
       });
       fetchData();
-
-      // if (response?.success) {
-      //   
-      //   setWishlist((prevWishlist) =>
-      //     prevWishlist.filter((item) => item.uid !== productId)
-      //   );
-      //   toast.success("Product removed from wishlist!");
-      // } else {
-      //   toast.error("Failed to remove product from wishlist.");
-      // }
-
-
     } catch (error) {
-      console.error("Error fetching videos data:", error);
+      console.error("Error removing product from wishlist:", error);
     }
   };
 
   const handleAddToCart = (data) => {
     const isProductInCart = cartItems?.find((item) => item?.uid === data.uid);
+    const messageKey = data.uid; // Unique key for each product
 
     if (isProductInCart) {
-      // If the product is already in the cart, update the quantity by adding the new quantity to the existing one
-      dispatch(
-        addToCart({
-          product: data,
-          quantity: 1,
-        })
-      );
-      toast.success("Product quantity updated in cart!");
-    } else {
-      // If the product is not in the cart, add it as a new item
       dispatch(addToCart({ product: data, quantity: 1 }));
-      toast.success("Product added to cart successfully!");
+    } else {
+      dispatch(addToCart({ product: data, quantity: 1 }));
     }
+
+    // Set added item for 2 seconds
+    setAddedItems((prev) => ({ ...prev, [messageKey]: true }));
+    setTimeout(() => {
+      setAddedItems((prev) => ({ ...prev, [messageKey]: false })); // Reset after 2 seconds
+    }, 2000);
   };
 
   return (
     <Layout>
       <main className="main">
         <div className="page-header">
-          <div className=" d-flex flex-column align-items-center">
+          <div className="d-flex flex-column align-items-center">
             <nav aria-label="breadcrumb" className="breadcrumb-nav">
-              <div className="">
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <Link to={"/"}>Home</Link>
-                  </li>
-                  <li className="breadcrumb-item active" aria-current="page">
-                    Wishlist
-                  </li>
-                </ol>
-              </div>
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <Link to={"/"}>Home</Link>
+                </li>
+                <li className="breadcrumb-item active" aria-current="page">
+                  Wishlist
+                </li>
+              </ol>
             </nav>
-
             <h1>Wishlist</h1>
           </div>
         </div>
@@ -131,22 +115,10 @@ function WishList() {
                     <tr key={index} className="product-row">
                       <td>
                         <figure className="product-image-container">
-                          <Link
-                            to={`/product/${data?.slug}`}
-                            className="product-image"
-                          >
-                            <ImageWithLoader
-                              loaderHeight={80}
-                              src={data?.image}
-                              alt="product"
-                            />
+                          <Link to={`/product/${data?.slug}`} className="product-image">
+                            <ImageWithLoader loaderHeight={80} src={data?.image} alt="product" />
                           </Link>
-
-                          <a
-                            onClick={() => handleRemove(data?.uid)}
-                            className="btn-remove icon-cancel"
-                            title="Remove Product"
-                          ></a>
+                          <a onClick={() => handleRemove(data?.uid)} className="btn-remove icon-cancel" title="Remove Product"></a>
                         </figure>
                       </td>
                       <td>
@@ -163,7 +135,7 @@ function WishList() {
                           onClick={() => handleAddToCart(data)}
                           className="btn btn-dark btn-add-cart product-type-simple btn-shop"
                         >
-                          ADD TO CART
+                          {addedItems[data.uid] ? "Added" : "ADD TO CART"} {/* Conditional button text */}
                         </button>
                       </td>
                     </tr>

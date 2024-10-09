@@ -71,7 +71,7 @@ function Home() {
                   FREE SHIPPING &amp; RETURN
                 </h4>
                 <p className="font-weight-light">
-                  Free shipping on orders over PKR 2500.
+                  Free shipping on orders over PKR 1600.
                 </p>
               </div>
             </div>
