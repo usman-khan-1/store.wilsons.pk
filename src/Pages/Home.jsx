@@ -114,63 +114,7 @@ function Home() {
 
       <BestSellerElectronics />
       <RecentProductsCarosuel />
-{/* 
-      <section className="recent-products">
-        <div className="container">
-          <div
-            className="banner banner3 bg-dark  "
-            data-animation-name="fadeIn"
-            data-animation-delay="200"
-          >
-            <div className="row m-0 no-gutters align-items-center">
-              <div className="col-md-6 col-lg-3 align-self-baseline">
-                <figure>
-                  <img
-                    src="/assets/Images/demoes/demo22/banners/banner-3.jpg"
-                    alt="image"
-                    width="380"
-                    height="136"
-                  />
-                </figure>
-              </div>
-              <div className="col-md-6 col-lg-4 py-4 py-lg-5">
-                <div className="px-5 px-md-0">
-                  <h3 className="font1 text-uppercase m-b-2">
-                    Check new arrivals
-                  </h3>
-                  <h2 className="font1 ls-10 text-uppercase text-white mb-0">
-                    Explore Smartphones
-                  </h2>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-3 py-4 py-lg-5 d-flex justify-content-md-center">
-                <div className="px-5 px-md-0">
-                  <div className="coupon-sale-text d-flex flex-column align-items-start">
-                    <h4 className="m-b-2 font1 d-block text-dark bg-white skew-box">
-                      Exclusive COUPON
-                    </h4>
-                    <h5 className="mb-0 font1 d-inline-block bg-primary skew-box">
-                      <i className="text-white ls-0">UP TO</i>
-                      <b className="text-white">$200</b>
-                      <sub className="text-white">OFF</sub>
-                    </h5>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-2 py-4 py-lg-5">
-                <div className="px-5 px-md-0">
-                  <Link
-                    to={"/product-details"}
-                    className="btn btn-dark font1 ls-10"
-                  >
-                    View All Now
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
+
 
       {/* <ElectronicSection /> */}
       {/* <TopBrand /> */}

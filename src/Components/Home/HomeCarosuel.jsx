@@ -94,6 +94,7 @@ function HomeCarousel() {
             </Carousel>
           )}
         </div>
+        <div class="snowfall particle-effect"></div>
       </div>
     </div>
   );
