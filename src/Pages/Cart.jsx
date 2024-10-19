@@ -12,6 +12,8 @@ function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
+  console.log("cartItems",cartItems)
+
   const calculateSubtotal = () => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
@@ -66,69 +68,84 @@ function Cart() {
                       </tr>
                     </thead>
                     <tbody>
-                      {   cartItems?.map((data) => (
-                          <tr key={data.uid} className="product-row">
-                            <td>
-                              <figure className="product-image-container">
-                                <Link
-                                  to={`/product-details/${data.uid}`}
-                                  className="product-image"
-                                >
-                                  <img src={data?.image} alt="product" />
-                                </Link>
-                                <a
-                                  className="btn-remove icon-cancel"
-                                  title="Remove Product"
-                                  onClick={() => handleRemove(data.uid)}
-                                ></a>
-                              </figure>
-                            </td>
-                            <td className="product-col">
-                              <h5 className="product-title">
-                                <Link to={`/product/${data.seo_slug}`}>
-                                  {data?.heading}
-                                </Link>
-                              </h5>
-                            </td>
-                            <td>Rs. {data?.price}</td>
-                            <td>
-                              <div className="product-single-qty">
-                                <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                                  <span className="input-group-btn input-group-prepend">
-                                    <button
-                                      className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
-                                      type="button"
-                                      onClick={() => handleDecrement(data)}
-                                    >
-                                      -
-                                    </button>
-                                  </span>
-                                  <input
-                                    className="horizontal-quantity form-control"
-                                    type="text"
-                                    value={data?.quantity}
-                                    readOnly
-                                  />
-                                  <span className="input-group-btn input-group-append">
-                                    <button
-                                      className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
-                                      type="button"
-                                      onClick={() => handleIncrement(data)}
-                                    >
-                                      +
-                                    </button>
-                                  </span>
-                                </div>
+                      {cartItems?.map((data) => (
+                        <tr key={data.uid} className="product-row">
+                          <td>
+                            <figure className="product-image-container">
+                              <Link
+                                to={`/product/${data.slug}`}
+                                className="product-image"
+                              >
+                                <img src={data?.image} alt="product" />
+                              </Link>
+                              <a
+                                className="btn-remove icon-cancel"
+                                title="Remove Product"
+                                onClick={() => handleRemove(data.uid)}
+                              ></a>
+                            </figure>
+                          </td>
+                          <td className="product-col">
+                            <h5 className="product-title">
+                              <Link to={`/product/${data.slug}`}>
+                                {data?.heading}
+                              </Link>
+                            </h5>
+                          </td>
+                          <td>Rs. {data?.price}</td>
+                          <td>
+                            <div className="product-single-qty">
+                              <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                                <span className="input-group-btn input-group-prepend">
+                                  <button
+                                    className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                                    type="button"
+                                    onClick={() => handleDecrement(data)}
+                                  >
+                                    -
+                                  </button>
+                                </span>
+                                <input
+                                  className="horizontal-quantity form-control"
+                                  type="text"
+                                  value={data?.quantity}
+                                  readOnly
+                                />
+                                <span className="input-group-btn input-group-append">
+                                  <button
+                                    className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                                    type="button"
+                                    onClick={() => handleIncrement(data)}
+                                  >
+                                    +
+                                  </button>
+                                </span>
                               </div>
-                            </td>
-                            <td className="text-right">
-                              <span className="subtotal-price">
-                                Rs. {(data.price * data.quantity).toFixed(2)}
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
+                            </div>
+                          </td>
+                          <td className="text-right">
+                            <span className="subtotal-price">
+                              Rs. {(data.price * data.quantity).toFixed(2)}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="5" class="clearfix px-0">
+                          <div class="float-right">
+                            
+                            <div
+                              type="submit"
+                              class="cart-total-amount"
+                            >
+                              Total: <span>Rs. {(subtotal).toFixed(2)}</span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tfoot>
                   </table>
 
                   <div className="checkout-methods">

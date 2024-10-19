@@ -183,15 +183,15 @@ function Addresses({ id }) {
         </p>
 
         <div className="addresses">
-          {addresses.map((data) => (
+          {addresses.map((data,index) => (
             <div className="address" key={data.uid}>
               <div className="row">
                 <div className="col-lg-1 col-md-1 col-1 text-center">
                   <input
                     type="radio"
                     name="default"
-                    checked={data.default}
-                    onChange={() => handleDefaultAddressChange(data.uid)}
+                    checked={index === 0}
+                    onClick={()=> handleDefaultAddressChange(data.uid)}
                   />
                 </div>
                 <div className="col-lg-7 col-md-9 col-9">
