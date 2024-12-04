@@ -40,10 +40,10 @@ function QualityPolicy() {
           <div className="container">
           <h2 className="subtitle">Quality Policy</h2>
                 <p>
-                  We at WILSON'S Healthcare assure to provide best quality
+                  We at Wilson's Healthcare assure to provide best quality
                   Healthcare products to our customers, application of QMS
                   (Quality Management System) and good, organized & safe working
-                  practices at WILSON'S Healthcare are our main objectives to
+                  practices at Wilson's Healthcare are our main objectives to
                   satisfy our customer. Quality is our top priority with
                   continuously reviewing and improving our systems and we are
                   committed to fulfill all applicable regulatory & statutory

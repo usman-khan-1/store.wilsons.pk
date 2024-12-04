@@ -40,7 +40,7 @@ function CompanyProfile() {
           <div className="container">
             <h2 className="subtitle">Production Facility:</h2>
             <p>
-              WILSON'S Healthcare is one of the pioneer’s in the Manufacturing
+              Wilson's Healthcare is one of the pioneer’s in the Manufacturing
               of Neutraceutical products in Pakistan. It has an absolute state
               of the art manufacturing facility comprising:
             </p>
@@ -53,7 +53,7 @@ function CompanyProfile() {
             </ul>
             <h2 className="subtitle">Quality Assurance:</h2>
             <p>
-              At WILSON'S Healthcare, it is mandatory for all the products to
+              At Wilson's Healthcare, it is mandatory for all the products to
               undergo the process of ‘Scientific Validation’, which involves
               screening of all the steps that initiates from dispensing of raw
               materials to the finished goods. Scientific validation involves
