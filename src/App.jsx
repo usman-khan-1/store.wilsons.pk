@@ -86,7 +86,8 @@ function App() {
           <Route path="verify-customer/:slug" element={<VerifyAccount />} />
           <Route path="forget-password/:slug" element={<ForgetPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
-          <Route path="category" element={<Shop />} />
+          {/* <Route path="category" element={<Shop />} /> */}
+          <Route path="products" element={<Shop />} />
           <Route path="category/:slug" element={<ShopByCategory />} />
           <Route path="company-profile" element={<CompanyProfile />} />
           <Route path="quality-policy" element={<QualityPolicy />} />

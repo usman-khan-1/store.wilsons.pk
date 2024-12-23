@@ -19,15 +19,13 @@ function ShopByCategory() {
   const [value, setValue] = useState([0, 1000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const productsPerPage = 4;
+  const productsPerPage = 12;
   const [category, setCategory] = useState([]);
   const [categoryDetail, setCategoryDetail] = useState([]);
   const [showSideBar, setShowSideBar] = useState(false);
   const user = useSelector((state) => state.user.value);
-  const [wishlistItems, setWishlistItems] = useState([]); 
-
-
-  // console.log("filteredProducts", filteredProducts);
+  const [wishlistItems, setWishlistItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,14 +74,13 @@ function ShopByCategory() {
         (product) => product.price >= value[0] && product.price <= value[1]
       );
       setFilteredProducts(filtered);
+      setLoading(false);
     }
   }, [categoryDetail?.products, value]);
 
   const handlePriceChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  // pagination
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -111,29 +108,28 @@ function ShopByCategory() {
 
     fetchData();
 
-      if (user?.logged_id) {
-        // Fetch the wishlist if the user is logged in
-        const fetchWishlist = async () => {
-          try {
-            const response = await makePostRequest("wishlist/list", {
-              customer_id: user?.logged_id,
-            });
-            setWishlistItems(response?.data);
-          } catch (error) {
-            console.error("Error fetching wishlist data:", error);
-          }
-        };
+    if (user?.logged_id) {
+      // Fetch the wishlist if the user is logged in
+      const fetchWishlist = async () => {
+        try {
+          const response = await makePostRequest("wishlist/list", {
+            customer_id: user?.logged_id,
+          });
+          setWishlistItems(response?.data);
+        } catch (error) {
+          console.error("Error fetching wishlist data:", error);
+        }
+      };
 
-        fetchWishlist();
-      } else {
-        // Clear wishlist if the user is not logged in
-        setWishlistItems([]);
-      }
+      fetchWishlist();
+    } else {
+      // Clear wishlist if the user is not logged in
+      setWishlistItems([]);
+    }
   }, [user?.logged_id]);
 
   const handleToggle = async (product) => {
     const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
-    
 
     try {
       if (isWishlisted) {
@@ -155,7 +151,6 @@ function ShopByCategory() {
       console.error("Error updating wishlist:", error);
     }
   };
-
 
   return (
     <Layout>
@@ -180,51 +175,47 @@ function ShopByCategory() {
             >
               <aside className="sidebar-shop  order-lg-first mobile-sidebar ">
                 <div className="sidebar-wrapper">
-                  <div className="text-right">
+                  {/* <div className="text-right">
                     <RxCross2 onClick={() => setShowSideBar(false)} />
-                  </div>
+                  </div> */}
                   <div className="widget">
-                    <h3 className="widget-title">
-                      <a
-                        data-toggle="collapse"
-                        href="#widget-body-1"
-                        role="button"
-                        aria-expanded="true"
-                        aria-controls="widget-body-1"
+                    <Link to="/products">
+                      <h3
+                        className="widget-title mb-1"
+                        style={{ textTransform: "capitalize" }}
                       >
-                        Categories
-                      </a>
+                        All Products
+                      </h3>
+                    </Link>
+                    <h3
+                      className="widget-title"
+                      style={{ textTransform: "capitalize" }}
+                    >
+                      Categories
                     </h3>
-
-                    <div className="collapse show" id="widget-body-1">
-                      <div className="widget-body">
-                        <ul className="cat-list">
-                          {filteredCategory?.map((data, index) => (
-                            <li key={index}>
-                              <Link to={`/category/${data?.slug}`}>
-                                {data?.name}
-                                <span className="products-count">
-                                  ( {data?.product_count})
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+                    <ul className="list mt-1">
+                      {filteredCategory?.map((data, index) => (
+                        <li>
+                          <Link
+                            to={`/category/${data?.slug}`}
+                            onClick={() => handleCategorySelect(data?.name)}
+                          >
+                            {data?.name}
+                            <span className="products-count">
+                              ({data?.product_count})
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
                   <div className="widget">
-                    <h3 className="widget-title">
-                      <a
-                        data-toggle="collapse"
-                        href="#widget-body-2"
-                        role="button"
-                        aria-expanded="true"
-                        aria-controls="widget-body-2"
-                      >
-                        Price
-                      </a>
+                    <h3
+                      className="widget-title"
+                      style={{ textTransform: "capitalize" }}
+                    >
+                      Price
                     </h3>
 
                     <div className="collapse show" id="widget-body-2">
@@ -247,7 +238,7 @@ function ShopByCategory() {
                   </div>
                 </div>
               </aside>
-              <div className="sidebar-overlay"></div> 
+              <div className="sidebar-overlay"></div>
             </div>
 
             <div className="col-lg-9">
@@ -261,9 +252,14 @@ function ShopByCategory() {
                   })`,
                 }}
               ></div>
-              <h1 className="category-heading">
-                {categoryDetail?.detail?.heading}
+              <h1
+                className={`category-heading ${
+                  loading ? "shimmer-heading" : ""
+                }`}
+              >
+                {loading ? "" : categoryDetail?.detail?.heading}
               </h1>
+
               {/* <div className="category-banner banner bg-gray py-3 mb-3"></div> */}
 
               <nav
@@ -351,62 +347,75 @@ function ShopByCategory() {
               </nav>
 
               <div className="row divide-line no-gutters m-0">
-                {filteredProducts?.map((data, index) => (
-                  <div key={index} className="col-6 col-sm-4 col-xl-3">
-                    <div className="product-default inner-quickview inner-icon">
-                      <figure>
-                        <Link to={`/product/${data?.seo_slug}`}>
-                          <ImageWithLoader
-                            src={data.image}
-                            width="217"
-                            height="217"
-                            alt="product"
-                          />
-                        </Link>
-                      </figure>
-                      <div className="product-details">
-                        <div className="category-wrap">
-                          <div className="category-list">
-                            <Link to={"/category"} className="product-category">
-                              {data?.category}
+                {loading
+                  ? [1, 2, 3, 4].map((data, index) => (
+                      <div key={index} className="col-xl-3 col-sm-4 col-12">
+                        <div className="shimmer-effect"></div>
+                      </div>
+                    ))
+                  : currentProducts?.map((data, index) => (
+                      <div key={index} className="col-xl-3 col-sm-4 col-12">
+                        <div className="product-default inner-quickview inner-icon">
+                          <figure>
+                            <Link to={`/product/${data?.seo_slug}`}>
+                              <ImageWithLoader
+                                src={
+                                  data?.image ||
+                                  "/assets/imagess/no_image_product.jpeg"
+                                }
+                                width="217"
+                                height="217"
+                                alt="product"
+                              />
                             </Link>
+                          </figure>
+                          <div className="product-details">
+                            <div className="category-wrap">
+                              <div className="category-list">
+                                <Link
+                                  to={"/category"}
+                                  className="product-category"
+                                >
+                                  {data?.category}
+                                </Link>
+                              </div>
+                              {user?.logged_id && (
+                                <div
+                                  title="Add to Wishlist"
+                                  className="btn-icon-wish"
+                                  onClick={() => handleToggle(data)}
+                                  style={{
+                                    color: wishlistItems.some(
+                                      (item) => item.uid === data.uid
+                                    )
+                                      ? "#01abec"
+                                      : "gray",
+                                  }}
+                                >
+                                  {wishlistItems.some(
+                                    (item) => item.uid === data.uid
+                                  ) ? (
+                                    <i className="fa-solid fa-heart"></i>
+                                  ) : (
+                                    <i className="fa-regular fa-heart"></i>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                            <h3 className="product-title">
+                              <Link to={"/product-details"}>
+                                {data.heading}
+                              </Link>
+                            </h3>
+                            <div className="price-box">
+                              <span className="product-price">
+                                Rs {data?.price.toLocaleString()}
+                              </span>
+                            </div>
                           </div>
-                          {user?.logged_id && (
-                          <div
-                            title="Add to Wishlist"
-                            className="btn-icon-wish"
-                            onClick={() => handleToggle(data)}
-                            style={{
-                              color: wishlistItems.some(
-                                (item) => item.uid === data.uid
-                              )
-                                ? "#01abec"
-                                : "gray",
-                            }}
-                          >
-                            {wishlistItems.some(
-                              (item) => item.uid === data.uid
-                            ) ? (
-                              <i className="fa-solid fa-heart"></i>
-                            ) : (
-                              <i className="fa-regular fa-heart"></i>
-                            )}
-                          </div>
-                        )}
-                        </div>
-                        <h3 className="product-title">
-                          <Link to={"/product-details"}>{data.heading}</Link>
-                        </h3>
-                       
-                        <div className="price-box">
-                          <span className="product-price">
-                            Rs {data?.price.toLocaleString()}
-                          </span>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
+                    ))}
               </div>
 
               <nav className="toolbox toolbox-pagination">
@@ -459,8 +468,8 @@ function ShopByCategory() {
                   breakLabel={"..."}
                   breakClassName={"break-me"}
                   pageCount={pageCount}
+                  pageRangeDisplayed={5}
                   marginPagesDisplayed={2}
-                  pageRangeDisplayed={2}
                   onPageChange={handlePageClick}
                   containerClassName={"pagination"}
                   subContainerClassName={"pages pagination"}
@@ -468,8 +477,6 @@ function ShopByCategory() {
                 />
               </nav>
             </div>
-
-          
           </div>
         </div>
 
