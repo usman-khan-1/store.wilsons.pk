@@ -139,7 +139,7 @@ function Shop() {
               ) : (
                 <div className="row divide-line no-gutters m-0">
                   {currentProducts?.map((data, index) => (
-                    <div key={index} className="col-6 col-sm-4 col-xl-3">
+                    <div key={index} className="col-xl-3 col-sm-4 col-12 ">
                       <div className="product-default inner-quickview inner-icon">
                         <figure>
                           <Link to={`/product/${data?.seo_slug}`}>
