@@ -24,14 +24,17 @@ function Shop() {
   const [category, setCategory] = useState([]);
   const [alphabetFilter, setAlphabetFilter] = useState("All");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await makePostRequest("product/list");
         setProducts(response?.data);
+        setIsLoading(false); 
       } catch (error) {
         console.error("Error fetching products data:", error);
+        setIsLoading(false); 
       }
     };
     fetchData();
@@ -132,12 +135,93 @@ function Shop() {
               ></div>
               <h1 className="category-heading">Our Products</h1>
 
-              {filteredProducts.length === 0 ? (
+              {/* {filteredProducts.length === 0 ? (
                 <div className="no-products-message">
                   <h2 className="text-center mt-2">No Products Found</h2>
                 </div>
               ) : (
                 <div className="row divide-line no-gutters m-0">
+                  {currentProducts?.map((data, index) => (
+                    <div key={index} className="col-xl-3 col-sm-4 col-12 ">
+                      <div className="product-default inner-quickview inner-icon">
+                        <figure>
+                          <Link to={`/product/${data?.seo_slug}`}>
+                            <ImageWithLoader
+                              src={
+                                data?.image ||
+                                "/assets/imagess/no_image_product.jpeg"
+                              }
+                              width="217"
+                              height="217"
+                              alt="product"
+                            />
+                          </Link>
+                        </figure>
+                        <div className="product-details">
+                          <div className="category-wrap">
+                            <div className="category-list">
+                              <Link
+                                to={"/category"}
+                                className="product-category"
+                              >
+                                {data?.category}
+                              </Link>
+                            </div>
+                            {user?.logged_id && (
+                              <div
+                                title="Add to Wishlist"
+                                className="btn-icon-wish"
+                                onClick={() => handleToggle(data)}
+                                style={{
+                                  color: wishlistItems.some(
+                                    (item) => item.uid === data.uid
+                                  )
+                                    ? "#01abec"
+                                    : "gray",
+                                }}
+                              >
+                                {wishlistItems.some(
+                                  (item) => item.uid === data.uid
+                                ) ? (
+                                  <i className="fa-solid fa-heart"></i>
+                                ) : (
+                                  <i className="fa-regular fa-heart"></i>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                          <h3 className="product-title">
+                            <Link to={`/product/${data?.seo_slug}`}>
+                              {data.heading}
+                            </Link>
+                          </h3>
+
+                          <div className="price-box">
+                            <span className="product-price">
+                              Rs {data?.price}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )} */}
+
+              {isLoading ? (
+                <div className="row divide-line no-gutters m-0 mt-5">
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <div key={index} className="col-xl-3 col-sm-4 col-12">
+                      <div className="shimmer-effect"></div>
+                    </div>
+                  ))}
+                </div>
+              ) : filteredProducts.length === 0 ? (
+                <div className="no-products-message mt-5">
+                  <h2 className="text-center mt-2">No Products Found</h2>
+                </div>
+              ) : (
+                <div className="row divide-line no-gutters m-0 mt-5">
                   {currentProducts?.map((data, index) => (
                     <div key={index} className="col-xl-3 col-sm-4 col-12 ">
                       <div className="product-default inner-quickview inner-icon">

@@ -257,7 +257,7 @@ function HomeNavbar() {
               </ul>
             </nav>
 
-            <SidebarSearching />
+            {/* <SidebarSearching /> */}
           </div>
         </div>
       </div>
