@@ -63,15 +63,13 @@ function TopCategoryCarosuel() {
             Top Categories
           </h2>
 
-          <div className="top-flex-categories">
+          <div className="row top-flex-categories">
             {filteredCategory?.map((category, index) => (
-              <div key={index} className="category-item">
+              <div key={index} className="col-lg-2 category-item mb-3">
                 <Link to={`/category/${category?.slug}`}>
                   <div className="d-center">
                     <ImageWithLoader
                       src={category?.icon}
-                      width="217"
-                      height="217"
                       loaderHeight={"100px"}
                       alt="product"
                     />
