@@ -137,12 +137,18 @@ function BestSellerElectronics() {
                         {product?.heading}
                       </Link>
                     </h3>
-                    <div className="price-box">
+                    {/* <div className="price-box">
                       Rs.{" "}
                       <span className="product-price">
                         {product.price.toLocaleString("en-US")}
                       </span>
-                    </div>
+                    </div> */}
+                     <div className="price-box">
+                        Rs.{" "}
+                        <span className="product-price">
+                          {Number(product?.price || 0)?.toLocaleString("en-US")}
+                        </span>
+                      </div>
                   </div>
                 </div>
               </div>

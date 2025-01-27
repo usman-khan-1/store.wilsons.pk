@@ -148,7 +148,7 @@ function RecentProductsCarosuel() {
                       <div className="price-box">
                         Rs.{" "}
                         <span className="product-price">
-                          {product.price.toLocaleString("en-US")}
+                          {Number(product?.price || 0)?.toLocaleString("en-US")}
                         </span>
                       </div>
                     </div>

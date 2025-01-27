@@ -19,7 +19,6 @@ function TestimonialCarousel() {
   const [loading, setLoading] = useState(false);
   const [wishlistItems, setWishlistItems] = useState([]); // Local wishlist state
   const user = useSelector((state) => state.user.value);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,29 +35,28 @@ function TestimonialCarousel() {
 
     fetchData();
 
-      if (user?.logged_id) {
-        // Fetch the wishlist if the user is logged in
-        const fetchWishlist = async () => {
-          try {
-            const response = await makePostRequest("wishlist/list", {
-              customer_id: user?.logged_id,
-            });
-            setWishlistItems(response?.data);
-          } catch (error) {
-            console.error("Error fetching wishlist data:", error);
-          }
-        };
+    if (user?.logged_id) {
+      // Fetch the wishlist if the user is logged in
+      const fetchWishlist = async () => {
+        try {
+          const response = await makePostRequest("wishlist/list", {
+            customer_id: user?.logged_id,
+          });
+          setWishlistItems(response?.data);
+        } catch (error) {
+          console.error("Error fetching wishlist data:", error);
+        }
+      };
 
-        fetchWishlist();
-      } else {
-        // Clear wishlist if the user is not logged in
-        setWishlistItems([]);
-      }
+      fetchWishlist();
+    } else {
+      // Clear wishlist if the user is not logged in
+      setWishlistItems([]);
+    }
   }, [user?.logged_id]);
 
   const handleToggle = async (product) => {
     const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
-    
 
     try {
       if (isWishlisted) {
@@ -100,7 +98,7 @@ function TestimonialCarousel() {
                     <figure>
                       <Link to={`/product/${product.seo_slug}`}>
                         <ImageWithLoader
-                        loaderHeight={210}
+                          loaderHeight={210}
                           src={product.image}
                           width="217"
                           height="217"
@@ -147,7 +145,7 @@ function TestimonialCarousel() {
                       <div className="price-box">
                         Rs.{" "}
                         <span className="product-price">
-                          {product.price.toLocaleString("en-US")}
+                          {Number(product?.price || 0)?.toLocaleString("en-US")}
                         </span>
                       </div>
                     </div>

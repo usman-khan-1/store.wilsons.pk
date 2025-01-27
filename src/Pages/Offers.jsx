@@ -189,11 +189,17 @@ function Offers() {
                               <span className="tooltiptext tooltip-top"></span>
                             </div>
                           </div>
-                          <div className="price-box">
+                          {/* <div className="price-box">
                             <span className="product-price">
                               Rs {data?.price}
                             </span>
-                          </div>
+                          </div> */}
+                           <div className="price-box">
+                        Rs.{" "}
+                        <span className="product-price">
+                          {Number(data?.price || 0)?.toLocaleString("en-US")}
+                        </span>
+                      </div>
                         </div>
                       </div>
                     </div>

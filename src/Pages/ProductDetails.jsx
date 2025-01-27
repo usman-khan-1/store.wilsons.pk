@@ -181,7 +181,7 @@ function ProductDetails() {
 
                 <div className="price-box">
                   <span className="new-price">
-                    Rs. {productDetails?.details?.price}
+                    Rs. {Number(productDetails?.details?.price || "N/A")?.toLocaleString("en-US")}
                   </span>
                 </div>
 
