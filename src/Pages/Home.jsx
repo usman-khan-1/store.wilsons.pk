@@ -49,7 +49,7 @@ function Home() {
             >
               <figure>
                 <img
-                  src="/assets/imagess/category-1.jpg"
+                  src="/assets/imagess/category-1.png"
                   alt="banner"
                   width="700"
                   height="236"
