@@ -34,7 +34,7 @@ function Home() {
             >
               <figure>
                 <img
-                  src="/assets/imagess/category-2.jpg"
+                  src="/assets/imagess/category-2.jpeg"
                   alt="banner"
                   width="700"
                   height="236"
@@ -49,7 +49,7 @@ function Home() {
             >
               <figure>
                 <img
-                  src="/assets/imagess/category-1.png"
+                  src="/assets/imagess/category-1.jpeg"
                   alt="banner"
                   width="700"
                   height="236"
