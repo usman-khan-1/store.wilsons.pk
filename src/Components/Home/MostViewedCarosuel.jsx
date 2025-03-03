@@ -15,7 +15,7 @@ function TestimonialCarousel() {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 2 },
   };
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(false);
   const [wishlistItems, setWishlistItems] = useState([]); // Local wishlist state
   const user = useSelector((state) => state.user.value);
@@ -56,21 +56,23 @@ function TestimonialCarousel() {
   }, [user?.logged_id]);
 
   const handleToggle = async (product) => {
-    const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
+    const isWishlisted = wishlistItems?.some(
+      (item) => item?.uid === product?.uid
+    );
 
     try {
       if (isWishlisted) {
         await makePostRequest("wishlist/remove", {
           customer_id: user?.logged_id,
-          product_id: product.uid,
+          product_id: product?.uid,
         });
         setWishlistItems((prevItems) =>
-          prevItems.filter((item) => item.uid !== product.uid)
+          prevItems?.filter((item) => item?.uid !== product?.uid)
         );
       } else {
         await makePostRequest("wishlist/add", {
           customer_id: user?.logged_id,
-          product_id: product.uid,
+          product_id: product?.uid,
         });
         setWishlistItems((prevItems) => [...prevItems, product]);
       }
@@ -81,79 +83,92 @@ function TestimonialCarousel() {
 
   return (
     <div className="container">
-      <h2 className="section-title ls-n-10 pb-3 m-b-4">Most Viewed Products</h2>
-      <Carousel
-        autoPlay={true}
-        autoPlaySpeed={3000}
-        infinite={true}
-        responsive={responsive}
-        className="TestimonialCarousel "
-      >
-        {loading
-          ? [1, 2, 3, 4, 5, 6].map((_, index) => <ProductShimmer key={index} />)
-          : products?.map((product, index) => (
-              <div key={index}>
-                <div className="single-testimonial-item ca">
-                  <div className="product-default inner-quickview inner-icon">
-                    <figure>
-                      <Link to={`/product/${product.seo_slug}`}>
-                        <ImageWithLoader
-                          loaderHeight={210}
-                          src={product.image}
-                          width="217"
-                          height="217"
-                          alt="product"
-                        />
-                      </Link>
-                    </figure>
-                    <div className="product-details">
-                      <div className="category-wrap">
-                        <div className="category-list">
-                          <Link to={"/category"} className="product-category">
-                            {product.category}
+      {products?.length > 0 && (
+        <>
+          <h2 className="section-title ls-n-10 pb-3 m-b-4">
+            Most Viewed Products
+          </h2>
+          <Carousel
+            autoPlay={true}
+            autoPlaySpeed={3000}
+            infinite={true}
+            responsive={responsive}
+            className="TestimonialCarousel "
+          >
+            {loading
+              ? [1, 2, 3, 4, 5, 6]?.map((_, index) => (
+                  <ProductShimmer key={index} />
+                ))
+              : products?.map((product, index) => (
+                  <div key={index}>
+                    <div className="single-testimonial-item ca">
+                      <div className="product-default inner-quickview inner-icon">
+                        <figure>
+                          <Link to={`/product/${product?.seo_slug}`}>
+                            <ImageWithLoader
+                              loaderHeight={210}
+                              src={product?.image}
+                              width="217"
+                              height="217"
+                              alt="product"
+                            />
                           </Link>
-                        </div>
-                        {user?.logged_id && (
-                          <div
-                            title="Add to Wishlist"
-                            className="btn-icon-wish"
-                            onClick={() => handleToggle(product)}
-                            style={{
-                              color: wishlistItems.some(
-                                (item) => item.uid === product.uid
-                              )
-                                ? "#01abec"
-                                : "gray",
-                            }}
-                          >
-                            {wishlistItems.some(
-                              (item) => item.uid === product.uid
-                            ) ? (
-                              <i className="fa-solid fa-heart"></i>
-                            ) : (
-                              <i className="fa-regular fa-heart"></i>
+                        </figure>
+                        <div className="product-details">
+                          <div className="category-wrap">
+                            <div className="category-list">
+                              <Link
+                                to={"/category"}
+                                className="product-category"
+                              >
+                                {product?.category}
+                              </Link>
+                            </div>
+                            {user?.logged_id && (
+                              <div
+                                title="Add to Wishlist"
+                                className="btn-icon-wish"
+                                onClick={() => handleToggle(product)}
+                                style={{
+                                  color: wishlistItems.some(
+                                    (item) => item.uid === product.uid
+                                  )
+                                    ? "#01abec"
+                                    : "gray",
+                                }}
+                              >
+                                {wishlistItems?.some(
+                                  (item) => item.uid === product.uid
+                                ) ? (
+                                  <i className="fa-solid fa-heart"></i>
+                                ) : (
+                                  <i className="fa-regular fa-heart"></i>
+                                )}
+                              </div>
                             )}
                           </div>
-                        )}
-                      </div>
-                      <h3 className="product-title">
-                        <Link to={`/product/${product.seo_slug}`}>
-                          {product.heading}
-                        </Link>
-                      </h3>
+                          <h3 className="product-title">
+                            <Link to={`/product/${product?.seo_slug}`}>
+                              {product?.heading}
+                            </Link>
+                          </h3>
 
-                      <div className="price-box">
-                        Rs.{" "}
-                        <span className="product-price">
-                          {Number(product?.price || 0)?.toLocaleString("en-US")}
-                        </span>
+                          <div className="price-box">
+                            Rs.{" "}
+                            <span className="product-price">
+                              {Number(product?.price || 0)?.toLocaleString(
+                                "en-US"
+                              )}
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-      </Carousel>
+                ))}
+          </Carousel>
+        </>
+      )}
     </div>
   );
 }

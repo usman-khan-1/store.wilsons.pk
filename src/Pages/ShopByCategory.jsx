@@ -70,7 +70,7 @@ function ShopByCategory() {
 
   useEffect(() => {
     if (categoryDetail?.products) {
-      const filtered = categoryDetail.products.filter(
+      const filtered = categoryDetail?.products?.filter(
         (product) => product.price >= value[0] && product.price <= value[1]
       );
       setFilteredProducts(filtered);
@@ -91,7 +91,7 @@ function ShopByCategory() {
     offset,
     offset + productsPerPage
   );
-  const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
+  const pageCount = Math.ceil(filteredProducts?.length / productsPerPage);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -348,7 +348,7 @@ function ShopByCategory() {
 
               <div className="row divide-line no-gutters m-0">
                 {loading
-                  ? [1, 2, 3, 4].map((data, index) => (
+                  ? [1, 2, 3, 4]?.map((data, index) => (
                       <div key={index} className="col-xl-3 col-sm-4 col-12">
                         <div className="shimmer-effect"></div>
                       </div>

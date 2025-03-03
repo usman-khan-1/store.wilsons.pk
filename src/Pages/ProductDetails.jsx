@@ -32,7 +32,6 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
 
-
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -53,7 +52,7 @@ function ProductDetails() {
       const isProductInCart = cartItems?.find(
         (item) => item?.uid === productDetails.details.uid
       );
-  
+
       if (isProductInCart) {
         // Update the quantity if the product is already in the cart
         const updatedQuantity = isProductInCart.quantity + quantity;
@@ -63,18 +62,23 @@ function ProductDetails() {
             quantity: updatedQuantity,
           })
         );
-        setMessage({ text: "Product quantity updated in cart!", type: "success" });
+        setMessage({
+          text: "Product quantity updated in cart!",
+          type: "success",
+        });
       } else {
         // Add the product as a new item if it's not in the cart
         dispatch(addToCart({ product: productDetails.details, quantity }));
-        setMessage({ text: "Product added to cart successfully", type: "success" });
+        setMessage({
+          text: "Product added to cart successfully",
+          type: "success",
+        });
       }
-  
+
       // Clear the message after 2 seconds
       setTimeout(() => setMessage(""), 2000);
     }
   };
-  
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -174,15 +178,26 @@ function ProductDetails() {
 
               <div className="col-lg-7 col-md-6 product-single-details">
                 <h1 className="product-title">
-                  {productDetails?.details?.heading}
+                  {productDetails?.details?.heading ? (
+                    productDetails.details.heading
+                  ) : (
+                    <span className="shimmer-box"></span>
+                  )}
                 </h1>
 
                 <hr className="short-divider" />
 
                 <div className="price-box">
-                  <span className="new-price">
-                    Rs. {Number(productDetails?.details?.price || "N/A")?.toLocaleString("en-US")}
-                  </span>
+                  {productDetails?.details?.price ? (
+                    <span className="new-price">
+                      Rs.{" "}
+                      {Number(productDetails?.details?.price)?.toLocaleString(
+                        "en-US"
+                      )}
+                    </span>
+                  ) : (
+                    <span className="shimmer shimmer-box"></span> // Added a class with dimensions
+                  )}
                 </div>
 
                 <div className="product-desc">
@@ -247,8 +262,11 @@ function ProductDetails() {
 
                 {message && (
                   <p
-                    className={` ${message.type === "success" ? "text-success" : "text-danger"
-                      }`}
+                    className={` ${
+                      message.type === "success"
+                        ? "text-success"
+                        : "text-danger"
+                    }`}
                   >
                     {message.text}
                   </p>

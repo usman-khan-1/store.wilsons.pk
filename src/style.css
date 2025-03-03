@@ -18915,3 +18915,24 @@ div.shimmer {
     background-position: 200% 0;
   }
 }
+
+
+
+.shimmer-box {
+  display: inline-block;
+  width: 70%; /* Adjust width */
+  height: 20px; /* Adjust height */
+  background: linear-gradient(90deg, #d1d1d1 25%, #a0a0a0 50%, #d1d1d1 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
