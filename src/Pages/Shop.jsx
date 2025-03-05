@@ -277,11 +277,21 @@ function Shop() {
                             </Link>
                           </h3>
 
+
+                          <div className="price-box">
+                            Rs.{" "}
+                            <span className="product-price">
+                              {Number(data?.price || 0)?.toLocaleString(
+                                "en-US"
+                              )}
+                            </span>
+                          </div>
+{/* 
                           <div className="price-box">
                             <span className="product-price">
                               Rs {data?.price}
                             </span>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>

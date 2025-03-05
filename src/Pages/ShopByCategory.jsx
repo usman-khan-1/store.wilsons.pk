@@ -408,8 +408,11 @@ function ShopByCategory() {
                               </Link>
                             </h3>
                             <div className="price-box">
+                              Rs.{" "}
                               <span className="product-price">
-                                Rs {data?.price.toLocaleString()}
+                                {Number(data?.price || 0)?.toLocaleString(
+                                  "en-US"
+                                )}
                               </span>
                             </div>
                           </div>
