@@ -200,21 +200,43 @@ function ProductDetails() {
                   )}
                 </div>
 
-                <div className="product-desc">
-                  <p>{productDetails?.details?.short_detail}</p>
-                </div>
+                {productDetails?.details?.short_detail &&
+                  productDetails?.details?.short_detail !== "0" && (
+                    <ul className="single-info-list">
+                      <li>{productDetails?.details?.short_detail}</li>
+                    </ul>
+                    // <div className="product-desc">
+                    //   <p>{productDetails?.details?.short_detail}</p>
+                    // </div>
+                  )}
 
                 <ul className="single-info-list">
                   <li>
-                    SKU: <strong>654613612</strong>
+                    <strong>SKU : </strong> {productDetails?.details?.sku}
                   </li>
+                  {productDetails?.details?.generic_name &&
+                    productDetails?.details?.generic_name !== "0" && (
+                      <li>
+                        <strong>Formula : </strong>
+                        {productDetails?.details?.generic_name}
+                      </li>
+                    )}
+
+                  {productDetails?.details?.rx &&
+                    productDetails?.details?.rx === "0" && (
+                      <li className="d-flex align-items-center">
+                        <img
+                          src="/assets/imagess/rx-image.webp"
+                          style={{ width: "40px", marginRight: "10px" }}
+                          alt=""
+                        />
+                        <strong>Prescription Required</strong>
+                      </li>
+                    )}
+
                   <li>
-                    Formula:{" "}
-                    <strong>{productDetails?.details?.generic_name}</strong>
-                  </li>
-                  <li>
-                    CATEGORY:{" "}
-                    <strong>{productDetails?.details?.category}</strong>
+                    <strong>CATEGORY : </strong>
+                    {productDetails?.details?.category}
                   </li>
                 </ul>
                 <div className="product-action">

@@ -153,6 +153,16 @@ function CartSidebar({ setOpenCart }) {
                 .toLocaleString()}
             </span>
           </div>
+          {cartItems?.some((item) => item?.rx !== "0") && (
+            <li className="d-flex align-items-center">
+              <img
+                src="/assets/imagess/rx-image.webp"
+                style={{ width: "40px", marginRight: "10px" }}
+                alt="RX Prescription Required"
+              />
+              <p className="rx-description">RX Prescription Required</p>
+            </li>
+          )}
 
           <div className="dropdown-cart-action">
             <Link to={"/cart"} className="btn btn-gray btn-block view-cart">

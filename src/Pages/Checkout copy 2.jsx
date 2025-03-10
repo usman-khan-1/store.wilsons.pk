@@ -3,6 +3,7 @@ import Layout from "../Components/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { InputMask } from "primereact/inputmask";
+
 import { makePostRequest } from "../Apis";
 import { clearCart } from "../Store/CartSlice";
 
@@ -10,7 +11,6 @@ function Checkout() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -18,10 +18,6 @@ function Checkout() {
   const [message, setMessage] = useState("");
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
-  const [rxPrescription, setRxPrescription] = useState("");
-  const [validationErrors, setValidationErrors] = useState({});
-
-  const hasRxItems = cartItems?.some((item) => item?.rx === "0");
 
   const calculateSubtotal = () => {
     return cartItems.reduce(
@@ -52,7 +48,7 @@ function Checkout() {
   });
 
   const [paymentDetails, setPaymentDetails] = useState({
-    payment_mode: "cod", // Default to Cash on Delivery
+    payment_mode: "",
     card_number: "",
     card_name: "",
     card_cvv: "",
@@ -73,11 +69,6 @@ function Checkout() {
       ...formData,
       [name]: value,
     });
-    // Clear validation error for the field being updated
-    setValidationErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: "",
-    }));
   };
 
   const handlePaymentInputChange = (e) => {
@@ -106,76 +97,34 @@ function Checkout() {
     }));
   };
 
-  const handleRxPrescriptionChange = (e) => {
-    setRxPrescription(e.target.value);
-    // Clear validation error for RX prescription
-    setValidationErrors((prevErrors) => ({
-      ...prevErrors,
-      rxPrescription: "",
-    }));
-  };
-
-  const validateForm = () => {
-    const errors = {};
-
-    if (!formData.full_name) {
-      errors.full_name = "Please enter your full name";
-    }
-    if (!formData.phone_no) {
-      errors.phone_no = "Please enter your phone number";
-    }
-    if (!formData.address) {
-      errors.address = "Please enter your address";
-    }
-    if (!formData.city) {
-      errors.city = "Please enter your city";
-    }
-    if (!formData.zip_code) {
-      errors.zip_code = "Please enter your zip code";
-    }
-    if (!formData.email) {
-      errors.email = "Please enter your email";
-    }
-    if (hasRxItems && !rxPrescription) {
-      errors.rxPrescription = "Please enter your prescription";
-    }
-    if (formData.create_account && !formData.password) {
-      errors.password = "Please create a password for your account";
-    }
-    if (!paymentDetails.payment_mode) {
-      errors.payment_mode = "Please select a payment method";
-    }
-
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0; // Return true if no errors
-  };
-
   const handlePlaceOrder = async () => {
-    if (!validateForm()) {
-      return;
-    }
-
+    // if (!validateForm()) {
+    //   return;
+    // }
     if (cartItems?.length === 0) {
       setMessage({ text: "Your Cart Is Empty", type: "error" });
+      console.log("hellooo");
       return;
     }
 
     try {
-      const orderData = {
+      const orderResponse = await makePostRequest("orders/add", {
         basic_info: formData,
         product_detail: productDetail,
         payment: paymentDetails,
-      };
+      });
+      console.log("orderResponse", orderResponse);
 
-      if (hasRxItems) {
-        orderData.rx_prescription = rxPrescription; 
-      }
-
-      const orderResponse = await makePostRequest("orders/add", orderData);
+      // Set the order response state and wait for it to be updated
 
       navigate("/order-success", { state: orderResponse.data });
       dispatch(clearCart());
+
+      // Use the callback function of the setState to navigate after the state has been updated
+
+      // Handle success (e.g., show a success message, redirect, etc.)
     } catch (error) {
+      // Handle error (e.g., show an error message)
       console.error("Order placement failed:", error);
     } finally {
       setTimeout(() => setMessage(""), 2000);
@@ -189,12 +138,13 @@ function Checkout() {
           phone: formData.phone_no,
           password: formData.password,
         });
+        // Handle success (e.g., show a success message, redirect, etc.)
       } catch (error) {
+        // Handle error (e.g., show an error message)
         console.error("Account creation failed:", error);
       }
     }
   };
-
   const handleAddressSelect = (e) => {
     const selectedUid = e.target.value;
     const address = addresses.find((addr) => addr.uid === selectedUid);
@@ -249,36 +199,9 @@ function Checkout() {
             <div className="col-lg-7">
               <ul className="checkout-steps">
                 <li>
-                  <form id="checkout-form">
-                    {hasRxItems && (
-                      <div className="row">
-                        <div className="col-12">
-                          <h2 className="step-title mb-1 mt-0">Please upload prescription</h2>
-                          <div className="form-group">
-                            <label>
-                              RX Prescription
-                              <abbr className="required" title="required">
-                                *
-                              </abbr>
-                            </label>
-                            <textarea
-                              rows="4"
-                              className="form-control"
-                              value={rxPrescription}
-                              onChange={handleRxPrescriptionChange}
-                              required
-                            ></textarea>
-                            {validationErrors.rxPrescription && (
-                              <p className="text-danger">
-                                {validationErrors.rxPrescription}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                  <h2 className="step-title">Billing details</h2>
 
-                    <h2 className="step-title my-2">Billing Details</h2>
+                  <form id="checkout-form">
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
@@ -296,11 +219,6 @@ function Checkout() {
                             onChange={handleInputChange}
                             required
                           />
-                          {validationErrors.full_name && (
-                            <p className="text-danger">
-                              {validationErrors.full_name}
-                            </p>
-                          )}
                         </div>
                       </div>
 
@@ -321,11 +239,6 @@ function Checkout() {
                             onChange={handleInputChange}
                             required
                           />
-                          {validationErrors.phone_no && (
-                            <p className="text-danger">
-                              {validationErrors.phone_no}
-                            </p>
-                          )}
                         </div>
                       </div>
                     </div>
@@ -362,11 +275,6 @@ function Checkout() {
                           placeholder="House number and street name"
                           required
                         />
-                        {validationErrors.address && (
-                          <p className="text-danger">
-                            {validationErrors.address}
-                          </p>
-                        )}
                       </div>
                     )}
 
@@ -385,9 +293,6 @@ function Checkout() {
                         onChange={handleInputChange}
                         required
                       />
-                      {validationErrors.city && (
-                        <p className="text-danger">{validationErrors.city}</p>
-                      )}
                     </div>
 
                     <div className="form-group">
@@ -405,11 +310,6 @@ function Checkout() {
                         onChange={handleInputChange}
                         required
                       />
-                      {validationErrors.zip_code && (
-                        <p className="text-danger">
-                          {validationErrors.zip_code}
-                        </p>
-                      )}
                     </div>
 
                     <div className="form-group">
@@ -427,9 +327,6 @@ function Checkout() {
                         onChange={handleInputChange}
                         required
                       />
-                      {validationErrors.email && (
-                        <p className="text-danger">{validationErrors.email}</p>
-                      )}
                     </div>
 
                     <div className="form-group mb-1">
@@ -467,11 +364,6 @@ function Checkout() {
                           onChange={handleInputChange}
                           required={formData.create_account}
                         />
-                        {validationErrors.password && (
-                          <p className="text-danger">
-                            {validationErrors.password}
-                          </p>
-                        )}
                       </div>
                     )}
 
@@ -499,7 +391,7 @@ function Checkout() {
                 <table className="table table-mini-cart">
                   <thead>
                     <tr>
-                      <th colSpan="1">Product</th>
+                      <th colSpan="2">Product</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -571,11 +463,136 @@ function Checkout() {
                             </label>
                           </div>
                         </div>
-                        {validationErrors.payment_mode && (
-                          <p className="text-danger">
-                            {validationErrors.payment_mode}
-                          </p>
-                        )}
+
+                        {/* <div className="form-group form-group-custom-control mb-0">
+                          <div
+                            className="custom-control custom-radio d-flex mb-0"
+                            data-toggle="collapse"
+                            href="#collapseExample"
+                            role="button"
+                            aria-expanded={paymentDetails.payment_mode === "cc"}
+                            aria-controls="collapseExample"
+                          >
+                            <input
+                              type="radio"
+                              name="payment_mode"
+                              className="custom-control-input"
+                              id="cc"
+                              checked={paymentDetails.payment_mode === "cc"}
+                              onChange={() => handlePaymentModeChange("cc")}
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="cc"
+                            >
+                              Credit Card
+                            </label>
+                          </div>
+
+                          <div
+                            className={` ${
+                              paymentDetails.payment_mode === "cc"
+                                ? ""
+                                : "d-none"
+                            }`}
+                            id="collapseExample"
+                          >
+                            <form className="m-0 mt-3">
+                              <div className="form-group">
+                                <label>
+                                  Name on card
+                                  <abbr className="required" title="required">
+                                    *
+                                  </abbr>
+                                </label>
+                                <input
+                                  type="tel"
+                                  className="form-control"
+                                  name="card_name"
+                                  value={paymentDetails.card_name}
+                                  onChange={handlePaymentInputChange}
+                                  required={
+                                    paymentDetails.payment_mode === "cc"
+                                  }
+                                />
+                              </div>
+                              <div className="form-group">
+                                <label>
+                                  Card number
+                                  <abbr className="required" title="required">
+                                    *
+                                  </abbr>
+                                </label>
+                                <InputMask
+                                  mask="9999 9999 9999 9999 "
+                                  type="tel"
+                                  className="form-control"
+                                  name="card_number"
+                                  value={paymentDetails.card_number}
+                                  onChange={handlePaymentInputChange}
+                                  required={
+                                    paymentDetails.payment_mode === "cc"
+                                  }
+                                />
+                              </div>
+
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <div className="form-group">
+                                    <label>
+                                      Expiration Date
+                                      <abbr
+                                        className="required"
+                                        title="required"
+                                      >
+                                        *
+                                      </abbr>
+                                    </label>
+                                    <InputMask
+                                      mask="99/99"
+                                      slotChar="MM/YY"
+                                      type="tel"
+                                      className="form-control"
+                                      name="card_expiry"
+                                      value={paymentDetails.card_expiry}
+                                      onChange={handlePaymentInputChange}
+                                      required={
+                                        paymentDetails.payment_mode === "cc"
+                                      }
+                                    />
+                                  </div>
+                                </div>
+
+                                <div className="col-md-6">
+                                  <div className="form-group">
+                                    <label>
+                                      CVV
+                                      <abbr
+                                        className="required"
+                                        title="required"
+                                      >
+                                        *
+                                      </abbr>
+                                    </label>
+                                    <InputMask
+                                      type="tel"
+                                      mask="9999"
+                                      // placeholder="99/99/9999"
+                                      // slotChar="mm/dd/yyyy"
+                                      className="form-control"
+                                      name="card_cvv"
+                                      value={paymentDetails.card_cvv}
+                                      onChange={handlePaymentInputChange}
+                                      required={
+                                        paymentDetails.payment_mode === "cc"
+                                      }
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div> */}
                       </td>
                     </tr>
 
