@@ -66,11 +66,16 @@ function CartSidebar({ setOpenCart }) {
                 <div key={index} className="cart-product">
                   <div key={data.uid} className="product">
                     <div className="product-details">
-                      <h4 className="product-title">
+                      <h4 className="product-title mb-0">
                         <Link to={`/product/${data.seo_slug}`}>
                           {data.heading}
                         </Link>
                       </h4>
+                      {data?.rx !== "0" && (
+                        <p className="rx-prescription-label">
+                          prescription required
+                        </p>
+                      )}
 
                       <span className="cart-product-info">
                         <span className="cart-product-qty">
@@ -160,7 +165,7 @@ function CartSidebar({ setOpenCart }) {
                 style={{ width: "40px", marginRight: "10px" }}
                 alt="RX Prescription Required"
               />
-              <p className="rx-description">RX Prescription Required</p>
+              <p className="rx-description">Prescription Required</p>
             </li>
           )}
 

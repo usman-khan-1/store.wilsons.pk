@@ -223,7 +223,7 @@ function ProductDetails() {
                     )}
 
                   {productDetails?.details?.rx &&
-                    productDetails?.details?.rx === "0" && (
+                    productDetails?.details?.rx !== "0" && (
                       <li className="d-flex align-items-center">
                         <img
                           src="/assets/imagess/rx-image.webp"

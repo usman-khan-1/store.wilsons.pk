@@ -12,7 +12,7 @@ function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
-  console.log("cartItems",cartItems)
+  console.log("cartItems", cartItems);
 
   const calculateSubtotal = () => {
     return cartItems.reduce(
@@ -91,8 +91,16 @@ function Cart() {
                                 {data?.heading}
                               </Link>
                             </h5>
+                            {data?.rx !== "0" && (
+                              <p className="rx-prescription-label">
+                                prescription required
+                              </p>
+                            )}
                           </td>
-                          <td>Rs. {data?.price}</td>
+                          <td>
+                            Rs.
+                            {Number(data?.price || 0)?.toLocaleString("en-US")}
+                          </td>
                           <td>
                             <div className="product-single-qty">
                               <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
@@ -125,7 +133,10 @@ function Cart() {
                           </td>
                           <td className="text-right">
                             <span className="subtotal-price">
-                              Rs. {(data.price * data.quantity).toFixed(2)}
+                              Rs.{" "}
+                              {(data.price * data.quantity)
+                                ?.toFixed(2)
+                                ?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </span>
                           </td>
                         </tr>
@@ -135,12 +146,14 @@ function Cart() {
                       <tr>
                         <td colspan="5" class="clearfix px-0">
                           <div class="float-right">
-                            
-                            <div
-                              type="submit"
-                              class="cart-total-amount"
-                            >
-                              Total: <span>Rs. {(subtotal).toFixed(2)}</span>
+                            <div type="submit" class="cart-total-amount">
+                              Total:{" "}
+                              <span>
+                                Rs.{" "}
+                                {subtotal
+                                  ?.toFixed(2)
+                                  ?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                              </span>
                             </div>
                           </div>
                         </td>

@@ -18945,3 +18945,10 @@ div.shimmer {
   font-weight: bold !important;
   font-size: 12px !important;
 }
+.rx-prescription-label {
+  font-weight: 400;
+  color: red;
+  font-size: 11px;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}

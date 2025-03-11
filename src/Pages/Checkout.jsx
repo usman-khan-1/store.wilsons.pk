@@ -18,10 +18,14 @@ function Checkout() {
   const [message, setMessage] = useState("");
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
-  const [rxPrescription, setRxPrescription] = useState("");
+  const [rxPrescription, setRxPrescription] = useState({
+    file: null,
+    base64: "",
+    extension: "",
+  });
   const [validationErrors, setValidationErrors] = useState({});
 
-  const hasRxItems = cartItems?.some((item) => item?.rx === "0");
+  const hasRxItems = cartItems?.some((item) => item?.rx !== "0");
 
   const calculateSubtotal = () => {
     return cartItems.reduce(
@@ -106,8 +110,28 @@ function Checkout() {
     }));
   };
 
+  // const handleRxPrescriptionChange = (e) => {
+  //   setRxPrescription(e.target.value);
+  //   setValidationErrors((prevErrors) => ({
+  //     ...prevErrors,
+  //     rxPrescription: "",
+  //   }));
+  // };
   const handleRxPrescriptionChange = (e) => {
-    setRxPrescription(e.target.value);
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result.split(",")[1]; // Extract base64 string
+        setRxPrescription({
+          file,
+          base64: base64String,
+          extension: file.name.split(".").pop(), // Get file extension
+        });
+      };
+      reader.readAsDataURL(file); // Convert file to base64
+    }
+
     // Clear validation error for RX prescription
     setValidationErrors((prevErrors) => ({
       ...prevErrors,
@@ -137,7 +161,7 @@ function Checkout() {
       errors.email = "Please enter your email";
     }
     if (hasRxItems && !rxPrescription) {
-      errors.rxPrescription = "Please enter your prescription";
+      errors.rxPrescription = "Please upload your prescription";
     }
     if (formData.create_account && !formData.password) {
       errors.password = "Please create a password for your account";
@@ -167,8 +191,11 @@ function Checkout() {
         payment: paymentDetails,
       };
 
-      if (hasRxItems) {
-        orderData.rx_prescription = rxPrescription; 
+      if (hasRxItems && rxPrescription.base64) {
+        orderData.rx_prescription = {
+          file: rxPrescription.base64, // Send base64 string
+          extension: rxPrescription.extension, // Send file extension
+        };
       }
 
       const orderResponse = await makePostRequest("orders/add", orderData);
@@ -194,7 +221,6 @@ function Checkout() {
       }
     }
   };
-
   const handleAddressSelect = (e) => {
     const selectedUid = e.target.value;
     const address = addresses.find((addr) => addr.uid === selectedUid);
@@ -250,10 +276,10 @@ function Checkout() {
               <ul className="checkout-steps">
                 <li>
                   <form id="checkout-form">
-                    {hasRxItems && (
+                    {/* {hasRxItems && (
                       <div className="row">
                         <div className="col-12">
-                          <h2 className="step-title mb-1 mt-0">Please upload prescription</h2>
+                          <h2 className="step-title mb-1 mt-0">Please Upload Prescription</h2>
                           <div className="form-group">
                             <label>
                               RX Prescription
@@ -268,6 +294,34 @@ function Checkout() {
                               onChange={handleRxPrescriptionChange}
                               required
                             ></textarea>
+                            {validationErrors.rxPrescription && (
+                              <p className="text-danger">
+                                {validationErrors.rxPrescription}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )} */}
+                    {hasRxItems && (
+                      <div className="row">
+                        <div className="col-12">
+                          <h2 className="step-title mb-1 mt-0">
+                            Please Upload Prescription
+                          </h2>
+                          <div className="form-group">
+                            {/* <label>
+          RX Prescription
+          <abbr className="required" title="required">
+            *
+          </abbr>
+        </label> */}
+                            <input
+                              type="file"
+                              className="form-control pt-3"
+                              onChange={handleRxPrescriptionChange}
+                              required
+                            />
                             {validationErrors.rxPrescription && (
                               <p className="text-danger">
                                 {validationErrors.rxPrescription}
@@ -513,6 +567,11 @@ function Checkout() {
                               {data?.quantity}
                             </span>
                           </h3>
+                          {data?.rx !== "0" && (
+                              <p className="rx-prescription-label">
+                                prescription required
+                              </p>
+                            )}
                         </td>
 
                         <td className="price-col">

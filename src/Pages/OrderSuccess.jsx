@@ -17,7 +17,7 @@ const { order_id } = location.state || {};
         <p>Your Order ID  </p>
         <h1 className="text-primary">{order_id}</h1>
         <p>Please Use Your Account To Get Update On Your Product</p>
-        <Button href="/category">Continue Shopping</Button>
+        <Button href="/">Continue Shopping</Button>
       </div>
     </Layout>
   );
