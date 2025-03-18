@@ -409,7 +409,11 @@ function ProductDetails() {
                 aria-labelledby="product-tab-tags"
               >
                 <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8bUqIUkfyesCXuAFw-MFLebEI-5to1ouplw&s"
+                  src={
+                    productDetails?.details?.DesImage ||
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8bUqIUkfyesCXuAFw-MFLebEI-5to1ouplw&s"
+                  }
+                  style={{width:"250px",height:"100%"}}
                   alt=""
                 />
               </div>
