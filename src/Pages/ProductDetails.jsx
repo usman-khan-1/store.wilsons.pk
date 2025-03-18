@@ -11,6 +11,7 @@ import {
 } from "react-share";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Store/CartSlice";
+import ReactImageMagnify from 'react-image-magnify';
 
 import toast from "react-hot-toast";
 
@@ -408,14 +409,38 @@ function ProductDetails() {
                 role="tabpanel"
                 aria-labelledby="product-tab-tags"
               >
-                <img
-                  src={
-                    productDetails?.details?.DesImage ||
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8bUqIUkfyesCXuAFw-MFLebEI-5to1ouplw&s"
-                  }
-                  style={{width:"250px",height:"100%"}}
-                  alt=""
+                {productDetails?.details?.DesImage ? (
+                  <ReactImageMagnify
+                  {...{
+                    smallImage: {
+                      alt: productDetails?.details?.heading,
+                      width: 400,
+                      height: 300,
+                      src: productDetails?.details?.DesImage,
+                    },
+                    largeImage: {
+                      src: productDetails?.details?.DesImage,
+                      width: 1500,
+                      height: 800,
+                    },
+                    enlargedImageContainerStyle: {
+                      zIndex: 9,
+                      width: "200%",
+                      height: "100%",
+                    },
+                    enlargedImageContainerDimensions: {
+                      width: "200%",
+                      height: "200%",
+                    },
+                  }}
                 />
+                ) : (
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8bUqIUkfyesCXuAFw-MFLebEI-5to1ouplw&s"
+                    style={{ width: "250px", height: "100%" }}
+                    alt="Placeholder"
+                  />
+                )}
               </div>
             </div>
           </div>
