@@ -1,8 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
+import { makePostRequest } from "../Apis";
 
 function CompanyProfile() {
+  const [companyProfileData, setCompanyProfileData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await makePostRequest("cms/pages", {
+          slug: "company-profile",
+        });
+        setCompanyProfileData(response?.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -17,7 +39,16 @@ function CompanyProfile() {
           }}
         >
           <div className="container">
-            <h1>Company Profile</h1>
+            <h1>
+              {loading ? (
+                <div
+                  className="shimmer-heading"
+                  style={{ width: "200px", marginLeft: "10px" }}
+                ></div>
+              ) : (
+                companyProfileData?.Title
+              )}
+            </h1>
           </div>
         </div>
 
@@ -30,42 +61,40 @@ function CompanyProfile() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-              Company Profile
+                {loading ? (
+                  <div
+                    className="shimmer-heading"
+                    style={{ width: "200px", marginLeft: "10px" }}
+                  ></div>
+                ) : (
+                  companyProfileData?.Title
+                )}
               </li>
             </ol>
           </div>
         </nav>
 
-        <div className="about-section">
-          <div className="container">
-            <h2 className="subtitle">About Us</h2>
-            <p>
-              Wilson's Healthcare is a privately owned Neutraceutical company
-              where science and nature are integrated to provide science based
-              health care products with well researched formulations around the
-              globe.
-            </p>
-            <p>
-              Centered in Islamabad, Pakistan, Wilson's Healthcare sources the
-              finest quality raw materials from the world’s renowned sources.
-              Wilson's Healthcare is embodied by highly qualified Research &
-              Development Teams who are dedicated to carefully research and
-              develop the products with highest level of Purity & Efficacy. The
-              teams are committed to ensure that quality is met at every stage
-              of production.
-            </p>
-            <h2 className="subtitle">Vision</h2>
-            <p>
-              To be recognized as one of the leading Neutraceutical Companies
-              that provides effective science based nutritional supplements to
-              improve the quality of life.
-            </p>
-            <h2 className="subtitle">Mission Statement</h2>
-            <p>
-              To enhance the standard of life by providing premium healthcare
-              products through state of the art manufacturing and a strong
-              network of marketing.
-            </p>
+        <div className="about-section py-0">
+          <div>
+            {loading ? (
+              <div className="container">
+                <div className="shimmer-description mb-1"></div>
+                <div className="shimmer-description mb-1"></div>
+                <div className="shimmer-description mb-1"></div>
+                <div className="shimmer-description mb-1"></div>
+                <div className="shimmer-description mb-1"></div>
+              </div>
+            ) : companyProfileData?.details ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: companyProfileData?.details,
+                }}
+              />
+            ) : (
+              <div className="container py-5">
+                <h5>Detail Not Found</h5>
+              </div>
+            )}
           </div>
         </div>
       </main>

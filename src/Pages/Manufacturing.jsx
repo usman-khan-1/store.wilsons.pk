@@ -1,11 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Link } from "react-router-dom";
+import { makePostRequest } from "../Apis";
 
-function CompanyProfile() {
+function Manufacturing() {
+  const [manufacturingData, setManufacturingData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await makePostRequest("cms/pages", {
+          slug: "manufacturing",
+        });
+        setManufacturingData(response?.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
+  }, []);
   return (
     <Layout>
       <main className="main about">
@@ -17,7 +39,16 @@ function CompanyProfile() {
           }}
         >
           <div className="container">
-            <h1>Manufacturing</h1>
+            <h1>
+              {loading ? (
+                <div
+                  className="shimmer-heading"
+                  style={{ width: "200px", marginLeft: "10px" }}
+                ></div>
+              ) : (
+                manufacturingData?.Title
+              )}
+            </h1>
           </div>
         </div>
 
@@ -30,40 +61,40 @@ function CompanyProfile() {
                 </Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Manufacturing
+                {loading ? (
+                  <div
+                    className="shimmer-heading"
+                    style={{ width: "200px", marginLeft: "10px" }}
+                  ></div>
+                ) : (
+                  manufacturingData?.Title
+                )}
               </li>
             </ol>
           </div>
         </nav>
 
-        <div className="about-section">
-          <div className="container">
-            <h2 className="subtitle">Production Facility:</h2>
-            <p>
-              Wilson's Healthcare is one of the pioneer’s in the Manufacturing
-              of Neutraceutical products in Pakistan. It has an absolute state
-              of the art manufacturing facility comprising:
-            </p>
-            <ul>
-              <li>Soft gelatin manufacturing</li>
-              <li>High Speed Sachet line</li>
-              <li>Up to date Tablet, Capsule & Liquid Section</li>
-              <li>Injection Blow molding (IBM)</li>
-              <li>Automatic Filling & Packaging line</li>
-            </ul>
-            <h2 className="subtitle">Quality Assurance:</h2>
-            <p>
-              At Wilson's Healthcare, it is mandatory for all the products to
-              undergo the process of ‘Scientific Validation’, which involves
-              screening of all the steps that initiates from dispensing of raw
-              materials to the finished goods. Scientific validation involves
-              several extensive tests to confirm potency of the products, using
-              state of the art equipment such as High Performance Liquid
-              Chromatography (HPLC), Infra Red Spectroscopy (IR), etc. The
-              process further involves rigorous analysis to ensure that highest
-              level of purity & efficacy is expressed in to the products that we
-              manufacture.
-            </p>
+        <div className="about-section py-0">
+          <div>
+            {loading ? (
+              <div className="container">
+                <div className="shimmer-description mb-1"></div>
+                <div className="shimmer-description mb-1"></div>
+                <div className="shimmer-description mb-1"></div>
+                <div className="shimmer-description mb-1"></div>
+                <div className="shimmer-description mb-1"></div>
+              </div>
+            ) : manufacturingData?.details ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: manufacturingData?.details,
+                }}
+              />
+            ) : (
+              <div className="container py-5">
+                <h5>Detail Not Found</h5>
+              </div>
+            )}
           </div>
         </div>
       </main>
@@ -71,4 +102,4 @@ function CompanyProfile() {
   );
 }
 
-export default CompanyProfile;
+export default Manufacturing;

@@ -23,7 +23,6 @@ import VerifyAccount from "./Pages/VerifyAccount";
 import TermsCondition from "./Pages/TermsCondition";
 import CompanyProfile from "./Pages/CompanyProfile";
 import QualityPolicy from "./Pages/QualityPolicy";
-import Manufacturing from "./Pages/Manufacturing";
 import ShopByCategory from "./Pages/ShopByCategory";
 import RegistrationSuccess from "./Pages/RegistrationSuccess";
 import OrderSuccess from "./Pages/OrderSuccess";
@@ -35,6 +34,7 @@ import MyOrders from "./Pages/MyOrders";
 import OrderDeatil from "./Pages/OrderDetail";
 import ForgetPassword from "./Pages/ForgetPassword";
 import ResetPassword from "./Pages/ResetPassword";
+import Manufacturing from "./Pages/Manufacturing";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
