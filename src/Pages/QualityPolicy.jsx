@@ -84,11 +84,13 @@ function QualityPolicy() {
                 <div className="shimmer-description mb-1"></div>
               </div>
             ) : qualityPolicyData?.details ? (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: qualityPolicyData?.details,
-                }}
-              />
+              <div className="container">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: qualityPolicyData?.details,
+                  }}
+                />
+              </div>
             ) : (
               <div className="container py-5">
                 <h5>Detail Not Found</h5>

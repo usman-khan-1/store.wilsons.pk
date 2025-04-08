@@ -85,11 +85,13 @@ function Manufacturing() {
                 <div className="shimmer-description mb-1"></div>
               </div>
             ) : manufacturingData?.details ? (
+               <div className="container">
               <div
                 dangerouslySetInnerHTML={{
                   __html: manufacturingData?.details,
                 }}
               />
+              </div>
             ) : (
               <div className="container py-5">
                 <h5>Detail Not Found</h5>

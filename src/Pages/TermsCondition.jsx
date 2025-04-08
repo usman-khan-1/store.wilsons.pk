@@ -84,11 +84,13 @@ function TermsCondition() {
               <div className="shimmer-description mb-1"></div>
             </div>
           ) : termConditionData?.details ? (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: termConditionData?.details,
-              }}
-            />
+            <div className="container">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: termConditionData?.details,
+                }}
+              />
+            </div>
           ) : (
             <div className="container py-4">
               <h5>Detail Not Found</h5>

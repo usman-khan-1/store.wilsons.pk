@@ -86,12 +86,14 @@ function ShippingPolicy() {
                 <div className="shimmer-description mb-1"></div>
               </>
             ) : (
-              <div
-                className="my-3"
-                dangerouslySetInnerHTML={{
-                  __html: shippingPolicyData?.details,
-                }}
-              />
+              <div className="container">
+                <div
+                  className="my-3"
+                  dangerouslySetInnerHTML={{
+                    __html: shippingPolicyData?.details,
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>

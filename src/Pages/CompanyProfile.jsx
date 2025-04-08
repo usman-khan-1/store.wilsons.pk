@@ -85,11 +85,13 @@ function CompanyProfile() {
                 <div className="shimmer-description mb-1"></div>
               </div>
             ) : companyProfileData?.details ? (
+              <div className="container">
               <div
                 dangerouslySetInnerHTML={{
                   __html: companyProfileData?.details,
                 }}
               />
+              </div>
             ) : (
               <div className="container py-5">
                 <h5>Detail Not Found</h5>

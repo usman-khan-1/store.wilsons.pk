@@ -90,12 +90,14 @@ function WhyChoose() {
                 <div className="shimmer-description mb-1"></div>
               </>
             ) : (
-              <div
-                className="my-3"
-                dangerouslySetInnerHTML={{
-                  __html: whyChoseData?.details,
-                }}
-              />
+              <div className="container">
+                <div
+                  className="my-3"
+                  dangerouslySetInnerHTML={{
+                    __html: whyChoseData?.details,
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>
