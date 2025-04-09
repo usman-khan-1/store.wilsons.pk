@@ -11,7 +11,7 @@ import {
 } from "react-share";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Store/CartSlice";
-import ReactImageMagnify from 'react-image-magnify';
+import ReactImageMagnify from "react-image-magnify";
 
 import toast from "react-hot-toast";
 
@@ -237,7 +237,7 @@ function ProductDetails() {
 
                   <li>
                     <strong>CATEGORY : </strong>
-                    {productDetails?.details?.category}
+                    {productDetails?.details?.category?.join(", ")}
                   </li>
                 </ul>
                 <div className="product-action">
@@ -411,29 +411,29 @@ function ProductDetails() {
               >
                 {productDetails?.details?.DesImage ? (
                   <ReactImageMagnify
-                  {...{
-                    smallImage: {
-                      alt: productDetails?.details?.heading,
-                      width: 400,
-                      height: 300,
-                      src: productDetails?.details?.DesImage,
-                    },
-                    largeImage: {
-                      src: productDetails?.details?.DesImage,
-                      width: 1500,
-                      height: 800,
-                    },
-                    enlargedImageContainerStyle: {
-                      zIndex: 9,
-                      width: "200%",
-                      height: "100%",
-                    },
-                    enlargedImageContainerDimensions: {
-                      width: "200%",
-                      height: "200%",
-                    },
-                  }}
-                />
+                    {...{
+                      smallImage: {
+                        alt: productDetails?.details?.heading,
+                        width: 400,
+                        height: 300,
+                        src: productDetails?.details?.DesImage,
+                      },
+                      largeImage: {
+                        src: productDetails?.details?.DesImage,
+                        width: 1500,
+                        height: 800,
+                      },
+                      enlargedImageContainerStyle: {
+                        zIndex: 9,
+                        width: "200%",
+                        height: "100%",
+                      },
+                      enlargedImageContainerDimensions: {
+                        width: "200%",
+                        height: "200%",
+                      },
+                    }}
+                  />
                 ) : (
                   <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8bUqIUkfyesCXuAFw-MFLebEI-5to1ouplw&s"
