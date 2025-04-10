@@ -87,14 +87,12 @@ function ReturnPolicy() {
                 <div className="shimmer-description mb-1"></div>
               </>
             ) : (
-              <div className="container">
                 <div
                   className="my-3"
                   dangerouslySetInnerHTML={{
                     __html: returnPolicyData?.details,
                   }}
                 />
-              </div>
             )}
           </div>
         </div>
