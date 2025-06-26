@@ -45,16 +45,19 @@
   color: #777 !important;
 }
 .font1 {
-  font-family: "Open Sans", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
+  /* font-family: "Open Sans", sans-serif !important; */
 }
 .font2 {
   font-family: Poppins, sans-serif !important;
 }
 .font3 {
-  font-family: "Segoe Script", "Savoye LET" !important;
+  font-family: "Poppins", "Savoye LET" !important;
+  /* font-family: "Segoe Script", "Savoye LET" !important; */
 }
 .font4 {
-  font-family: Oswald, sans-serif !important;
+  font-family: Poppins, sans-serif !important;
+  /* font-family: Oswald, sans-serif !important; */
 }
 @media (min-width: 992px) {
   .d-lg-none {
@@ -6272,8 +6275,12 @@ figure .porto-loading-icon {
 }
 .product-single-qty {
   display: inline-block;
-  max-width: 104px;
+  max-width: 120px;
   vertical-align: middle;
+  border: 1px solid #e7e7e7;
+  border-radius: 50px;
+  padding: 0px 5px;
+  margin-left: 10px !important;
 }
 .product-single-qty .bootstrap-touchspin.input-group {
   -ms-flex-wrap: nowrap;
@@ -6307,6 +6314,7 @@ figure .porto-loading-icon {
 }
 .product-single-qty .btn.btn-outline {
   border-color: #e7e7e7;
+  border: none !important;
 }
 .product-single-qty .btn.btn-down-icon:after,
 .product-single-qty .btn.btn-up-icon:after,
@@ -12729,12 +12737,22 @@ span.toggle:before {
   font-family: "Open Sans", sans-serif;
 }
 .add-cart {
-  padding: 12px 27px 10px 26px;
+  padding: 8px 12px !important;
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 24px;
+  border-radius: 5px;
+  background: #327dc0;
+  color: #fff;
 }
+
+.add-cart:hover {
+  background: #1861a3;
+  color: #fff;
+  /* border: 1px solid #327DC0; */
+}
+
 .add-cart:before {
   font-size: 1.8rem;
   line-height: 0;
@@ -12819,15 +12837,17 @@ span.toggle:before {
 .product-single-details .product-action .add-cart {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
+  text-transform: capitalize;
 }
-.product-single-details .product-action .add-cart:before {
+/* .product-single-details .product-action .add-cart:before {
   content: "";
   margin-top: -2px;
   font-family: "Porto";
   font-weight: 600;
   font-size: 1.8rem;
   margin-right: 7px;
-}
+} */
 .sticky-sidebar .product-single-details {
   margin-bottom: 2.7rem;
 }
@@ -13053,10 +13073,10 @@ span.toggle:before {
   margin-right: 2rem;
 }
 .product-single-details .product-single-qty {
-  margin: 0.5rem 0.5rem 0.5rem 1px;
+  /* margin: 0.5rem 0.5rem 0.5rem 1px; */
 }
 .product-single-details .product-single-qty .form-control {
-  height: 48px;
+  height: 40px;
   font-size: 1.6rem;
   font-weight: 700;
 }
@@ -13166,7 +13186,7 @@ main .sticky-header .product-ratings:before {
   left: 1.8rem;
 }
 .single-info-list {
-  margin-bottom: 1.7rem;
+  margin-bottom: 0px !important;
   padding: 0;
   font-size: 1.2rem;
   line-height: 1.5;
@@ -13327,6 +13347,7 @@ main .sticky-header .product-ratings:before {
   display: block;
   width: 100%;
   max-width: none;
+  height: 100% !important;
 }
 .product-single-gallery .prod-thumbnail .owl-nav {
   font-size: 1.6rem;
@@ -18126,6 +18147,26 @@ p {
   .testimonial-section .testimonial {
     margin-bottom: 40px;
   }
+
+  .product-add-buy-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start !important;
+    justify-content: start !important;
+    gap: 15px;
+    border: none !important;
+    padding:0px !important;
+    padding-left: 0px !important;
+    border-radius: 5px;
+    width: 100% !important;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .product-add-buy-mobile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
 }
 .testimonial-type1 {
   margin-bottom: 40px;
@@ -18809,20 +18850,19 @@ div.shimmer {
   justify-content: space-between;
   padding: 0 20px;
 }
-.order-detail .wishlist-title{
+.order-detail .wishlist-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
- .ship-status {
+.ship-status {
   background-color: #0073b2;
   padding: 7px 20px;
   color: #fff;
   border-radius: 10px;
   width: auto;
 }
-.addresses .address{
+.addresses .address {
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   padding: 10px;
@@ -18830,36 +18870,31 @@ div.shimmer {
 }
 
 .address .row {
-  align-items: center; 
+  align-items: center;
 }
 
 .address input[type="radio"] {
-  width: 20px; 
-  height: 20px; 
+  width: 20px;
+  height: 20px;
   /* accent-color: #01abec;  */
-  cursor: pointer; 
-  outline: none ;
+  cursor: pointer;
+  outline: none;
 }
-.modal-content{
+.modal-content {
   border-radius: 10px;
   border: none;
 }
 
-.header-user a:hover h4{
+.header-user a:hover h4 {
   color: #01abec;
-  transition: 0.4s ;
-
+  transition: 0.4s;
 }
-.header-user a.active h4{
+.header-user a.active h4 {
   color: #01abec;
 }
-.styles-module_avatar__afcc4 img{
+.styles-module_avatar__afcc4 img {
   background-color: #fff;
- 
 }
-
-
-
 
 .shimmer-image {
   width: 100%;
@@ -18916,8 +18951,6 @@ div.shimmer {
   }
 }
 
-
-
 .shimmer-box {
   display: inline-block;
   width: 70%; /* Adjust width */
@@ -18952,3 +18985,54 @@ div.shimmer {
   text-transform: capitalize;
   margin-bottom: 5px;
 }
+
+.product-quantity-bg {
+  background: none !important;
+  border: none !important;
+}
+
+.product-buy-now-button {
+  border: 1px solid #327dc0;
+  color: #327dc0;
+  padding: 8px 24px !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 24px;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+.product-buy-now-button:hover {
+  background: #327dc0;
+  color: #fff;
+}
+
+.product-add-buy-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  border: 1px solid #ebebeb;
+  padding: 20px 15px ;
+  border-radius: 5px;
+  width: 570px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.product-add-buy-wrapper ul {
+  margin-bottom: 0px !important;
+}
+.product-add-buy-wrapper ul li strong {
+  color: #000;
+  font-size: 14px !important;
+  text-transform: capitalize !important;
+}
+.product-add-buy-wrapper ul li {
+  font-family: Poppins !important;
+}
+
+ .product-add-buy-mobile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }

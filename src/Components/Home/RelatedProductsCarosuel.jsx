@@ -71,8 +71,10 @@ function RelatedProductsCarousel({ productDetails, load }) {
     }
   };
   return (
-    <div className="">
-      <h2 className="section-title ls-n-10 pb-3 m-b-4">Related Products</h2>
+    <div style={{ background: "#EEF7FF", padding: "30px 0px 10px 0px" }}>
+      <div className="container"> 
+      {/* <h2 className="section-title ls-n-10 pb-3 m-b-4">Related Products</h2> */}
+      <h2 className="section-title ls-n-10 pb-3 m-b-4 text-center">You May Also Like</h2>
       <Carousel
         autoPlay={true}
         autoPlaySpeed={3000}
@@ -145,6 +147,8 @@ function RelatedProductsCarousel({ productDetails, load }) {
               </div>
             ))}
       </Carousel>
+
+      </div>
     </div>
   );
 }

@@ -12795,14 +12795,14 @@ span.toggle:before {
   display: inline-flex;
   align-items: center;
 }
-.product-single-details .product-action .add-cart:before {
+/* .product-single-details .product-action .add-cart:before {
   content: "";
   margin-top: -2px;
   font-family: "Porto";
   font-weight: 600;
   font-size: 1.8rem;
   margin-right: 7px;
-}
+} */
 .sticky-sidebar .product-single-details {
   margin-bottom: 2.7rem;
 }

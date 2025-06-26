@@ -12,11 +12,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Store/CartSlice";
 import ReactImageMagnify from "react-image-magnify";
-import { FaStar, FaStarHalf } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
+
 import toast from "react-hot-toast";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import CustomerReviewsSlider from "../Components/CustomerReviewsSlider";
 
 function ProductDetails() {
   useEffect(() => {
@@ -27,6 +24,7 @@ function ProductDetails() {
   const dispatch = useDispatch();
   const currentUrl = window.location.href;
   const user = useSelector((state) => state.user.value);
+  // console.log("wishlistItems",wishlistItems)
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const [loading, setLoading] = useState(false);
@@ -34,43 +32,6 @@ function ProductDetails() {
   const [wishlistItems, setWishlistItems] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Get all product images (assuming they're named image, image1, image2, etc.)
-  const getProductImages = () => {
-    const images = [];
-    if (productDetails?.details?.image) {
-      images.push(productDetails.details.image);
-    }
-
-    // Add additional images if they exist
-    for (let i = 1; i <= 4; i++) {
-      const imgKey = `image${i}`;
-      if (productDetails?.details?.[imgKey]) {
-        images.push(productDetails.details[imgKey]);
-      }
-    }
-
-    return images;
-  };
-
-  const productImages = getProductImages();
-
-  const goToPreviousImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? productImages.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToNextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === productImages.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const selectImage = (index) => {
-    setCurrentImageIndex(index);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,32 +48,6 @@ function ProductDetails() {
     fetchData();
   }, [slug]);
 
-  const [ratingData, setRatingData] = useState({
-    averageRating: 4.5,
-    totalReviews: 28,
-  });
-
-  const renderStars = () => {
-    const stars = [];
-    const fullStars = Math.floor(ratingData.averageRating);
-    const hasHalfStar = ratingData.averageRating % 1 >= 0.5;
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<FaStar key={`full-${i}`} className="text-warning" />);
-    }
-
-    if (hasHalfStar) {
-      stars.push(<FaStarHalf key="half" className="text-warning" />);
-    }
-
-    const emptyStars = 5 - stars.length;
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FaStar key={`empty-${i}`} className="text-secondary" />);
-    }
-
-    return stars;
-  };
-
   const handleAddToCart = () => {
     if (quantity > 0 && productDetails?.details?.uid) {
       const isProductInCart = cartItems?.find(
@@ -120,6 +55,7 @@ function ProductDetails() {
       );
 
       if (isProductInCart) {
+        // Update the quantity if the product is already in the cart
         const updatedQuantity = isProductInCart.quantity + quantity;
         dispatch(
           addToCart({
@@ -132,6 +68,7 @@ function ProductDetails() {
           type: "success",
         });
       } else {
+        // Add the product as a new item if it's not in the cart
         dispatch(addToCart({ product: productDetails.details, quantity }));
         setMessage({
           text: "Product added to cart successfully",
@@ -139,6 +76,7 @@ function ProductDetails() {
         });
       }
 
+      // Clear the message after 2 seconds
       setTimeout(() => setMessage(""), 2000);
     }
   };
@@ -152,11 +90,14 @@ function ProductDetails() {
   };
 
   useEffect(() => {
-    console.log("Cart Items:", cartItems);
+    console.log("Cart Items:", cartItems); // Log cartItems to the console to check if it’s working
   }, [cartItems]);
+
+  // const isWishlisted = wishlistItems.some((item) => item.uid === product.uid);
 
   useEffect(() => {
     if (user?.logged_id) {
+      // Fetch the wishlist if the user is logged in
       const fetchWishlist = async () => {
         try {
           const response = await makePostRequest("wishlist/list", {
@@ -170,6 +111,7 @@ function ProductDetails() {
 
       fetchWishlist();
     } else {
+      // Clear wishlist if the user is not logged in
       setWishlistItems([]);
     }
   }, [user?.logged_id]);
@@ -179,6 +121,7 @@ function ProductDetails() {
 
     try {
       if (isWishlisted) {
+        // Remove from wishlist
         await makePostRequest("wishlist/remove", {
           customer_id: user?.logged_id,
           product_id: product.uid,
@@ -188,6 +131,7 @@ function ProductDetails() {
         );
         setMessage({ text: "Product Removed Successfully", type: "success" });
       } else {
+        // Add to wishlist
         await makePostRequest("wishlist/add", {
           customer_id: user?.logged_id,
           product_id: product.uid,
@@ -199,14 +143,14 @@ function ProductDetails() {
       console.error("Error updating wishlist:", error);
     } finally {
       setLoading(false);
-      setTimeout(() => setMessage(""), 2000);
+      setTimeout(() => setMessage(""), 2000); // Clear the message after 2 seconds
     }
   };
-
   return (
     <Layout>
       <main className="main">
         <div className="container">
+          {/* Breadcrumb */}
           <nav aria-label="breadcrumb" className="breadcrumb-nav">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
@@ -220,107 +164,20 @@ function ProductDetails() {
             </ol>
           </nav>
 
+          {/* Product Details */}
           <div className="product-single-container product-single-default">
             <div className="row">
-              {/* Product Image Gallery with Slider */}
-              <div className="col-lg-6 col-md-6 product-single-gallery">
-                <div
-                  className="product-main-image"
-                  style={{ position: "relative", marginBottom: "15px" }}
-                >
-                  <ImageWithLoader
-                    src={productImages[currentImageIndex]}
-                    width="100%"
-                    height="450px"
-                    loaderHeight={"450px"}
-                    alt={`product ${currentImageIndex + 1}`}
-                  />
-
-                  {/* Navigation Arrows */}
-                  {productImages.length > 1 && (
-                    <>
-                      <button
-                        onClick={goToPreviousImage}
-                        style={{
-                          position: "absolute",
-                          left: "10px",
-                          top: "50%",
-                          transform: "translateY(-50%)",
-                          background: "#D9D9D9",
-                          color: "#327DC0",
-                          border: "none",
-                          borderRadius: "50%",
-                          width: "40px",
-                          height: "40px",
-                          cursor: "pointer",
-                          zIndex: 1,
-                        }}
-                      >
-                        <FaArrowLeftLong style={{ fontSize: "18px" }} />
-                      </button>
-                      <button
-                        onClick={goToNextImage}
-                        style={{
-                          position: "absolute",
-                          right: "10px",
-                          top: "50%",
-                          transform: "translateY(-50%)",
-                          background: "#D9D9D9",
-                          color: "#327DC0",
-                          border: "none",
-                          borderRadius: "50%",
-                          width: "40px",
-                          height: "40px",
-                          cursor: "pointer",
-                          zIndex: 1,
-                        }}
-                      >
-                        <FaArrowRightLong style={{ fontSize: "18px" }} />
-                      </button>
-                    </>
-                  )}
-                </div>
-
-                {/* Thumbnails */}
-                {productImages.length > 1 && (
-                  <div
-                    className="product-thumbnails"
-                    style={{
-                      display: "flex",
-                      gap: "10px",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {productImages.map((image, index) => (
-                      <div
-                        key={index}
-                        onClick={() => selectImage(index)}
-                        style={{
-                          width: "80px",
-                          height: "80px",
-                          border:
-                            currentImageIndex === index
-                              ? "2px solid #007bff"
-                              : "1px solid #ddd",
-                          cursor: "pointer",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <ImageWithLoader
-                          src={image}
-                          width="100%"
-                          height="100%"
-                          alt={`product thumbnail ${index + 1}`}
-                          style={{ objectFit: "cover" }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
+              <div className="col-lg-5 col-md-6 product-single-gallery">
+                <ImageWithLoader
+                  src={productDetails?.details?.image}
+                  width="217"
+                  height="217"
+                  loaderHeight={"450px"}
+                  alt="product"
+                />
               </div>
 
-              {/* Product Details (rest of your existing code remains the same) */}
-              <div className="col-lg-6 col-md-6 product-single-details">
+              <div className="col-lg-7 col-md-6 product-single-details">
                 <h1 className="product-title">
                   {productDetails?.details?.heading ? (
                     productDetails.details.heading
@@ -329,32 +186,7 @@ function ProductDetails() {
                   )}
                 </h1>
 
-                <div className="d-flex align-items-center mb-2">
-                  <span className="mr-2 font-weight-bold">
-                    ({ratingData.averageRating.toFixed(1)})
-                  </span>
-                  <div className="d-flex mr-2" style={{ gap: "2px" }}>
-                    {renderStars()}
-                  </div>
-                  <span>({ratingData.totalReviews} Reviews)</span>
-                </div>
-
-                {productDetails?.details?.short_detail &&
-                  productDetails?.details?.short_detail !== "0" && (
-                    <ul className="single-info-list">
-                      <li>{productDetails?.details?.short_detail}</li>
-                    </ul>
-                  )}
-                <div>
-                  <ul className="single-info-list">
-                    <li>
-                      <strong>Vendor : </strong> Wilmart
-                    </li>
-                    <li>
-                      <strong>Availability : </strong> In Stock
-                    </li>
-                  </ul>
-                </div>
+                <hr className="short-divider" />
 
                 <div className="price-box">
                   {productDetails?.details?.price ? (
@@ -365,81 +197,19 @@ function ProductDetails() {
                       )}
                     </span>
                   ) : (
-                    <span className="shimmer shimmer-box"></span>
+                    <span className="shimmer shimmer-box"></span> // Added a class with dimensions
                   )}
                 </div>
 
-                <div className="product-action product-add-buy-wrapper">
-                  <ul className="single-info-list">
-                    <li className="mb-0">
-                      <strong>Quantity : </strong>{" "}
-                      <div className="product-single-qty">
-                        <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                          <span className="input-group-btn input-group-prepend">
-                            <button
-                              className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
-                              type="button"
-                              onClick={handleDecrement}
-                            >
-                              -
-                            </button>
-                          </span>
-                          <input
-                            className="horizontal-quantity form-control product-quantity-bg"
-                            type="text"
-                            value={quantity}
-                            readOnly
-                          />
-                          <span className="input-group-btn input-group-append">
-                            <button
-                              className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
-                              type="button"
-                              onClick={handleIncrement}
-                            >
-                              +
-                            </button>
-                          </span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <div className="product-add-buy-mobile">
-                    <a
-                      className="btn  add-cart mr-2"
-                      title="Add to Cart"
-                      onClick={handleAddToCart}
-                    >
-                      <img src="/assets/imagess/cart-vector.png" /> Add to Cart
-                    </a>
-                    <a className="btn product-buy-now-button mr-2">
-                      Buy It Now
-                    </a>
-
-                    <FaRegHeart
-                      style={{
-                        color: "#327DC0",
-                        fontSize: "31px",
-                        border: "1px solid #e3e3e3",
-                        borderRadius: "50px",
-                        padding: "5px",
-                        fontWeight: "600",
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {message && (
-                  <p
-                    className={` ${
-                      message.type === "success"
-                        ? "text-success"
-                        : "text-danger"
-                    }`}
-                  >
-                    {message.text}
-                  </p>
-                )}
+                {productDetails?.details?.short_detail &&
+                  productDetails?.details?.short_detail !== "0" && (
+                    <ul className="single-info-list">
+                      <li>{productDetails?.details?.short_detail}</li>
+                    </ul>
+                    // <div className="product-desc">
+                    //   <p>{productDetails?.details?.short_detail}</p>
+                    // </div>
+                  )}
 
                 <ul className="single-info-list">
                   <li>
@@ -469,14 +239,65 @@ function ProductDetails() {
                     <strong>CATEGORY : </strong>
                     {productDetails?.details?.category?.join(", ")}
                   </li>
-
-                  <li>
-                    <strong>Tags : </strong>
-                    Bone Health , Heart Health , Immune Health , Respiratory
-                    Health
-                  </li>
                 </ul>
+                <div className="product-action">
+                  <div className="product-single-qty">
+                    <div className="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+                      <span className="input-group-btn input-group-prepend">
+                        <button
+                          className="btn btn-outline btn-down-icon bootstrap-touchspin-down"
+                          type="button"
+                          onClick={handleDecrement}
+                        >
+                          -
+                        </button>
+                      </span>
+                      <input
+                        className="horizontal-quantity form-control"
+                        type="text"
+                        value={quantity}
+                        readOnly
+                      />
+                      <span className="input-group-btn input-group-append">
+                        <button
+                          className="btn btn-outline btn-up-icon bootstrap-touchspin-up"
+                          type="button"
+                          onClick={handleIncrement}
+                        >
+                          +
+                        </button>
+                      </span>
+                    </div>
+                  </div>
 
+                  <a
+                    className="btn btn-dark add-cart mr-2"
+                    title="Add to Cart"
+                    onClick={handleAddToCart} // Add to Cart handler
+                  >
+                    Add to Cart
+                  </a>
+
+                  {/* <Link to={"/cart"} className="btn btn-gray view-cart d-none">
+                    View cart
+                  </Link> */}
+                </div>
+
+                {message && (
+                  <p
+                    className={` ${
+                      message.type === "success"
+                        ? "text-success"
+                        : "text-danger"
+                    }`}
+                  >
+                    {message.text}
+                  </p>
+                )}
+
+                <hr className="divider mb-0 mt-0" />
+
+                {/* Share buttons */}
                 <div className="product-single-share ">
                   <label className="sr-only">Share:</label>
                   <div className="social-icons mr-2">
@@ -531,6 +352,7 @@ function ProductDetails() {
             </div>
           </div>
 
+          {/* Product Tabs */}
           <div className="product-single-tabs">
             <ul className="nav nav-tabs" role="tablist">
               <li className="nav-item">
@@ -623,18 +445,17 @@ function ProductDetails() {
             </div>
           </div>
 
-          {/* <hr className="mt-0 m-b-5" /> */}
-        </div>
+          {productDetails?.lists?.length > 0 && (
+            <div className="products-section pt-0">
+              <RelatedProductsCarosuel
+                productDetails={productDetails}
+                load={loading}
+              />
+            </div>
+          )}
 
-        {productDetails?.lists?.length > 0 && (
-          <div className="products-section pt-0">
-            <RelatedProductsCarosuel
-              productDetails={productDetails}
-              load={loading}
-            />
-          </div>
-        )}
-        <CustomerReviewsSlider />
+          <hr className="mt-0 m-b-5" />
+        </div>
       </main>
     </Layout>
   );
