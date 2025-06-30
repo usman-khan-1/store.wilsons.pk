@@ -7,6 +7,7 @@ import Searching from "../Components/Searching";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SidebarSearching from "./SidebarSearching";
+import "./Header.css";
 
 function HomeNavbar() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function HomeNavbar() {
   const [isLeftSidebar, setIsLeftSidebar] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(null);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const user = useSelector((state) => state.user.value);
@@ -35,24 +37,15 @@ function HomeNavbar() {
     };
   }, []);
 
-  const submenuStyle =
-    location.pathname === "/"
-      ? {
-          opacity: "1",
-          top: "100%",
-          visibility: "visible",
-        }
-      : {};
-
   const ToggleCategoryDropdown = () => {
     setOpenCategory(!openCategory);
   };
 
   const toggleLeftSidebar = () => {
     if (isMobile) {
-      setIsSideBar(!isSideBar); // Toggle sidebar for mobile
+      setIsSideBar(!isSideBar);
     } else {
-      setIsLeftSidebar(!isLeftSidebar); // Toggle left sidebar for larger screens
+      setIsLeftSidebar(!isLeftSidebar);
     }
   };
 
@@ -73,6 +66,13 @@ function HomeNavbar() {
     };
     fetchData();
   }, []);
+
+  const [showCtas, setShowCtas] = useState(false);
+
+  const toggleCtas = () => {
+    setShowCtas(!showCtas);
+  };
+
   return (
     <div className={`${openCart && "cart-opened"}`}>
       <header className={`header ${isFixed ? "fixed-top" : ""}`}>
@@ -135,79 +135,356 @@ function HomeNavbar() {
 
             <div className="header-right ml-0 ml-lg-auto">
               <div className="header-icon d-md-block d-none mr-0">
-                <div className="header-user">
-
-                  <NavLink activeClassName="active" to={"/"}>
-                    <div className="header-userinfo">
-                      <h4 className="font1 mb-0">Home</h4>
-                    </div>
-                  </NavLink>
-
+                <nav className="main-nav">
                   <ul className="menu">
-                    <li className="dropdown">
-                      <a>
-                        <b>About</b>
-                      </a>
-                      <ul className="dropdown-menu">
-                        <li>
-                          <NavLink to="/company-profile">Company Profile</NavLink>
-                        </li>
-                        <li>
-                          <NavLink to="/manufacturing">Manufacturing</NavLink>
-                        </li>
-                        <li>
-                          <NavLink to="/quality-policy">Quality Policy</NavLink>
-                        </li>
-                      </ul>
+                    <li
+                      className="has-submenu"
+                      onMouseEnter={() => setActiveMenu("popular")}
+                    >
+                      <a href="/collections/best-sellers">Popular</a>
+                    </li>
+                    <li
+                      className="has-submenu"
+                      onMouseEnter={() => setActiveMenu("women")}
+                    >
+                      <a href="/collections/vitamins-for-women">Women</a>
+                    </li>
+                    <li
+                      className="has-submenu"
+                      onMouseEnter={() => setActiveMenu("men")}
+                    >
+                      <a href="/collections/vitamins-for-men">Men</a>
+                    </li>
+                    <li
+                      className="has-submenu"
+                      onMouseEnter={() => setActiveMenu("kids")}
+                    >
+                      <a href="/collections/kids-vitamins">Kids</a>
                     </li>
                   </ul>
-                  <NavLink to={"/offers"}>
-                    <div className="header-userinfo">
-                      <h4 className="font1 mb-0">Offers</h4>
-                    </div>
-                  </NavLink>
-                  <NavLink to={"/blog"}>
-                    <div className="header-userinfo">
-                      <h4 className="font1 mb-0">Medical Insight</h4>
-                    </div>
-                  </NavLink>
+                </nav>
 
-                  {user?.logged_id ? (
-                    <>
-                      <NavLink to={"/myAccount"}>
-                        <div className="header-userinfo">
-                          <h4 className="font1 mb-0">My Account</h4>
-                        </div>
-                      </NavLink>
-                    </>
-                  ) : (
-                    <NavLink to={"/login"}>
-                      <div className="header-userinfo">
-                        <h4 className="font1 mb-0">Login / Register</h4>
-                      </div>
-                    </NavLink>
-                  )}
-
-                  <NavLink to={"/why-choose-wilmart"}>
-                    <div className="header-userinfo why-choose">
-                      <h4 className="font1 mb-0">Why Choose WILMART</h4>
-                    </div>
+                {user?.logged_id && (
+                  <NavLink to={"/wishlist"} className="header-icon">
+                    <i className="icon-wishlist-2"></i>
                   </NavLink>
-
-                  {user?.logged_id && (
-                    <NavLink to={"/wishlist"} className="header-icon">
-                      <i className="icon-wishlist-2"></i>
-                    </NavLink>
-                  )}
-                </div>
+                )}
               </div>
 
               <CartSidebar setOpenCart={setOpenCart} />
             </div>
           </div>
+
+          {/* Mega Menu Dropdown - Updated structure */}
+          <div 
+            className={`mega-menu-wrapper ${activeMenu ? "active" : ""}`}
+            onMouseLeave={() => setActiveMenu(null)}
+          >
+            <div className="mega-menu-container">
+              <div className="container">
+                <div className="mega-menu">
+                  {activeMenu === "popular" && (
+                    <div className="mega-menu-content">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <h3>Popular Categories</h3>
+                        </div>
+                        <div className="col-md-4">
+                          <ul>
+                            <li>
+                              <a href="/collections/ultra-supplements">
+                                Single Nutrients
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/collections/pregnancy">Pregnancy</a>
+                            </li>
+                            <li>
+                              <a href="/collections/vitamins-for-men">
+                                Men's Health
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-md-4">
+                          <ul>
+                            <li>
+                              <a href="/collections/immune-support">
+                                Immune Support
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/collections/digestive-health">
+                                Digestive Health
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/collections/joint-support">
+                                Joint Support
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-md-4">
+                          <ul>
+                            <li>
+                              <a href="/collections/energy-support">
+                                Energy Support
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/collections/sleep-support">
+                                Sleep Support
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/collections/best-sellers">Best Sellers</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeMenu === "women" && (
+                    <div className="mega-menu-content">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <h3>Women's Health</h3>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Shop By Brand</h4>
+                          <ul>
+                            <li>
+                              <a href="/pages/womens-vitamins-wellwoman">
+                                Wellwoman
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/products/wellwoman-50-tablets">
+                                Wellwoman 50+
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/pages/hair-skin-nails-vitamins-perfectil">
+                                Perfectil
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Shop By Need</h4>
+                          <ul>
+                            <li>
+                              <a href="/collections/pregnancy">Pregnancy</a>
+                            </li>
+                            <li>
+                              <a href="/collections/hair-vitamins-supplements">
+                                Hair
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/collections/hair-and-beauty-supplements">
+                                Beauty
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Featured Products</h4>
+                          <ul>
+                            <li>
+                              <a href="/products/wellwoman-original-30-tablets">
+                                Wellwoman Original
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/products/perfectil-original-30-tablets">
+                                Perfectil Original
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/products/wellwoman-max-30-tablets">
+                                Wellwoman Max
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeMenu === "men" && (
+                    <div className="mega-menu-content">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <h3>Men's Health</h3>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Shop By Brand</h4>
+                          <ul>
+                            <li>
+                              <a href="/pages/mens-vitamins-wellman">Wellman</a>
+                            </li>
+                            <li>
+                              <a href="/products/wellman-50-tablets">
+                                Wellman 50+
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/pages/hair-health-supplements-hairfollic">
+                                Hairfollic
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Shop By Need</h4>
+                          <ul>
+                            <li>
+                              <a href="/collections/multivitamins">
+                                Multivitamins
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/pages/hair-health-supplements-hairfollic">
+                                Hair Support
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/collections/brain">Brain</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Featured Products</h4>
+                          <ul>
+                            <li>
+                              <a href="/products/wellman-original-30-tablets">
+                                Wellman Original
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/products/wellman-max-30-tablets">
+                                Wellman Max
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/products/hairfollic-men-60-tablets">
+                                Hairfollic for Men
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeMenu === "kids" && (
+                    <div className="mega-menu-content">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <h3>Kids' Health</h3>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Shop By Brand</h4>
+                          <ul>
+                            <li>
+                              <a href="/pages/baby-vitamins-wellbaby">Wellbaby</a>
+                            </li>
+                            <li>
+                              <a href="/pages/kids-supplements-wellkid-peppa-pig">
+                                Wellkid Peppa Pig
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/pages/kids-supplements-wellkid">
+                                Wellkid
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Shop By Age</h4>
+                          <ul>
+                            <li>
+                              <a href="/collections/newborn-baby-vitamins">
+                                Baby (0-12 months)
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/collections/toddler-vitamins">
+                                Toddler (1-4 years)
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/pages/kids-supplements-wellkid">
+                                Children (4+ years)
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="col-md-4">
+                          <h4>Featured Products</h4>
+                          <ul>
+                            <li>
+                              <a href="/products/wellbaby-vitamin-d-drops-10ml">
+                                Wellbaby Vitamin D
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/products/wellkid-peppa-pig-multivitamin-30ml">
+                                Wellkid Peppa Pig
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/products/wellkid-smart-chewable-30-tablets">
+                                Wellkid Smart
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      <div className="promotional-banner-container">
+        <div className="promotional-banner">
+          <div className="promotional-banner-inner">
+            <div className="promotional-tag">
+              <img
+                className="tag"
+                loading="lazy"
+                width="22"
+                height="22"
+                src="https://cdn.shopify.com/s/files/1/0027/7263/1621/files/double_price_tag.webp?v=1689861190"
+                alt="3for2 tag"
+              />
+              <div className="promotional-message" onClick={toggleCtas}>
+                3 for 2 all products
+                <span
+                  className={`promotional-arrow ${showCtas ? "up" : "down"}`}
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`promotional-ctas ${showCtas ? "show" : "hide"}`}>
+          <div className="ctas-container">
+            <a href="/collections/best-sellers">Shop best sellers</a>
+            <a href="/collections/all-vitabiotics-products">Shop All products</a>
+          </div>
+        </div>
+      </div>
       </header>
 
+      {/* Promotional Banner - Positioned below the header */}
+
+      {/* Mobile Menu */}
       <div className={`${isSideBar ? "mmenu-active" : ""}`}>
         <div className="mobile-menu-overlay"></div>
 
@@ -231,7 +508,7 @@ function HomeNavbar() {
                   <ul className={`${openCategory && "d-block"}`}>
                     {category?.map((data, index) => (
                       <li key={index}>
-                        <Link>{data?.name}</Link>
+                        <Link to={`/category/${data?.slug}`}>{data?.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -242,22 +519,16 @@ function HomeNavbar() {
                 <li>
                   <Link to={"/blog"}>Blog</Link>
                 </li>
-                <li>
-                  <Link to={"/wishList"}>Wishlist</Link>
-                </li>
+                {user?.logged_id && (
+                  <li>
+                    <Link to={"/wishlist"}>Wishlist</Link>
+                  </li>
+                )}
                 <li>
                   <Link to={"/cart"}>Cart</Link>
                 </li>
-                <li>
-                  <Link to={"/category"}>Shop</Link>
-                </li>
-                <li>
-                  <Link to={"/cart"}>My Account</Link>
-                </li>
               </ul>
             </nav>
-
-            {/* <SidebarSearching /> */}
           </div>
         </div>
       </div>
