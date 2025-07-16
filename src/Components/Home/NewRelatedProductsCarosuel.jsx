@@ -124,7 +124,7 @@ function NewRelatedProductsCarosuel({ productDetails, load }) {
                           />
                         </Link>
                       </figure>
-                      <div className="product-details text-center text-md-start">
+                      <div className="product-details d-flex justify-content-center justify-content-md-start align-items-center align-items-md-start text-center text-md-start">
                         <div className="category-wrap d-flex flex-column flex-md-row justify-content-between align-items-center">
                           <Link
                             to="/category"
