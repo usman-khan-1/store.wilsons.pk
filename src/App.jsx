@@ -35,6 +35,7 @@ import OrderDeatil from "./Pages/OrderDetail";
 import ForgetPassword from "./Pages/ForgetPassword";
 import ResetPassword from "./Pages/ResetPassword";
 import Manufacturing from "./Pages/Manufacturing";
+import NewProductDetails from "./Pages/NewProductDetails";
 function App() {
   const dispatch = useDispatch();
   const fetchBranding = async () => {
@@ -80,6 +81,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="contact" element={<Contact />} />
           <Route path="product/:slug" element={<ProductDetails />} />
+          <Route path="new-product/:slug" element={<NewProductDetails />} />
           <Route path="product-details" element={<ProductDetails />} />
 
           <Route path="checkout" element={<Checkout />} />

@@ -37,7 +37,7 @@ function Searching() {
   };
 
   return (
-    <div className="header-col">
+    <div className="header-col px-5">
       <div className="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
         <a href="#" className="search-toggle" role="button">
           <i className="icon-search-3"></i>
