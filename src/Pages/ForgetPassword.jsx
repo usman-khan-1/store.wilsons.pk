@@ -34,7 +34,7 @@ function ForgetPassword() {
 
     try {
       const response = await fetch(
-        "https://api.wilsons.pk/auth/forget-password-customer",
+        "https://apis.wilsons.pk/auth/forget-password-customer",
         {
           method: "POST",
           headers: {
