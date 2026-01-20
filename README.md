@@ -1,8 +1,53 @@
-# React + Vite
+# Website - wilmart.pk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite based web application.
 
-Currently, two official plugins are available:
+## Local System Par Run Karne Ka Method
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Step 1: Dependencies Install Karein
+
+Project directory mein jayen aur dependencies install karein:
+
+```bash
+npm install
+```
+
+### Step 2: Development Server Start Karein
+
+Development server start karne ke liye:
+
+```bash
+npm run dev
+```
+
+### Step 3: Browser Mein Open Karein
+
+Application browser mein khulega:
+- **URL:** `http://localhost:5173`
+
+## Quick Commands
+
+```bash
+# Dependencies install
+npm install
+
+# Development server start
+npm run dev
+
+# Production build
+npm run build
+
+# Production build preview
+npm run preview
+```
+
+## Requirements
+
+- Node.js (version 14 ya higher)
+- npm (Node.js ke saath automatically install hota hai)
+
+## Project Structure
+
+- `/src` - React components aur pages
+- `/public` - Static assets
+- `vite.config.js` - Vite configuration

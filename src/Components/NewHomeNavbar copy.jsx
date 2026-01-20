@@ -26,7 +26,7 @@ function NewHomeNavbar() {
     popular: {
       title: "Popular Categories",
       sections: [
-
+        
         {
           title: "Popular Categories",
           items: [
@@ -248,7 +248,7 @@ function NewHomeNavbar() {
                 />
               </Link>
 
-              <div style={{ marginLeft: "80px" }}>
+              <div style={{marginLeft:"80px"}}>
 
                 <nav className="main-nav ">
                   <ul className="menu new-navbar-links">
@@ -256,37 +256,37 @@ function NewHomeNavbar() {
                       className="has-submenu"
                       onMouseEnter={() => setActiveMenu("popular")}
                     >
-                      <a>Popular</a>
+                      <a href="/collections/best-sellers">Popular</a>
                     </li>
                     <li
                       className="has-submenu"
                       onMouseEnter={() => setActiveMenu("women")}
                     >
-                      <a>Women</a>
+                      <a href="/collections/vitamins-for-women">Women</a>
                     </li>
                     <li
                       className="has-submenu"
                       onMouseEnter={() => setActiveMenu("men")}
                     >
-                      <a>Men</a>
+                      <a href="/collections/vitamins-for-men">Men</a>
                     </li>
                     <li
                       className="has-submenu"
                       onMouseEnter={() => setActiveMenu("kids")}
                     >
-                      <a >Kids</a>
+                      <a href="/collections/kids-vitamins">Kids</a>
                     </li>
                   </ul>
                 </nav>
               </div>
 
-
+              
 
 
             </div>
             <div className="header-right ml-0 ml-lg-auto">
               <div className="header-icon d-md-block d-none mr-0">
-
+                
 
                 {user?.logged_id && (
                   <NavLink to={"/wishlist"} className="header-icon">

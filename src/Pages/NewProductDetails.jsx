@@ -18,6 +18,8 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import CustomerReviewsSlider from "../Components/CustomerReviewsSlider";
 import RelatedProductFaqs from "../Components/RelatedProductFaqs";
 import NewRelatedProductsCarosuel from "../Components/Home/NewRelatedProductsCarosuel";
+import NewHomeNavbar from "../Components/NewHomeNavbar";
+import Footer from "../Components/Footer";
 
 function NewProductDetails() {
   useEffect(() => {
@@ -275,7 +277,8 @@ function NewProductDetails() {
 `;
 
   return (
-    <Layout>
+    <div>
+      <NewHomeNavbar /> 
       <main className="main">
         <div className="container">
           <nav aria-label="breadcrumb" className="breadcrumb-nav">
@@ -732,7 +735,8 @@ function NewProductDetails() {
         )}
         <CustomerReviewsSlider />
       </main>
-    </Layout>
+      <Footer/>
+    </div>
   );
 }
 
